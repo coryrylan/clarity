@@ -248,9 +248,10 @@
             "assets": ["src/website/src/favicon.ico", "src/website/src/assets"],
             "styles": [
               "node_modules/prismjs/themes/prism-solarizedlight.css",
+              "src/clr-angular/layout/grid-deprecated.clarity.scss",
               "src/clr-angular/main.scss",
               "src/clr-icons/clr-icons.scss",
-              "src/website/src/styles.scss"
+              "src/website/src/styles/main.scss"
             ],
             "scripts": [
               "node_modules/prismjs/prism.js",

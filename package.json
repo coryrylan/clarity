@@ -73,6 +73,7 @@
     "@webcomponents/custom-elements": "1.1.0",
     "core-js": "2.5.5",
     "express": "4.15.2",
+    "jump.js": "1.0.2",
     "prismjs": "1.14.0",
     "rxjs": "6.3.3",
     "web-animations-js": "2.3.1",
