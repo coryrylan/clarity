@@ -16,6 +16,7 @@ import { EssentialShapes } from '@clr/icons/shapes/essential-shapes';
 import { style, state, animate, transition, trigger } from '@angular/animations';
 import { IconsViewService } from './icons-view.service';
 import { filter } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 let essentialShapesNames = Object.keys(EssentialShapes);
 let blinkEssentialShapes = essentialShapesNames;
@@ -48,7 +49,7 @@ export const COMMON_PATH = 'assets/icons/';
   ],
 })
 export class IconsComponent implements AfterViewInit, OnDestroy {
-  allSetsLink = COMMON_PATH + 'all-shapes.zip';
+  allSetsLink = environment.icons_url;
 
   // Check whether the current route is on ./icons/icon-sets
   isOnIconSetsRoute = false;

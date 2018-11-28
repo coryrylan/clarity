@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../environments/environment';
+const RELEASES = require('../../../releases/release-list.json');
 
 const NG_MODULE_EXAMPLE = `
 import { NgModule } from "@angular/core";
@@ -55,6 +57,9 @@ const UI_CDN = `
   },
 })
 export class GetStartedComponent {
+  sketch_base_url = environment.sketch_base_url;
+  sketch_icons_url = environment.sketch_icons_url;
+  sketch_version = RELEASES.all[RELEASES.current].sketch;
   public uiCdn = UI_CDN;
   public ngModuleExample = NG_MODULE_EXAMPLE;
   public htmlImports = HTML_IMPORTS;

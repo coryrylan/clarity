@@ -19,20 +19,19 @@
         </a>. Then download your resource of choice.
     </p>
     <div>
-        <a href="assets/images/sketchTemplates/Clarity-Template-0.13.7.sketch" target="_blank"
+        <a [href]="sketch_base_url + '/light/clarity-library-light-' + sketch_version + '.sketch'" target="_blank"
            class="btn btn-primary">
             <clr-icon shape="download"></clr-icon>
-            UI Library (0.13.7)
+            UI Library ({{sketch_version}})
         </a>
-        <a href="assets/images/sketchLibraries/Clarity-UI-Library-dark-0.13.7.sketch" target="_blank"
+        <a [href]="sketch_base_url + '/dark/clarity-library-dark-' + sketch_version + '.sketch'" target="_blank"
            class="btn btn-primary">
             <clr-icon shape="download"></clr-icon>
-            Dark UI Library (0.13.7)
+            Dark UI Library ({{sketch_version}})
         </a>
-        <a href="assets/images/sketchLibraries/Clarity-Icons-Library-0.13.5.sketch" target="_blank"
-           class="btn btn-primary">
+        <a [href]="sketch_icons_url" target="_blank" class="btn btn-primary">
             <clr-icon shape="download"></clr-icon>
-            ICONS Library (0.13.5)
+            ICONS Library
         </a>
     </div>
 

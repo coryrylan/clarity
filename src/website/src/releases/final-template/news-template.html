@@ -68,7 +68,8 @@
                     <p class="title">Sketch template</p>
                     <p>
                         <!-- TODO: proper fallbacks? -->
-                        <a sketchTemplateLink [version]="sketchVersion">Download the {{sketchVersion}} Sketch Template</a>
+                        <a sketchTemplateLink [version]="sketchVersion">Light Theme</a><br />
+                        <a sketchTemplateLink type="dark" *ngIf="hasDarkTheme" [version]="sketchVersion">Dark Theme</a>
                     </p>
                 </div>
             </div>

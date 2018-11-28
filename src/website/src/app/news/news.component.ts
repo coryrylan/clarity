@@ -26,6 +26,7 @@ export class NewsComponent implements OnDestroy, AfterViewInit {
   nbBugFixes: number;
   nbNewComponents: number;
   newPackageFormat = false;
+  hasDarkTheme = false;
 
   releaseNumber: string;
   releaseDate: string;
@@ -112,6 +113,7 @@ export class NewsComponent implements OnDestroy, AfterViewInit {
     this.sketchVersion = releaseInfo.sketch;
     this.commit = releaseInfo.commit;
     this.hasIcons = compareReleases('0.5.4', releaseNo) >= 0;
+    this.hasDarkTheme = compareReleases('0.11.0', releaseNo) >= 0;
     this.hasGitHub = compareReleases('0.6.0', releaseNo) >= 0;
     this.nbBreakingChanges = this.breakingChanges ? this.breakingChanges.length : 0;
     this.nbBugFixes = this.bugFixes ? this.bugFixes.length : 0;
