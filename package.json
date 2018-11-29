@@ -57,6 +57,8 @@
     "serve:ssr": "node dist/website/server",
     "build:ssr": "ng build website --prod && ng run website:server:production && npm run compile:server",
     "website:render": "node dist/website/prerender",
+    "website:news": "node src/website/generate-news",
+    "build:prerender": "npm-run-all website:news build:ssr website:render",
     "website:preview": "lite-server --baseDir=dist/website/browser"
   },
   "dependencies": {

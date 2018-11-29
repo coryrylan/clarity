@@ -1,3 +1,3 @@
 [build]
-  command = "npm run build:ssr"
-  publish = "dist/website/deploy"
+  command = "npm run build:prerender"
+  publish = "dist/website/browser"
