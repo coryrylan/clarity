@@ -1,18 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { environment } from '../../environments/environment';
 
 import { DocumentationComponent } from './documentation.component';
 import { ComponentStatusComponent } from './component-status/component-status.component';
 
 const documentationRoutes: Routes = [
   {
-    path: 'documentation',
-    redirectTo: `/documentation/${environment.version}`,
-    pathMatch: 'full',
-  },
-  {
-    path: `documentation/${environment.version}`,
+    path: `documentation`,
     component: DocumentationComponent,
     data: {
       bodyClass: 'layout-documentation',

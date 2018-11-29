@@ -7,7 +7,6 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ClarityDocComponent } from '../clarity-doc';
 import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'clr-datagrid-demo',
@@ -51,9 +50,7 @@ export class DatagridDemo extends ClarityDocComponent implements OnInit, OnDestr
         }
       })
     );
-    this.initializePagination(
-      '/documentation/' + environment.version + '/datagrid/' + this.route.children[0].routeConfig.path
-    );
+    this.initializePagination('/documentation/datagrid/' + this.route.children[0].routeConfig.path);
   }
 
   initializePagination(url: string): void {

@@ -1,2051 +1,1063 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-        <loc>https://vmware.github.io/clarity/</loc>
+        <loc>https://clarity.website/</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/not-found</loc>
+        <loc>https://clarity.website/not-found</loc>
         <changefreq>daily</changefreq>
         <priority>0</priority>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/community</loc>
+        <loc>https://clarity.website/community</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/icons/clarity-icons</loc>
+        <loc>https://clarity.website/icons/clarity-icons</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/icons/how-to-use</loc>
+        <loc>https://clarity.website/icons/how-to-use</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/icons/api</loc>
+        <loc>https://clarity.website/icons/api</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/icons/icon-sets</loc>
+        <loc>https://clarity.website/icons</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0</loc>
+        <loc>https://clarity.website/documentation</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/get-started</loc>
+        <loc>https://clarity.website/documentation/get-started</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/app-layout</loc>
+        <loc>https://clarity.website/documentation/app-layout</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/color</loc>
+        <loc>https://clarity.website/documentation/color</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/themes</loc>
+        <loc>https://clarity.website/documentation/themes</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/navigation</loc>
+        <loc>https://clarity.website/documentation/navigation</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/typography</loc>
+        <loc>https://clarity.website/documentation/typography</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/alerts</loc>
+        <loc>https://clarity.website/documentation/alerts</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/badges</loc>
+        <loc>https://clarity.website/documentation/badges</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/buttons</loc>
+        <loc>https://clarity.website/documentation/buttons</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/button-group</loc>
+        <loc>https://clarity.website/documentation/button-group</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/cards</loc>
+        <loc>https://clarity.website/documentation/cards</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/checkboxes</loc>
+        <loc>https://clarity.website/documentation/checkboxes</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/code-highlight</loc>
+        <loc>https://clarity.website/documentation/code-highlight</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/structure</loc>
+        <loc>https://clarity.website/documentation/datagrid/structure</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/custom-rendering</loc>
+        <loc>https://clarity.website/documentation/datagrid/custom-rendering</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/smart-iterator</loc>
+        <loc>https://clarity.website/documentation/datagrid/smart-iterator</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/binding-properties</loc>
+        <loc>https://clarity.website/documentation/datagrid/binding-properties</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/custom-sorting</loc>
+        <loc>https://clarity.website/documentation/datagrid/custom-sorting</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/custom-filtering</loc>
+        <loc>https://clarity.website/documentation/datagrid/custom-filtering</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/custom-filtering</loc>
+        <loc>https://clarity.website/documentation/datagrid/custom-filtering</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/string-filtering</loc>
+        <loc>https://clarity.website/documentation/datagrid/string-filtering</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/pagination</loc>
+        <loc>https://clarity.website/documentation/datagrid/pagination</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/selection</loc>
+        <loc>https://clarity.website/documentation/datagrid/selection</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/selection-single</loc>
+        <loc>https://clarity.website/documentation/datagrid/selection-single</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/batch-action</loc>
+        <loc>https://clarity.website/documentation/datagrid/batch-action</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/single-action</loc>
+        <loc>https://clarity.website/documentation/datagrid/single-action</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/server-driven</loc>
+        <loc>https://clarity.website/documentation/datagrid/server-driven</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/placeholder</loc>
+        <loc>https://clarity.website/documentation/datagrid/placeholder</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/expandable-rows</loc>
+        <loc>https://clarity.website/documentation/datagrid/expandable-rows</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/hide-show</loc>
+        <loc>https://clarity.website/documentation/datagrid/hide-show</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/compact</loc>
+        <loc>https://clarity.website/documentation/datagrid/compact</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datagrid/full</loc>
+        <loc>https://clarity.website/documentation/datagrid/full</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/datepicker</loc>
+        <loc>https://clarity.website/documentation/datepicker</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/dropdowns</loc>
+        <loc>https://clarity.website/documentation/dropdowns</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/forms</loc>
+        <loc>https://clarity.website/documentation/forms</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/grid</loc>
+        <loc>https://clarity.website/documentation/grid</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/header</loc>
+        <loc>https://clarity.website/documentation/header</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/input</loc>
+        <loc>https://clarity.website/documentation/input</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/input-fields</loc>
+        <loc>https://clarity.website/documentation/input-fields</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/labels</loc>
+        <loc>https://clarity.website/documentation/labels</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/lists</loc>
+        <loc>https://clarity.website/documentation/lists</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/login</loc>
+        <loc>https://clarity.website/documentation/login</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/modals</loc>
+        <loc>https://clarity.website/documentation/modals</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/progress</loc>
+        <loc>https://clarity.website/documentation/progress</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/radios</loc>
+        <loc>https://clarity.website/documentation/radios</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/select-boxes</loc>
+        <loc>https://clarity.website/documentation/select-boxes</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/sidenav</loc>
+        <loc>https://clarity.website/documentation/sidenav</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/signposts</loc>
+        <loc>https://clarity.website/documentation/signposts</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/spinners</loc>
+        <loc>https://clarity.website/documentation/spinners</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/stack-view</loc>
+        <loc>https://clarity.website/documentation/stack-view</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/tables</loc>
+        <loc>https://clarity.website/documentation/tables</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/textarea</loc>
+        <loc>https://clarity.website/documentation/textarea</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/tabs</loc>
+        <loc>https://clarity.website/documentation/tabs</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/toggle-switches</loc>
+        <loc>https://clarity.website/documentation/toggle-switches</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/tooltips</loc>
+        <loc>https://clarity.website/documentation/tooltips</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/tree-view</loc>
+        <loc>https://clarity.website/documentation/tree-view</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/vertical-nav/basic-structure/charmander</loc>
+        <loc>https://clarity.website/documentation/vertical-nav/basic-structure/charmander</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/vertical-nav/icon-links/normal</loc>
+        <loc>https://clarity.website/documentation/vertical-nav/icon-links/normal</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/vertical-nav/collapsible-nav/normal</loc>
+        <loc>https://clarity.website/documentation/vertical-nav/collapsible-nav/normal</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/vertical-nav/nav-groups/normal</loc>
+        <loc>https://clarity.website/documentation/vertical-nav/nav-groups/normal</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/vertical-nav/no-lazy-loading/normal</loc>
+        <loc>https://clarity.website/documentation/vertical-nav/no-lazy-loading/normal</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v1.0/wizards</loc>
+        <loc>https://clarity.website/documentation/wizards</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13</loc>
+        <loc>https://clarity.website/news</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/get-started</loc>
+        <loc>https://clarity.website/news/1.0.0-rc.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/app-layout</loc>
+        <loc>https://clarity.website/news/1.0.0-beta.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/color</loc>
+        <loc>https://clarity.website/news/1.0.0-beta.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/themes</loc>
+        <loc>https://clarity.website/news/0.13.10</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/navigation</loc>
+        <loc>https://clarity.website/news/0.13.9</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/typography</loc>
+        <loc>https://clarity.website/news/0.13.8</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/alerts</loc>
+        <loc>https://clarity.website/news/0.13.7</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/badges</loc>
+        <loc>https://clarity.website/news/0.13.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/buttons</loc>
+        <loc>https://clarity.website/news/0.13.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/button-group</loc>
+        <loc>https://clarity.website/news/0.13.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/cards</loc>
+        <loc>https://clarity.website/news/0.13.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/checkboxes</loc>
+        <loc>https://clarity.website/news/0.13.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/code-highlight</loc>
+        <loc>https://clarity.website/news/0.13.1-patch.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/structure</loc>
+        <loc>https://clarity.website/news/0.13.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/custom-rendering</loc>
+        <loc>https://clarity.website/news/0.13.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/smart-iterator</loc>
+        <loc>https://clarity.website/news/0.13.0-rc.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/binding-properties</loc>
+        <loc>https://clarity.website/news/0.13.0-beta.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/custom-sorting</loc>
+        <loc>https://clarity.website/news/0.13.0-beta.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/custom-filtering</loc>
+        <loc>https://clarity.website/news/0.12.16</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/custom-filtering</loc>
+        <loc>https://clarity.website/news/0.12.15</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/string-filtering</loc>
+        <loc>https://clarity.website/news/0.12.14</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/pagination</loc>
+        <loc>https://clarity.website/news/0.12.13</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/selection</loc>
+        <loc>https://clarity.website/news/0.12.12</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/selection-single</loc>
+        <loc>https://clarity.website/news/0.12.11</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/batch-action</loc>
+        <loc>https://clarity.website/news/0.12.10</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/single-action</loc>
+        <loc>https://clarity.website/news/0.12.9</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/server-driven</loc>
+        <loc>https://clarity.website/news/0.12.8</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/placeholder</loc>
+        <loc>https://clarity.website/news/0.12.7</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/expandable-rows</loc>
+        <loc>https://clarity.website/news/0.12.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/hide-show</loc>
+        <loc>https://clarity.website/news/0.12.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/compact</loc>
+        <loc>https://clarity.website/news/0.12.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datagrid/full</loc>
+        <loc>https://clarity.website/news/0.12.3-patch.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/datepicker</loc>
+        <loc>https://clarity.website/news/0.12.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/dropdowns</loc>
+        <loc>https://clarity.website/news/0.12.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/forms</loc>
+        <loc>https://clarity.website/news/0.12.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/grid</loc>
+        <loc>https://clarity.website/news/0.12.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/header</loc>
+        <loc>https://clarity.website/news/0.12.0-rc.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/input</loc>
+        <loc>https://clarity.website/news/0.12.0-rc.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/input-fields</loc>
+        <loc>https://clarity.website/news/0.12.0-beta.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/labels</loc>
+        <loc>https://clarity.website/news/0.11.34</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/lists</loc>
+        <loc>https://clarity.website/news/0.11.33</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/login</loc>
+        <loc>https://clarity.website/news/0.11.32</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/modals</loc>
+        <loc>https://clarity.website/news/0.11.30</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/progress</loc>
+        <loc>https://clarity.website/news/0.11.29</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/radios</loc>
+        <loc>https://clarity.website/news/0.11.28</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/select-boxes</loc>
+        <loc>https://clarity.website/news/0.11.27</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/sidenav</loc>
+        <loc>https://clarity.website/news/0.11.26</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/signposts</loc>
+        <loc>https://clarity.website/news/0.11.25</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/spinners</loc>
+        <loc>https://clarity.website/news/0.11.24</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/stack-view</loc>
+        <loc>https://clarity.website/news/0.11.23</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/tables</loc>
+        <loc>https://clarity.website/news/0.11.22</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/textarea</loc>
+        <loc>https://clarity.website/news/0.11.21</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/tabs</loc>
+        <loc>https://clarity.website/news/0.11.20</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/toggle-switches</loc>
+        <loc>https://clarity.website/news/0.11.19</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/tooltips</loc>
+        <loc>https://clarity.website/news/0.11.18-patch.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/tree-view</loc>
+        <loc>https://clarity.website/news/0.11.18</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/vertical-nav/basic-structure/charmander</loc>
+        <loc>https://clarity.website/news/0.11.17</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/vertical-nav/icon-links/normal</loc>
+        <loc>https://clarity.website/news/0.11.16</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/vertical-nav/collapsible-nav/normal</loc>
+        <loc>https://clarity.website/news/0.11.15</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/vertical-nav/nav-groups/normal</loc>
+        <loc>https://clarity.website/news/0.11.14</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/vertical-nav/no-lazy-loading/normal</loc>
+        <loc>https://clarity.website/news/0.11.13</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.13/wizards</loc>
+        <loc>https://clarity.website/news/0.11.12</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12</loc>
+        <loc>https://clarity.website/news/0.11.11</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/get-started</loc>
+        <loc>https://clarity.website/news/0.11.10</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/app-layout</loc>
+        <loc>https://clarity.website/news/0.11.9</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/color</loc>
+        <loc>https://clarity.website/news/0.11.8</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/themes</loc>
+        <loc>https://clarity.website/news/0.11.7-patch.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/navigation</loc>
+        <loc>https://clarity.website/news/0.11.7</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/typography</loc>
+        <loc>https://clarity.website/news/0.11.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/alerts</loc>
+        <loc>https://clarity.website/news/0.11.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/badges</loc>
+        <loc>https://clarity.website/news/0.11.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/buttons</loc>
+        <loc>https://clarity.website/news/0.11.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/button-group</loc>
+        <loc>https://clarity.website/news/0.11.2-patch</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/cards</loc>
+        <loc>https://clarity.website/news/0.11.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/checkboxes</loc>
+        <loc>https://clarity.website/news/0.11.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/code-highlight</loc>
+        <loc>https://clarity.website/news/0.11.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/structure</loc>
+        <loc>https://clarity.website/news/0.11.0-rc.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/custom-rendering</loc>
+        <loc>https://clarity.website/news/0.11.0-beta.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/smart-iterator</loc>
+        <loc>https://clarity.website/news/0.10.27</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/binding-properties</loc>
+        <loc>https://clarity.website/news/0.10.26</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/custom-sorting</loc>
+        <loc>https://clarity.website/news/0.10.25</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/custom-filtering</loc>
+        <loc>https://clarity.website/news/0.10.24</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/custom-filtering</loc>
+        <loc>https://clarity.website/news/0.10.23</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/string-filtering</loc>
+        <loc>https://clarity.website/news/0.10.22</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/pagination</loc>
+        <loc>https://clarity.website/news/0.10.21</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/selection</loc>
+        <loc>https://clarity.website/news/0.10.20</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/selection-single</loc>
+        <loc>https://clarity.website/news/0.10.19</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/batch-action</loc>
+        <loc>https://clarity.website/news/0.10.18</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/single-action</loc>
+        <loc>https://clarity.website/news/0.10.17</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/server-driven</loc>
+        <loc>https://clarity.website/news/0.10.16</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/placeholder</loc>
+        <loc>https://clarity.website/news/0.10.15</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/expandable-rows</loc>
+        <loc>https://clarity.website/news/0.10.14</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/hide-show</loc>
+        <loc>https://clarity.website/news/0.10.13</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/compact</loc>
+        <loc>https://clarity.website/news/0.10.12</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datagrid/full</loc>
+        <loc>https://clarity.website/news/0.10.11</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/datepicker</loc>
+        <loc>https://clarity.website/news/0.10.10</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/dropdowns</loc>
+        <loc>https://clarity.website/news/0.10.9</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/forms</loc>
+        <loc>https://clarity.website/news/0.10.8</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/grid</loc>
+        <loc>https://clarity.website/news/0.10.7</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/header</loc>
+        <loc>https://clarity.website/news/0.10.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/input</loc>
+        <loc>https://clarity.website/news/0.10.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/input-fields</loc>
+        <loc>https://clarity.website/news/0.10.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/labels</loc>
+        <loc>https://clarity.website/news/0.10.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/lists</loc>
+        <loc>https://clarity.website/news/0.10.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/login</loc>
+        <loc>https://clarity.website/news/0.10.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/modals</loc>
+        <loc>https://clarity.website/news/0.10.0-patch</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/progress</loc>
+        <loc>https://clarity.website/news/0.10.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/radios</loc>
+        <loc>https://clarity.website/news/0.10.0-rc.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/select-boxes</loc>
+        <loc>https://clarity.website/news/0.10.0-alpha.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/sidenav</loc>
+        <loc>https://clarity.website/news/0.10.0-alpha.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/signposts</loc>
+        <loc>https://clarity.website/news/0.10.0-alpha.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/spinners</loc>
+        <loc>https://clarity.website/news/0.10.0-alpha.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/stack-view</loc>
+        <loc>https://clarity.website/news/0.10.0-alpha.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/tables</loc>
+        <loc>https://clarity.website/news/0.10.0-alpha</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/textarea</loc>
+        <loc>https://clarity.website/news/0.9.20</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/tabs</loc>
+        <loc>https://clarity.website/news/0.9.19</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/toggle-switches</loc>
+        <loc>https://clarity.website/news/0.9.18</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/tooltips</loc>
+        <loc>https://clarity.website/news/0.9.17</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/tree-view</loc>
+        <loc>https://clarity.website/news/0.9.16</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/vertical-nav/basic-structure/charmander</loc>
+        <loc>https://clarity.website/news/0.9.15</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/vertical-nav/icon-links/normal</loc>
+        <loc>https://clarity.website/news/0.9.14</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/vertical-nav/collapsible-nav/normal</loc>
+        <loc>https://clarity.website/news/0.9.13</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/vertical-nav/nav-groups/normal</loc>
+        <loc>https://clarity.website/news/0.9.12</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/vertical-nav/no-lazy-loading/normal</loc>
+        <loc>https://clarity.website/news/0.9.11</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.12/wizards</loc>
+        <loc>https://clarity.website/news/0.9.10</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11</loc>
+        <loc>https://clarity.website/news/0.9.9</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/get-started</loc>
+        <loc>https://clarity.website/news/0.9.8</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/app-layout</loc>
+        <loc>https://clarity.website/news/0.9.7</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/color</loc>
+        <loc>https://clarity.website/news/0.9.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/themes</loc>
+        <loc>https://clarity.website/news/0.9.5-patch</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/navigation</loc>
+        <loc>https://clarity.website/news/0.9.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/typography</loc>
+        <loc>https://clarity.website/news/0.9.4-patch</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/alerts</loc>
+        <loc>https://clarity.website/news/0.9.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/badges</loc>
+        <loc>https://clarity.website/news/0.9.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/buttons</loc>
+        <loc>https://clarity.website/news/0.9.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/button-group</loc>
+        <loc>https://clarity.website/news/0.9.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/cards</loc>
+        <loc>https://clarity.website/news/0.9.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/checkboxes</loc>
+        <loc>https://clarity.website/news/0.8.18</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/code-highlight</loc>
+        <loc>https://clarity.website/news/0.8.17</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/structure</loc>
+        <loc>https://clarity.website/news/0.8.16</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/custom-rendering</loc>
+        <loc>https://clarity.website/news/0.8.15</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/smart-iterator</loc>
+        <loc>https://clarity.website/news/0.8.14</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/binding-properties</loc>
+        <loc>https://clarity.website/news/0.8.13</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/custom-sorting</loc>
+        <loc>https://clarity.website/news/0.8.12</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/custom-filtering</loc>
+        <loc>https://clarity.website/news/0.8.11</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/custom-filtering</loc>
+        <loc>https://clarity.website/news/0.8.10</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/string-filtering</loc>
+        <loc>https://clarity.website/news/0.8.9</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/pagination</loc>
+        <loc>https://clarity.website/news/0.8.8</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/selection</loc>
+        <loc>https://clarity.website/news/0.8.7</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/selection-single</loc>
+        <loc>https://clarity.website/news/0.8.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/batch-action</loc>
+        <loc>https://clarity.website/news/0.8.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/single-action</loc>
+        <loc>https://clarity.website/news/0.8.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/server-driven</loc>
+        <loc>https://clarity.website/news/0.8.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/placeholder</loc>
+        <loc>https://clarity.website/news/0.8.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/expandable-rows</loc>
+        <loc>https://clarity.website/news/0.8.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/hide-show</loc>
+        <loc>https://clarity.website/news/0.8.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/compact</loc>
+        <loc>https://clarity.website/news/0.7.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datagrid/full</loc>
+        <loc>https://clarity.website/news/0.7.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/datepicker</loc>
+        <loc>https://clarity.website/news/0.7.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/dropdowns</loc>
+        <loc>https://clarity.website/news/0.7.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/forms</loc>
+        <loc>https://clarity.website/news/0.7.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/grid</loc>
+        <loc>https://clarity.website/news/0.7.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/header</loc>
+        <loc>https://clarity.website/news/0.7.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/input-fields</loc>
+        <loc>https://clarity.website/news/0.6.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/labels</loc>
+        <loc>https://clarity.website/news/0.6.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/lists</loc>
+        <loc>https://clarity.website/news/0.6.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/login</loc>
+        <loc>https://clarity.website/news/0.6.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/modals</loc>
+        <loc>https://clarity.website/news/0.6.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/progress</loc>
+        <loc>https://clarity.website/news/0.5.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/radios</loc>
+        <loc>https://clarity.website/news/0.5.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/select-boxes</loc>
+        <loc>https://clarity.website/news/0.5.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/sidenav</loc>
+        <loc>https://clarity.website/news/0.5.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/signposts</loc>
+        <loc>https://clarity.website/news/0.5.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/spinners</loc>
+        <loc>https://clarity.website/news/0.5.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/stack-view</loc>
+        <loc>https://clarity.website/news/0.5.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/tables</loc>
+        <loc>https://clarity.website/news/0.4.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/tabs</loc>
+        <loc>https://clarity.website/news/0.4.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/toggle-switches</loc>
+        <loc>https://clarity.website/news/0.4.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/tooltips</loc>
+        <loc>https://clarity.website/news/0.4.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/tree-view</loc>
+        <loc>https://clarity.website/news/0.3.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/vertical-nav/basic-structure/charmander</loc>
+        <loc>https://clarity.website/news/0.3.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/vertical-nav/icon-links/normal</loc>
+        <loc>https://clarity.website/news/0.3.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/vertical-nav/collapsible-nav/normal</loc>
+        <loc>https://clarity.website/news/0.3.3</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/vertical-nav/nav-groups/normal</loc>
+        <loc>https://clarity.website/news/0.3.2</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/vertical-nav/no-lazy-loading/normal</loc>
+        <loc>https://clarity.website/news/0.3.1</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.11/wizards</loc>
+        <loc>https://clarity.website/news/0.3.0</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10</loc>
+        <loc>https://clarity.website/news/0.2.10</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/get-started</loc>
+        <loc>https://clarity.website/news/0.2.9</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/app-layout</loc>
+        <loc>https://clarity.website/news/0.2.8</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/color</loc>
+        <loc>https://clarity.website/news/0.2.7</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/themes</loc>
+        <loc>https://clarity.website/news/0.2.6</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/navigation</loc>
+        <loc>https://clarity.website/news/0.2.5</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/typography</loc>
+        <loc>https://clarity.website/news/0.2.4</loc>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/alerts</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/badges</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/buttons</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/button-group</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/cards</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/checkboxes</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/code-highlight</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/structure</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/custom-rendering</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/smart-iterator</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/binding-properties</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/custom-sorting</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/custom-filtering</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/custom-filtering</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/string-filtering</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/pagination</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/selection</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/selection-single</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/batch-action</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/single-action</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/server-driven</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/placeholder</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/expandable-rows</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/hide-show</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/compact</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/datagrid/full</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/dropdowns</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/forms</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/grid</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/header</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/input-fields</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/labels</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/lists</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/login</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/modals</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/progress</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/radios</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/select-boxes</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/sidenav</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/signposts</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/spinners</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/stack-view</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/tables</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/tabs</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/toggle-switches</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/tooltips</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/tree-view</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/vertical-nav/basic-structure/charmander</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/vertical-nav/icon-links/normal</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/vertical-nav/collapsible-nav/normal</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/vertical-nav/nav-groups/normal</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/vertical-nav/no-lazy-loading/normal</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/documentation/v0.10/wizards</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/1.0.0-rc.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/1.0.0-beta.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/1.0.0-beta.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.10</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.9</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.8</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.7</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.1-patch.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.0-rc.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.0-beta.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.13.0-beta.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.16</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.15</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.14</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.13</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.12</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.11</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.10</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.9</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.8</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.7</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.3-patch.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.0-rc.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.0-rc.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.12.0-beta.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.34</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.33</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.32</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.30</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.29</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.28</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.27</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.26</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.25</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.24</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.23</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.22</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.21</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.20</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.19</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.18-patch.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.18</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.17</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.16</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.15</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.14</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.13</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.12</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.11</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.10</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.9</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.8</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.7-patch.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.7</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.2-patch</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.0-rc.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.11.0-beta.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.27</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.26</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.25</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.24</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.23</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.22</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.21</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.20</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.19</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.18</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.17</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.16</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.15</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.14</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.13</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.12</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.11</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.10</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.9</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.8</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.7</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.0-patch</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.0-rc.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.0-alpha.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.0-alpha.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.0-alpha.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.0-alpha.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.0-alpha.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.10.0-alpha</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.20</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.19</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.18</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.17</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.16</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.15</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.14</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.13</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.12</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.11</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.10</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.9</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.8</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.7</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.5-patch</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.4-patch</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.9.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.18</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.17</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.16</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.15</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.14</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.13</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.12</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.11</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.10</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.9</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.8</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.7</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.8.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.7.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.7.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.7.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.7.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.7.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.7.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.7.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.6.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.6.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.6.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.6.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.6.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.5.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.5.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.5.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.5.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.5.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.5.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.5.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.4.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.4.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.4.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.4.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.3.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.3.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.3.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.3.3</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.3.2</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.3.1</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.3.0</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.2.10</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.2.9</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.2.8</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.2.7</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.2.6</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.2.5</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.2.4</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://vmware.github.io/clarity/news/0.2.3</loc>
+        <loc>https://clarity.website/news/0.2.3</loc>
         <changefreq>daily</changefreq>
     </url>
 </urlset>

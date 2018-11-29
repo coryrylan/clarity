@@ -6,6 +6,8 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'none',
   entry: {
+    // This is our prerenderer script
+    prerender: './src/website/prerender.ts',
     // This is our Express server for Dynamic universal
     server: './src/website/server.ts',
   },

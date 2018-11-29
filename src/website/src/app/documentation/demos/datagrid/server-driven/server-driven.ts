@@ -37,6 +37,13 @@ export class DatagridServerDrivenDemo {
         filters[property] = [value];
       }
     }
+    if (!state.page) {
+      state.page = {
+        from: 0,
+        to: 9,
+        size: 10,
+      };
+    }
     this.inventory
       .filter(filters)
       .sort(<{ by: string; reverse: boolean }>state.sort)

@@ -11,11 +11,10 @@ const routes: Routes = [
     path: '',
     component: IconsComponent,
     children: [
-      { path: '', redirectTo: 'icon-sets' },
+      { path: '', component: IconsSetsComponent },
       { path: 'clarity-icons', component: IconsGetStartedComponent },
       { path: 'how-to-use', component: IconsHowToUseComponent },
       { path: 'api', component: IconsApiComponent },
-      { path: 'icon-sets', component: IconsSetsComponent },
     ],
   },
 ];
