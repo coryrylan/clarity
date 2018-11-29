@@ -245,7 +245,15 @@
             "main": "src/website/src/main.ts",
             "polyfills": "src/website/src/polyfills.ts",
             "tsConfig": "src/website/tsconfig.app.json",
-            "assets": ["src/website/src/favicon.ico", "src/website/src/assets"],
+            "assets": [
+              "src/website/src/favicon.ico",
+              {
+                "glob": "versions.json",
+                "input": "src/website/src/settings/",
+                "output": "/"
+              },
+              "src/website/src/assets"
+            ],
             "styles": [
               "node_modules/prismjs/themes/prism-solarizedlight.css",
               "src/clr-angular/layout/grid-deprecated.clarity.scss",

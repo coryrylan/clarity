@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 interface Version {
   version: string;
   status: string;
+  url: string;
 }
 
 @Component({
@@ -46,10 +47,6 @@ export class VersionSwitcherComponent {
   ngOnInit() {
     this.current = environment.version;
     if (isPlatformBrowser(this.platformId)) {
-      const segments = this.location.path().split('/');
-      if (segments.length > 2) {
-        this.current = segments[2];
-      }
       this.http.get<Version[]>(environment.versions_url).subscribe(
         versions => {
           this.versions = versions;
