@@ -42,6 +42,7 @@ export const APP_ROUTES: Routes = [
   { path: 'signposts', loadChildren: 'src/app/signpost/signpost.demo.module#SignpostDemoModule' },
   { path: 'spinners', loadChildren: 'src/app/spinners/spinners.demo.module#SpinnersDemoModule' },
   { path: 'stack-view', loadChildren: 'src/app/stack-view/stack-view.demo.module#StackViewDemoModule' },
+  { path: 'stepper', loadChildren: 'src/app/stepper/stepper.demo.module#StepperDemoModule' },
   { path: 'tables', loadChildren: 'src/app/tables/tables.demo.module#TablesDemoModule' },
   { path: 'tabs', loadChildren: 'src/app/tabs/tabs.demo.module#TabsDemoModule' },
   { path: 'textarea', loadChildren: 'src/app/textarea/textarea.demo.module#TextareaDemoModule' },

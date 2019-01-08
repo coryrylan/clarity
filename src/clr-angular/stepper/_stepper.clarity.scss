@@ -1,0 +1,196 @@
+// Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+@include exports('stepper.clarity') {
+  .clr-stepper {
+    display: block;
+    counter-reset: a;
+    margin-bottom: 24px;
+  }
+
+  .clr-step {
+    display: block;
+  }
+
+  .clr-step-header {
+    color: $clr-stepper-text-color;
+    border: 1px solid $clr-stepper-border-color;
+    box-shadow: inset $clr-stepper-border-left-width 0 0 $clr-stepper-border-left-color;
+    background: $clr-stepper-header-background-color;
+    border-bottom: 0;
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    font-size: 0.65rem;
+    text-align: left;
+
+    &:hover {
+      background-color: $clr-stepper-header-hover-background-color;
+    }
+
+    // need to emulate with Angular for better browser support
+    &:focus-within {
+      outline: 2px solid Highlight;
+    }
+
+    @media (min-width: $clr-stepper-responsive-breakpoint) {
+      flex-flow: row;
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 0) {
+      &:focus-within {
+        outline: 5px auto -webkit-focus-ring-color;
+      }
+    }
+  }
+
+  button.clr-step-header-button {
+    outline: none; // parent .clr-step-header element contains focus style
+  }
+
+  .clr-step:last-child {
+    .clr-step-content {
+      border-bottom: 1px solid $clr-stepper-border-color;
+    }
+
+    &.clr-step-inactive .clr-step-header,
+    .clr-step-inactive .clr-step-header,
+    &.clr-step-complete .clr-step-header,
+    .clr-step-complete .clr-step-header {
+      border-bottom: 1px solid $clr-stepper-border-color;
+    }
+  }
+
+  .clr-step-number {
+    padding: 0 18px;
+    display: inline-block;
+
+    &::before {
+      content: counter(a) '.';
+      counter-increment: a;
+    }
+  }
+
+  .clr-step-header-button {
+    width: 100%;
+    border: 0;
+    padding: $clr-stepper-padding;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    color: $clr-stepper-text-color;
+
+    @media (min-width: $clr-stepper-responsive-breakpoint) {
+      max-width: 280px;
+    }
+  }
+
+  .clr-step-status {
+    width: 75px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .clr-step-title {
+    width: calc(100% - 75px);
+    max-width: 280px;
+    display: inline-block;
+  }
+
+  .clr-step-description {
+    padding: $clr-stepper-padding;
+    padding-top: 0;
+    width: 100%;
+    max-width: 650px;
+
+    @media (min-width: $clr-stepper-responsive-breakpoint) {
+      padding-top: $clr-stepper-padding;
+    }
+  }
+
+  .clr-step-content {
+    padding: 20px;
+    background: $clr-stepper-content-background-color;
+    border: 1px solid $clr-stepper-border-color;
+    border-bottom: 0;
+    display: block;
+
+    @media (min-width: $clr-stepper-responsive-breakpoint) {
+      padding: 20px 56px;
+    }
+
+    .clr-form {
+      padding: 0;
+    }
+  }
+
+  .clr-step-button {
+    display: block;
+    margin-top: 24px;
+  }
+
+  // step states
+  .clr-step-active {
+    .clr-step-header {
+      background: $clr-stepper-active-background-color;
+    }
+  }
+
+  .clr-step-inactive {
+    .clr-step-content {
+      display: none;
+    }
+
+    .clr-step-angle {
+      visibility: hidden;
+    }
+  }
+
+  .clr-step-complete {
+    .clr-step-header {
+      box-shadow: inset $clr-stepper-border-left-width 0 0 $clr-stepper-border-left-color-complete;
+    }
+
+    .clr-step-content {
+      display: none;
+    }
+
+    .clr-step-angle {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .clr-step-error-icon {
+    display: none;
+  }
+
+  .clr-step-error {
+    .clr-step-header {
+      border-color: $clr-stepper-border-left-color-error;
+      box-shadow: inset $clr-stepper-border-left-width 0 0 $clr-stepper-border-left-color-error;
+      border-bottom: 1px solid $clr-stepper-border-left-color-error;
+      background-color: $clr-stepper-active-background-color;
+    }
+
+    .clr-step-error-icon {
+      color: $clr-stepper-error-color;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      margin: 0 13px;
+    }
+
+    .clr-step-number {
+      // a11y compatible hidden, also allows numbers to
+      // increment with CSS counter-increment
+      position: absolute !important;
+      top: 0;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+    }
+  }
+}
