@@ -7,7 +7,6 @@
 /*
   Todo Notes:
   - "/Process" directory for wizard and stepper
-  - Utils folder for common wiz / stepper
   - Check out default animation times, similar to stacker
   - clrStepNextButton (*template for reducing duplication)
   - Completed steps A11y color issues
@@ -38,7 +37,6 @@ import { FormGroupDirective } from '@angular/forms';
   providers: [StepperService],
 })
 export class ClrFormStepper {
-  @Output('clrStepperComplete') stepperComplete = new EventEmitter<boolean>();
   @ContentChildren(ClrStep) steps: QueryList<ClrStep>;
   @ViewChild('stepButtons') stepButtons: TemplateRef<any>;
   subscriptions: Subscription[] = [];
@@ -81,6 +79,9 @@ export class ClrFormStepper {
   }
 
   private listenForStepsCompleted() {
-    return this.stepperService.stepsCompleted.subscribe(() => this.stepperComplete.emit(true));
+    // We manually trigger ngSubmit when all steps are complete.
+    // Because of using content projection of the submit button to a
+    // sibling component Angular forms does not pick up the normal submit event.
+    return this.stepperService.stepsCompleted.subscribe(() => this.formGroup.ngSubmit.emit());
   }
 }

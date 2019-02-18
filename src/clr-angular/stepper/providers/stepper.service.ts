@@ -34,7 +34,7 @@ export class StepperService {
   private stepCount = 0;
   private stepperCount = stepperCount++;
 
-  private _stepsChanges = new BehaviorSubject<Step[]>([]);
+  private readonly _stepsChanges = new BehaviorSubject<Step[]>([]);
   private get _steps(): Step[] {
     return this._stepsChanges.value;
   }
@@ -108,7 +108,7 @@ export class StepperService {
         step.status = StepStatus.Error;
       }
 
-      return step;
+      return { ...step };
     });
   }
 
@@ -139,6 +139,7 @@ export class StepperService {
     return this._steps.find(s => s.index === this.getCurrentStep().index + 1);
   }
 
+  // refactor some of these methods into plain functions
   private stepIsCurrentActiveStep(step: Step) {
     return step.status === StepStatus.Active || step.status === StepStatus.Error;
   }
@@ -149,6 +150,7 @@ export class StepperService {
 
   private getAllStepsCompletedChanges() {
     return this.steps.pipe(
+      filter(steps => steps.length > 0),
       map(steps => this.getNumberOfIncompleteSteps(steps)),
       filter(incompleteStepCount => incompleteStepCount === 0),
       mapTo(true)

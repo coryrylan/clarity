@@ -9,17 +9,22 @@ import { Subscription } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';
 
+export enum ClrStepButtonType {
+  Next = 'next',
+  Last = 'last',
+}
+
 @Directive({
   selector: '[clrStepButton]',
   host: {
     '[class.clr-step-button]': 'true',
     '[class.btn]': 'true',
+    '[type]': "'button'",
   },
 })
 export class ClrStepButton {
-  @Input('clrStepButton') type = 'next';
+  @Input('clrStepButton') type: ClrStepButtonType | string = ClrStepButtonType.Next;
   @HostBinding('class.btn-primary') lastButton = false;
-  @HostBinding('type') buttonType = 'button';
   @HostBinding('style.display') display = 'block';
   subscriptions: Subscription[] = [];
 
@@ -40,31 +45,30 @@ export class ClrStepButton {
   }
 
   private initializeButtonTypes() {
-    if (this.type === 'last') {
-      this.buttonType = 'submit';
-      this.lastButton = true;
-    }
-
-    if (this.type === 'next') {
-      this.lastButton = false;
-    }
+    this.lastButton = this.type === ClrStepButtonType.Last;
   }
 
   private listenForLastStepChanges() {
     return this.stepperService.steps.subscribe(() => {
-      const currentStep = this.stepperService.getCurrentStep();
-
-      if (this.type === 'last' && currentStep && currentStep.isLastStep) {
-        this.display = 'block';
-      } else if (this.type === 'last') {
-        this.display = 'none';
-      }
-
-      if (this.type === 'next' && currentStep && currentStep.isLastStep) {
-        this.display = 'none';
-      } else if (this.type === 'next') {
-        this.display = 'block';
-      }
+      this.setSubmitButtonDisplay();
+      this.setNextButtonDisplay();
     });
+  }
+
+  private setSubmitButtonDisplay() {
+    if (this.type === ClrStepButtonType.Last) {
+      this.display = this.currentActiveStepIsLastStep() ? 'block' : 'none';
+    }
+  }
+
+  private setNextButtonDisplay() {
+    if (this.type === ClrStepButtonType.Next) {
+      this.display = this.currentActiveStepIsLastStep() ? 'none' : 'block';
+    }
+  }
+
+  private currentActiveStepIsLastStep() {
+    const currentStep = this.stepperService.getCurrentStep();
+    return currentStep && currentStep.isLastStep;
   }
 }

@@ -9,22 +9,12 @@ import { NgModule } from '@angular/core';
 
 import { ClrIconModule } from '../icon/icon.module';
 import { ClrStep } from './step';
-import { ClrStepHeader } from './step-header';
 import { ClrStepTitle } from './step-title';
 import { ClrStepDescription } from './step-description';
-import { ClrStepContent } from './step-content';
 import { ClrStepButton } from './step-button';
 import { ClrFormStepper } from './stepper';
 
-const declarations = [
-  ClrFormStepper,
-  ClrStep,
-  ClrStepHeader,
-  ClrStepTitle,
-  ClrStepDescription,
-  ClrStepContent,
-  ClrStepButton,
-];
+const declarations = [ClrFormStepper, ClrStep, ClrStepTitle, ClrStepDescription, ClrStepButton];
 
 @NgModule({
   imports: [CommonModule, ClrIconModule],
