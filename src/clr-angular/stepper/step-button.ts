@@ -31,7 +31,7 @@ export class ClrStepButton {
   constructor(private stepperService: StepperService) {}
 
   ngOnInit() {
-    this.initializeButtonTypes();
+    this.lastButton = this.type === ClrStepButtonType.Last;
     this.subscriptions.push(this.listenForLastStepChanges());
   }
 
@@ -42,10 +42,6 @@ export class ClrStepButton {
   @HostListener('click')
   click() {
     this.stepperService.nextStep();
-  }
-
-  private initializeButtonTypes() {
-    this.lastButton = this.type === ClrStepButtonType.Last;
   }
 
   private listenForLastStepChanges() {

@@ -10,7 +10,7 @@
   <button (click)="form.reset()" class="btn">Reset Stepper</button>
   <button (click)="toggleSecondStep()" class="btn">toggle second step</button>
 
-  <form clrFormStepper [formGroup]="form" (ngSubmit)="submit()">
+  <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
     <button clrStepButton="next">next</button>
     <button clrStepButton="last">last</button>
 

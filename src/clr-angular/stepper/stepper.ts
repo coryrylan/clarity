@@ -6,18 +6,20 @@
 
 /*
   Todo Notes:
-  - "/Process" directory for wizard and stepper
+  - support ngModel / template forms
+  - support non form stepper?
+  - "/process" directory for wizard and stepper
   - Check out default animation times, similar to stacker
-  - clrStepNextButton (*template for reducing duplication)
-  - Completed steps A11y color issues
+  - Completed steps A11y color issues need to be addressed
   - clrStepIf error/success
   - clrIfExpanded
-  - support reactive and template form syntax
-  - https://www.w3.org/WAI/tutorials/forms/grouping/
-  - submit event issue with content projection
+  - Use content children changes to remove the need to use ngOnInit and ngOnDestroy
+  - Dependents true for content children
+  - Template forms first before structural directives 
+  - clr-step-content *clrIfActive (IfActiveService) utils/conditional (Tabs)
 */
 
-import { Component, Output, ContentChildren, EventEmitter, QueryList, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ContentChildren, QueryList, ViewChild, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
@@ -26,7 +28,7 @@ import { ClrStep } from './step';
 import { FormGroupDirective } from '@angular/forms';
 
 @Component({
-  selector: 'form[clrFormStepper]',
+  selector: 'form[clrStepper]',
   template: `
     <ng-template #stepButtons>
       <ng-content select="[clrStepButton]"></ng-content>
@@ -57,10 +59,6 @@ export class ClrFormStepper {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  forceNextStep() {
-    this.stepperService.nextStep();
-  }
-
   private listenForFormResetChanges() {
     // workaround for https://github.com/angular/angular/issues/10887
     return this.formGroup.statusChanges.subscribe(() => {
@@ -79,9 +77,7 @@ export class ClrFormStepper {
   }
 
   private listenForStepsCompleted() {
-    // We manually trigger ngSubmit when all steps are complete.
-    // Because of using content projection of the submit button to a
-    // sibling component Angular forms does not pick up the normal submit event.
+    // We manually trigger ngSubmit when all steps are complete, including updating prior steps.
     return this.stepperService.stepsCompleted.subscribe(() => this.formGroup.ngSubmit.emit());
   }
 }
