@@ -35,10 +35,6 @@ export class ClrStep {
     this.buttonsTemplateRef = this.stepperService.stepButtons;
   }
 
-  ngOnDestroy() {
-    this.stepperService.removeStep(this.id);
-  }
-
   selectStep() {
     this.stepperService.setActiveStep(this.id);
   }

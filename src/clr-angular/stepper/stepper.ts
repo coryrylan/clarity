@@ -13,7 +13,6 @@
   - Completed steps A11y color issues need to be addressed
   - clrStepIf error/success
   - clrIfExpanded
-  - Use content children changes to remove the need to use ngOnInit and ngOnDestroy
   - Dependents true for content children
   - Template forms first before structural directives 
   - clr-step-content *clrIfActive (IfActiveService) utils/conditional (Tabs)
@@ -73,7 +72,7 @@ export class ClrFormStepper {
   private listenForStepChanges() {
     return this.steps.changes
       .pipe(startWith(this.steps))
-      .subscribe(steps => this.stepperService.updateStepOrder(steps.toArray().map(s => s.id)));
+      .subscribe(steps => this.stepperService.syncStepOrder(steps.toArray().map(s => s.id)));
   }
 
   private listenForStepsCompleted() {

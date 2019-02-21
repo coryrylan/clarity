@@ -62,10 +62,6 @@ export class StepperService {
     return step.id;
   }
 
-  removeStep(id: number) {
-    this._steps = this._steps.filter(step => step.id !== id);
-  }
-
   reset() {
     this._steps = this._steps.map((step, index) => {
       step.status = StepStatus.Inactive;
@@ -122,17 +118,20 @@ export class StepperService {
     return this.steps.pipe(map(steps => steps.find(s => s.id === id)), filter(step => step !== undefined));
   }
 
-  updateStepOrder(ids: number[]) {
+  syncStepOrder(ids: number[]) {
     this._steps = ids.map((id, index) => {
-      const step = this._steps.find(s => s.id === id);
-      step.index = index;
+      let step = this._steps.find(s => s.id === id);
 
-      if (index === ids.length - 1) {
-        step.isLastStep = true;
+      if (step) {
+        step = {
+          ...step,
+          index,
+          isLastStep: index === ids.length - 1
+        };
       }
 
       return step;
-    });
+    }).filter(step => step.id !== undefined);
   }
 
   private getNextStep() {
