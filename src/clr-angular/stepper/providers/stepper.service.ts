@@ -9,149 +9,59 @@ import { BehaviorSubject } from 'rxjs';
 import { map, filter, mapTo } from 'rxjs/operators';
 import { FormGroup, AbstractControl } from '@angular/forms';
 
-let stepperCount = 0;
-
-export enum StepStatus {
-  Active,
-  Inactive,
-  Error,
-  Complete,
-}
-
-export interface Step {
-  id: number;
-  index: number;
-  stepperId: number;
-  status: StepStatus;
-  isLastStep: boolean;
-  group: AbstractControl | FormGroup;
-}
+import { StepCollection } from '../models/step-collection.model';
+import { StepStatus } from '../enums/step-status.enum';
+import { Step } from '../models/step.model';
 
 @Injectable()
 export class StepperService {
   stepButtons: TemplateRef<any>;
-
-  private stepCount = 0;
-  private stepperCount = stepperCount++;
-
-  private readonly _stepsChanges = new BehaviorSubject<Step[]>([]);
-  private get _steps(): Step[] {
-    return this._stepsChanges.value;
-  }
-  private set _steps(steps: Step[]) {
-    this._stepsChanges.next(steps);
-  }
-
+  private stepCollection = new StepCollection();
+  private readonly _stepsChanges = new BehaviorSubject<Step[]>(this.stepCollection.steps);
   readonly steps = this._stepsChanges.asObservable();
   readonly stepsCompleted = this.getAllStepsCompletedChanges();
 
   addStep(group: AbstractControl | FormGroup) {
-    // Group is passed in as a workaround to share control/group to the step buttons via a service.
-    // Because of using content projection as a sibling element we lose the ability to inject the ClrStep component.
-    const step: Step = {
-      id: this.stepCount++,
-      index: null,
-      stepperId: this.stepperCount,
-      status: this.stepCount === 1 ? StepStatus.Active : StepStatus.Inactive,
-      isLastStep: false,
-      group,
-    };
-
-    this._steps = [...this._steps, step];
-
-    return step.id;
+    const id = this.stepCollection.addStep(group);
+    this.emitUpdatedSteps();
+    return id;
   }
 
   reset() {
-    this._steps = this._steps.map((step, index) => {
-      step.status = StepStatus.Inactive;
-
-      if (index === 0) {
-        step.status = StepStatus.Active;
-      }
-
-      return step;
-    });
+    this.stepCollection.reset();
+    this.emitUpdatedSteps();
   }
 
   nextStep() {
-    const nextStep = this.getNextStep();
-
-    if (nextStep) {
-      this.setActiveStep(nextStep.id);
-    } else {
-      this.setActiveStep();
-    }
+    this.stepCollection.nextStep();
+    this.emitUpdatedSteps();
   }
 
   setActiveStep(stepId?: number) {
-    const currentStep = this.getCurrentStep();
-
-    this._steps = this._steps.map(step => {
-      if (currentStep.group.valid) {
-        if (this.stepIsCurrentActiveStep(step)) {
-          step.status = StepStatus.Complete;
-        }
-
-        if (this.stepIsCompletedPreviousStep(stepId, step)) {
-          step.status = StepStatus.Active;
-        }
-
-        if (step.id === stepId) {
-          step.status = StepStatus.Active;
-        }
-      } else if (currentStep.group.invalid && currentStep.id === step.id) {
-        step.status = StepStatus.Error;
-      }
-
-      return { ...step };
-    });
+    this.stepCollection.setActiveStep(stepId);
+    this.emitUpdatedSteps();
   }
 
   getCurrentStep() {
-    return this._steps.find(
-      (s, i) => s.status === StepStatus.Active || s.status === StepStatus.Error || i === this._steps.length - 1
-    );
+    return this.stepCollection.getCurrentStep();
   }
 
   getStepChanges(id: number) {
-    return this.steps.pipe(map(steps => steps.find(s => s.id === id)), filter(step => step !== undefined));
+    return this.steps.pipe(map(steps => steps.find(s => s.id === id)));
   }
 
   syncStepOrder(ids: number[]) {
-    this._steps = ids.map((id, index) => {
-      let step = this._steps.find(s => s.id === id);
-
-      if (step) {
-        step = {
-          ...step,
-          index,
-          isLastStep: index === ids.length - 1
-        };
-      }
-
-      return step;
-    }).filter(step => step.id !== undefined);
+    this.stepCollection.syncStepOrder(ids);
+    this.emitUpdatedSteps();
   }
 
-  private getNextStep() {
-    return this._steps.find(s => s.index === this.getCurrentStep().index + 1);
-  }
-
-  // refactor some of these methods into plain functions
-  private stepIsCurrentActiveStep(step: Step) {
-    return step.status === StepStatus.Active || step.status === StepStatus.Error;
-  }
-
-  private stepIsCompletedPreviousStep(activeStepId: number, step: Step) {
-    return step.id === activeStepId && step.id <= activeStepId && step.status === StepStatus.Complete;
+  private emitUpdatedSteps() {
+    this._stepsChanges.next(this.stepCollection.steps);
   }
 
   private getAllStepsCompletedChanges() {
     return this.steps.pipe(
-      filter(steps => steps.length > 0),
-      map(steps => this.getNumberOfIncompleteSteps(steps)),
-      filter(incompleteStepCount => incompleteStepCount === 0),
+      filter(steps => steps.length > 0 && this.getNumberOfIncompleteSteps(steps) === 0),
       mapTo(true)
     );
   }

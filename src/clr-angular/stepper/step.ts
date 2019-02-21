@@ -4,11 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ChangeDetectionStrategy, Input, TemplateRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, TemplateRef } from '@angular/core';
+import { FormGroupDirective, FormGroupName } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-import { StepperService, Step, StepStatus } from './providers/stepper.service';
-import { FormGroupDirective, FormGroupName } from '@angular/forms';
+import { StepperService } from './providers/stepper.service';
+import { StepStatus } from './enums/step-status.enum';
+import { Step } from './models/step.model';
 
 @Component({
   selector: 'clr-step',
