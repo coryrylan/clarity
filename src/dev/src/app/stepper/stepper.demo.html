@@ -10,6 +10,27 @@
   <button (click)="form.reset()" class="btn">Reset Stepper</button>
   <button (click)="toggleSecondStep()" class="btn">toggle second step</button>
 
+  <form clrStepper #contactForm="ngForm" (ngSubmit)="templateFormSubmit(contactForm.value)">
+    <button clrStepButton="next">next</button>
+    <button clrStepButton="last">last</button>
+
+    <clr-step ngModelGroup="name">
+      <clr-step-title>Legal Name</clr-step-title>
+      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+
+      <label for="first">First Name</label>
+      <input id="first" [ngModel]="templateForm.name.firstName" name="firstName" required />
+    
+      <label for="last">Last Name</label>
+      <input id="last" [ngModel]="templateForm.name.lastName" name="lastName" /> 
+    </clr-step>
+
+    <clr-step ngModelGroup="contact">
+      <clr-step-title>Contact</clr-step-title>
+      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    </clr-step>
+  </form>
+
   <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
     <button clrStepButton="next">next</button>
     <button clrStepButton="last">last</button>
@@ -60,7 +81,7 @@
     </clr-step>
   </form>
 
-  <h2>Static Stepper States</h2>
+  <!-- <h2>Static Stepper States</h2>
 
   <h3>First Step</h3>
   <form [formGroup]="form" class="clr-stepper">
@@ -277,5 +298,5 @@
         <button class="btn btn-primary clr-step-button">Complete</button>
       </div>
     </div>
-  </form>
+  </form> -->
 </div>

@@ -7,7 +7,7 @@
 import { Injectable, TemplateRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map, filter, mapTo } from 'rxjs/operators';
-import { FormGroup, AbstractControl } from '@angular/forms';
+import { FormGroup, AbstractControl, NgModelGroup } from '@angular/forms';
 
 import { StepCollection } from '../models/step-collection.model';
 import { StepStatus } from '../enums/step-status.enum';
@@ -21,7 +21,7 @@ export class StepperService {
   readonly steps = this._stepsChanges.asObservable();
   readonly stepsCompleted = this.getAllStepsCompletedChanges();
 
-  addStep(group: AbstractControl | FormGroup) {
+  addStep(group: AbstractControl | FormGroup | NgModelGroup) {
     const id = this.stepCollection.addStep(group);
     this.emitUpdatedSteps();
     return id;

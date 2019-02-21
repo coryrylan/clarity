@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup, NgModelGroup } from '@angular/forms';
 
 import { StepStatus } from '../enums/step-status.enum';
 import { Step } from './step.model';
@@ -20,7 +20,7 @@ export class StepCollection {
     return this._steps;
   }
 
-  addStep(group: AbstractControl | FormGroup) {
+  addStep(group: AbstractControl | FormGroup | NgModelGroup) {
     const step = new Step(this.stepCount++, this.stepperCount, group);
     this._steps = [...this._steps, step];
     return step.id;

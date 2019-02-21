@@ -18,13 +18,13 @@
   - clr-step-content *clrIfActive (IfActiveService) utils/conditional (Tabs)
 */
 
-import { Component, ContentChildren, QueryList, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ContentChildren, QueryList, ViewChild, TemplateRef, Optional } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
 import { StepperService } from './providers/stepper.service';
 import { ClrStep } from './step';
-import { FormGroupDirective } from '@angular/forms';
+import { FormGroupDirective, NgModelGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'form[clrStepper]',
@@ -42,11 +42,19 @@ export class ClrFormStepper {
   @ViewChild('stepButtons') stepButtons: TemplateRef<any>;
   subscriptions: Subscription[] = [];
 
-  constructor(private formGroup: FormGroupDirective, private stepperService: StepperService) {}
+  constructor(
+    @Optional() private formGroup: FormGroupDirective,
+    @Optional() private ngForm: NgForm,
+    private stepperService: StepperService
+  ) {}
 
   ngOnInit() {
     this.subscriptions.push(this.listenForStepsCompleted());
-    this.subscriptions.push(this.listenForFormResetChanges());
+
+    if (this.formGroup) {
+      this.subscriptions.push(this.listenForFormResetChanges());
+    }
+
     this.stepperService.stepButtons = this.stepButtons;
   }
 
@@ -77,6 +85,14 @@ export class ClrFormStepper {
 
   private listenForStepsCompleted() {
     // We manually trigger ngSubmit when all steps are complete, including updating prior steps.
-    return this.stepperService.stepsCompleted.subscribe(() => this.formGroup.ngSubmit.emit());
+    return this.stepperService.stepsCompleted.subscribe(() => {
+      if (this.formGroup) {
+        this.formGroup.ngSubmit.emit();
+      }
+
+      if (this.ngForm) {
+        this.ngForm.ngSubmit.emit();
+      }
+    });
   }
 }

@@ -28,10 +28,25 @@ export class StepperDemo {
     }),
   });
 
+  templateForm = {
+    name: {
+      firstName: 'Cory',
+      lastName: 'Rylan',
+    },
+    contact: {
+      email: '',
+      phone: '',
+    },
+  };
+
   showSecondStep = true;
 
   submit() {
-    console.log('submit', this.form.value);
+    console.log('reactive form submit', this.form.value);
+  }
+
+  templateFormSubmit(templateFormValues: {}) {
+    console.log('template form submit', templateFormValues);
   }
 
   toggleSecondStep() {
