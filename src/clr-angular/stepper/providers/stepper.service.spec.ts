@@ -4,15 +4,15 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { TestBed } from '@angular/core/testing';
+// import { TestBed } from '@angular/core/testing';
 
-import { StepperService } from './stepper.service';
+// import { StepperService } from './stepper.service';
 
-describe('StepperService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+// describe('StepperService', () => {
+//   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: StepperService = TestBed.get(StepperService);
-    expect(service).toBeTruthy();
-  });
-});
+//   it('should be created', () => {
+//     const service: StepperService = TestBed.get(StepperService);
+//     expect(service).toBeTruthy();
+//   });
+// });

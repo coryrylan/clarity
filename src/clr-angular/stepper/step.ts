@@ -5,13 +5,12 @@
  */
 
 import { Component, ChangeDetectionStrategy, TemplateRef, Optional } from '@angular/core';
-import { FormGroupDirective, FormGroupName, NgModelGroup, AbstractControl, FormGroup, NgForm } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
+import { FormGroupDirective, FormGroupName, NgModelGroup, NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';
 import { StepStatus } from './enums/step-status.enum';
 import { Step } from './models/step.model';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'clr-step',
@@ -22,7 +21,6 @@ import { tap } from 'rxjs/operators';
 export class ClrStep {
   id: number;
   step: Observable<Step>;
-  buttonsTemplateRef: TemplateRef<any>;
   readonly StepStatus = StepStatus;
 
   constructor(
@@ -43,8 +41,6 @@ export class ClrStep {
       this.id = this.stepperService.addStep(this.ngModelGroup);
       this.step = this.stepperService.getStepChanges(this.id);
     }
-
-    this.buttonsTemplateRef = this.stepperService.stepButtons;
   }
 
   selectStep() {

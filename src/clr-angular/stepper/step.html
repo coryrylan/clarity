@@ -34,7 +34,6 @@
     >
       <div *ngIf="step.status === StepStatus.Active || step.status === StepStatus.Error" class="clr-step-content">
         <ng-content></ng-content>
-        <ng-container *ngTemplateOutlet="buttonsTemplateRef"></ng-container>
       </div>
     </div>
   </div>

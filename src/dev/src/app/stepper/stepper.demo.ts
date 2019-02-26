@@ -37,6 +37,10 @@ export class StepperDemo {
       email: '',
       phone: '',
     },
+    password: {
+      password: '',
+      confirm: '',
+    },
   };
 
   showSecondStep = true;
@@ -47,9 +51,5 @@ export class StepperDemo {
 
   templateFormSubmit(templateFormValues: {}) {
     console.log('template form submit', templateFormValues);
-  }
-
-  toggleSecondStep() {
-    this.showSecondStep = !this.showSecondStep;
   }
 }

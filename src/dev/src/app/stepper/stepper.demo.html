@@ -5,83 +5,125 @@
   -->
 
 <div class="clr-example">
-  <h2>Angular Prototype</h2>
+  <h1>Stepper</h1>
+
+  <h2>Angular Reactive Forms</h2>
 
   <button (click)="form.reset()" class="btn">Reset Stepper</button>
-  <button (click)="toggleSecondStep()" class="btn">toggle second step</button>
-
-  <form clrStepper #contactForm="ngForm" (ngSubmit)="templateFormSubmit(contactForm.value)">
-    <button clrStepButton="next">next</button>
-    <button clrStepButton="last">last</button>
-
-    <clr-step ngModelGroup="name">
-      <clr-step-title>Legal Name</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-
-      <label for="first">First Name</label>
-      <input id="first" [ngModel]="templateForm.name.firstName" name="firstName" required />
-    
-      <label for="last">Last Name</label>
-      <input id="last" [ngModel]="templateForm.name.lastName" name="lastName" /> 
-    </clr-step>
-
-    <clr-step ngModelGroup="contact">
-      <clr-step-title>Contact</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-    </clr-step>
-  </form>
+  <button (click)="showSecondStep = !showSecondStep" class="btn">toggle second step</button>
 
   <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
-    <button clrStepButton="next">next</button>
-    <button clrStepButton="last">last</button>
-
     <clr-step formGroupName="name">
       <clr-step-title>Legal Name</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
 
       <clr-input-container>
         <label>First Name</label>
-        <input clrInput formControlName="first" type="text" />
+        <input clrInput formControlName="first" />
       </clr-input-container>
 
       <clr-input-container>
         <label>Last Name</label>
-        <input clrInput formControlName="last" type="text" /> 
+        <input clrInput formControlName="last" /> 
       </clr-input-container>
+
+      <button clrStepButton="next">next</button>
     </clr-step>
 
-    <clr-step formGroupName="contact">
+    <clr-step *ngIf="showSecondStep" formGroupName="contact">
       <clr-step-title>Contact Information</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
 
       <clr-input-container>
         <label>Email</label>
-        <input clrInput formControlName="email" type="text" />
+        <input clrInput formControlName="email" />
       </clr-input-container>
   
       <clr-input-container>
         <label>Phone</label>
-        <input clrInput formControlName="phone" type="text" /> 
+        <input clrInput formControlName="phone" /> 
       </clr-input-container>
+
+      <button clrStepButton="next">next</button>
     </clr-step>
   
     <clr-step formGroupName="password">
       <clr-step-title>Password</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
   
-      <clr-input-container>
+      <clr-password-container>
         <label>Password</label>
-        <input clrInput formControlName="password" type="text" />
-      </clr-input-container>
+        <input clrPassword formControlName="password" />
+      </clr-password-container>
   
-      <clr-input-container>
+      <clr-password-container>
         <label>Confirm Password</label>
-        <input clrInput formControlName="confirm" type="text" /> 
-      </clr-input-container>
+        <input clrPassword formControlName="confirm" /> 
+      </clr-password-container>
+
+      <button clrStepButton="last">last</button>
     </clr-step>
   </form>
 
-  <!-- <h2>Static Stepper States</h2>
+  <h2>Angular Template Forms</h2>
+
+  <button (click)="contactForm.reset()" class="btn">Reset Stepper</button>
+  <button (click)="showSecondStep = !showSecondStep" class="btn">toggle second step</button>
+
+  <form clrStepper #contactForm="ngForm" (ngSubmit)="templateFormSubmit(contactForm.value)">
+    <clr-step ngModelGroup="name">
+      <clr-step-title>Legal Name</clr-step-title>
+      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+
+      <clr-input-container>
+        <label>First Name</label>
+        <input clrInput [ngModel]="templateForm.name.firstName" name="firstName" required />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Last Name</label>
+        <input clrInput [ngModel]="templateForm.name.lastName" name="lastName" required /> 
+      </clr-input-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step>
+
+    <clr-step *ngIf="showSecondStep" ngModelGroup="contact">
+      <clr-step-title>Contact Information</clr-step-title>
+      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+
+      <clr-input-container>
+        <label>Email</label>
+        <input clrInput [ngModel]="templateForm.contact.email" name="email" />
+      </clr-input-container>
+  
+      <clr-input-container>
+        <label>Phone</label>
+        <input clrInput [ngModel]="templateForm.contact.phone" name="phone" /> 
+      </clr-input-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step>
+
+    <clr-step ngModelGroup="password">
+      <clr-step-title>Password</clr-step-title>
+      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+
+      <clr-password-container>
+        <label>Password</label>
+        <input clrPassword [ngModel]="templateForm.password.password" name="password" />
+      </clr-password-container>
+  
+      <clr-password-container>
+        <label>Confirm Password</label>
+        <input clrPassword [ngModel]="templateForm.password.confirm" name="confirm" /> 
+      </clr-password-container>
+
+      <button clrStepButton="last">last</button>
+    </clr-step>
+  </form>
+
+  <h2>Static Stepper States</h2>
 
   <h3>First Step</h3>
   <form [formGroup]="form" class="clr-stepper">
@@ -298,5 +340,5 @@
         <button class="btn btn-primary clr-step-button">Complete</button>
       </div>
     </div>
-  </form> -->
+  </form>
 </div>

@@ -14,20 +14,21 @@ let stepperCount = 0;
 export class StepCollection {
   private stepperCount = stepperCount++;
   private stepCount = 0;
-  private _steps: Step[] = [];
+  private _steps: { [id: number]: Step } = {};
 
-  get steps() {
-    return this._steps;
+  get steps(): Step[] {
+    return Object.keys(this._steps).map(id => this._steps[id]);
   }
 
   addStep(group: AbstractControl | FormGroup | NgModelGroup) {
     const step = new Step(this.stepCount++, this.stepperCount, group);
-    this._steps = [...this._steps, step];
+    this._steps[step.id] = step;
     return step.id;
   }
 
-  reset() {
-    this._steps = this._steps.map((step, index) => {
+  resetSteps() {
+    this.steps.forEach((s, index) => {
+      const step = this._steps[s.id];
       step.status = StepStatus.Inactive;
 
       if (index === 0) {
@@ -38,73 +39,52 @@ export class StepCollection {
     });
   }
 
-  nextStep() {
-    const nextStep = this.getNextStep();
+  syncSteps(ids: number[]) {
+    this.updateStepOrder(ids);
+    this.removeOldSteps(ids);
+  }
 
-    if (nextStep) {
-      this.setActiveStep(nextStep.id);
+  setNextStep(currentStepId: number) {
+    if (this._steps[currentStepId].group.valid) {
+      const nextStep = this.steps.find(s => s.index === this._steps[currentStepId].index + 1);
+      this._steps[currentStepId].status = StepStatus.Complete;
+
+      if (nextStep && nextStep.status !== StepStatus.Complete) {
+        this._steps[nextStep.id].status = StepStatus.Active;
+      }
     } else {
-      this.setActiveStep();
+      this._steps[currentStepId].status = StepStatus.Error;
     }
   }
 
-  setActiveStep(stepId?: number) {
-    const currentStep = this.getCurrentStep();
-
-    this._steps = this._steps.map(step => {
-      if (currentStep.group.valid) {
-        if (this.stepIsCurrentActiveStep(step)) {
-          step.status = StepStatus.Complete;
-        }
-
-        if (this.stepIsCompletedPreviousStep(stepId, step)) {
-          step.status = StepStatus.Active;
-        }
-
-        if (step.id === stepId) {
-          step.status = StepStatus.Active;
-        }
-      } else if (currentStep.group.invalid && currentStep.id === step.id) {
-        step.status = StepStatus.Error;
+  setActiveStep(stepId: number) {
+    let allStepsValid = true;
+    this.steps.map(step => {
+      if (step.group.invalid) {
+        allStepsValid = false;
+        this._steps[step.id].status = StepStatus.Error;
       }
+    });
 
-      return { ...step };
+    if (allStepsValid) {
+      this._steps[stepId].status = StepStatus.Active;
+    }
+  }
+
+  private updateStepOrder(ids: number[]) {
+    ids.forEach((id, index) => {
+      if (this._steps[id]) {
+        this._steps[id].index = index;
+        this._steps[id].isLastStep = index === ids.length - 1;
+      }
     });
   }
 
-  getCurrentStep() {
-    return this._steps.find(
-      (s, i) => s.status === StepStatus.Active || s.status === StepStatus.Error || i === this._steps.length - 1
-    );
-  }
-
-  syncStepOrder(ids: number[]) {
-    this._steps = ids
-      .map((id, index) => {
-        let step = this._steps.find(s => s.id === id);
-
-        if (step) {
-          step = {
-            ...step,
-            index,
-            isLastStep: index === ids.length - 1,
-          };
-        }
-
-        return step;
-      })
-      .filter(step => step !== undefined);
-  }
-
-  private getNextStep() {
-    return this._steps.find(s => s.index === this.getCurrentStep().index + 1);
-  }
-
-  private stepIsCurrentActiveStep(step: Step) {
-    return step.status === StepStatus.Active || step.status === StepStatus.Error;
-  }
-
-  private stepIsCompletedPreviousStep(activeStepId: number, step: Step) {
-    return step.id === activeStepId && step.id <= activeStepId && step.status === StepStatus.Complete;
+  private removeOldSteps(ids: number[]) {
+    this.steps.forEach(step => {
+      if (ids.find(id => id === step.id) === undefined) {
+        delete this._steps[step.id];
+      }
+    });
   }
 }

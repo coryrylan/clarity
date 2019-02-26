@@ -15,7 +15,6 @@ import { Step } from '../models/step.model';
 
 @Injectable()
 export class StepperService {
-  stepButtons: TemplateRef<any>;
   private stepCollection = new StepCollection();
   private readonly _stepsChanges = new BehaviorSubject<Step[]>(this.stepCollection.steps);
   readonly steps = this._stepsChanges.asObservable();
@@ -27,13 +26,13 @@ export class StepperService {
     return id;
   }
 
-  reset() {
-    this.stepCollection.reset();
+  resetSteps() {
+    this.stepCollection.resetSteps();
     this.emitUpdatedSteps();
   }
 
-  nextStep() {
-    this.stepCollection.nextStep();
+  setNextStep(currentStepId: number) {
+    this.stepCollection.setNextStep(currentStepId);
     this.emitUpdatedSteps();
   }
 
@@ -42,16 +41,12 @@ export class StepperService {
     this.emitUpdatedSteps();
   }
 
-  getCurrentStep() {
-    return this.stepCollection.getCurrentStep();
-  }
-
   getStepChanges(id: number) {
     return this.steps.pipe(map(steps => steps.find(s => s.id === id)));
   }
 
-  syncStepOrder(ids: number[]) {
-    this.stepCollection.syncStepOrder(ids);
+  syncSteps(ids: number[]) {
+    this.stepCollection.syncSteps(ids);
     this.emitUpdatedSteps();
   }
 

@@ -5,9 +5,9 @@
  */
 
 import { Directive, HostListener, HostBinding, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';
+import { ClrStep } from './step';
 
 export enum ClrStepButtonType {
   Next = 'next',
@@ -25,46 +25,15 @@ export enum ClrStepButtonType {
 export class ClrStepButton {
   @Input('clrStepButton') type: ClrStepButtonType | string = ClrStepButtonType.Next;
   @HostBinding('class.btn-primary') lastButton = false;
-  @HostBinding('style.display') display = 'block';
-  subscriptions: Subscription[] = [];
 
-  constructor(private stepperService: StepperService) {}
+  constructor(private clrStep: ClrStep, private stepperService: StepperService) {}
 
   ngOnInit() {
     this.lastButton = this.type === ClrStepButtonType.Last;
-    this.subscriptions.push(this.listenForLastStepChanges());
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach(s => s.unsubscribe());
   }
 
   @HostListener('click')
   click() {
-    this.stepperService.nextStep();
-  }
-
-  private listenForLastStepChanges() {
-    return this.stepperService.steps.subscribe(() => {
-      this.setSubmitButtonDisplay();
-      this.setNextButtonDisplay();
-    });
-  }
-
-  private setSubmitButtonDisplay() {
-    if (this.type === ClrStepButtonType.Last) {
-      this.display = this.currentActiveStepIsLastStep() ? 'block' : 'none';
-    }
-  }
-
-  private setNextButtonDisplay() {
-    if (this.type === ClrStepButtonType.Next) {
-      this.display = this.currentActiveStepIsLastStep() ? 'none' : 'block';
-    }
-  }
-
-  private currentActiveStepIsLastStep() {
-    const currentStep = this.stepperService.getCurrentStep();
-    return currentStep && currentStep.isLastStep;
+    this.stepperService.setNextStep(this.clrStep.id);
   }
 }
