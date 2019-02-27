@@ -4,12 +4,16 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { AbstractControl, FormGroup, NgModelGroup } from '@angular/forms';
-
 import { StepStatus } from '../enums/step-status.enum';
-import { Step } from './step.model';
 
 let stepperCount = 0;
+
+export class Step {
+  index: number = null;
+  isLastStep = false;
+  status: StepStatus = this.id === 0 ? StepStatus.Active : StepStatus.Inactive;
+  constructor(public id: number, public stepperId: number) {}
+}
 
 export class StepCollection {
   private stepperCount = stepperCount++;
@@ -20,8 +24,8 @@ export class StepCollection {
     return Object.keys(this._steps).map(id => this._steps[id]);
   }
 
-  addStep(group: AbstractControl | FormGroup | NgModelGroup) {
-    const step = new Step(this.stepCount++, this.stepperCount, group);
+  addStep() {
+    const step = new Step(this.stepCount++, this.stepperCount);
     this._steps[step.id] = step;
     return step.id;
   }
@@ -44,8 +48,8 @@ export class StepCollection {
     this.removeOldSteps(ids);
   }
 
-  setNextStep(currentStepId: number) {
-    if (this._steps[currentStepId].group.valid) {
+  setNextStep(currentStepId: number, currentStepValid: boolean) {
+    if (currentStepValid) {
       const nextStep = this.steps.find(s => s.index === this._steps[currentStepId].index + 1);
       this._steps[currentStepId].status = StepStatus.Complete;
 
@@ -57,18 +61,17 @@ export class StepCollection {
     }
   }
 
-  setActiveStep(stepId: number) {
-    let allStepsValid = true;
-    this.steps.map(step => {
-      if (step.group.invalid) {
-        allStepsValid = false;
-        this._steps[step.id].status = StepStatus.Error;
-      }
-    });
-
-    if (allStepsValid) {
+  setActiveStep(stepId: number, currentStepValid: boolean) {
+    if (currentStepValid) {
       this._steps[stepId].status = StepStatus.Active;
+    } else {
+      const currentStep = this.steps.find(s => s.status === StepStatus.Active);
+      this._steps[currentStep.id].status = StepStatus.Error;
     }
+  }
+
+  getNumberOfIncompleteSteps() {
+    return this.steps.reduce((prev, next) => (next.status !== StepStatus.Complete ? prev + 1 : prev), 0);
   }
 
   private updateStepOrder(ids: number[]) {

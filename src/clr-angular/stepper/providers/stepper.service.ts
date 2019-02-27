@@ -4,14 +4,12 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Injectable, TemplateRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map, filter, mapTo } from 'rxjs/operators';
-import { FormGroup, AbstractControl, NgModelGroup } from '@angular/forms';
 
 import { StepCollection } from '../models/step-collection.model';
-import { StepStatus } from '../enums/step-status.enum';
-import { Step } from '../models/step.model';
+import { Step } from '../models/step-collection.model';
 
 @Injectable()
 export class StepperService {
@@ -20,8 +18,8 @@ export class StepperService {
   readonly steps = this._stepsChanges.asObservable();
   readonly stepsCompleted = this.getAllStepsCompletedChanges();
 
-  addStep(group: AbstractControl | FormGroup | NgModelGroup) {
-    const id = this.stepCollection.addStep(group);
+  addStep() {
+    const id = this.stepCollection.addStep();
     this.emitUpdatedSteps();
     return id;
   }
@@ -31,13 +29,13 @@ export class StepperService {
     this.emitUpdatedSteps();
   }
 
-  setNextStep(currentStepId: number) {
-    this.stepCollection.setNextStep(currentStepId);
+  setNextStep(currentStepId: number, currentStepValid: boolean) {
+    this.stepCollection.setNextStep(currentStepId, currentStepValid);
     this.emitUpdatedSteps();
   }
 
-  setActiveStep(stepId?: number) {
-    this.stepCollection.setActiveStep(stepId);
+  setActiveStep(stepId: number, currentStepValid: boolean) {
+    this.stepCollection.setActiveStep(stepId, currentStepValid);
     this.emitUpdatedSteps();
   }
 
@@ -56,12 +54,8 @@ export class StepperService {
 
   private getAllStepsCompletedChanges() {
     return this.steps.pipe(
-      filter(steps => steps.length > 0 && this.getNumberOfIncompleteSteps(steps) === 0),
+      filter(steps => steps.length > 0 && this.stepCollection.getNumberOfIncompleteSteps() === 0),
       mapTo(true)
     );
-  }
-
-  private getNumberOfIncompleteSteps(steps: Step[]) {
-    return steps.reduce((prev, next) => (next.status !== StepStatus.Complete ? prev + 1 : prev), 0);
   }
 }

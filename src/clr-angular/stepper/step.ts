@@ -4,13 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ChangeDetectionStrategy, TemplateRef, Optional } from '@angular/core';
-import { FormGroupDirective, FormGroupName, NgModelGroup, NgForm } from '@angular/forms';
+import { Component, ChangeDetectionStrategy, Optional } from '@angular/core';
+import { FormGroupDirective, FormGroupName, NgModelGroup, AbstractControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';
 import { StepStatus } from './enums/step-status.enum';
-import { Step } from './models/step.model';
+import { Step } from './models/step-collection.model';
 
 @Component({
   selector: 'clr-step',
@@ -21,37 +21,33 @@ import { Step } from './models/step.model';
 export class ClrStep {
   id: number;
   step: Observable<Step>;
+  group: AbstractControl | FormGroup | NgModelGroup;
   readonly StepStatus = StepStatus;
 
   constructor(
     @Optional() private formGroup: FormGroupDirective,
     @Optional() private formGroupName: FormGroupName,
-    @Optional() private ngForm: NgForm,
     @Optional() private ngModelGroup: NgModelGroup,
     private stepperService: StepperService
   ) {}
 
   ngOnInit() {
     if (this.isUsingReactiveForms()) {
-      this.id = this.stepperService.addStep(this.formGroup.form.controls[this.formGroupName.name]);
+      this.group = this.formGroup.form.controls[this.formGroupName.name];
+      this.id = this.stepperService.addStep();
       this.step = this.stepperService.getStepChanges(this.id);
-    }
-
-    if (this.isUsingTemplateForms()) {
-      this.id = this.stepperService.addStep(this.ngModelGroup);
+    } else {
+      this.group = this.ngModelGroup;
+      this.id = this.stepperService.addStep();
       this.step = this.stepperService.getStepChanges(this.id);
     }
   }
 
   selectStep() {
-    this.stepperService.setActiveStep(this.id);
+    this.stepperService.setActiveStep(this.id, this.group.valid);
   }
 
   private isUsingReactiveForms() {
     return this.formGroup && this.formGroupName;
-  }
-
-  private isUsingTemplateForms() {
-    return !!this.ngForm;
   }
 }
