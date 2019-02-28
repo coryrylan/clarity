@@ -25,15 +25,20 @@
       </button>
       <ng-content select="clr-step-description"></ng-content>
     </div>
-
     <div
+      @skipInitialRender
       role="region"
       [id]="'clr-step-content-' + step.id + step.stepperId"
       [attr.aria-hidden]="step.status !== StepStatus.Active"
       [attr.aria-labelledby]="'clr-step-header-' + step.id + step.stepperId"
     >
-      <div *ngIf="step.status === StepStatus.Active || step.status === StepStatus.Error" class="clr-step-content">
-        <ng-content></ng-content>
+      <div
+        @collapse
+        *ngIf="step.status === StepStatus.Active || step.status === StepStatus.Error"
+        class="clr-step-content">
+        <div class="clr-step-inner-content">
+          <ng-content></ng-content>
+        </div>
       </div>
     </div>
   </div>

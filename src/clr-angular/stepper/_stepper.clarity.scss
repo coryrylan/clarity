@@ -110,11 +110,12 @@
   }
 
   .clr-step-content {
-    padding: 20px;
     background: $clr-stepper-content-background-color;
     border: 1px solid $clr-stepper-border-color;
     border-bottom: 0;
+    overflow: hidden;
     display: block;
+    padding: 20px;
 
     @media (min-width: $clr-stepper-responsive-breakpoint) {
       padding: 20px 56px;
@@ -122,6 +123,19 @@
 
     .clr-form {
       padding: 0;
+    }
+  }
+
+  // inner element/padding to prevent extra hight in ng animation
+  .ng-trigger.clr-step-content {
+    padding: 0;
+  }
+
+  .clr-step-inner-content {
+    padding: 20px;
+
+    @media (min-width: $clr-stepper-responsive-breakpoint) {
+      padding: 20px 56px;
     }
   }
 
@@ -154,6 +168,10 @@
 
     .clr-step-content {
       display: none;
+    }
+
+    .ng-trigger.clr-step-content {
+      display: block;
     }
 
     .clr-step-angle {

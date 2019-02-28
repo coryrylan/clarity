@@ -6,6 +6,7 @@
 
 import { Component, ChangeDetectionStrategy, Optional } from '@angular/core';
 import { FormGroupDirective, FormGroupName, NgModelGroup, AbstractControl, FormGroup } from '@angular/forms';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Observable } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';
@@ -17,6 +18,19 @@ import { Step } from './models/step-collection.model';
   templateUrl: './step.html',
   host: { '[class.clr-step]': 'true' },
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('skipInitialRender', [transition(':enter', [])]),
+    trigger('collapse', [
+      transition('void => *', [
+        style({ display: 'block', height: 0 }),
+        animate('0.2s ease-in-out', style({ height: '*' })),
+      ]),
+      transition('* => void', [
+        style({ display: 'block' }),
+        animate('0.2s ease-in-out', style({ height: 0, display: 'none' })),
+      ]),
+    ]),
+  ],
 })
 export class ClrStep {
   id: number;
