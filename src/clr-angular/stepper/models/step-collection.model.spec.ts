@@ -84,4 +84,20 @@ describe('StepCollection Model', () => {
     stepCollection.setNextStep(step1Id, true);
     expect(stepCollection.getNumberOfIncompleteSteps()).toBe(2);
   });
+
+  it('should close all future steps if user proceeded to continue to next step from previously completed step to avoid a dependency issue', () => {
+    stepCollection.setNextStep(step1Id, true);
+    stepCollection.setNextStep(step2Id, true);
+
+    expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
+    expect(stepCollection.steps[1].status).toBe(StepStatus.Complete);
+    expect(stepCollection.steps[2].status).toBe(StepStatus.Active);
+
+    stepCollection.setActiveStep(step1Id, true);
+    stepCollection.setNextStep(step1Id, true);
+
+    expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
+    expect(stepCollection.steps[1].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[2].status).toBe(StepStatus.Inactive);
+  });
 });

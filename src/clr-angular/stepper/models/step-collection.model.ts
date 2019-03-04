@@ -53,7 +53,8 @@ export class StepCollection {
       const nextStep = this.steps.find(s => s.index === this._steps[currentStepId].index + 1);
       this._steps[currentStepId].status = StepStatus.Complete;
 
-      if (nextStep && nextStep.status !== StepStatus.Complete) {
+      if (nextStep) {
+        this.closeAllFutureSteps(nextStep);
         this._steps[nextStep.id].status = StepStatus.Active;
       }
     } else {
@@ -72,6 +73,15 @@ export class StepCollection {
 
   getNumberOfIncompleteSteps() {
     return this.steps.reduce((prev, next) => (next.status !== StepStatus.Complete ? prev + 1 : prev), 0);
+  }
+
+  private closeAllFutureSteps(nextStep: Step) {
+    // we close all future steps to in case future steps depend on prior step values
+    this.steps.forEach(step => {
+      if (step.index > nextStep.index) {
+        step.status = StepStatus.Inactive;
+      }
+    });
   }
 
   private updateStepOrder(ids: number[]) {
