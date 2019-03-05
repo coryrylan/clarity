@@ -6,31 +6,19 @@
 
 import { Component, ChangeDetectionStrategy, Optional } from '@angular/core';
 import { FormGroupDirective, FormGroupName, NgModelGroup, AbstractControl, FormGroup } from '@angular/forms';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Observable } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';
 import { StepStatus } from './enums/step-status.enum';
-import { Step } from './models/step-collection.model';
+import { Step } from './models/step.model';
+import { stepAnimation } from './utils/animation';
 
 @Component({
   selector: 'clr-step',
   templateUrl: './step.html',
   host: { '[class.clr-step]': 'true' },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('skipInitialRender', [transition(':enter', [])]),
-    trigger('collapse', [
-      transition('void => *', [
-        style({ display: 'block', height: 0 }),
-        animate('0.2s ease-in-out', style({ height: '*' })),
-      ]),
-      transition('* => void', [
-        style({ display: 'block' }),
-        animate('0.2s ease-in-out', style({ height: 0, display: 'none' })),
-      ]),
-    ]),
-  ],
+  animations: stepAnimation,
 })
 export class ClrStep {
   id: number;
@@ -46,15 +34,11 @@ export class ClrStep {
   ) {}
 
   ngOnInit() {
-    if (this.isUsingReactiveForms()) {
-      this.group = this.formGroup.form.controls[this.formGroupName.name];
-      this.id = this.stepperService.addStep();
-      this.step = this.stepperService.getStepChanges(this.id);
-    } else {
-      this.group = this.ngModelGroup;
-      this.id = this.stepperService.addStep();
-      this.step = this.stepperService.getStepChanges(this.id);
-    }
+    this.group = this.isUsingReactiveForms()
+      ? this.formGroup.form.controls[this.formGroupName.name]
+      : this.ngModelGroup;
+    this.id = this.stepperService.addStep();
+    this.step = this.stepperService.getStepChanges(this.id);
   }
 
   selectStep() {

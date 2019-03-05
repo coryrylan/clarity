@@ -4,63 +4,71 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-// import { Component, ViewChild } from '@angular/core';
-// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, ViewChild } from '@angular/core';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
+import { BehaviorSubject } from 'rxjs';
 
-// import { ClrStep } from './step';
-// import { ClrStepperModule } from './stepper.module';
+import { ClrStepperModule } from './stepper.module';
+import { ClrStep } from './step';
+import { StepperService } from './providers/stepper.service';
+import { Step } from './models/step.model';
+import { StepStatus } from './enums/step-status.enum';
 
-// @Component({
-//   selector: 'clr-stepper-test',
-//   template: `
-//     <clr-stepper>
-//       <clr-step #clrStep1>
-//         <clr-step-title>Step 1</clr-step-title>
-//         <clr-step-description>Step 1 Content</clr-step-description>
-//       </clr-step>
-//       <clr-step #clrStep2>
-//         <clr-step-title>Step 2</clr-step-title>
-//         <clr-step-description>Step 2 Content</clr-step-description>
-//       </clr-step>
-//       <clr-step #clrStep3>
-//         <clr-step-title>Step 3</clr-step-title>
-//         <clr-step-description>Step 3 Content</clr-step-description>
-//       </clr-step>
-//     </clr-stepper>
-//   `,
-// })
-// class ClrStepTestComponent {
-//   @ViewChild('clrStep1') clrStep1: ClrStep;
-//   @ViewChild('clrStep2') clrStep2: ClrStep;
-// }
+describe('ClrStep', () => {
+  let fixture: ComponentFixture<any>;
 
-// fdescribe('ClrStepper', () => {
-//   let testComponent: ClrStepTestComponent;
-//   let fixture: ComponentFixture<ClrStepTestComponent>;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ReactiveFormsTestComponent],
+      providers: [{ provide: StepperService, useClass: MockStepperService }],
+      imports: [ClrStepperModule, ReactiveFormsModule, NoopAnimationsModule],
+    });
 
-//   beforeEach(async(() => {
-//     TestBed.configureTestingModule({
-//       imports: [ClrStepperModule],
-//       declarations: [ClrStepTestComponent],
-//     }).compileComponents();
-//   }));
+    fixture = TestBed.createComponent(ReactiveFormsTestComponent);
+    fixture.detectChanges();
+  });
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(ClrStepTestComponent);
-//     testComponent = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  it('should open step only if step was previously completed', () => {
+    const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
+    const headerButton = fixture.nativeElement.querySelector('.clr-step-header-button');
+    const mockStep = new Step(0, 0);
+    spyOn(stepperService, 'setActiveStep');
 
-//   afterEach(() => {
-//     fixture.destroy();
-//   });
+    headerButton.click();
+    fixture.detectChanges();
+    expect(stepperService.setActiveStep).not.toHaveBeenCalled();
 
-//   it('should create', () => {
-//     expect(testComponent).toBeTruthy();
-//   });
+    mockStep.status = StepStatus.Complete;
+    (stepperService as MockStepperService).step.next(mockStep);
+    fixture.detectChanges();
 
-//   it('should render the correct step numbers for each step', () => {
-//     expect(testComponent.clrStep1.id).toBe(0);
-//     expect(testComponent.clrStep2.id).toBe(1);
-//   });
-// });
+    headerButton.click();
+    fixture.detectChanges();
+    expect(stepperService.setActiveStep).toHaveBeenCalled();
+  });
+});
+
+@Component({
+  template: `
+    <form [formGroup]="form">
+      <clr-step formGroupName="group"></clr-step>
+    </form>
+  `,
+})
+class ReactiveFormsTestComponent {
+  @ViewChild(ClrStep) step: ClrStep;
+  form = new FormGroup({ group: new FormGroup({}) });
+}
+
+class MockStepperService extends StepperService {
+  step = new BehaviorSubject<Step>(new Step(0, 0));
+
+  setActiveStep() {}
+
+  getStepChanges() {
+    return this.step;
+  }
+}

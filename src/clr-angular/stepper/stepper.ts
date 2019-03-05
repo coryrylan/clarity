@@ -74,13 +74,8 @@ export class ClrFormStepper {
   private listenForStepsCompleted() {
     // We manually trigger ngSubmit when all steps are complete, including updating prior steps.
     return this.stepperService.stepsCompleted.subscribe(() => {
-      if (this.formGroup) {
-        this.formGroup.ngSubmit.emit();
-      }
-
-      if (this.ngForm) {
-        this.ngForm.ngSubmit.emit();
-      }
+      const form = this.formGroup ? this.formGroup : this.ngForm;
+      form.ngSubmit.emit();
     });
   }
 }

@@ -5,15 +5,9 @@
  */
 
 import { StepStatus } from '../enums/step-status.enum';
+import { Step } from './step.model';
 
 let stepperCount = 0;
-
-export class Step {
-  index: number = null;
-  isLastStep = false;
-  status: StepStatus = this.id === 0 ? StepStatus.Active : StepStatus.Inactive;
-  constructor(public id: number, public stepperId: number) {}
-}
 
 export class StepCollection {
   private stepperCount = stepperCount++;

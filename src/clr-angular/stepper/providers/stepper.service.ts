@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 import { map, filter, mapTo } from 'rxjs/operators';
 
 import { StepCollection } from '../models/step-collection.model';
-import { Step } from '../models/step-collection.model';
+import { Step } from '../models/step.model';
 
 @Injectable()
 export class StepperService {
