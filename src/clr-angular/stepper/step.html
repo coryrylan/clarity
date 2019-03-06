@@ -1,4 +1,10 @@
-<ng-container *ngIf="step | async; let step;">  
+<ng-container *ngIf="step | async; let step;">
+  <div *ngIf="step.status === StepStatus.Error" aria-live="assertive" class="clr-screen-reader-only">
+    Please check step for errors.
+  </div>
+  <div *ngIf="step.status === StepStatus.Complete" aria-live="assertive" class="clr-screen-reader-only">
+    Step completed.
+  </div>
   <div
     role="group"
     [attr.aria-labelledby]="'clr-step-header-' + step.id + step.stepperId"
