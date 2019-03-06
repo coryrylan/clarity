@@ -2,17 +2,16 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-$clr-stepper-text-color: $clr-black;
+$clr-stepper-text-color: $clr-color-neutral-1000;
 $clr-stepper-active-background-color: $clr-global-selection-color;
-$clr-stepper-content-background-color: $clr-white;
-$clr-stepper-header-background-color: $clr-near-white;
-$clr-stepper-header-hover-background-color: #eee;
-$clr-stepper-border-left-color: $clr-light-gray;
-
+$clr-stepper-content-background-color: $clr-color-neutral-0;
+$clr-stepper-header-background-color: $clr-color-neutral-50;
+$clr-stepper-header-hover-background-color: $clr-color-neutral-200;
+$clr-stepper-border-left-color: $clr-color-neutral-200;
 $clr-stepper-responsive-breakpoint: map-get($grid-breakpoints, sm);
-$clr-stepper-error-color: $clr-red;
-$clr-stepper-complete-color: $clr-green-light-midtone;
-$clr-stepper-border-color: $clr-light-midtone-gray;
+$clr-stepper-error-color: $clr-color-danger-800;
+$clr-stepper-complete-color: $clr-color-success-500;
+$clr-stepper-border-color: $clr-color-neutral-400;
 $clr-stepper-padding: 18px;
 $clr-stepper-border-left-width: 6px;
 $clr-stepper-border-left-color-complete: $clr-stepper-complete-color;
