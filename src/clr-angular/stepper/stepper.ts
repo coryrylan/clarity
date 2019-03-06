@@ -7,12 +7,14 @@
 /*
   Todo Notes:
   - "/process" directory for wizard and stepper
-  - Check out default animation times, similar to stacker
-  - Completed steps A11y color issues need to be addressed
   - clrStepIf error/success
   - clrIfExpanded
-  - Dependents true for content children
   - clr-step-content *clrIfActive (IfActiveService) utils/conditional (Tabs)
+  - completed steps A11y color/state issues need to be addressed
+  - aria-live=“assertive” 1 at the end of the component, hide visually, two states error/success
+  - additional tests for template form edge cases
+  - documentation
+  - gemini tests
 */
 
 import { Component, ContentChildren, QueryList, Optional } from '@angular/core';
@@ -29,8 +31,9 @@ import { FormGroupDirective, NgForm } from '@angular/forms';
   host: { '[class.clr-stepper]': 'true' },
   providers: [StepperService],
 })
-export class ClrFormStepper {
-  @ContentChildren(ClrStep) steps: QueryList<ClrStep>;
+export class ClrStepper {
+  @ContentChildren(ClrStep, { descendants: true })
+  steps: QueryList<ClrStep>;
   subscriptions: Subscription[] = [];
 
   constructor(

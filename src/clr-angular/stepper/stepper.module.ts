@@ -12,9 +12,9 @@ import { ClrStep } from './step';
 import { ClrStepTitle } from './step-title';
 import { ClrStepDescription } from './step-description';
 import { ClrStepButton } from './step-button';
-import { ClrFormStepper } from './stepper';
+import { ClrStepper } from './stepper';
 
-const declarations = [ClrFormStepper, ClrStep, ClrStepTitle, ClrStepDescription, ClrStepButton];
+const declarations = [ClrStepper, ClrStep, ClrStepTitle, ClrStepDescription, ClrStepButton];
 
 @NgModule({
   imports: [CommonModule, ClrIconModule],
