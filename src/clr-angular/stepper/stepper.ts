@@ -6,13 +6,9 @@
 
 /*
   Todo Notes:
-  - clrStepIf error/success
-  - clrIfExpanded
-  - clr-step-content *clrIfActive (IfActiveService) utils/conditional (Tabs)
-  - completed steps A11y color/state issues need to be addressed
-  - additional tests for template form edge cases
+  - clr-step-content *clrIfExpanded (IfActiveService) utils/conditional (Tabs)
   - documentation
-  - gemini tests
+  - a11y tests for clr-step
 */
 
 import { Component, ContentChildren, QueryList, Optional } from '@angular/core';

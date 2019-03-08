@@ -15,8 +15,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class StepperDemo {
   form = new FormGroup({
     name: new FormGroup({
-      first: new FormControl('Cory', Validators.required),
-      last: new FormControl('Rylan', Validators.required),
+      first: new FormControl('Luke', Validators.required),
+      last: new FormControl('Skywalker', Validators.required),
     }),
     contact: new FormGroup({
       email: new FormControl(),
@@ -30,8 +30,8 @@ export class StepperDemo {
 
   templateForm = {
     name: {
-      firstName: 'Cory',
-      lastName: 'Rylan',
+      firstName: 'Luke',
+      lastName: 'Skywalker',
     },
     contact: {
       email: '',

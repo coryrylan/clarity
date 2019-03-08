@@ -53,9 +53,6 @@ export class StepperService {
   }
 
   private getAllStepsCompletedChanges() {
-    return this.steps.pipe(
-      filter(steps => steps.length > 0 && this.stepCollection.getNumberOfIncompleteSteps() === 0),
-      mapTo(true)
-    );
+    return this.steps.pipe(filter(() => this.stepCollection.allStepsCompleted), mapTo(true));
   }
 }

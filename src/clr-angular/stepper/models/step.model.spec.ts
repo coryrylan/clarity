@@ -5,14 +5,13 @@
 */
 
 import { Step } from './step.model';
-import { StepStatus } from '../enums/step-status.enum';
 
 describe('Step Model', () => {
-  it('should set the status to Active if first step', () => {
+  it('should open the step if step', () => {
     const step = new Step(0, 0);
     const step2 = new Step(1, 0);
 
-    expect(step.status).toBe(StepStatus.Active);
-    expect(step2.status).toBe(StepStatus.Inactive);
+    expect(step.open).toBe(true);
+    expect(step2.open).toBe(false);
   });
 });

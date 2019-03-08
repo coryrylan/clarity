@@ -5,7 +5,6 @@
  */
 
 export enum StepStatus {
-  Active = 'active',
   Inactive = 'inactive',
   Error = 'error',
   Complete = 'complete',

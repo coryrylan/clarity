@@ -49,6 +49,12 @@ describe('ClrStep', () => {
     fixture.detectChanges();
     expect(stepperService.setActiveStep).toHaveBeenCalled();
   });
+
+  it('should show the appropriate aria-live if step has an error', () => {});
+
+  it('should show the appropriate aria-live if step is complete', () => {});
+
+  it('should set the appropriate aria-hidden and aria-expanded attribute values', () => {});
 });
 
 @Component({

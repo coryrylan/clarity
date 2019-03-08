@@ -28,18 +28,19 @@ describe('StepCollection Model', () => {
   });
 
   it('should set the first step as the active step', () => {
-    expect(stepCollection.steps[0].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[0].open).toBe(true);
     expect(stepCollection.steps[1].status).toBe(StepStatus.Inactive);
   });
 
   it('should navigate to next step if current step is valid and mark step complete', () => {
     stepCollection.setNextStep(step1Id, true);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
-    expect(stepCollection.steps[1].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[0].open).toBe(false);
+    expect(stepCollection.steps[1].open).toBe(true);
   });
 
   it('should set the error state of a invalid form group and prevent next step navigation', () => {
-    expect(stepCollection.steps[0].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[0].open).toBe(true);
     stepCollection.setNextStep(step1Id, false);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Error);
     expect(stepCollection.steps[1].status).toBe(StepStatus.Inactive);
@@ -54,35 +55,44 @@ describe('StepCollection Model', () => {
   it('should reset all steps when reset by form', () => {
     stepCollection.setNextStep(step1Id, true);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
-    expect(stepCollection.steps[1].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[1].open).toBe(true);
 
     stepCollection.resetSteps();
-    expect(stepCollection.steps[0].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[0].open).toBe(true);
     expect(stepCollection.steps[1].status).toBe(StepStatus.Inactive);
   });
 
-  it('should allow user to select a previously completed step', () => {
+  it('should allow user to open and close a previously completed step', () => {
     stepCollection.setNextStep(step1Id, true);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
-    expect(stepCollection.steps[1].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[1].open).toBe(true);
+
     stepCollection.setActiveStep(step1Id, true);
-    expect(stepCollection.steps[0].status).toBe(StepStatus.Active);
-    expect(stepCollection.steps[1].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[0].open).toBe(true);
+    expect(stepCollection.steps[1].open).toBe(true);
+
+    stepCollection.setActiveStep(step1Id, true);
+    expect(stepCollection.steps[0].open).toBe(false);
+    expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
+    expect(stepCollection.steps[1].open).toBe(true);
   });
 
   it('should not allow user to select a previously completed step if current step is invalid', () => {
     stepCollection.setNextStep(step1Id, true);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
-    expect(stepCollection.steps[1].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[1].open).toBe(true);
 
     stepCollection.setActiveStep(step1Id, false);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].status).toBe(StepStatus.Error);
   });
 
-  it('should calculate the number of incomplete steps', () => {
+  it('should determine if all steps have been completed', () => {
+    expect(stepCollection.allStepsCompleted).toBe(false);
     stepCollection.setNextStep(step1Id, true);
-    expect(stepCollection.getNumberOfIncompleteSteps()).toBe(2);
+    stepCollection.setNextStep(step2Id, true);
+    stepCollection.setNextStep(step3Id, true);
+    expect(stepCollection.allStepsCompleted).toBe(true);
   });
 
   it('should close all future steps if user proceeded to continue to next step from previously completed step to avoid a dependency issue', () => {
@@ -91,13 +101,13 @@ describe('StepCollection Model', () => {
 
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].status).toBe(StepStatus.Complete);
-    expect(stepCollection.steps[2].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[2].open).toBe(true);
 
     stepCollection.setActiveStep(step1Id, true);
     stepCollection.setNextStep(step1Id, true);
 
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
-    expect(stepCollection.steps[1].status).toBe(StepStatus.Active);
+    expect(stepCollection.steps[1].open).toBe(true);
     expect(stepCollection.steps[2].status).toBe(StepStatus.Inactive);
   });
 });

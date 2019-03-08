@@ -134,12 +134,12 @@
   <h2>Static Stepper States</h2>
 
   <h3>First Step</h3>
-  <form [formGroup]="form" class="clr-stepper">
-    <div role="group" aria-labelledby="clr-step-header-1" class="clr-step clr-step-active">
+  <form class="clr-stepper">
+    <div role="group" aria-labelledby="clr-step-header-1" class="clr-step clr-step-open">
       <div class="clr-step-header" id="clr-step-header-1">
         <button aria-controls="clr-step-content-1" aria-expanded="true" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
             <div class="clr-step-number"></div>
           </div>
           <div class="clr-step-title">Active Step</div>
@@ -152,11 +152,11 @@
       </div>
     </div>
 
-    <div role="group" aria-labelledby="clr-step-header-2" class="clr-step clr-step-inactive">
+    <div role="group" aria-labelledby="clr-step-header-2" class="clr-step">
       <div class="clr-step-header" id="clr-step-header-2">
         <button aria-controls="clr-step-content-2" aria-expanded="false" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
             <div class="clr-step-number"></div>
           </div>
           <div class="clr-step-title">Future Step</div>
@@ -169,11 +169,11 @@
       </div>
     </div>
 
-    <div role="group" aria-labelledby="clr-step-header-3" class="clr-step clr-step-inactive">
+    <div role="group" aria-labelledby="clr-step-header-3" class="clr-step">
       <div class="clr-step-header" id="clr-step-header-3">
         <button aria-controls="clr-step-content-3" aria-expanded="false" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
             <div class="clr-step-number"></div>
           </div>
           <div class="clr-step-title">Future Step</div>
@@ -193,8 +193,8 @@
       <div class="clr-step-header" id="clr-step-header-4">
         <button aria-controls="clr-step-content-4" aria-expanded="true" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
           </div>
           <div class="clr-step-title">Active Step</div>
         </button>
@@ -206,11 +206,11 @@
       </div>
     </div>
 
-    <div role="group" aria-labelledby="clr-step-header-5" class="clr-step clr-step-active">
+    <div role="group" aria-labelledby="clr-step-header-5" class="clr-step clr-step-open">
       <div class="clr-step-header" id="clr-step-header-5">
         <button aria-controls="clr-step-content-5" aria-expanded="false" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
             <div class="clr-step-number"></div>
           </div>
           <div class="clr-step-title">Future Step</div>
@@ -223,11 +223,11 @@
       </div>
     </div>
 
-    <div role="group" aria-labelledby="clr-step-header-6" class="clr-step clr-step-inactive">
+    <div role="group" aria-labelledby="clr-step-header-6" class="clr-step">
       <div class="clr-step-header" id="clr-step-header-6">
         <button aria-controls="clr-step-content-6" aria-expanded="false" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
             <div class="clr-step-number"></div>
           </div>
           <div class="clr-step-title">Future Step</div>
@@ -247,8 +247,8 @@
       <div class="clr-step-header" id="clr-step-header-7">
         <button aria-controls="clr-step-content-7" aria-expanded="true" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
           </div>
           <div class="clr-step-title">Active Step</div>
         </button>
@@ -264,8 +264,8 @@
       <div class="clr-step-header" id="clr-step-header-8">
         <button aria-controls="clr-step-content-8" aria-expanded="false" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
           </div>
           <div class="clr-step-title">Future Step</div>
         </button>
@@ -277,11 +277,11 @@
       </div>
     </div>
 
-    <div role="group" aria-labelledby="clr-step-header-9" class="clr-step clr-step-active">
+    <div role="group" aria-labelledby="clr-step-header-9" class="clr-step clr-step-open">
       <div class="clr-step-header" id="clr-step-header-9">
         <button aria-controls="clr-step-content-9" aria-expanded="false" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
             <div class="clr-step-number"></div>
           </div>
           <div class="clr-step-title">Future Step</div>
@@ -301,8 +301,8 @@
       <div class="clr-step-header" id="clr-step-header-10">
         <button aria-controls="clr-step-content-10" aria-expanded="true" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
           </div>
           <div class="clr-step-title">Active Step</div>
         </button>
@@ -314,11 +314,11 @@
       </div>
     </div>
 
-    <div role="group" aria-labelledby="clr-step-header-11" class="clr-step clr-step-error">
+    <div role="group" aria-labelledby="clr-step-header-11" class="clr-step clr-step-open clr-step-error">
       <div class="clr-step-header" id="clr-step-header-11">
         <button aria-controls="clr-step-content-11" aria-expanded="false" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
             <clr-icon shape="exclamation-circle" class="clr-step-error-icon"></clr-icon>
             <div class="clr-step-number"></div>
           </div>
@@ -332,11 +332,11 @@
       </div>
     </div>
 
-    <div role="group" aria-labelledby="clr-step-header-12" class="clr-step clr-step-inactive">
+    <div role="group" aria-labelledby="clr-step-header-12" class="clr-step">
       <div class="clr-step-header" id="clr-step-header-12">
         <button aria-controls="clr-step-content-12" aria-expanded="false" class="clr-step-header-button">
           <div class="clr-step-status">
-            <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
+            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
             <div class="clr-step-number"></div>
           </div>
           <div class="clr-step-title">Future Step</div>

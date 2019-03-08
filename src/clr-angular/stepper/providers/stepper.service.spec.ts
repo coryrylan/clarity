@@ -47,7 +47,7 @@ describe('StepperService', () => {
     stepperService.addStep();
     stepperService.setNextStep(id, true);
     stepperService.setActiveStep(id, true);
-    stepperService.steps.pipe(take(1)).subscribe(steps => expect(steps[0].status).toBe(StepStatus.Active));
+    stepperService.steps.pipe(take(1)).subscribe(steps => expect(steps[0].open).toBe(true));
   });
 
   it('should notify of step changes when step order has changed', () => {

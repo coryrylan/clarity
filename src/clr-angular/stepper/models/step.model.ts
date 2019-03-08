@@ -9,6 +9,7 @@ import { StepStatus } from '../enums/step-status.enum';
 export class Step {
   index: number = null;
   isLastStep = false;
-  status: StepStatus = this.id === 0 ? StepStatus.Active : StepStatus.Inactive;
+  status = StepStatus.Inactive;
+  open = this.id === 0;
   constructor(public id: number, public stepperId: number) {}
 }

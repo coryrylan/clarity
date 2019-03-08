@@ -18,6 +18,15 @@ export class StepCollection {
     return Object.keys(this._steps).map(id => this._steps[id]);
   }
 
+  get allStepsCompleted(): boolean {
+    return this.steps.length && this.getNumberOfIncompleteSteps() === 0 && this.getNumberOfOpenSteps() === 0;
+  }
+
+  syncSteps(ids: number[]) {
+    this.updateStepOrder(ids);
+    this.removeOldSteps(ids);
+  }
+
   addStep() {
     const step = new Step(this.stepCount++, this.stepperCount);
     this._steps[step.id] = step;
@@ -28,28 +37,26 @@ export class StepCollection {
     this.steps.forEach((s, index) => {
       const step = this._steps[s.id];
       step.status = StepStatus.Inactive;
+      step.open = false;
 
       if (index === 0) {
-        step.status = StepStatus.Active;
+        step.status = StepStatus.Inactive;
+        step.open = true;
       }
 
       return step;
     });
   }
 
-  syncSteps(ids: number[]) {
-    this.updateStepOrder(ids);
-    this.removeOldSteps(ids);
-  }
-
   setNextStep(currentStepId: number, currentStepValid: boolean) {
     if (currentStepValid) {
       const nextStep = this.steps.find(s => s.index === this._steps[currentStepId].index + 1);
       this._steps[currentStepId].status = StepStatus.Complete;
+      this._steps[currentStepId].open = false;
 
       if (nextStep) {
-        this.closeAllFutureSteps(nextStep);
-        this._steps[nextStep.id].status = StepStatus.Active;
+        this.resetAllFutureSteps(nextStep);
+        this._steps[nextStep.id].open = true;
       }
     } else {
       this._steps[currentStepId].status = StepStatus.Error;
@@ -57,23 +64,28 @@ export class StepCollection {
   }
 
   setActiveStep(stepId: number, currentStepValid: boolean) {
-    if (currentStepValid) {
-      this._steps[stepId].status = StepStatus.Active;
+    if (currentStepValid && this._steps[stepId].status === StepStatus.Complete) {
+      this._steps[stepId].open = !this._steps[stepId].open;
     } else {
-      const currentStep = this.steps.find(s => s.status === StepStatus.Active);
+      const currentStep = this.steps.find(s => s.open);
       this._steps[currentStep.id].status = StepStatus.Error;
     }
   }
 
-  getNumberOfIncompleteSteps() {
+  private getNumberOfIncompleteSteps() {
     return this.steps.reduce((prev, next) => (next.status !== StepStatus.Complete ? prev + 1 : prev), 0);
   }
 
-  private closeAllFutureSteps(nextStep: Step) {
+  private getNumberOfOpenSteps() {
+    return this.steps.reduce((prev, next) => (next.open !== false ? prev + 1 : prev), 0);
+  }
+
+  private resetAllFutureSteps(nextStep: Step) {
     // we close all future steps to in case future steps depend on prior step values
     this.steps.forEach(step => {
-      if (step.index > nextStep.index) {
+      if (step.index >= nextStep.index) {
         step.status = StepStatus.Inactive;
+        step.open = false;
       }
     });
   }

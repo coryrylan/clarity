@@ -9,9 +9,9 @@
     role="group"
     [attr.aria-labelledby]="'clr-step-header-' + step.id + step.stepperId"
     [class.clr-step-complete]="step.status === StepStatus.Complete"
+    [class.clr-step-error]="step.status === StepStatus.Error"
     [class.clr-step-inactive]="step.status === StepStatus.Inactive"
-    [class.clr-step-active]="step.status === StepStatus.Active"
-    [class.clr-step-error]="step.status === StepStatus.Error">
+    [class.clr-step-open]="step.open">
 
     <div class="clr-step-header">
       <button
@@ -20,12 +20,13 @@
         (click)="selectStep()"
         [id]="'clr-step-header-' + step.id + step.stepperId"
         [attr.aria-controls]="'clr-step-content-' + step.id + step.stepperId"
-        [attr.aria-expanded]="step.status === StepStatus.Active"
+        [attr.aria-expanded]="step.open"
         [disabled]="step.status !== StepStatus.Complete">
         <div class="clr-step-status">
-          <clr-icon shape="angle" dir="down" class="clr-step-angle"></clr-icon>
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
           <div class="clr-step-number"></div>
           <clr-icon shape="exclamation-circle" class="clr-step-error-icon"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
         </div>
         <ng-content select="clr-step-title"></ng-content>
       </button>
@@ -35,12 +36,12 @@
       @skipInitialRender
       role="region"
       [id]="'clr-step-content-' + step.id + step.stepperId"
-      [attr.aria-hidden]="step.status !== StepStatus.Active"
+      [attr.aria-hidden]="!step.open"
       [attr.aria-labelledby]="'clr-step-header-' + step.id + step.stepperId"
     >
       <div
         @collapse
-        *ngIf="step.status === StepStatus.Active || step.status === StepStatus.Error"
+        *ngIf="step.open"
         class="clr-step-content">
         <div class="clr-step-inner-content">
           <ng-content></ng-content>

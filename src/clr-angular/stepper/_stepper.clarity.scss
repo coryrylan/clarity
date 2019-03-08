@@ -67,10 +67,7 @@
       border-bottom: 1px solid $clr-stepper-border-color;
     }
 
-    &.clr-step-inactive .clr-step-header,
-    .clr-step-inactive .clr-step-header,
-    &.clr-step-complete .clr-step-header,
-    .clr-step-complete .clr-step-header {
+    .clr-step-header {
       border-bottom: 1px solid $clr-stepper-border-color;
     }
   }
@@ -129,6 +126,7 @@
     overflow: hidden;
     display: block;
     padding: 20px;
+    display: none;
 
     @media (min-width: $clr-stepper-responsive-breakpoint) {
       padding: 20px 56px;
@@ -157,43 +155,52 @@
     margin-top: 24px;
   }
 
+  .clr-step-angle {
+    visibility: hidden;
+  }
+
+  .clr-step-error-icon,
+  .clr-step-complete-icon {
+    display: none;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0 13px;
+  }
+
   // step states
-  .clr-step-active {
+  .clr-step-open {
+    .clr-step-content {
+      display: block;
+    }
+
+    .clr-step-angle {
+      visibility: visible;
+      transform: rotate(90deg);
+    }
+
     .clr-step-header {
       background: $clr-stepper-active-background-color;
     }
   }
 
-  .clr-step-inactive {
-    .clr-step-content {
-      display: none;
+  .clr-step-complete {
+    .clr-step-complete-icon {
+      display: inline-block;
+      color: $clr-stepper-complete-color;
     }
 
     .clr-step-angle {
-      visibility: hidden;
+      visibility: visible;
     }
-  }
 
-  .clr-step-complete {
     .clr-step-header {
       box-shadow: inset $clr-stepper-border-left-width 0 0 $clr-stepper-border-left-color-complete;
-    }
-
-    .clr-step-content {
-      display: none;
     }
 
     .ng-trigger.clr-step-content {
       display: block;
     }
-
-    .clr-step-angle {
-      transform: rotate(-90deg);
-    }
-  }
-
-  .clr-step-error-icon {
-    display: none;
   }
 
   .clr-step-error {
@@ -205,23 +212,20 @@
     }
 
     .clr-step-error-icon {
-      color: $clr-stepper-error-color;
       display: inline-block;
-      width: 24px;
-      height: 24px;
-      padding: 0;
-      margin: 0 13px;
+      color: $clr-stepper-error-color;
     }
+  }
 
-    .clr-step-number {
-      // a11y compatible hidden, also allows numbers to
-      // increment with CSS counter-increment
-      position: absolute !important;
-      top: 0;
-      height: 1px;
-      width: 1px;
-      overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-    }
+  .clr-step-error .clr-step-number,
+  .clr-step-complete .clr-step-number {
+    // a11y compatible hidden, also allows numbers to
+    // increment with CSS counter-increment
+    position: absolute !important;
+    top: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
   }
 }
