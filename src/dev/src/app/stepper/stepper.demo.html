@@ -16,52 +16,57 @@
     <clr-step formGroupName="name">
       <clr-step-title>Legal Name</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+      <clr-step-content>
+        <clr-input-container>
+          <label>First Name</label>
+          <input clrInput formControlName="first" />
+          <clr-control-error *clrIfError="'required'">First Name Required</clr-control-error>
+        </clr-input-container>
 
-      <clr-input-container>
-        <label>First Name</label>
-        <input clrInput formControlName="first" />
-      </clr-input-container>
+        <clr-input-container>
+          <label>Last Name</label>
+          <input clrInput formControlName="last" />
+          <clr-control-error *clrIfError="'required'">Last Name Required</clr-control-error>
+        </clr-input-container>
 
-      <clr-input-container>
-        <label>Last Name</label>
-        <input clrInput formControlName="last" /> 
-      </clr-input-container>
-
-      <button clrStepButton="next">next</button>
+        <button clrStepButton="next">next</button>
+      </clr-step-content>
     </clr-step>
 
     <clr-step *ngIf="showSecondStep" formGroupName="contact">
       <clr-step-title>Contact Information</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+      <clr-step-content>
+        <clr-input-container>
+          <label>Email</label>
+          <input clrInput formControlName="email" />
+        </clr-input-container>
+    
+        <clr-input-container>
+          <label>Phone</label>
+          <input clrInput formControlName="phone" /> 
+        </clr-input-container>
 
-      <clr-input-container>
-        <label>Email</label>
-        <input clrInput formControlName="email" />
-      </clr-input-container>
-  
-      <clr-input-container>
-        <label>Phone</label>
-        <input clrInput formControlName="phone" /> 
-      </clr-input-container>
-
-      <button clrStepButton="next">next</button>
+        <button clrStepButton="next">next</button>
+      </clr-step-content>
     </clr-step>
   
     <clr-step formGroupName="password">
       <clr-step-title>Password</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-  
-      <clr-password-container>
-        <label>Password</label>
-        <input clrPassword formControlName="password" />
-      </clr-password-container>
-  
-      <clr-password-container>
-        <label>Confirm Password</label>
-        <input clrPassword formControlName="confirm" /> 
-      </clr-password-container>
+      <clr-step-content>
+        <clr-password-container>
+          <label>Password</label>
+          <input clrPassword formControlName="password" />
+        </clr-password-container>
 
-      <button clrStepButton="last">last</button>
+        <clr-password-container>
+          <label>Confirm Password</label>
+          <input clrPassword formControlName="confirm" /> 
+        </clr-password-container>
+
+        <button clrStepButton="last">last</button>
+      </clr-step-content>
     </clr-step>
   </form>
 
@@ -74,52 +79,55 @@
     <clr-step ngModelGroup="name">
       <clr-step-title>Legal Name</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-
-      <clr-input-container>
-        <label>First Name</label>
-        <input clrInput [ngModel]="templateForm.name.firstName" name="firstName" required />
-      </clr-input-container>
-
-      <clr-input-container>
-        <label>Last Name</label>
-        <input clrInput [ngModel]="templateForm.name.lastName" name="lastName" required /> 
-      </clr-input-container>
-
-      <button clrStepButton="next">next</button>
+      <clr-step-content>
+        <clr-input-container>
+          <label>First Name</label>
+          <input clrInput [ngModel]="templateForm.name.firstName" name="firstName" required />
+        </clr-input-container>
+  
+        <clr-input-container>
+          <label>Last Name</label>
+          <input clrInput [ngModel]="templateForm.name.lastName" name="lastName" required /> 
+        </clr-input-container>
+  
+        <button clrStepButton="next">next</button>
+      </clr-step-content>
     </clr-step>
 
     <clr-step *ngIf="showSecondStep" ngModelGroup="contact">
       <clr-step-title>Contact Information</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+      <clr-step-content>
+        <clr-input-container>
+          <label>Email</label>
+          <input clrInput [ngModel]="templateForm.contact.email" name="email" />
+        </clr-input-container>
+    
+        <clr-input-container>
+          <label>Phone</label>
+          <input clrInput [ngModel]="templateForm.contact.phone" name="phone" /> 
+        </clr-input-container>
 
-      <clr-input-container>
-        <label>Email</label>
-        <input clrInput [ngModel]="templateForm.contact.email" name="email" />
-      </clr-input-container>
-  
-      <clr-input-container>
-        <label>Phone</label>
-        <input clrInput [ngModel]="templateForm.contact.phone" name="phone" /> 
-      </clr-input-container>
-
-      <button clrStepButton="next">next</button>
+        <button clrStepButton="next">next</button>
+      </clr-step-content>
     </clr-step>
 
     <clr-step ngModelGroup="password">
       <clr-step-title>Password</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+      <clr-step-content>
+        <clr-password-container>
+          <label>Password</label>
+          <input clrPassword [ngModel]="templateForm.password.password" name="password" />
+        </clr-password-container>
+    
+        <clr-password-container>
+          <label>Confirm Password</label>
+          <input clrPassword [ngModel]="templateForm.password.confirm" name="confirm" /> 
+        </clr-password-container>
 
-      <clr-password-container>
-        <label>Password</label>
-        <input clrPassword [ngModel]="templateForm.password.password" name="password" />
-      </clr-password-container>
-  
-      <clr-password-container>
-        <label>Confirm Password</label>
-        <input clrPassword [ngModel]="templateForm.password.confirm" name="confirm" /> 
-      </clr-password-container>
-
-      <button clrStepButton="last">last</button>
+        <button clrStepButton="last">last</button>
+      </clr-step-content>
     </clr-step>
   </form>
 

@@ -6,7 +6,7 @@
 
 import { ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -16,16 +16,16 @@ import { ClrStepper } from './stepper';
 
 describe('ClrStepper', () => {
   let fixture: ComponentFixture<any>;
-  let testComponent: TestComponent;
+  let testComponent: ReactiveFormsTestComponent;
   let stepperService: StepperService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent],
+      declarations: [ReactiveFormsTestComponent],
       imports: [ClrStepperModule, ReactiveFormsModule, NoopAnimationsModule],
     });
 
-    fixture = TestBed.createComponent(TestComponent);
+    fixture = TestBed.createComponent(ReactiveFormsTestComponent);
     fixture.detectChanges();
     testComponent = fixture.componentInstance;
     stepperService = fixture.debugElement.query(By.directive(ClrStepper)).injector.get(StepperService);
@@ -63,6 +63,42 @@ describe('ClrStepper', () => {
   });
 });
 
+describe('ClrStepper Template Forms', () => {
+  let fixture: ComponentFixture<any>;
+  let testComponent: TemplateFormsTestComponent;
+  let stepperService: StepperService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TemplateFormsTestComponent],
+      imports: [ClrStepperModule, FormsModule, NoopAnimationsModule],
+    });
+
+    fixture = TestBed.createComponent(TemplateFormsTestComponent);
+    fixture.detectChanges();
+    testComponent = fixture.componentInstance;
+    stepperService = fixture.debugElement.query(By.directive(ClrStepper)).injector.get(StepperService);
+  });
+
+  it(
+    'should reset steps when form is reset',
+    fakeAsync(() => {
+      spyOn(stepperService, 'resetSteps');
+      testComponent.form.reset();
+      fixture.detectChanges();
+      tick(); // workaround for https://github.com/angular/angular/issues/10887
+      expect(stepperService.resetSteps).toHaveBeenCalled();
+    })
+  );
+
+  it('should trigger ngSubmit event when all steps have completed', () => {
+    spyOn(testComponent, 'submit');
+    stepperService.setNextStep(0, true);
+    stepperService.setNextStep(1, true);
+    expect(testComponent.submit).toHaveBeenCalled();
+  });
+});
+
 @Component({
   template: `
     <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
@@ -75,7 +111,7 @@ describe('ClrStepper', () => {
     </form>
   `,
 })
-class TestComponent {
+class ReactiveFormsTestComponent {
   @ViewChild(ClrStepper) stepper: ClrStepper;
   showSecondStep = true;
   form = new FormGroup({
@@ -83,5 +119,24 @@ class TestComponent {
     group2: new FormGroup({}),
   });
 
+  submit() {}
+}
+
+@Component({
+  template: `
+    <form clrStepper #testForm="ngForm" (ngSubmit)="submit()">
+      <clr-step ngModelGroup="group">
+        <clr-step-title>Group 1</clr-step-title>
+      </clr-step>
+      <clr-step *ngIf="showSecondStep" ngModelGroup="group2">
+        <clr-step-title>Group 2</clr-step-title>
+      </clr-step>
+    </form>
+  `,
+})
+class TemplateFormsTestComponent {
+  @ViewChild(ClrStepper) stepper: ClrStepper;
+  @ViewChild('testForm') form: FormGroup;
+  showSecondStep = true;
   submit() {}
 }

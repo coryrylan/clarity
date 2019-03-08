@@ -6,12 +6,10 @@
 
 /*
   Todo Notes:
-  - "/process" directory for wizard and stepper
   - clrStepIf error/success
   - clrIfExpanded
   - clr-step-content *clrIfActive (IfActiveService) utils/conditional (Tabs)
   - completed steps A11y color/state issues need to be addressed
-  - aria-live=“assertive” 1 at the end of the component, hide visually, two states error/success
   - additional tests for template form edge cases
   - documentation
   - gemini tests
