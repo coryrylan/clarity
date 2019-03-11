@@ -5,7 +5,7 @@
  */
 
 import { Component, ViewChild } from '@angular/core';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
@@ -50,17 +50,62 @@ describe('ClrStep', () => {
     expect(stepperService.setActiveStep).toHaveBeenCalled();
   });
 
-  it('should show the appropriate aria-live if step has an error', () => {});
+  it('should show the appropriate aria-live message', () => {
+    const mockStep = new Step(0, 0);
+    const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
+    let liveSection: HTMLElement = fixture.nativeElement.querySelector('.clr-screen-reader-only');
+    expect(liveSection).toBe(null);
 
-  it('should show the appropriate aria-live if step is complete', () => {});
+    mockStep.status = StepStatus.Error;
+    (stepperService as MockStepperService).step.next(mockStep);
+    fixture.detectChanges();
+    liveSection = fixture.nativeElement.querySelector('.clr-screen-reader-only');
+    expect(liveSection.getAttribute('aria-live')).toBe('assertive');
+    expect(liveSection.innerText.trim()).toBe('Please check step for errors.');
 
-  it('should set the appropriate aria-hidden and aria-expanded attribute values', () => {});
+    mockStep.status = StepStatus.Complete;
+    (stepperService as MockStepperService).step.next(mockStep);
+    fixture.detectChanges();
+    expect(liveSection.innerText.trim()).toBe('Step completed.');
+  });
+
+  it('should set the appropriate aria-hidden and aria-expanded attribute values', () => {
+    const mockStep = new Step(0, 0);
+    const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
+    const headerButton: HTMLElement = fixture.nativeElement.querySelector('.clr-step-header-button');
+    const stepContent: HTMLElement = fixture.nativeElement.querySelector('#clr-step-content-00');
+    expect(headerButton.getAttribute('aria-expanded')).toBe('true');
+    expect(stepContent.getAttribute('aria-hidden')).toBe('false');
+
+    mockStep.open = false;
+    (stepperService as MockStepperService).step.next(mockStep);
+    fixture.detectChanges();
+    expect(headerButton.getAttribute('aria-expanded')).toBe('false');
+    expect(stepContent.getAttribute('aria-hidden')).toBe('true');
+  });
+
+  it(
+    'should show or hide content based on if step is open',
+    fakeAsync(() => {
+      const mockStep = new Step(0, 0);
+      const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
+      expect(fixture.nativeElement.querySelector('.clr-step-content').innerText.trim()).toBe('test step');
+
+      mockStep.open = false;
+      (stepperService as MockStepperService).step.next(mockStep);
+      fixture.detectChanges();
+      tick(300); // wait for animation to complete
+      expect(fixture.nativeElement.querySelector('.clr-step-content')).toBe(null);
+    })
+  );
 });
 
 @Component({
   template: `
     <form [formGroup]="form">
-      <clr-step formGroupName="group"></clr-step>
+      <clr-step formGroupName="group">
+        test step
+      </clr-step>
     </form>
   `,
 })
