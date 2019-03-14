@@ -4,11 +4,11 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger, state } from '@angular/animations';
 
 export const stepAnimation = [
   trigger('skipInitialRender', [transition(':enter', [])]),
-  trigger('collapse', [
+  trigger('toggle', [
     transition('void => *', [
       style({ display: 'block', height: 0 }),
       animate('0.2s ease-in-out', style({ height: '*' })),

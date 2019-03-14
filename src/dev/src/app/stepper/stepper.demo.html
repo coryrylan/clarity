@@ -16,7 +16,7 @@
     <clr-step formGroupName="name">
       <clr-step-title>Legal Name</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content>
+      <clr-step-content *clrIfExpanded>
         <clr-input-container>
           <label>First Name</label>
           <input clrInput formControlName="first" />
@@ -36,7 +36,7 @@
     <clr-step *ngIf="showSecondStep" formGroupName="contact">
       <clr-step-title>Contact Information</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content>
+      <clr-step-content *clrIfExpanded>
         <clr-input-container>
           <label>Email</label>
           <input clrInput formControlName="email" />
@@ -54,7 +54,7 @@
     <clr-step formGroupName="password">
       <clr-step-title>Password</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content>
+      <clr-step-content *clrIfExpanded>
         <clr-password-container>
           <label>Password</label>
           <input clrPassword formControlName="password" />

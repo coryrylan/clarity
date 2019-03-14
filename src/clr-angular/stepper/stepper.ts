@@ -6,12 +6,11 @@
 
 /*
   Todo Notes:
-  - clr-step-content *clrIfExpanded (IfActiveService) utils/conditional (Tabs)
   - documentation
-  - a11y tests for clr-step
+  - check tests for animation timing
 */
 
-import { Component, ContentChildren, QueryList, Optional } from '@angular/core';
+import { Component, ContentChildren, QueryList, Optional, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
@@ -24,6 +23,7 @@ import { FormGroupDirective, NgForm } from '@angular/forms';
   template: `<ng-content></ng-content>`,
   host: { '[class.clr-stepper]': 'true' },
   providers: [StepperService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClrStepper {
   @ContentChildren(ClrStep, { descendants: true })

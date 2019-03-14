@@ -39,7 +39,11 @@
       [attr.aria-hidden]="!step.open"
       [attr.aria-labelledby]="'clr-step-header-' + step.id + step.stepperId"
     >
-      <div @collapse *ngIf="step.open" class="clr-step-content">
+      <div
+        *ngIf="step.open"
+        @toggle
+        (@toggle.done)="collapseStepOnAnimationComplete(step)"
+        class="clr-step-content">
         <div class="clr-step-inner-content">
           <ng-content></ng-content>
         </div>
