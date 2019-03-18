@@ -4,18 +4,20 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { animate, style, transition, trigger, state } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
+
+import { defaultAnimationTiming } from './../../utils/animations/constants';
 
 export const stepAnimation = [
   trigger('skipInitialRender', [transition(':enter', [])]),
   trigger('toggle', [
     transition('void => *', [
       style({ display: 'block', height: 0 }),
-      animate('0.2s ease-in-out', style({ height: '*' })),
+      animate(defaultAnimationTiming, style({ height: '*' })),
     ]),
     transition('* => void', [
       style({ display: 'block' }),
-      animate('0.2s ease-in-out', style({ height: 0, display: 'none' })),
+      animate(defaultAnimationTiming, style({ height: 0, display: 'none' })),
     ]),
   ]),
 ];
