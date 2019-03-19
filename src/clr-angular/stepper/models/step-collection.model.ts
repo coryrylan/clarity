@@ -13,6 +13,7 @@ export class StepCollection {
   private stepperCount = stepperCount++;
   private stepCount = 0;
   private _steps: { [id: number]: Step } = {};
+  private activeStepId: string;
 
   get steps(): Step[] {
     return Object.keys(this._steps).map(id => this._steps[id]);
@@ -22,15 +23,16 @@ export class StepCollection {
     return this.steps.length && this.getNumberOfIncompleteSteps() === 0 && this.getNumberOfOpenSteps() === 0;
   }
 
-  syncSteps(ids: number[]) {
+  syncSteps(ids: string[]) {
     this.updateStepOrder(ids);
     this.removeOldSteps(ids);
+    this.setActiveStep(this.activeStepId);
   }
 
-  addStep() {
-    const step = new Step(this.stepCount++, this.stepperCount);
+  addStep(id: string) {
+    const step = new Step(id, this.stepperCount);
+    step.open = this.stepCount++ === 0;
     this._steps[step.id] = step;
-    return step.id;
   }
 
   resetSteps() {
@@ -48,7 +50,7 @@ export class StepCollection {
     });
   }
 
-  setNextStep(currentStepId: number, currentStepValid: boolean) {
+  setNextStep(currentStepId: string, currentStepValid: boolean) {
     if (currentStepValid) {
       const nextStep = this.steps.find(s => s.index === this._steps[currentStepId].index + 1);
       this._steps[currentStepId].status = StepStatus.Complete;
@@ -63,7 +65,7 @@ export class StepCollection {
     }
   }
 
-  setActiveStep(stepId: number, currentStepValid: boolean) {
+  navigateToPreviouslyCompletedStep(stepId: string, currentStepValid: boolean) {
     if (currentStepValid && this._steps[stepId].status === StepStatus.Complete) {
       this._steps[stepId].open = !this._steps[stepId].open;
     } else {
@@ -90,7 +92,24 @@ export class StepCollection {
     });
   }
 
-  private updateStepOrder(ids: number[]) {
+  setActiveStep(stepId: string) {
+    if (this._steps[stepId]) {
+      this.steps.forEach(step => {
+        if (step.index < this._steps[stepId].index) {
+          this._steps[step.id].status = StepStatus.Complete;
+          this._steps[step.id].open = false;
+        } else if (step.id === stepId) {
+          this._steps[step.id].open = true;
+        } else {
+          this._steps[step.id].open = false;
+        }
+      });
+    } else {
+      this.activeStepId = stepId;
+    }
+  }
+
+  private updateStepOrder(ids: string[]) {
     ids.forEach((id, index) => {
       if (this._steps[id]) {
         this._steps[id].index = index;
@@ -99,7 +118,7 @@ export class StepCollection {
     });
   }
 
-  private removeOldSteps(ids: number[]) {
+  private removeOldSteps(ids: string[]) {
     this.steps.forEach(step => {
       if (ids.find(id => id === step.id) === undefined) {
         delete this._steps[step.id];

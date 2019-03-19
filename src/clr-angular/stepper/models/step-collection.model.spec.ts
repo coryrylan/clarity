@@ -67,11 +67,11 @@ describe('StepCollection Model', () => {
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].open).toBe(true);
 
-    stepCollection.setActiveStep(step1Id, true);
+    stepCollection.navigateToPreviouslyCompletedStep(step1Id, true);
     expect(stepCollection.steps[0].open).toBe(true);
     expect(stepCollection.steps[1].open).toBe(true);
 
-    stepCollection.setActiveStep(step1Id, true);
+    stepCollection.navigateToPreviouslyCompletedStep(step1Id, true);
     expect(stepCollection.steps[0].open).toBe(false);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].open).toBe(true);
@@ -82,7 +82,7 @@ describe('StepCollection Model', () => {
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].open).toBe(true);
 
-    stepCollection.setActiveStep(step1Id, false);
+    stepCollection.navigateToPreviouslyCompletedStep(step1Id, false);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].status).toBe(StepStatus.Error);
   });
@@ -103,7 +103,7 @@ describe('StepCollection Model', () => {
     expect(stepCollection.steps[1].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[2].open).toBe(true);
 
-    stepCollection.setActiveStep(step1Id, true);
+    stepCollection.navigateToPreviouslyCompletedStep(step1Id, true);
     stepCollection.setNextStep(step1Id, true);
 
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);

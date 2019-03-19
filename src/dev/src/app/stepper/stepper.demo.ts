@@ -13,37 +13,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./stepper.demo.scss'],
 })
 export class StepperDemo {
-  form = new FormGroup({
-    name: new FormGroup({
-      first: new FormControl('Luke', Validators.required),
-      last: new FormControl('Skywalker', Validators.required),
-    }),
-    contact: new FormGroup({
-      email: new FormControl(),
-      phone: new FormControl(),
-    }),
-    password: new FormGroup({
-      password: new FormControl(),
-      confirm: new FormControl(),
-    }),
-  });
-
-  templateForm = {
-    name: {
-      firstName: 'Luke',
-      lastName: 'Skywalker',
-    },
-    contact: {
-      email: '',
-      phone: '',
-    },
-    password: {
-      password: '',
-      confirm: '',
-    },
-  };
-
   showSecondStep = true;
+  activeStep = 'contact';
+  form: FormGroup = this.getReactiveForm();
+  templateForm: {} = this.getTemplateForm();
+  partiallyCompletedForm: FormGroup = this.getPartiallyCompletedForm();
 
   submit() {
     console.log('reactive form submit', this.form.value);
@@ -51,5 +25,60 @@ export class StepperDemo {
 
   templateFormSubmit(templateFormValues: {}) {
     console.log('template form submit', templateFormValues);
+  }
+
+  toggleActiveStep() {
+    this.activeStep = this.activeStep === 'contact' ? 'password' : 'contact';
+  }
+
+  private getReactiveForm() {
+    return new FormGroup({
+      name: new FormGroup({
+        first: new FormControl('Luke', Validators.required),
+        last: new FormControl('Skywalker', Validators.required),
+      }),
+      contact: new FormGroup({
+        email: new FormControl(),
+        phone: new FormControl(),
+      }),
+      password: new FormGroup({
+        password: new FormControl(),
+        confirm: new FormControl(),
+      }),
+    });
+  }
+
+  private getTemplateForm() {
+    return {
+      name: {
+        firstName: '',
+        lastName: '',
+      },
+      contact: {
+        email: '',
+        phone: '',
+      },
+      password: {
+        password: '',
+        confirm: '',
+      },
+    };
+  }
+
+  private getPartiallyCompletedForm() {
+    return new FormGroup({
+      name: new FormGroup({
+        first: new FormControl('Luke', Validators.required),
+        last: new FormControl('Skywalker', Validators.required),
+      }),
+      contact: new FormGroup({
+        email: new FormControl(),
+        phone: new FormControl(),
+      }),
+      password: new FormGroup({
+        password: new FormControl(),
+        confirm: new FormControl(),
+      }),
+    });
   }
 }

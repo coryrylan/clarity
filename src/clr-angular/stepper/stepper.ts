@@ -7,16 +7,27 @@
 /*
   Todo Notes:
   - documentation
-  - check tests for animation timing
+  - support partial stepper completion (render stepper correctly if form was patched)
+  - support when a particular step has completed? Is this possible just using the forms API? [(clrActiveStep)] : form group
 */
 
-import { Component, ContentChildren, QueryList, Optional, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  ContentChildren,
+  QueryList,
+  Optional,
+  ChangeDetectionStrategy,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
 import { StepperService } from './providers/stepper.service';
 import { ClrStep } from './step';
-import { FormGroupDirective, NgForm } from '@angular/forms';
+import { FormGroupDirective, NgForm, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'form[clrStepper]',
@@ -30,6 +41,9 @@ export class ClrStepper {
   steps: QueryList<ClrStep>;
   subscriptions: Subscription[] = [];
 
+  @Input('clrActiveStep') activeStep: string;
+  @Output('clrActiveStepChange') activeStepChange = new EventEmitter<string>();
+
   constructor(
     @Optional() private formGroup: FormGroupDirective,
     @Optional() private ngForm: NgForm,
@@ -39,9 +53,16 @@ export class ClrStepper {
   ngOnInit() {
     this.subscriptions.push(this.listenForStepsCompleted());
     this.subscriptions.push(this.listenForFormResetChanges());
+    this.stepperService.setActiveStep(this.activeStep);
   }
 
-  ngAfterContentInit() {
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.steps && changes.activeStep.currentValue !== changes.activeStep.previousValue) {
+      this.stepperService.setActiveStep(this.activeStep);
+    }
+  }
+
+  ngAfterViewInit() {
     this.subscriptions.push(this.listenForStepChanges());
   }
 
@@ -65,7 +86,7 @@ export class ClrStepper {
   private listenForStepChanges() {
     return this.steps.changes
       .pipe(startWith(this.steps))
-      .subscribe(steps => this.stepperService.syncSteps(steps.toArray().map(s => s.id)));
+      .subscribe(async steps => this.stepperService.syncSteps(await steps.toArray().map(s => s.id))); // chocolate workaround
   }
 
   private listenForStepsCompleted() {

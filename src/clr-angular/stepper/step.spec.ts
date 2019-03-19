@@ -39,7 +39,7 @@ describe('ClrStep', () => {
 
     headerButton.click();
     fixture.detectChanges();
-    expect(stepperService.setActiveStep).not.toHaveBeenCalled();
+    expect(stepperService.navigateToPreviouslyCompletedStep).not.toHaveBeenCalled();
 
     mockStep.status = StepStatus.Complete;
     (stepperService as MockStepperService).step.next(mockStep);
@@ -47,7 +47,7 @@ describe('ClrStep', () => {
 
     headerButton.click();
     fixture.detectChanges();
-    expect(stepperService.setActiveStep).toHaveBeenCalled();
+    expect(stepperService.navigateToPreviouslyCompletedStep).toHaveBeenCalled();
   });
 
   it('should show the appropriate aria-live message', () => {
@@ -117,7 +117,7 @@ class ReactiveFormsTestComponent {
 class MockStepperService extends StepperService {
   step = new BehaviorSubject<Step>(new Step(0, 0));
 
-  setActiveStep() {}
+  navigateToPreviouslyCompletedStep() {}
 
   getStepChanges() {
     return this.step;

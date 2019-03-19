@@ -18,10 +18,9 @@ export class StepperService {
   readonly steps = this._stepsChanges.asObservable();
   readonly stepsCompleted = this.getAllStepsCompletedChanges();
 
-  addStep() {
-    const id = this.stepCollection.addStep();
+  addStep(id: string) {
+    this.stepCollection.addStep(id);
     this.emitUpdatedSteps();
-    return id;
   }
 
   resetSteps() {
@@ -29,21 +28,26 @@ export class StepperService {
     this.emitUpdatedSteps();
   }
 
-  setNextStep(currentStepId: number, currentStepValid: boolean) {
+  setNextStep(currentStepId: string, currentStepValid: boolean) {
     this.stepCollection.setNextStep(currentStepId, currentStepValid);
     this.emitUpdatedSteps();
   }
 
-  setActiveStep(stepId: number, currentStepValid: boolean) {
-    this.stepCollection.setActiveStep(stepId, currentStepValid);
+  navigateToPreviouslyCompletedStep(stepId: string, currentStepValid: boolean) {
+    this.stepCollection.navigateToPreviouslyCompletedStep(stepId, currentStepValid);
     this.emitUpdatedSteps();
   }
 
-  getStepChanges(id: number) {
+  setActiveStep(stepId: string) {
+    this.stepCollection.setActiveStep(stepId);
+    this.emitUpdatedSteps();
+  }
+
+  getStepChanges(id: string) {
     return this.steps.pipe(map(steps => steps.find(s => s.id === id)));
   }
 
-  syncSteps(ids: number[]) {
+  syncSteps(ids: string[]) {
     this.stepCollection.syncSteps(ids);
     this.emitUpdatedSteps();
   }

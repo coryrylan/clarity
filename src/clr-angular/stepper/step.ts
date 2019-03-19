@@ -24,7 +24,7 @@ import { tap } from 'rxjs/operators';
   providers: [Expand],
 })
 export class ClrStep {
-  id: number;
+  id: string;
   step: Observable<Step>;
   group: AbstractControl | FormGroup | NgModelGroup;
   readonly StepStatus = StepStatus;
@@ -42,14 +42,17 @@ export class ClrStep {
       ? this.formGroup.form.controls[this.formGroupName.name]
       : this.ngModelGroup;
 
-    this.id = this.stepperService.addStep();
+    this.id = this.isUsingReactiveForms() ? this.formGroupName.name : this.ngModelGroup.name;
+
+    this.stepperService.addStep(this.id);
+
     this.step = this.stepperService
       .getStepChanges(this.id)
       .pipe(tap(async step => ((await step.open) ? (this.expand.expanded = true) : null))); // chocolate/animation fix
   }
 
   selectStep() {
-    this.stepperService.setActiveStep(this.id, this.group.valid);
+    this.stepperService.navigateToPreviouslyCompletedStep(this.id, this.group.valid);
   }
 
   collapseStepOnAnimationComplete(step: Step) {

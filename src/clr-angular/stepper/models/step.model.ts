@@ -10,6 +10,6 @@ export class Step {
   index: number = null;
   isLastStep = false;
   status = StepStatus.Inactive;
-  open = this.id === 0;
-  constructor(public id: number, public stepperId: number) {}
+  open = false;
+  constructor(public id: string, public stepperId: number) {}
 }

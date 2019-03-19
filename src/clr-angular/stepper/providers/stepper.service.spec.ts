@@ -46,7 +46,7 @@ describe('StepperService', () => {
     const id = stepperService.addStep();
     stepperService.addStep();
     stepperService.setNextStep(id, true);
-    stepperService.setActiveStep(id, true);
+    stepperService.navigateToPreviouslyCompletedStep(id, true);
     stepperService.steps.pipe(take(1)).subscribe(steps => expect(steps[0].open).toBe(true));
   });
 
