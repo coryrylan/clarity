@@ -39,11 +39,11 @@ describe('ClrStepButton', () => {
 
   it('should trigger click that sets the next step', () => {
     const stepperService = fixture.debugElement.query(By.directive(ClrStepButton)).injector.get(StepperService);
-    spyOn(stepperService, 'setNextStep');
+    spyOn(stepperService, 'navigateToNextStep');
 
     fixture.nativeElement.querySelector('.clr-step-button').click();
     fixture.detectChanges();
-    expect(stepperService.setNextStep).toHaveBeenCalled();
+    expect(stepperService.navigateToNextStep).toHaveBeenCalled();
   });
 });
 
@@ -63,5 +63,5 @@ class TestComponent {
 }
 
 class MockStepperService extends StepperService {
-  setNextStep() {}
+  navigateToNextStep() {}
 }

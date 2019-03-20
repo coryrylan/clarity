@@ -10,32 +10,35 @@ import { StepStatus } from '../enums/step-status.enum';
 
 describe('StepperService', () => {
   let stepperService: StepperService;
+  const step1Id = '0';
+  const step2Id = '1';
+
   beforeEach(() => {
     stepperService = new StepperService();
   });
 
   it('should allow a step to be added', () => {
-    const id = stepperService.addStep();
-    expect(id).toBe(0);
+    stepperService.addStep(step1Id);
+    stepperService.steps.subscribe(steps => expect(steps.length).toBe(1));
   });
 
   it('should get updates of an individual step change', () => {
-    const id = stepperService.addStep();
+    stepperService.addStep(step1Id);
     stepperService
-      .getStepChanges(id)
+      .getStepChanges(step1Id)
       .pipe(take(1))
-      .subscribe(step => expect(step.id).toBe(0));
+      .subscribe(step => expect(step.id).toBe(step1Id));
   });
 
   it('should update of step changes when steps are reset', () => {
-    stepperService.addStep();
+    stepperService.addStep(step1Id);
     stepperService.resetSteps();
     stepperService.steps.pipe(take(1)).subscribe(steps => expect(steps.length).toBe(1));
   });
 
   it('should notify of step changes when navigating to next step', () => {
-    const id = stepperService.addStep();
-    stepperService.setNextStep(id, true);
+    stepperService.addStep(step1Id);
+    stepperService.navigateToNextStep(step1Id, true);
     stepperService.steps.pipe(take(1)).subscribe(steps => {
       expect(steps.length).toBe(1);
       expect(steps[0].status).toBe(StepStatus.Complete);
@@ -43,17 +46,17 @@ describe('StepperService', () => {
   });
 
   it('should notify of step changes when next step is selected', () => {
-    const id = stepperService.addStep();
-    stepperService.addStep();
-    stepperService.setNextStep(id, true);
-    stepperService.navigateToPreviouslyCompletedStep(id, true);
+    stepperService.addStep(step1Id);
+    stepperService.addStep(step2Id);
+    stepperService.navigateToNextStep(step2Id, true);
+    stepperService.navigateToPreviouslyCompletedStep(step2Id, true);
     stepperService.steps.pipe(take(1)).subscribe(steps => expect(steps[0].open).toBe(true));
   });
 
   it('should notify of step changes when step order has changed', () => {
-    const id = stepperService.addStep();
-    const id2 = stepperService.addStep();
-    stepperService.syncSteps([id2, id]);
+    stepperService.addStep(step1Id);
+    stepperService.addStep(step2Id);
+    stepperService.syncSteps([step2Id, step1Id]);
     stepperService.steps.pipe(take(1)).subscribe(steps => {
       expect(steps[0].index).toBe(1);
       expect(steps[1].index).toBe(0);
@@ -61,8 +64,8 @@ describe('StepperService', () => {
   });
 
   it('should notify when all steps have completed', () => {
-    const id = stepperService.addStep();
-    stepperService.setNextStep(id, true);
+    stepperService.addStep(step1Id);
+    stepperService.navigateToNextStep(step1Id, true);
     stepperService.stepsCompleted.pipe(take(1)).subscribe(completed => expect(completed).toBe(true));
   });
 });

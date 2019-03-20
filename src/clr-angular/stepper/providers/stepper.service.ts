@@ -6,7 +6,7 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { map, filter, mapTo } from 'rxjs/operators';
+import { map, filter, mapTo, tap } from 'rxjs/operators';
 
 import { StepCollection } from '../models/step-collection.model';
 import { Step } from '../models/step.model';
@@ -28,8 +28,8 @@ export class StepperService {
     this.emitUpdatedSteps();
   }
 
-  setNextStep(currentStepId: string, currentStepValid: boolean) {
-    this.stepCollection.setNextStep(currentStepId, currentStepValid);
+  navigateToNextStep(currentStepId: string, currentStepValid: boolean) {
+    this.stepCollection.navigateToNextStep(currentStepId, currentStepValid);
     this.emitUpdatedSteps();
   }
 
@@ -38,8 +38,8 @@ export class StepperService {
     this.emitUpdatedSteps();
   }
 
-  setActiveStep(stepId: string) {
-    this.stepCollection.setActiveStep(stepId);
+  overrideInitialStep(stepId: string) {
+    this.stepCollection.overrideInitialStep(stepId);
     this.emitUpdatedSteps();
   }
 

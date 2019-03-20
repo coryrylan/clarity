@@ -7,8 +7,7 @@
 /*
   Todo Notes:
   - documentation
-  - support partial stepper completion (render stepper correctly if form was patched)
-  - support when a particular step has completed? Is this possible just using the forms API? [(clrActiveStep)] : form group
+  - tests for clrActiveStep
 */
 
 import {
@@ -18,16 +17,14 @@ import {
   Optional,
   ChangeDetectionStrategy,
   Input,
-  Output,
-  EventEmitter,
   SimpleChanges,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { FormGroupDirective, NgForm } from '@angular/forms';
 import { startWith } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';
 import { ClrStep } from './step';
-import { FormGroupDirective, NgForm, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'form[clrStepper]',
@@ -37,12 +34,10 @@ import { FormGroupDirective, NgForm, FormGroup } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClrStepper {
+  @Input('clrInitialStep') initialStep: string;
   @ContentChildren(ClrStep, { descendants: true })
   steps: QueryList<ClrStep>;
   subscriptions: Subscription[] = [];
-
-  @Input('clrActiveStep') activeStep: string;
-  @Output('clrActiveStepChange') activeStepChange = new EventEmitter<string>();
 
   constructor(
     @Optional() private formGroup: FormGroupDirective,
@@ -53,17 +48,16 @@ export class ClrStepper {
   ngOnInit() {
     this.subscriptions.push(this.listenForStepsCompleted());
     this.subscriptions.push(this.listenForFormResetChanges());
-    this.stepperService.setActiveStep(this.activeStep);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.steps && changes.activeStep.currentValue !== changes.activeStep.previousValue) {
-      this.stepperService.setActiveStep(this.activeStep);
+    if (this.steps && changes.initialStep.currentValue !== changes.initialStep.previousValue) {
+      this.stepperService.overrideInitialStep(this.initialStep);
     }
   }
 
   ngAfterViewInit() {
-    this.subscriptions.push(this.listenForStepChanges());
+    this.subscriptions.push(this.listenForDOMChanges());
   }
 
   ngOnDestroy() {
@@ -83,14 +77,17 @@ export class ClrStepper {
     });
   }
 
-  private listenForStepChanges() {
-    return this.steps.changes
-      .pipe(startWith(this.steps))
-      .subscribe(async steps => this.stepperService.syncSteps(await steps.toArray().map(s => s.id))); // chocolate workaround
+  private listenForDOMChanges() {
+    return this.steps.changes.pipe(startWith(this.steps)).subscribe(async steps => {
+      if (await steps) {
+        // chocolate workaround
+        this.stepperService.syncSteps(steps.toArray().map(s => s.id));
+        this.stepperService.overrideInitialStep(this.initialStep);
+      }
+    });
   }
 
   private listenForStepsCompleted() {
-    // We manually trigger ngSubmit when all steps are complete, including updating prior steps.
     return this.stepperService.stepsCompleted.subscribe(() => {
       const form = this.formGroup ? this.formGroup : this.ngForm;
       form.ngSubmit.emit();

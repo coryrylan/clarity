@@ -34,6 +34,6 @@ export class ClrStepButton {
 
   @HostListener('click')
   click() {
-    this.stepperService.setNextStep(this.clrStep.id, this.clrStep.group.valid);
+    this.stepperService.navigateToNextStep(this.clrStep.id, this.clrStep.group.valid);
   }
 }

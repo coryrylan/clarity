@@ -48,17 +48,21 @@ describe('ClrStepper', () => {
     })
   );
 
-  it('should reorder steps when step content children has changed', () => {
-    spyOn(stepperService, 'syncSteps');
-    testComponent.showSecondStep = false;
-    fixture.detectChanges();
-    expect(stepperService.syncSteps).toHaveBeenCalled();
-  });
+  it(
+    'should reorder steps when step content children has changed',
+    fakeAsync(() => {
+      spyOn(stepperService, 'syncSteps');
+      testComponent.showSecondStep = false;
+      fixture.detectChanges();
+      tick();
+      expect(stepperService.syncSteps).toHaveBeenCalled();
+    })
+  );
 
   it('should trigger ngSubmit event when all steps have completed', () => {
     spyOn(testComponent, 'submit');
-    stepperService.setNextStep(0, true);
-    stepperService.setNextStep(1, true);
+    stepperService.navigateToNextStep('group', true);
+    stepperService.navigateToNextStep('group2', true);
     expect(testComponent.submit).toHaveBeenCalled();
   });
 });
@@ -93,8 +97,8 @@ describe('ClrStepper Template Forms', () => {
 
   it('should trigger ngSubmit event when all steps have completed', () => {
     spyOn(testComponent, 'submit');
-    stepperService.setNextStep(0, true);
-    stepperService.setNextStep(1, true);
+    stepperService.navigateToNextStep('group', true);
+    stepperService.navigateToNextStep('group2', true);
     expect(testComponent.submit).toHaveBeenCalled();
   });
 });

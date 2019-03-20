@@ -13,7 +13,6 @@ export class StepCollection {
   private stepperCount = stepperCount++;
   private stepCount = 0;
   private _steps: { [id: number]: Step } = {};
-  private activeStepId: string;
 
   get steps(): Step[] {
     return Object.keys(this._steps).map(id => this._steps[id]);
@@ -26,7 +25,6 @@ export class StepCollection {
   syncSteps(ids: string[]) {
     this.updateStepOrder(ids);
     this.removeOldSteps(ids);
-    this.setActiveStep(this.activeStepId);
   }
 
   addStep(id: string) {
@@ -50,7 +48,7 @@ export class StepCollection {
     });
   }
 
-  setNextStep(currentStepId: string, currentStepValid: boolean) {
+  navigateToNextStep(currentStepId: string, currentStepValid: boolean) {
     if (currentStepValid) {
       const nextStep = this.steps.find(s => s.index === this._steps[currentStepId].index + 1);
       this._steps[currentStepId].status = StepStatus.Complete;
@@ -74,6 +72,21 @@ export class StepCollection {
     }
   }
 
+  overrideInitialStep(stepId: string) {
+    if (this._steps[stepId]) {
+      this.steps.forEach(step => {
+        if (step.index < this._steps[stepId].index) {
+          this._steps[step.id].status = StepStatus.Complete;
+          this._steps[step.id].open = false;
+        } else if (step.id === stepId) {
+          this._steps[step.id].open = true;
+        } else {
+          this._steps[step.id].open = false;
+        }
+      });
+    }
+  }
+
   private getNumberOfIncompleteSteps() {
     return this.steps.reduce((prev, next) => (next.status !== StepStatus.Complete ? prev + 1 : prev), 0);
   }
@@ -90,23 +103,6 @@ export class StepCollection {
         step.open = false;
       }
     });
-  }
-
-  setActiveStep(stepId: string) {
-    if (this._steps[stepId]) {
-      this.steps.forEach(step => {
-        if (step.index < this._steps[stepId].index) {
-          this._steps[step.id].status = StepStatus.Complete;
-          this._steps[step.id].open = false;
-        } else if (step.id === stepId) {
-          this._steps[step.id].open = true;
-        } else {
-          this._steps[step.id].open = false;
-        }
-      });
-    } else {
-      this.activeStepId = stepId;
-    }
   }
 
   private updateStepOrder(ids: string[]) {

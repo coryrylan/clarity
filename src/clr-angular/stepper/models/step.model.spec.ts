@@ -7,11 +7,8 @@
 import { Step } from './step.model';
 
 describe('Step Model', () => {
-  it('should open the step if step', () => {
-    const step = new Step(0, 0);
-    const step2 = new Step(1, 0);
-
-    expect(step.open).toBe(true);
-    expect(step2.open).toBe(false);
+  it('should create a step with an id of the form group', () => {
+    const step = new Step('groupName', 0);
+    expect(step.id).toBe('groupName');
   });
 });

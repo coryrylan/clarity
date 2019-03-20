@@ -14,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class StepperDemo {
   showSecondStep = true;
-  activeStep = 'contact';
+  initialStep = 'contact';
   form: FormGroup = this.getReactiveForm();
   templateForm: {} = this.getTemplateForm();
   partiallyCompletedForm: FormGroup = this.getPartiallyCompletedForm();
@@ -27,8 +27,12 @@ export class StepperDemo {
     console.log('template form submit', templateFormValues);
   }
 
-  toggleActiveStep() {
-    this.activeStep = this.activeStep === 'contact' ? 'password' : 'contact';
+  toggleInitialStep() {
+    this.initialStep = this.initialStep === 'contact' ? 'password' : 'contact';
+  }
+
+  log(value: any) {
+    console.log('value', value);
   }
 
   private getReactiveForm() {

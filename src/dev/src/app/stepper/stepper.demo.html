@@ -131,11 +131,11 @@
     </clr-step>
   </form>
 
-  <h2>Angular - Override Active Steps</h2>
-  <p>Active Step: {{activeStep}}</p>
-  <button (click)="toggleActiveStep()" class="btn">Override Active Step</button>
+  <h2>Angular - Override Initial Step</h2>
+  <p>Active Step: {{initialStep}}</p>
+  <button (click)="toggleInitialStep()" class="btn">Override Initial Step</button>
 
-  <form clrStepper [formGroup]="partiallyCompletedForm" (ngSubmit)="submit()" [(clrActiveStep)]="activeStep">
+  <form clrStepper [formGroup]="partiallyCompletedForm" (ngSubmit)="submit()" [clrInitialStep]="initialStep">
     <clr-step formGroupName="name">
       <clr-step-title>Legal Name</clr-step-title>
       <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>

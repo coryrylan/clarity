@@ -19,6 +19,7 @@ import { StepStatus } from './enums/step-status.enum';
 
 describe('ClrStep', () => {
   let fixture: ComponentFixture<any>;
+  const step1Id = 'groupName';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -31,11 +32,11 @@ describe('ClrStep', () => {
     fixture.detectChanges();
   });
 
-  it('should open step only if step was previously completed', () => {
+  it('should navigate to previously completed steps', () => {
     const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
     const headerButton = fixture.nativeElement.querySelector('.clr-step-header-button');
-    const mockStep = new Step(0, 0);
-    spyOn(stepperService, 'setActiveStep');
+    const mockStep = new Step(step1Id, 0);
+    spyOn(stepperService, 'navigateToPreviouslyCompletedStep');
 
     headerButton.click();
     fixture.detectChanges();
@@ -51,7 +52,7 @@ describe('ClrStep', () => {
   });
 
   it('should show the appropriate aria-live message', () => {
-    const mockStep = new Step(0, 0);
+    const mockStep = new Step(step1Id, 0);
     const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
     let liveSection: HTMLElement = fixture.nativeElement.querySelector('.clr-screen-reader-only');
     expect(liveSection).toBe(null);
@@ -70,32 +71,33 @@ describe('ClrStep', () => {
   });
 
   it('should set the appropriate aria-hidden and aria-expanded attribute values', () => {
-    const mockStep = new Step(0, 0);
+    const mockStep = new Step(step1Id, 0);
     const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
     const headerButton: HTMLElement = fixture.nativeElement.querySelector('.clr-step-header-button');
-    const stepContent: HTMLElement = fixture.nativeElement.querySelector('#clr-step-content-00');
-    expect(headerButton.getAttribute('aria-expanded')).toBe('true');
-    expect(stepContent.getAttribute('aria-hidden')).toBe('false');
+    const stepContent: HTMLElement = fixture.nativeElement.querySelector('#clr-step-content-groupName0');
 
-    mockStep.open = false;
-    (stepperService as MockStepperService).step.next(mockStep);
-    fixture.detectChanges();
     expect(headerButton.getAttribute('aria-expanded')).toBe('false');
     expect(stepContent.getAttribute('aria-hidden')).toBe('true');
+
+    mockStep.open = true;
+    (stepperService as MockStepperService).step.next(mockStep);
+    fixture.detectChanges();
+    expect(headerButton.getAttribute('aria-expanded')).toBe('true');
+    expect(stepContent.getAttribute('aria-hidden')).toBe('false');
   });
 
   it(
     'should show or hide content based on if step is open',
     fakeAsync(() => {
-      const mockStep = new Step(0, 0);
+      const mockStep = new Step(step1Id, 0);
       const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
-      expect(fixture.nativeElement.querySelector('.clr-step-content').innerText.trim()).toBe('test step');
+      expect(fixture.nativeElement.querySelector('.clr-step-content')).toBe(null);
 
-      mockStep.open = false;
+      mockStep.open = true;
       (stepperService as MockStepperService).step.next(mockStep);
       fixture.detectChanges();
       tick(300); // wait for animation to complete
-      expect(fixture.nativeElement.querySelector('.clr-step-content')).toBe(null);
+      expect(fixture.nativeElement.querySelector('.clr-step-content').innerText.trim()).toBe('test step');
     })
   );
 });
@@ -103,7 +105,7 @@ describe('ClrStep', () => {
 @Component({
   template: `
     <form [formGroup]="form">
-      <clr-step formGroupName="group">
+      <clr-step formGroupName="groupName">
         test step
       </clr-step>
     </form>
@@ -111,11 +113,11 @@ describe('ClrStep', () => {
 })
 class ReactiveFormsTestComponent {
   @ViewChild(ClrStep) step: ClrStep;
-  form = new FormGroup({ group: new FormGroup({}) });
+  form = new FormGroup({ groupName: new FormGroup({}) });
 }
 
 class MockStepperService extends StepperService {
-  step = new BehaviorSubject<Step>(new Step(0, 0));
+  step = new BehaviorSubject<Step>(new Step('groupName', 0));
 
   navigateToPreviouslyCompletedStep() {}
 
