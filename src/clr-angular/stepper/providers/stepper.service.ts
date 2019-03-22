@@ -33,8 +33,8 @@ export class StepperService {
     this.emitUpdatedSteps();
   }
 
-  navigateToPreviouslyCompletedStep(stepId: string, currentStepValid: boolean) {
-    this.stepCollection.navigateToPreviouslyCompletedStep(stepId, currentStepValid);
+  navigateToPreviouslyCompletedStep(stepId: string) {
+    this.stepCollection.navigateToPreviouslyCompletedStep(stepId);
     this.emitUpdatedSteps();
   }
 

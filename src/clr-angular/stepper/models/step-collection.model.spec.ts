@@ -67,24 +67,14 @@ describe('StepCollection Model', () => {
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].open).toBe(true);
 
-    stepCollection.navigateToPreviouslyCompletedStep(step1Id, true);
+    stepCollection.navigateToPreviouslyCompletedStep(step1Id);
     expect(stepCollection.steps[0].open).toBe(true);
     expect(stepCollection.steps[1].open).toBe(true);
 
-    stepCollection.navigateToPreviouslyCompletedStep(step1Id, true);
+    stepCollection.navigateToPreviouslyCompletedStep(step1Id);
     expect(stepCollection.steps[0].open).toBe(false);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].open).toBe(true);
-  });
-
-  it('should not allow user to select a previously completed step if current step is invalid', () => {
-    stepCollection.navigateToNextStep(step1Id, true);
-    expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
-    expect(stepCollection.steps[1].open).toBe(true);
-
-    stepCollection.navigateToPreviouslyCompletedStep(step1Id, false);
-    expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
-    expect(stepCollection.steps[1].status).toBe(StepStatus.Error);
   });
 
   it('should determine if all steps have been completed', () => {
@@ -103,7 +93,7 @@ describe('StepCollection Model', () => {
     expect(stepCollection.steps[1].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[2].open).toBe(true);
 
-    stepCollection.navigateToPreviouslyCompletedStep(step1Id, true);
+    stepCollection.navigateToPreviouslyCompletedStep(step1Id);
     stepCollection.navigateToNextStep(step1Id, true);
 
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);

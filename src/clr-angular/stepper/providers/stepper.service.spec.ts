@@ -49,7 +49,7 @@ describe('StepperService', () => {
     stepperService.addStep(step1Id);
     stepperService.addStep(step2Id);
     stepperService.navigateToNextStep(step2Id, true);
-    stepperService.navigateToPreviouslyCompletedStep(step2Id, true);
+    stepperService.navigateToPreviouslyCompletedStep(step2Id);
     stepperService.steps.pipe(take(1)).subscribe(steps => expect(steps[0].open).toBe(true));
   });
 

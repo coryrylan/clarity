@@ -37,16 +37,12 @@ describe('ClrStepper', () => {
     expect(text).toContain('Group 2');
   });
 
-  it(
-    'should reset steps when form is reset',
-    fakeAsync(() => {
-      spyOn(stepperService, 'resetSteps');
-      testComponent.form.reset();
-      fixture.detectChanges();
-      tick(); // workaround for https://github.com/angular/angular/issues/10887
-      expect(stepperService.resetSteps).toHaveBeenCalled();
-    })
-  );
+  it('should reset steps when form is reset', () => {
+    spyOn(stepperService, 'resetSteps');
+    testComponent.form.reset();
+    fixture.detectChanges();
+    expect(stepperService.resetSteps).toHaveBeenCalled();
+  });
 
   it(
     'should reorder steps when step content children has changed',
@@ -64,6 +60,16 @@ describe('ClrStepper', () => {
     stepperService.navigateToNextStep('group', true);
     stepperService.navigateToNextStep('group2', true);
     expect(testComponent.submit).toHaveBeenCalled();
+  });
+
+  it('should override the initial step if developer overrides it via clrInitialStep', () => {
+    spyOn(stepperService, 'overrideInitialStep');
+    fixture.detectChanges();
+    expect(stepperService.overrideInitialStep).not.toHaveBeenCalled();
+
+    testComponent.initialStep = 'group';
+    fixture.detectChanges();
+    expect(stepperService.overrideInitialStep).toHaveBeenCalled();
   });
 });
 
@@ -105,7 +111,7 @@ describe('ClrStepper Template Forms', () => {
 
 @Component({
   template: `
-    <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
+    <form clrStepper [formGroup]="form" (ngSubmit)="submit()" [clrInitialStep]="initialStep">
       <clr-step formGroupName="group">
         <clr-step-title>Group 1</clr-step-title>
       </clr-step>
@@ -118,6 +124,7 @@ describe('ClrStepper Template Forms', () => {
 class ReactiveFormsTestComponent {
   @ViewChild(ClrStepper) stepper: ClrStepper;
   showSecondStep = true;
+  initialStep = '';
   form = new FormGroup({
     group: new FormGroup({}),
     group2: new FormGroup({}),

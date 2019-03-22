@@ -7,7 +7,7 @@
 /*
   Todo Notes:
   - documentation
-  - tests for clrActiveStep
+  - support skipping prior steps, ex step one and two open but click step two next after editing step 1
 */
 
 import {
@@ -20,7 +20,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormGroupDirective, NgForm } from '@angular/forms';
-import { startWith } from 'rxjs/operators';
+import { startWith, filter, flatMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';
@@ -38,6 +38,7 @@ export class ClrStepper {
   @ContentChildren(ClrStep, { descendants: true })
   steps: QueryList<ClrStep>;
   subscriptions: Subscription[] = [];
+  form: FormGroupDirective | NgForm;
 
   constructor(
     @Optional() private formGroup: FormGroupDirective,
@@ -46,6 +47,7 @@ export class ClrStepper {
   ) {}
 
   ngOnInit() {
+    this.form = this.formGroup ? this.formGroup : this.ngForm;
     this.subscriptions.push(this.listenForStepsCompleted());
     this.subscriptions.push(this.listenForFormResetChanges());
   }
@@ -65,32 +67,24 @@ export class ClrStepper {
   }
 
   private listenForFormResetChanges() {
-    const form = this.formGroup ? this.formGroup : this.ngForm;
-
-    return form.statusChanges.subscribe(() => {
-      // workaround for https://github.com/angular/angular/issues/10887
-      setTimeout(() => {
-        if (form.pristine) {
-          this.stepperService.resetSteps();
-        }
-      });
-    });
-  }
-
-  private listenForDOMChanges() {
-    return this.steps.changes.pipe(startWith(this.steps)).subscribe(async steps => {
-      if (await steps) {
-        // chocolate workaround
-        this.stepperService.syncSteps(steps.toArray().map(s => s.id));
-        this.stepperService.overrideInitialStep(this.initialStep);
-      }
-    });
+    return this.form.statusChanges
+      .pipe(filter(() => this.form.pristine))
+      .subscribe(() => this.stepperService.resetSteps());
   }
 
   private listenForStepsCompleted() {
-    return this.stepperService.stepsCompleted.subscribe(() => {
-      const form = this.formGroup ? this.formGroup : this.ngForm;
-      form.ngSubmit.emit();
-    });
+    return this.stepperService.stepsCompleted.subscribe(() => this.form.ngSubmit.emit());
+  }
+
+  private listenForDOMChanges() {
+    return this.steps.changes
+      .pipe(
+        startWith(this.steps),
+        flatMap(async steps => await steps) // chocolate workaround
+      )
+      .subscribe(steps => {
+        this.stepperService.syncSteps(steps.toArray().map(s => s.id));
+        this.stepperService.overrideInitialStep(this.initialStep);
+      });
   }
 }

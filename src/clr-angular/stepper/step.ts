@@ -38,26 +38,37 @@ export class ClrStep {
   ) {}
 
   ngOnInit() {
-    this.group = this.isUsingReactiveForms()
-      ? this.formGroup.form.controls[this.formGroupName.name]
-      : this.ngModelGroup;
-
-    this.id = this.isUsingReactiveForms() ? this.formGroupName.name : this.ngModelGroup.name;
-
+    this.group = this.getFormGroup();
+    this.id = this.getFormGroupId();
     this.stepperService.addStep(this.id);
-
-    this.step = this.stepperService
-      .getStepChanges(this.id)
-      .pipe(tap(async step => ((await step.open) ? (this.expand.expanded = true) : null))); // chocolate/animation fix
+    this.step = this.getStepChanges();
   }
 
   selectStep() {
-    this.stepperService.navigateToPreviouslyCompletedStep(this.id, this.group.valid);
+    this.stepperService.navigateToPreviouslyCompletedStep(this.id);
   }
 
   collapseStepOnAnimationComplete(step: Step) {
     if (!step.open) {
       this.expand.expanded = false;
+    }
+  }
+
+  private getStepChanges() {
+    return this.stepperService.getStepChanges(this.id).pipe(tap(async step => this.expandStep(await step))); // chocolate/animation fix
+  }
+
+  private getFormGroup() {
+    return this.isUsingReactiveForms() ? this.formGroup.form.controls[this.formGroupName.name] : this.ngModelGroup;
+  }
+
+  private getFormGroupId() {
+    return this.isUsingReactiveForms() ? this.formGroupName.name : this.ngModelGroup.name;
+  }
+
+  private expandStep(step: Step) {
+    if (step.open) {
+      this.expand.expanded = true;
     }
   }
 
