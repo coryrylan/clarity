@@ -56,9 +56,12 @@ export class StepCollection {
       if (nextStep) {
         this.resetAllFutureSteps(nextStep);
         this._steps[nextStep.id].open = true;
+      } else {
+        this.closeAllCompletedSteps();
       }
     } else {
       this._steps[currentStepId].status = StepStatus.Error;
+      this.closeAllCompletedSteps();
     }
   }
 
@@ -82,6 +85,25 @@ export class StepCollection {
     }
   }
 
+  setStepsWithErrors(ids: string[]) {
+    ids.forEach(id => {
+      this._steps[id].open = true;
+      this._steps[id].status = StepStatus.Error;
+    });
+  }
+
+  private getNumberOfOpenSteps() {
+    return this.steps.reduce((prev, next) => (next.open !== false ? prev + 1 : prev), 0);
+  }
+
+  private closeAllCompletedSteps() {
+    this.steps.forEach(step => {
+      if (step.status === StepStatus.Complete) {
+        this._steps[step.id].open = false;
+      }
+    });
+  }
+
   private completeStep(stepId: string) {
     this._steps[stepId].status = StepStatus.Complete;
     this._steps[stepId].open = false;
@@ -89,10 +111,6 @@ export class StepCollection {
 
   private getNumberOfIncompleteSteps() {
     return this.steps.reduce((prev, next) => (next.status !== StepStatus.Complete ? prev + 1 : prev), 0);
-  }
-
-  private getNumberOfOpenSteps() {
-    return this.steps.reduce((prev, next) => (next.open !== false ? prev + 1 : prev), 0);
   }
 
   private resetAllFutureSteps(nextStep: Step) {

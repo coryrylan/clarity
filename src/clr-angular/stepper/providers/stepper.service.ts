@@ -6,7 +6,7 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { map, filter, mapTo, tap } from 'rxjs/operators';
+import { map, distinctUntilChanged } from 'rxjs/operators';
 
 import { StepCollection } from '../models/step-collection.model';
 import { Step } from '../models/step.model';
@@ -17,6 +17,10 @@ export class StepperService {
   private readonly _stepsChanges = new BehaviorSubject<Step[]>(this.stepCollection.steps);
   readonly steps = this._stepsChanges.asObservable();
   readonly stepsCompleted = this.getAllStepsCompletedChanges();
+
+  getStepChanges(id: string) {
+    return this.steps.pipe(map(steps => steps.find(s => s.id === id)));
+  }
 
   addStep(id: string) {
     this.stepCollection.addStep(id);
@@ -43,12 +47,13 @@ export class StepperService {
     this.emitUpdatedSteps();
   }
 
-  getStepChanges(id: string) {
-    return this.steps.pipe(map(steps => steps.find(s => s.id === id)));
-  }
-
   syncSteps(ids: string[]) {
     this.stepCollection.syncSteps(ids);
+    this.emitUpdatedSteps();
+  }
+
+  setStepsWithErrors(ids: string[]) {
+    this.stepCollection.setStepsWithErrors(ids);
     this.emitUpdatedSteps();
   }
 
@@ -57,6 +62,6 @@ export class StepperService {
   }
 
   private getAllStepsCompletedChanges() {
-    return this.steps.pipe(filter(() => this.stepCollection.allStepsCompleted), mapTo(true));
+    return this.steps.pipe(map(() => this.stepCollection.allStepsCompleted), distinctUntilChanged());
   }
 }

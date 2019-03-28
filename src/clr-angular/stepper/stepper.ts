@@ -7,7 +7,6 @@
 /*
   Todo Notes:
   - documentation
-  - support skipping prior steps, ex step one and two open but click step two next after editing step 1
 */
 
 import {
@@ -73,7 +72,21 @@ export class ClrStepper {
   }
 
   private listenForStepsCompleted() {
-    return this.stepperService.stepsCompleted.subscribe(() => this.form.ngSubmit.emit());
+    return this.stepperService.stepsCompleted.subscribe(stepsCompleted => {
+      if (stepsCompleted && this.form.valid) {
+        this.form.ngSubmit.emit();
+      } else if (!this.form.valid && this.form.touched) {
+        this.setStepsWithFormErrors();
+      }
+    });
+  }
+
+  private setStepsWithFormErrors() {
+    const stepsWithErrors = this.steps.reduce(
+      (steps, step) => (step.formGroup.invalid ? [...steps, step.name] : steps),
+      []
+    );
+    this.stepperService.setStepsWithErrors(stepsWithErrors);
   }
 
   private listenForDOMChanges() {

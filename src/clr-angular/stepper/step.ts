@@ -55,7 +55,7 @@ export class ClrStep {
     this.stepperService.navigateToPreviouslyCompletedStep(this.name);
   }
 
-  collapseStepOnAnimationComplete(step: Step) {
+  collapseStep(step: Step) {
     if (!step.open) {
       this.expand.expanded = false;
     }

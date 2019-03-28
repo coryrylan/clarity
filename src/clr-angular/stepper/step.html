@@ -42,7 +42,7 @@
       <div
         *ngIf="step.open"
         @toggle
-        (@toggle.done)="collapseStepOnAnimationComplete(step)"
+        (@toggle.done)="collapseStep(step)"
         class="clr-step-content">
         <div class="clr-step-inner-content">
           <ng-content></ng-content>
