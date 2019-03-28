@@ -5,7 +5,7 @@
  */
 
 import { Component, ViewChild } from '@angular/core';
-import { TestBed, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
@@ -86,20 +86,16 @@ describe('ClrStep', () => {
     expect(stepContent.getAttribute('aria-hidden')).toBe('false');
   });
 
-  it(
-    'should show or hide content based on if step is open',
-    fakeAsync(() => {
-      const mockStep = new Step(step1Id, 0);
-      const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
-      expect(fixture.nativeElement.querySelector('.clr-step-content')).toBe(null);
+  it('should show or hide content based on if step is open', () => {
+    const mockStep = new Step(step1Id, 0);
+    const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
+    expect(fixture.nativeElement.querySelector('.clr-step-content')).toBe(null);
 
-      mockStep.open = true;
-      (stepperService as MockStepperService).step.next(mockStep);
-      fixture.detectChanges();
-      tick(300); // wait for animation to complete
-      expect(fixture.nativeElement.querySelector('.clr-step-content').innerText.trim()).toBe('test step');
-    })
-  );
+    mockStep.open = true;
+    (stepperService as MockStepperService).step.next(mockStep);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.clr-step-content').innerText.trim()).toBe('test step');
+  });
 });
 
 @Component({

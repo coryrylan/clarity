@@ -68,7 +68,7 @@ export class ClrStepper {
 
   private listenForFormResetChanges() {
     return this.form.statusChanges
-      .pipe(filter(() => this.form.pristine))
+      .pipe(filter(() => this.form.pristine)) // https://github.com/angular/angular/issues/10887
       .subscribe(() => this.stepperService.resetSteps());
   }
 
@@ -80,10 +80,10 @@ export class ClrStepper {
     return this.steps.changes
       .pipe(
         startWith(this.steps),
-        flatMap(async steps => await steps) // chocolate workaround
+        flatMap(async steps => await steps) // chocolate
       )
       .subscribe(steps => {
-        this.stepperService.syncSteps(steps.toArray().map(s => s.id));
+        this.stepperService.syncSteps(steps.toArray().map((s: ClrStep) => s.name));
         this.stepperService.overrideInitialStep(this.initialStep);
       });
   }

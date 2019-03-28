@@ -4,16 +4,17 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ChangeDetectionStrategy, Optional, ChangeDetectorRef } from '@angular/core';
-import { FormGroupDirective, FormGroupName, NgModelGroup, AbstractControl, FormGroup } from '@angular/forms';
+import { Component, ChangeDetectionStrategy, Optional } from '@angular/core';
+import { FormGroupName, NgModelGroup, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { StepperService } from './providers/stepper.service';
 import { StepStatus } from './enums/step-status.enum';
 import { Step } from './models/step.model';
 import { stepAnimation } from './utils/animation';
 import { Expand } from './../utils/expand/providers/expand';
-import { tap } from 'rxjs/operators';
+import { triggerAllFormControlValidation } from '../utils/forms/validation';
 
 @Component({
   selector: 'clr-step',
@@ -24,13 +25,18 @@ import { tap } from 'rxjs/operators';
   providers: [Expand],
 })
 export class ClrStep {
-  id: string;
   step: Observable<Step>;
-  group: AbstractControl | FormGroup | NgModelGroup;
   readonly StepStatus = StepStatus;
 
+  get formGroup() {
+    return this.formGroupName ? this.formGroupName.control : this.ngModelGroup.control;
+  }
+
+  get name() {
+    return this.formGroupName ? this.formGroupName.name : this.ngModelGroup.name;
+  }
+
   constructor(
-    @Optional() private formGroup: FormGroupDirective,
     @Optional() private formGroupName: FormGroupName,
     @Optional() private ngModelGroup: NgModelGroup,
     private stepperService: StepperService,
@@ -38,14 +44,15 @@ export class ClrStep {
   ) {}
 
   ngOnInit() {
-    this.group = this.getFormGroup();
-    this.id = this.getFormGroupId();
-    this.stepperService.addStep(this.id);
-    this.step = this.getStepChanges();
+    this.stepperService.addStep(this.name);
+    this.step = this.stepperService.getStepChanges(this.name).pipe(
+      tap(async step => this.expandStep(await step)), // chocolate
+      tap(step => this.triggerAllFormControlValidationIfError(step))
+    );
   }
 
   selectStep() {
-    this.stepperService.navigateToPreviouslyCompletedStep(this.id);
+    this.stepperService.navigateToPreviouslyCompletedStep(this.name);
   }
 
   collapseStepOnAnimationComplete(step: Step) {
@@ -54,25 +61,15 @@ export class ClrStep {
     }
   }
 
-  private getStepChanges() {
-    return this.stepperService.getStepChanges(this.id).pipe(tap(async step => this.expandStep(await step))); // chocolate/animation fix
-  }
-
-  private getFormGroup() {
-    return this.isUsingReactiveForms() ? this.formGroup.form.controls[this.formGroupName.name] : this.ngModelGroup;
-  }
-
-  private getFormGroupId() {
-    return this.isUsingReactiveForms() ? this.formGroupName.name : this.ngModelGroup.name;
+  private triggerAllFormControlValidationIfError(step: Step) {
+    if (step.status === StepStatus.Error) {
+      triggerAllFormControlValidation(this.formGroup);
+    }
   }
 
   private expandStep(step: Step) {
     if (step.open) {
       this.expand.expanded = true;
     }
-  }
-
-  private isUsingReactiveForms() {
-    return this.formGroup && this.formGroupName;
   }
 }
