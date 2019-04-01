@@ -7,6 +7,7 @@
 /*
   Todo Notes:
   - documentation
+  - unit test allow content only step with no form controls in group
 */
 
 import {
