@@ -4,411 +4,413 @@
   ~ The full license information can be found in LICENSE in the root directory of this project.
   -->
 
-<div class="clr-example">
-  <h1>Stepper</h1>
+<!-- <div style="height: 2000px; background-color:red;">
+  hi
+</div> -->
 
-  <h2>Angular - Reactive Forms</h2>
+<h1>Stepper</h1>
 
-  <button (click)="form.reset()" class="btn">Reset Stepper</button>
-  <button (click)="showSecondStep = !showSecondStep" class="btn">toggle second step</button>
+<h2>Angular - Reactive Forms</h2>
 
-  <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
-    <clr-step formGroupName="name">
-      <clr-step-title>Legal Name</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content *clrIfExpanded>
-        <clr-input-container>
-          <label>First Name</label>
-          <input clrInput formControlName="first" />
-          <clr-control-error *clrIfError="'required'">First Name Required</clr-control-error>
-        </clr-input-container>
+<button (click)="form.reset()" class="btn">Reset Stepper</button>
+<button (click)="showSecondStep = !showSecondStep" class="btn">toggle second step</button>
 
-        <clr-input-container>
-          <label>Last Name</label>
-          <input clrInput formControlName="last" />
-          <clr-control-error *clrIfError="'required'">Last Name Required</clr-control-error>
-        </clr-input-container>
+<form clrStepper [formGroup]="form" (ngSubmit)="submit()">
+  <clr-step formGroupName="name">
+    <clr-step-title>Legal Name</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label>First Name</label>
+        <input clrInput formControlName="first" />
+        <clr-control-error *clrIfError="'required'">First Name Required</clr-control-error>
+      </clr-input-container>
 
-        <button clrStepButton="next">next</button>
-      </clr-step-content>
-    </clr-step>
+      <clr-input-container>
+        <label>Last Name</label>
+        <input clrInput formControlName="last" />
+        <clr-control-error *clrIfError="'required'">Last Name Required</clr-control-error>
+      </clr-input-container>
 
-    <clr-step *ngIf="showSecondStep" formGroupName="contact">
-      <clr-step-title>Contact Information</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content *clrIfExpanded>
-        <clr-input-container>
-          <label>Email</label>
-          <input clrInput formControlName="email" />
-        </clr-input-container>
-    
-        <clr-input-container>
-          <label>Phone</label>
-          <input clrInput formControlName="phone" /> 
-        </clr-input-container>
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-step>
 
-        <button clrStepButton="next">next</button>
-      </clr-step-content>
-    </clr-step>
-
-    <clr-step formGroupName="password">
-      <clr-step-title>Password</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content *clrIfExpanded>
-        <clr-password-container>
-          <label>Password</label>
-          <input clrPassword formControlName="password" />
-        </clr-password-container>
-
-        <clr-password-container>
-          <label>Confirm Password</label>
-          <input clrPassword formControlName="confirm" /> 
-        </clr-password-container>
-
-        <button clrStepButton="submit">submit</button>
-      </clr-step-content>
-    </clr-step>
-  </form>
-
-  <h2>Angular - Template Forms</h2>
-
-  <button (click)="contactForm.reset()" class="btn">Reset Stepper</button>
-  <button (click)="showSecondStep = !showSecondStep" class="btn">toggle second step</button>
-
-  <form clrStepper #contactForm="ngForm" (ngSubmit)="templateFormSubmit(contactForm.value)">
-    <clr-step ngModelGroup="name">
-      <clr-step-title>Legal Name</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content>
-        <clr-input-container>
-          <label>First Name</label>
-          <input clrInput [ngModel]="templateForm.name.firstName" name="firstName" required />
-        </clr-input-container>
+  <clr-step *ngIf="showSecondStep" formGroupName="contact">
+    <clr-step-title>Contact Information</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label>Email</label>
+        <input clrInput formControlName="email" />
+      </clr-input-container>
   
-        <clr-input-container>
-          <label>Last Name</label>
-          <input clrInput [ngModel]="templateForm.name.lastName" name="lastName" required /> 
-        </clr-input-container>
+      <clr-input-container>
+        <label>Phone</label>
+        <input clrInput formControlName="phone" /> 
+      </clr-input-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-step>
+
+  <clr-step formGroupName="password">
+    <clr-step-title>Password</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-step-content *clrIfExpanded>
+      <clr-password-container>
+        <label>Password</label>
+        <input clrPassword formControlName="password" />
+      </clr-password-container>
+
+      <clr-password-container>
+        <label>Confirm Password</label>
+        <input clrPassword formControlName="confirm" /> 
+      </clr-password-container>
+
+      <button clrStepButton="submit">submit</button>
+    </clr-step-content>
+  </clr-step>
+</form>
+
+<h2>Angular - Template Forms</h2>
+
+<button (click)="contactForm.reset()" class="btn">Reset Stepper</button>
+<button (click)="showSecondStep = !showSecondStep" class="btn">toggle second step</button>
+
+<form clrStepper #contactForm="ngForm" (ngSubmit)="templateFormSubmit(contactForm.value)">
+  <clr-step ngModelGroup="name">
+    <clr-step-title>Legal Name</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-step-content>
+      <clr-input-container>
+        <label>First Name</label>
+        <input clrInput [ngModel]="templateForm.name.firstName" name="firstName" required />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Last Name</label>
+        <input clrInput [ngModel]="templateForm.name.lastName" name="lastName" required /> 
+      </clr-input-container>
+
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-step>
+
+  <clr-step *ngIf="showSecondStep" ngModelGroup="contact">
+    <clr-step-title>Contact Information</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-step-content>
+      <clr-input-container>
+        <label>Email</label>
+        <input clrInput [ngModel]="templateForm.contact.email" name="email" />
+      </clr-input-container>
   
-        <button clrStepButton="next">next</button>
-      </clr-step-content>
-    </clr-step>
+      <clr-input-container>
+        <label>Phone</label>
+        <input clrInput [ngModel]="templateForm.contact.phone" name="phone" /> 
+      </clr-input-container>
 
-    <clr-step *ngIf="showSecondStep" ngModelGroup="contact">
-      <clr-step-title>Contact Information</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content>
-        <clr-input-container>
-          <label>Email</label>
-          <input clrInput [ngModel]="templateForm.contact.email" name="email" />
-        </clr-input-container>
-    
-        <clr-input-container>
-          <label>Phone</label>
-          <input clrInput [ngModel]="templateForm.contact.phone" name="phone" /> 
-        </clr-input-container>
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-step>
 
-        <button clrStepButton="next">next</button>
-      </clr-step-content>
-    </clr-step>
+  <clr-step ngModelGroup="password">
+    <clr-step-title>Password</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-step-content>
+      <clr-password-container>
+        <label>Password</label>
+        <input clrPassword [ngModel]="templateForm.password.password" name="password" />
+      </clr-password-container>
+  
+      <clr-password-container>
+        <label>Confirm Password</label>
+        <input clrPassword [ngModel]="templateForm.password.confirm" name="confirm" /> 
+      </clr-password-container>
 
-    <clr-step ngModelGroup="password">
-      <clr-step-title>Password</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content>
-        <clr-password-container>
-          <label>Password</label>
-          <input clrPassword [ngModel]="templateForm.password.password" name="password" />
-        </clr-password-container>
-    
-        <clr-password-container>
-          <label>Confirm Password</label>
-          <input clrPassword [ngModel]="templateForm.password.confirm" name="confirm" /> 
-        </clr-password-container>
+      <button clrStepButton="submit">submit</button>
+    </clr-step-content>
+  </clr-step>
+</form>
 
-        <button clrStepButton="submit">submit</button>
-      </clr-step-content>
-    </clr-step>
-  </form>
+<h2>Angular - Override Initial Step</h2>
+<p>Active Step: {{initialStep}}</p>
+<button (click)="toggleInitialStep()" class="btn">Override Initial Step</button>
 
-  <h2>Angular - Override Initial Step</h2>
-  <p>Active Step: {{initialStep}}</p>
-  <button (click)="toggleInitialStep()" class="btn">Override Initial Step</button>
+<form clrStepper [formGroup]="partiallyCompletedForm" (ngSubmit)="submit()" [clrInitialStep]="initialStep">
+  <clr-step formGroupName="name">
+    <clr-step-title>Legal Name</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label>First Name</label>
+        <input clrInput formControlName="first" />
+        <clr-control-error *clrIfError="'required'">First Name Required</clr-control-error>
+      </clr-input-container>
 
-  <form clrStepper [formGroup]="partiallyCompletedForm" (ngSubmit)="submit()" [clrInitialStep]="initialStep">
-    <clr-step formGroupName="name">
-      <clr-step-title>Legal Name</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content *clrIfExpanded>
-        <clr-input-container>
-          <label>First Name</label>
-          <input clrInput formControlName="first" />
-          <clr-control-error *clrIfError="'required'">First Name Required</clr-control-error>
-        </clr-input-container>
+      <clr-input-container>
+        <label>Last Name</label>
+        <input clrInput formControlName="last" />
+        <clr-control-error *clrIfError="'required'">Last Name Required</clr-control-error>
+      </clr-input-container>
 
-        <clr-input-container>
-          <label>Last Name</label>
-          <input clrInput formControlName="last" />
-          <clr-control-error *clrIfError="'required'">Last Name Required</clr-control-error>
-        </clr-input-container>
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-step>
 
-        <button clrStepButton="next">next</button>
-      </clr-step-content>
-    </clr-step>
+  <clr-step *ngIf="showSecondStep" formGroupName="contact">
+    <clr-step-title>Contact Information</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label>Email</label>
+        <input clrInput formControlName="email" />
+      </clr-input-container>
+  
+      <clr-input-container>
+        <label>Phone</label>
+        <input clrInput formControlName="phone" /> 
+      </clr-input-container>
 
-    <clr-step *ngIf="showSecondStep" formGroupName="contact">
-      <clr-step-title>Contact Information</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content *clrIfExpanded>
-        <clr-input-container>
-          <label>Email</label>
-          <input clrInput formControlName="email" />
-        </clr-input-container>
-    
-        <clr-input-container>
-          <label>Phone</label>
-          <input clrInput formControlName="phone" /> 
-        </clr-input-container>
+      <button clrStepButton="next">next</button>
+    </clr-step-content>
+  </clr-step>
 
-        <button clrStepButton="next">next</button>
-      </clr-step-content>
-    </clr-step>
+  <clr-step formGroupName="password">
+    <clr-step-title>Password</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-step-content *clrIfExpanded>
+      <clr-password-container>
+        <label>Password</label>
+        <input clrPassword formControlName="password" />
+      </clr-password-container>
 
-    <clr-step formGroupName="password">
-      <clr-step-title>Password</clr-step-title>
-      <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
-      <clr-step-content *clrIfExpanded>
-        <clr-password-container>
-          <label>Password</label>
-          <input clrPassword formControlName="password" />
-        </clr-password-container>
+      <clr-password-container>
+        <label>Confirm Password</label>
+        <input clrPassword formControlName="confirm" /> 
+      </clr-password-container>
 
-        <clr-password-container>
-          <label>Confirm Password</label>
-          <input clrPassword formControlName="confirm" /> 
-        </clr-password-container>
+      <button clrStepButton="submit">submit</button>
+    </clr-step-content>
+  </clr-step>
+</form>
 
-        <button clrStepButton="submit">submit</button>
-      </clr-step-content>
-    </clr-step>
-  </form>
+<h2>Static Stepper States</h2>
 
-  <h2>Static Stepper States</h2>
-
-  <h3>First Step</h3>
-  <form class="clr-stepper">
-    <div role="group" aria-labelledby="clr-step-header-1" class="clr-step clr-step-open">
-      <div class="clr-step-header" id="clr-step-header-1">
-        <button aria-controls="clr-step-content-1" aria-expanded="true" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
-          </div>
-          <div class="clr-step-title">Active Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-1" aria-hidden="false">
-        Step content goes here.
-        <button class="btn clr-step-button">Next</button>
-      </div>
+<h3>First Step</h3>
+<form class="clr-stepper">
+  <div role="group" aria-labelledby="clr-step-header-1" class="clr-step clr-step-open">
+    <div class="clr-step-header" id="clr-step-header-1">
+      <button aria-controls="clr-step-content-1" aria-expanded="true" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <div class="clr-step-number"></div>
+        </div>
+        <div class="clr-step-title">Active Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
-
-    <div role="group" aria-labelledby="clr-step-header-2" class="clr-step">
-      <div class="clr-step-header" id="clr-step-header-2">
-        <button aria-controls="clr-step-content-2" aria-expanded="false" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
-          </div>
-          <div class="clr-step-title">Future Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-2" aria-hidden="true">
-        Step content goes here.
-        <button class="btn clr-step-button">Next</button>
-      </div>
+    <div class="clr-step-content" id="clr-step-content-1" aria-hidden="false">
+      Step content goes here.
+      <button class="btn clr-step-button">Next</button>
     </div>
+  </div>
 
-    <div role="group" aria-labelledby="clr-step-header-3" class="clr-step">
-      <div class="clr-step-header" id="clr-step-header-3">
-        <button aria-controls="clr-step-content-3" aria-expanded="false" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
-          </div>
-          <div class="clr-step-title">Future Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-3" aria-hidden="true">
-        Step content goes here.
-        <button class="btn btn-primary clr-step-button">Complete</button>
-      </div>
+  <div role="group" aria-labelledby="clr-step-header-2" class="clr-step">
+    <div class="clr-step-header" id="clr-step-header-2">
+      <button aria-controls="clr-step-content-2" aria-expanded="false" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <div class="clr-step-number"></div>
+        </div>
+        <div class="clr-step-title">Future Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
-  </form>
+    <div class="clr-step-content" id="clr-step-content-2" aria-hidden="true">
+      Step content goes here.
+      <button class="btn clr-step-button">Next</button>
+    </div>
+  </div>
 
-  <h3>Middle Step</h3>
-  <form class="clr-stepper">
-    <div role="group" aria-labelledby="clr-step-header-4" class="clr-step clr-step-complete">
-      <div class="clr-step-header" id="clr-step-header-4">
-        <button aria-controls="clr-step-content-4" aria-expanded="true" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
-          </div>
-          <div class="clr-step-title">Active Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-4" aria-hidden="false">
-        Step content goes here.
-        <button class="btn clr-step-button">Next</button>
-      </div>
+  <div role="group" aria-labelledby="clr-step-header-3" class="clr-step">
+    <div class="clr-step-header" id="clr-step-header-3">
+      <button aria-controls="clr-step-content-3" aria-expanded="false" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <div class="clr-step-number"></div>
+        </div>
+        <div class="clr-step-title">Future Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
+    <div class="clr-step-content" id="clr-step-content-3" aria-hidden="true">
+      Step content goes here.
+      <button class="btn btn-primary clr-step-button">Complete</button>
+    </div>
+  </div>
+</form>
 
-    <div role="group" aria-labelledby="clr-step-header-5" class="clr-step clr-step-open">
-      <div class="clr-step-header" id="clr-step-header-5">
-        <button aria-controls="clr-step-content-5" aria-expanded="false" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
-          </div>
-          <div class="clr-step-title">Future Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-5" aria-hidden="true">
-        Step content goes here.
-        <button class="btn clr-step-button">Next</button>
-      </div>
+<h3>Middle Step</h3>
+<form class="clr-stepper">
+  <div role="group" aria-labelledby="clr-step-header-4" class="clr-step clr-step-complete">
+    <div class="clr-step-header" id="clr-step-header-4">
+      <button aria-controls="clr-step-content-4" aria-expanded="true" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
+        </div>
+        <div class="clr-step-title">Active Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
+    <div class="clr-step-content" id="clr-step-content-4" aria-hidden="false">
+      Step content goes here.
+      <button class="btn clr-step-button">Next</button>
+    </div>
+  </div>
 
-    <div role="group" aria-labelledby="clr-step-header-6" class="clr-step">
-      <div class="clr-step-header" id="clr-step-header-6">
-        <button aria-controls="clr-step-content-6" aria-expanded="false" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
-          </div>
-          <div class="clr-step-title">Future Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-6" aria-hidden="true">
-        Step content goes here.
-        <button class="btn btn-primary clr-step-button">Complete</button>
-      </div>
+  <div role="group" aria-labelledby="clr-step-header-5" class="clr-step clr-step-open">
+    <div class="clr-step-header" id="clr-step-header-5">
+      <button aria-controls="clr-step-content-5" aria-expanded="false" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <div class="clr-step-number"></div>
+        </div>
+        <div class="clr-step-title">Future Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
-  </form>
+    <div class="clr-step-content" id="clr-step-content-5" aria-hidden="true">
+      Step content goes here.
+      <button class="btn clr-step-button">Next</button>
+    </div>
+  </div>
 
-  <h3>Last Step</h3>
-  <form class="clr-stepper">
-    <div role="group" aria-labelledby="clr-step-header-7" class="clr-step clr-step-complete">
-      <div class="clr-step-header" id="clr-step-header-7">
-        <button aria-controls="clr-step-content-7" aria-expanded="true" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
-          </div>
-          <div class="clr-step-title">Active Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-7" aria-hidden="false">
-        Step content goes here.
-        <button class="btn clr-step-button">Next</button>
-      </div>
+  <div role="group" aria-labelledby="clr-step-header-6" class="clr-step">
+    <div class="clr-step-header" id="clr-step-header-6">
+      <button aria-controls="clr-step-content-6" aria-expanded="false" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <div class="clr-step-number"></div>
+        </div>
+        <div class="clr-step-title">Future Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
+    <div class="clr-step-content" id="clr-step-content-6" aria-hidden="true">
+      Step content goes here.
+      <button class="btn btn-primary clr-step-button">Complete</button>
+    </div>
+  </div>
+</form>
 
-    <div role="group" aria-labelledby="clr-step-header-8" class="clr-step clr-step-complete">
-      <div class="clr-step-header" id="clr-step-header-8">
-        <button aria-controls="clr-step-content-8" aria-expanded="false" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
-          </div>
-          <div class="clr-step-title">Future Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-8" aria-hidden="true">
-        Step content goes here.
-        <button class="btn clr-step-button">Next</button>
-      </div>
+<h3>Last Step</h3>
+<form class="clr-stepper">
+  <div role="group" aria-labelledby="clr-step-header-7" class="clr-step clr-step-complete">
+    <div class="clr-step-header" id="clr-step-header-7">
+      <button aria-controls="clr-step-content-7" aria-expanded="true" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
+        </div>
+        <div class="clr-step-title">Active Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
+    <div class="clr-step-content" id="clr-step-content-7" aria-hidden="false">
+      Step content goes here.
+      <button class="btn clr-step-button">Next</button>
+    </div>
+  </div>
 
-    <div role="group" aria-labelledby="clr-step-header-9" class="clr-step clr-step-open">
-      <div class="clr-step-header" id="clr-step-header-9">
-        <button aria-controls="clr-step-content-9" aria-expanded="false" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
-          </div>
-          <div class="clr-step-title">Future Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-9" aria-hidden="true">
-        Step content goes here.
-        <button class="btn btn-primary clr-step-button">Complete</button>
-      </div>
+  <div role="group" aria-labelledby="clr-step-header-8" class="clr-step clr-step-complete">
+    <div class="clr-step-header" id="clr-step-header-8">
+      <button aria-controls="clr-step-content-8" aria-expanded="false" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
+        </div>
+        <div class="clr-step-title">Future Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
-  </form>
+    <div class="clr-step-content" id="clr-step-content-8" aria-hidden="true">
+      Step content goes here.
+      <button class="btn clr-step-button">Next</button>
+    </div>
+  </div>
 
-  <h3>Error State</h3>
-  <form class="clr-stepper">
-    <div role="group" aria-labelledby="clr-step-header-10" class="clr-step clr-step-complete">
-      <div class="clr-step-header" id="clr-step-header-10">
-        <button aria-controls="clr-step-content-10" aria-expanded="true" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
-          </div>
-          <div class="clr-step-title">Active Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-10" aria-hidden="false">
-        Step content goes here.
-        <button class="btn clr-step-button">Next</button>
-      </div>
+  <div role="group" aria-labelledby="clr-step-header-9" class="clr-step clr-step-open">
+    <div class="clr-step-header" id="clr-step-header-9">
+      <button aria-controls="clr-step-content-9" aria-expanded="false" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <div class="clr-step-number"></div>
+        </div>
+        <div class="clr-step-title">Future Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
+    <div class="clr-step-content" id="clr-step-content-9" aria-hidden="true">
+      Step content goes here.
+      <button class="btn btn-primary clr-step-button">Complete</button>
+    </div>
+  </div>
+</form>
 
-    <div role="group" aria-labelledby="clr-step-header-11" class="clr-step clr-step-open clr-step-error">
-      <div class="clr-step-header" id="clr-step-header-11">
-        <button aria-controls="clr-step-content-11" aria-expanded="false" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <clr-icon shape="exclamation-circle" class="clr-step-error-icon"></clr-icon>
-            <div class="clr-step-number"></div>
-          </div>
-          <div class="clr-step-title">Future Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-11" aria-hidden="true">
-        Step content goes here.
-        <button class="btn clr-step-button">Next</button>
-      </div>
+<h3>Error State</h3>
+<form class="clr-stepper">
+  <div role="group" aria-labelledby="clr-step-header-10" class="clr-step clr-step-complete">
+    <div class="clr-step-header" id="clr-step-header-10">
+      <button aria-controls="clr-step-content-10" aria-expanded="true" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
+        </div>
+        <div class="clr-step-title">Active Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
+    <div class="clr-step-content" id="clr-step-content-10" aria-hidden="false">
+      Step content goes here.
+      <button class="btn clr-step-button">Next</button>
+    </div>
+  </div>
 
-    <div role="group" aria-labelledby="clr-step-header-12" class="clr-step">
-      <div class="clr-step-header" id="clr-step-header-12">
-        <button aria-controls="clr-step-content-12" aria-expanded="false" class="clr-step-header-button">
-          <div class="clr-step-status">
-            <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-            <div class="clr-step-number"></div>
-          </div>
-          <div class="clr-step-title">Future Step</div>
-        </button>
-        <div class="clr-step-description">Description goes here.</div>
-      </div>
-      <div class="clr-step-content" id="clr-step-content-12" aria-hidden="true">
-        Step content goes here.
-        <button class="btn btn-primary clr-step-button">Complete</button>
-      </div>
+  <div role="group" aria-labelledby="clr-step-header-11" class="clr-step clr-step-open clr-step-error">
+    <div class="clr-step-header" id="clr-step-header-11">
+      <button aria-controls="clr-step-content-11" aria-expanded="false" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <clr-icon shape="exclamation-circle" class="clr-step-error-icon"></clr-icon>
+          <div class="clr-step-number"></div>
+        </div>
+        <div class="clr-step-title">Future Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
     </div>
-  </form>
-</div>
+    <div class="clr-step-content" id="clr-step-content-11" aria-hidden="true">
+      Step content goes here.
+      <button class="btn clr-step-button">Next</button>
+    </div>
+  </div>
+
+  <div role="group" aria-labelledby="clr-step-header-12" class="clr-step">
+    <div class="clr-step-header" id="clr-step-header-12">
+      <button aria-controls="clr-step-content-12" aria-expanded="false" class="clr-step-header-button">
+        <div class="clr-step-status">
+          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
+          <div class="clr-step-number"></div>
+        </div>
+        <div class="clr-step-title">Future Step</div>
+      </button>
+      <div class="clr-step-description">Description goes here.</div>
+    </div>
+    <div class="clr-step-content" id="clr-step-content-12" aria-hidden="true">
+      Step content goes here.
+      <button class="btn btn-primary clr-step-button">Complete</button>
+    </div>
+  </div>
+</form>

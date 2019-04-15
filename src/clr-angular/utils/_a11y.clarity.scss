@@ -12,6 +12,8 @@
   width: 1px;
   overflow: hidden;
   white-space: nowrap;
+  top: 0;
+  left: 0;
 }
 
 @include exports('a11y.clarity') {
