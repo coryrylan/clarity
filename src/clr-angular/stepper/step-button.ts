@@ -11,7 +11,7 @@ import { ClrStep } from './step';
 
 export enum ClrStepButtonType {
   Next = 'next',
-  Last = 'last',
+  Submit = 'submit',
 }
 
 @Directive({
@@ -24,12 +24,12 @@ export enum ClrStepButtonType {
 })
 export class ClrStepButton {
   @Input('clrStepButton') type: ClrStepButtonType | string = ClrStepButtonType.Next;
-  @HostBinding('class.btn-primary') lastButton = false;
+  @HostBinding('class.btn-primary') submitButton = false;
 
   constructor(private clrStep: ClrStep, private stepperService: StepperService) {}
 
   ngOnInit() {
-    this.lastButton = this.type === ClrStepButtonType.Last;
+    this.submitButton = this.type === ClrStepButtonType.Submit;
   }
 
   @HostListener('click')

@@ -5,6 +5,8 @@
 */
 
 import { Component } from '@angular/core';
+import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClrStepperModule } from './stepper.module';
@@ -15,7 +17,7 @@ describe('ClrStepContent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [ClrStepperModule],
+      imports: [ReactiveFormsModule, NoopAnimationsModule, ClrStepperModule],
     });
 
     fixture = TestBed.createComponent(TestComponent);
@@ -28,6 +30,14 @@ describe('ClrStepContent', () => {
 });
 
 @Component({
-  template: `<clr-step-content>Hello world</clr-step-content>`,
+  template: `
+    <form clrStepper [formGroup]="form">
+      <clr-step formGroupName="group">
+        <clr-step-content>Hello world</clr-step-content>
+      </clr-step>
+    </form>
+  `,
 })
-class TestComponent {}
+class TestComponent {
+  form = new FormGroup({ group: new FormGroup({}) });
+}

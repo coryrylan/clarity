@@ -979,6 +979,29 @@ export declare class ClrStackViewCustomTags {
 export declare class ClrStackViewModule {
 }
 
+export declare class ClrStep {
+    readonly StepStatus: typeof StepStatus;
+    readonly formGroup: import("@angular/forms").FormGroup;
+    readonly name: string;
+    step: Observable<Step>;
+    constructor(formGroupName: FormGroupName, ngModelGroup: NgModelGroup, stepperService: StepperService, expand: Expand);
+    collapseStep(step: Step): void;
+    ngOnInit(): void;
+    selectStep(): void;
+}
+
+export declare class ClrStepper {
+    form: FormGroupDirective | NgForm;
+    initialStep: string;
+    steps: QueryList<ClrStep>;
+    subscriptions: Subscription[];
+    constructor(formGroup: FormGroupDirective, ngForm: NgForm, stepperService: StepperService);
+    ngAfterViewInit(): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    ngOnDestroy(): void;
+    ngOnInit(): void;
+}
+
 export declare class ClrTab {
     readonly active: boolean;
     id: number;

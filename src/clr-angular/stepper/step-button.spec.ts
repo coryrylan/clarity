@@ -22,7 +22,7 @@ describe('ClrStepButton', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       providers: [StepperService, { provide: StepperService, useClass: MockStepperService }],
-      imports: [ClrStepperModule, ReactiveFormsModule, NoopAnimationsModule],
+      imports: [ReactiveFormsModule, NoopAnimationsModule, ClrStepperModule],
     });
 
     fixture = TestBed.createComponent(TestComponent);
@@ -32,9 +32,9 @@ describe('ClrStepButton', () => {
 
   it('should update ClrStepButton type', () => {
     expect(testComponent.button.type).toBe(ClrStepButtonType.Next);
-    testComponent.buttonType = ClrStepButtonType.Last;
+    testComponent.buttonType = ClrStepButtonType.Submit;
     fixture.detectChanges();
-    expect(testComponent.button.type).toBe(ClrStepButtonType.Last);
+    expect(testComponent.button.type).toBe(ClrStepButtonType.Submit);
   });
 
   it('should trigger click that sets the next step', () => {
@@ -49,7 +49,7 @@ describe('ClrStepButton', () => {
 
 @Component({
   template: `
-    <form [formGroup]="form">
+    <form clrStepper [formGroup]="form">
       <clr-step formGroupName="group">
         <button [clrStepButton]="buttonType">Next</button>
       </clr-step>
