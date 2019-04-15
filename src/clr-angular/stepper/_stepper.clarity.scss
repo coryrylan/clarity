@@ -3,19 +3,6 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @include exports('stepper.clarity') {
-  .clr-screen-reader-only {
-    // todo: move to utils
-    position: absolute;
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: inset(50%);
-    padding: 0;
-    border: 0;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
   .clr-stepper {
     display: block;
     counter-reset: a;
@@ -38,36 +25,19 @@
     width: 100%;
     font-size: 0.65rem;
     text-align: left;
+    @include focus-within();
 
     &:hover {
       background-color: $clr-stepper-header-hover-background-color;
     }
 
-    // need to emulate with Angular for better browser support
-    &:focus-within {
-      outline: 2px solid Highlight;
-    }
-
     @media (min-width: $clr-stepper-responsive-breakpoint) {
       flex-flow: row;
     }
-
-    @media (-webkit-min-device-pixel-ratio: 0) {
-      &:focus-within {
-        outline: 5px auto -webkit-focus-ring-color;
-      }
-    }
-  }
-
-  button.clr-step-header-button {
-    outline: none; // parent .clr-step-header element contains focus style
   }
 
   .clr-step:last-child {
-    .clr-step-content {
-      border-bottom: 1px solid $clr-stepper-border-color;
-    }
-
+    .clr-step-content,
     .clr-step-header {
       border-bottom: 1px solid $clr-stepper-border-color;
     }
@@ -95,6 +65,10 @@
     @media (min-width: $clr-stepper-responsive-breakpoint) {
       max-width: 280px;
     }
+  }
+
+  button.clr-step-header-button {
+    outline: none; // parent .clr-step-header element contains focus style
   }
 
   .clr-step-status {
@@ -129,18 +103,17 @@
     padding: 20px;
     display: none;
 
-    @media (min-width: $clr-stepper-responsive-breakpoint) {
-      padding: 20px 56px;
-    }
-
     .clr-form {
       padding: 0;
     }
-  }
 
-  // inner element/padding to prevent extra hight in ng animation
-  .ng-trigger.clr-step-content {
-    padding: 0;
+    &.ng-trigger {
+      padding: 0; // inner element/padding to prevent extra hight in ng animation
+    }
+
+    @media (min-width: $clr-stepper-responsive-breakpoint) {
+      padding: 20px 56px;
+    }
   }
 
   .clr-step-inner-content {
@@ -220,13 +193,6 @@
 
   .clr-step-error .clr-step-number,
   .clr-step-complete .clr-step-number {
-    // a11y compatible hidden, also allows numbers to
-    // increment with CSS counter-increment
-    position: absolute !important;
-    top: 0;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
+    @include screen-reader-only();
   }
 }
