@@ -14,8 +14,19 @@ import { ClrStepDescription } from './step-description';
 import { ClrStepButton } from './step-button';
 import { ClrStepper } from './stepper';
 import { ClrStepContent } from './step-content';
+import { StepOompaLoompa } from './chocolate/step-oompa-loompa';
+import { StepperWillyWonka } from './chocolate/stepper-willy-wonka';
 
-const declarations = [ClrStepper, ClrStep, ClrStepTitle, ClrStepDescription, ClrStepContent, ClrStepButton];
+const declarations = [
+  ClrStepper,
+  ClrStep,
+  ClrStepTitle,
+  ClrStepDescription,
+  ClrStepContent,
+  ClrStepButton,
+  StepOompaLoompa,
+  StepperWillyWonka,
+];
 
 @NgModule({
   imports: [CommonModule, ClrIconModule],

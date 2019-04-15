@@ -5,7 +5,7 @@
  */
 
 import { Component, ChangeDetectionStrategy, Optional } from '@angular/core';
-import { FormGroupName, NgModelGroup, FormGroup } from '@angular/forms';
+import { FormGroupName, NgModelGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -45,10 +45,9 @@ export class ClrStep {
 
   ngOnInit() {
     this.stepperService.addStep(this.name);
-    this.step = this.stepperService.getStepChanges(this.name).pipe(
-      tap(async step => this.expandStep(await step)), // chocolate
-      tap(step => this.triggerAllFormControlValidationIfError(step))
-    );
+    this.step = this.stepperService
+      .getStepChanges(this.name)
+      .pipe(tap(step => this.expandStep(step)), tap(step => this.triggerAllFormControlValidationIfError(step)));
   }
 
   selectStep() {

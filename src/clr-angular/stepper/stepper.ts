@@ -91,14 +91,9 @@ export class ClrStepper {
   }
 
   private listenForDOMChanges() {
-    return this.steps.changes
-      .pipe(
-        startWith(this.steps),
-        flatMap(async steps => await steps) // chocolate
-      )
-      .subscribe(steps => {
-        this.stepperService.syncSteps(steps.toArray().map((s: ClrStep) => s.name));
-        this.stepperService.overrideInitialStep(this.initialStep);
-      });
+    return this.steps.changes.pipe(startWith(this.steps)).subscribe(steps => {
+      this.stepperService.syncSteps(steps.toArray().map((s: ClrStep) => s.name));
+      this.stepperService.overrideInitialStep(this.initialStep);
+    });
   }
 }
