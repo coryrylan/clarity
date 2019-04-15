@@ -20,7 +20,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormGroupDirective, NgForm } from '@angular/forms';
-import { startWith, filter, flatMap } from 'rxjs/operators';
+import { startWith, filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';

@@ -1,4 +1,4 @@
-<ng-container *ngIf="(step | async); let step">
+<ng-container *ngIf="step | async; let step">
   <div *ngIf="step.status !== StepStatus.Inactive" aria-live="assertive" class="clr-screen-reader-only">
     <ng-container *ngIf="step.status === StepStatus.Error">Please check step for errors.</ng-container>
     <ng-container *ngIf="step.status === StepStatus.Complete">Step completed.</ng-container>
