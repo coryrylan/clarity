@@ -7,6 +7,7 @@
 /*
   Todo Notes:
   - documentation
+  - additional test coverage
 */
 
 import {

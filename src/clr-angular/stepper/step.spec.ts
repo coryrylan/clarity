@@ -6,7 +6,7 @@
 
 import { Component, ViewChild } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
@@ -18,7 +18,7 @@ import { Step } from './models/step.model';
 import { StepStatus } from './enums/step-status.enum';
 
 describe('ClrStep', () => {
-  let fixture: ComponentFixture<any>;
+  let fixture: ComponentFixture<ReactiveFormsTestComponent>;
   const step1Id = 'groupName';
 
   beforeEach(() => {
@@ -98,6 +98,26 @@ describe('ClrStep', () => {
   });
 });
 
+describe('ClrStep Template Forms', () => {
+  let fixture: ComponentFixture<TemplateFormsTestComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TemplateFormsTestComponent],
+      providers: [{ provide: StepperService, useClass: MockStepperService }],
+      imports: [ClrStepperModule, FormsModule, NoopAnimationsModule],
+    });
+
+    fixture = TestBed.createComponent(TemplateFormsTestComponent);
+    fixture.detectChanges();
+  });
+
+  it('should use template forms to access form groups', () => {
+    expect(fixture.componentInstance.step.name).toBe('groupName');
+    fixture.componentInstance.step.ngOnInit();
+  });
+});
+
 @Component({
   template: `
     <form [formGroup]="form">
@@ -110,6 +130,19 @@ describe('ClrStep', () => {
 class ReactiveFormsTestComponent {
   @ViewChild(ClrStep) step: ClrStep;
   form = new FormGroup({ groupName: new FormGroup({}) });
+}
+
+@Component({
+  template: `
+    <form #testForm="ngForm">
+      <clr-step ngModelGroup="groupName">
+        test step
+      </clr-step>
+    </form>
+  `,
+})
+class TemplateFormsTestComponent {
+  @ViewChild(ClrStep) step: ClrStep;
 }
 
 class MockStepperService extends StepperService {
