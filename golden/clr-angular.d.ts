@@ -984,7 +984,7 @@ export declare class ClrStep {
     readonly formGroup: import("@angular/forms").FormGroup;
     readonly name: string;
     step: Observable<Step>;
-    constructor(formGroupName: FormGroupName, ngModelGroup: NgModelGroup, stepperService: StepperService, expand: Expand);
+    constructor(formGroupName: FormGroupName, ngModelGroup: NgModelGroup, stepperService: StepperService, ifExpandService: IfExpandService);
     collapseStep(step: Step): void;
     ngOnInit(): void;
     selectStep(): void;
