@@ -8,7 +8,7 @@ $clr-stepper-content-background-color: $clr-color-neutral-0 !default;
 $clr-stepper-header-background-color: $clr-color-neutral-50 !default;
 $clr-stepper-header-hover-background-color: $clr-color-neutral-200 !default;
 $clr-stepper-border-left-color: $clr-color-neutral-200 !default;
-$clr-stepper-responsive-breakpoint: map-get($grid-breakpoints, sm) !default;
+$clr-stepper-responsive-breakpoint: map-get($clr-grid-breakpoints, sm) !default;
 $clr-stepper-error-color: $clr-color-danger-800 !default;
 $clr-stepper-complete-color: $clr-color-success-500 !default;
 $clr-stepper-border-color: $clr-color-neutral-400 !default;

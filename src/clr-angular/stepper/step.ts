@@ -13,8 +13,8 @@ import { StepperService } from './providers/stepper.service';
 import { StepStatus } from './enums/step-status.enum';
 import { Step } from './models/step.model';
 import { stepAnimation } from './utils/animation';
-import { Expand } from './../utils/expand/providers/expand';
 import { triggerAllFormControlValidation } from '../utils/forms/validation';
+import { IfExpandService } from '../utils/conditional/if-expanded.service';
 
 @Component({
   selector: 'clr-step',
@@ -22,7 +22,7 @@ import { triggerAllFormControlValidation } from '../utils/forms/validation';
   host: { '[class.clr-step]': 'true' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: stepAnimation,
-  providers: [Expand],
+  providers: [IfExpandService],
 })
 export class ClrStep {
   step: Observable<Step>;
@@ -40,7 +40,7 @@ export class ClrStep {
     @Optional() private formGroupName: FormGroupName,
     @Optional() private ngModelGroup: NgModelGroup,
     private stepperService: StepperService,
-    private expand: Expand
+    private ifExpandService: IfExpandService
   ) {}
 
   ngOnInit() {
@@ -56,7 +56,7 @@ export class ClrStep {
 
   collapseStep(step: Step) {
     if (!step.open) {
-      this.expand.expanded = false;
+      this.ifExpandService.expanded = false;
     }
   }
 
@@ -68,7 +68,7 @@ export class ClrStep {
 
   private expandStep(step: Step) {
     if (step.open) {
-      this.expand.expanded = true;
+      this.ifExpandService.expanded = true;
     }
   }
 }

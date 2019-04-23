@@ -8,18 +8,18 @@ import { ChangeDetectorRef, Directive, Optional } from '@angular/core';
 
 import { OompaLoompa } from '../../utils/chocolate/oompa-loompa';
 import { StepperWillyWonka } from './stepper-willy-wonka';
-import { Expand } from '../../utils/expand/providers/expand';
+import { IfExpandService } from '../../utils/conditional/if-expanded.service';
 
 @Directive({ selector: 'clr-step-content, [clrStepButton]' })
 export class StepOompaLoompa extends OompaLoompa {
-  private expand: Expand;
+  private expand: IfExpandService;
 
-  constructor(cdr: ChangeDetectorRef, @Optional() willyWonka: StepperWillyWonka, expand: Expand) {
+  constructor(cdr: ChangeDetectorRef, @Optional() willyWonka: StepperWillyWonka, ifExpandService: IfExpandService) {
     if (!willyWonka) {
       throw new Error('clr-step should only be used inside of a clr-stepper');
     }
     super(cdr, willyWonka);
-    this.expand = expand;
+    this.expand = ifExpandService;
   }
 
   get flavor() {
