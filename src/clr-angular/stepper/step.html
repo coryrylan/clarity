@@ -12,7 +12,7 @@
     [class.clr-step-inactive]="step.status === StepStatus.Inactive"
     [class.clr-step-open]="step.open"
   >
-    <div class="clr-step-header">
+    <div class="clr-step-header" [class.clr-step-header-forms]="strategy == ClrStepperStrategy.Forms">
       <button
         type="button"
         class="clr-step-header-button"
@@ -20,7 +20,7 @@
         [id]="'clr-step-header-' + step.id + step.stepperId"
         [attr.aria-controls]="'clr-step-content-' + step.id + step.stepperId"
         [attr.aria-expanded]="step.open"
-        [disabled]="step.status !== StepStatus.Complete"
+        [disabled]="step.disabled"
       >
         <div class="clr-step-status">
           <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>

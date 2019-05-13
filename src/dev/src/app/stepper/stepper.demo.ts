@@ -13,6 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./stepper.demo.scss'],
 })
 export class StepperDemo {
+  stepOpen = true;
   showSecondStep = true;
   initialStep = 'contact';
   form: FormGroup = this.getReactiveForm();

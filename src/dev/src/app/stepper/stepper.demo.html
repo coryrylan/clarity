@@ -6,7 +6,47 @@
 
 <h1>Stepper</h1>
 
-<h2>Angular - Reactive Forms</h2>
+<h2>Angular - Simple Accordion</h2>
+
+<p>{{stepOpen}}</p>
+
+<clr-stepper>
+  <clr-step [(clrStepOpen)]="stepOpen">
+    <clr-step-title>Step 1</clr-step-title>
+    <clr-step-content>Content 1</clr-step-content>
+  </clr-step>
+
+  <clr-step>
+    <clr-step-title>Step 2</clr-step-title>
+    <clr-step-content>Content 2</clr-step-content>
+  </clr-step>
+
+  <clr-step>
+    <clr-step-title>Step 3</clr-step-title>
+    <clr-step-content>Content 3</clr-step-content>
+  </clr-step>
+</clr-stepper>
+
+<h2>Angular - Accordion, multiple open steps</h2>
+
+<clr-stepper clrMultiSteps="true">
+  <clr-step [clrStepOpen]="true">
+    <clr-step-title>Step 1</clr-step-title>
+    <clr-step-content>Content 1</clr-step-content>
+  </clr-step>
+
+  <clr-step>
+    <clr-step-title>Step 2</clr-step-title>
+    <clr-step-content>Content 2</clr-step-content>
+  </clr-step>
+
+  <clr-step [clrStepOpen]="true">
+    <clr-step-title>Step 3</clr-step-title>
+    <clr-step-content>Content 3</clr-step-content>
+  </clr-step>
+</clr-stepper>
+
+<h2>Angular - Stepper Reactive Forms</h2>
 
 <button (click)="form.reset()" class="btn">Reset Stepper</button>
 <button (click)="showSecondStep = !showSecondStep" class="btn">toggle second step</button>
@@ -69,7 +109,7 @@
   </clr-step>
 </form>
 
-<h2>Angular - Template Forms</h2>
+<h2>Angular - Stepper Template Forms</h2>
 
 <button (click)="contactForm.reset()" class="btn">Reset Stepper</button>
 <button (click)="showSecondStep = !showSecondStep" class="btn">toggle second step</button>

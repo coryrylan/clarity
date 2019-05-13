@@ -7,12 +7,19 @@
 import { StepStatus } from '../enums/step-status.enum';
 import { Step } from './step.model';
 
+export enum ClrStepperStrategy {
+  Default = 'default', // only one panel at a time
+  Multi = 'multi', // can have multiple panels open at a time
+  Forms = 'forms', // linear step progression for forms
+}
+
 let stepperCount = 0;
 
 export class StepCollection {
   private stepperCount = stepperCount++;
   private stepCount = 0;
   private _steps: { [id: number]: Step } = {};
+  private _strategy = ClrStepperStrategy.Default;
 
   get steps(): Step[] {
     return Object.keys(this._steps).map(id => this._steps[id]);
@@ -22,14 +29,28 @@ export class StepCollection {
     return this.steps.length && this.getNumberOfIncompleteSteps() === 0 && this.getNumberOfOpenSteps() === 0;
   }
 
+  get strategy(): ClrStepperStrategy {
+    return this._strategy;
+  }
+
+  setStrategy(strategy: ClrStepperStrategy) {
+    this._strategy = strategy;
+  }
+
   syncSteps(ids: string[]) {
     this.updateStepOrder(ids);
     this.removeOldSteps(ids);
   }
 
-  addStep(id: string) {
+  addStep(id: string, open = false) {
     const step = new Step(id, this.stepperCount);
-    step.open = this.stepCount++ === 0;
+    step.open = open;
+
+    if (this.strategy === ClrStepperStrategy.Forms) {
+      step.open = this.stepCount++ === 0;
+      step.disabled = true;
+    }
+
     this._steps[step.id] = step;
   }
 
@@ -48,7 +69,24 @@ export class StepCollection {
     });
   }
 
-  navigateToNextStep(currentStepId: string, currentStepValid: boolean) {
+  navigateToStep(stepId: string) {
+    const stepOpen = this._steps[stepId].open;
+
+    if (this.strategy === ClrStepperStrategy.Default) {
+      this.closeAllSteps();
+      this._steps[stepId].open = !stepOpen;
+    }
+
+    if (this.strategy === ClrStepperStrategy.Multi) {
+      this._steps[stepId].open = !stepOpen;
+    }
+
+    if (this.strategy === ClrStepperStrategy.Forms) {
+      this.navigateToPreviouslyCompletedStep(stepId);
+    }
+  }
+
+  navigateToNextStep(currentStepId: string, currentStepValid = true) {
     if (currentStepValid) {
       const nextStep = this.steps.find(s => s.index === this._steps[currentStepId].index + 1);
       this.completeStep(currentStepId);
@@ -62,12 +100,6 @@ export class StepCollection {
     } else {
       this._steps[currentStepId].status = StepStatus.Error;
       this.closeAllCompletedSteps();
-    }
-  }
-
-  navigateToPreviouslyCompletedStep(stepId: string) {
-    if (this._steps[stepId].status === StepStatus.Complete) {
-      this._steps[stepId].open = !this._steps[stepId].open;
     }
   }
 
@@ -92,6 +124,16 @@ export class StepCollection {
     });
   }
 
+  private closeAllSteps() {
+    this.steps.forEach(step => (this._steps[step.id].open = false));
+  }
+
+  private navigateToPreviouslyCompletedStep(stepId: string) {
+    if (this._steps[stepId].status === StepStatus.Complete) {
+      this._steps[stepId].open = !this._steps[stepId].open;
+    }
+  }
+
   private getNumberOfOpenSteps() {
     return this.steps.reduce((prev, next) => (next.open !== false ? prev + 1 : prev), 0);
   }
@@ -106,6 +148,7 @@ export class StepCollection {
 
   private completeStep(stepId: string) {
     this._steps[stepId].status = StepStatus.Complete;
+    this._steps[stepId].disabled = false;
     this._steps[stepId].open = false;
   }
 

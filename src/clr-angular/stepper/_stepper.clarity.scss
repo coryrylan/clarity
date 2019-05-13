@@ -45,7 +45,7 @@
 
   .clr-step-number {
     padding: 0 18px;
-    display: inline-block;
+    display: none;
 
     &::before {
       content: counter(a) '.';
@@ -72,13 +72,13 @@
   }
 
   .clr-step-status {
-    width: 75px;
+    width: 35px;
     display: inline-block;
     vertical-align: top;
   }
 
   .clr-step-title {
-    width: calc(100% - 75px);
+    width: calc(100% - 35px);
     max-width: 280px;
     display: inline-block;
   }
@@ -129,8 +129,23 @@
     margin-top: 24px;
   }
 
-  .clr-step-angle {
-    visibility: hidden;
+  // forms/stepper mode
+  .clr-step-header-forms {
+    .clr-step-angle {
+      visibility: hidden;
+    }
+
+    .clr-step-status {
+      width: 75px;
+    }
+
+    .clr-step-title {
+      width: calc(100% - 75px);
+    }
+
+    .clr-step-number {
+      display: inline-block;
+    }
   }
 
   .clr-step-error-icon,

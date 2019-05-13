@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ChangeDetectionStrategy, Optional } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Optional, Input, EventEmitter, Output } from '@angular/core';
 import { FormGroupName, NgModelGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -15,6 +15,9 @@ import { Step } from './models/step.model';
 import { stepAnimation } from './utils/animation';
 import { triggerAllFormControlValidation } from '../utils/forms/validation';
 import { IfExpandService } from '../utils/conditional/if-expanded.service';
+import { ClrStepperStrategy } from './models/step-collection.model';
+
+let stepCount = 0;
 
 @Component({
   selector: 'clr-step',
@@ -25,7 +28,12 @@ import { IfExpandService } from '../utils/conditional/if-expanded.service';
   providers: [IfExpandService],
 })
 export class ClrStep {
+  @Input('name') defaultName = `${stepCount++}`;
+  @Input('clrStepOpen') stepOpen = false;
+  @Output('clrStepOpenChange') stepOpenChange = new EventEmitter<boolean>();
+
   step: Observable<Step>;
+  ClrStepperStrategy = ClrStepperStrategy;
   readonly StepStatus = StepStatus;
 
   get formGroup() {
@@ -33,7 +41,17 @@ export class ClrStep {
   }
 
   get name() {
-    return this.formGroupName ? this.formGroupName.name : this.ngModelGroup.name;
+    if (this.formGroupName) {
+      return this.formGroupName.name;
+    } else if (this.ngModelGroup) {
+      return this.ngModelGroup.name;
+    } else {
+      return this.defaultName;
+    }
+  }
+
+  get strategy() {
+    return this.stepperService.strategy;
   }
 
   constructor(
@@ -44,31 +62,38 @@ export class ClrStep {
   ) {}
 
   ngOnInit() {
-    this.stepperService.addStep(this.name);
     this.step = this.stepperService
       .getStepChanges(this.name)
       .pipe(tap(step => this.expandStep(step)), tap(step => this.triggerAllFormControlValidationIfError(step)));
+
+    this.stepperService.addStep(this.name, this.stepOpen);
   }
 
   selectStep() {
-    this.stepperService.navigateToPreviouslyCompletedStep(this.name);
+    this.stepperService.navigateToStep(this.name);
   }
 
   collapseStep(step: Step) {
     if (!step.open) {
-      this.ifExpandService.expanded = false;
-    }
-  }
-
-  private triggerAllFormControlValidationIfError(step: Step) {
-    if (step.status === StepStatus.Error) {
-      triggerAllFormControlValidation(this.formGroup);
+      this.toggleStep(false);
     }
   }
 
   private expandStep(step: Step) {
     if (step.open) {
-      this.ifExpandService.expanded = true;
+      this.toggleStep(true);
+    }
+  }
+
+  private toggleStep(open: boolean) {
+    this.ifExpandService.expanded = open;
+    this.stepOpen = open;
+    this.stepOpenChange.emit(open);
+  }
+
+  private triggerAllFormControlValidationIfError(step: Step) {
+    if (step.status === StepStatus.Error) {
+      triggerAllFormControlValidation(this.formGroup);
     }
   }
 }

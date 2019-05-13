@@ -34,6 +34,7 @@ export class ClrStepButton {
 
   @HostListener('click')
   click() {
-    this.stepperService.navigateToNextStep(this.clrStep.name, this.clrStep.formGroup.valid);
+    const valid = this.clrStep.formGroup ? this.clrStep.formGroup.valid : true;
+    this.stepperService.navigateToNextStep(this.clrStep.name, valid);
   }
 }

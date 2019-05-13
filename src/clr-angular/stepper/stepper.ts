@@ -25,9 +25,10 @@ import { Subscription } from 'rxjs';
 
 import { StepperService } from './providers/stepper.service';
 import { ClrStep } from './step';
+import { ClrStepperStrategy } from './models/step-collection.model';
 
 @Component({
-  selector: 'form[clrStepper]',
+  selector: 'form[clrStepper], clr-stepper',
   template: `<ng-content></ng-content>`,
   host: { '[class.clr-stepper]': 'true' },
   providers: [StepperService],
@@ -35,6 +36,7 @@ import { ClrStep } from './step';
 })
 export class ClrStepper {
   @Input('clrInitialStep') initialStep: string;
+  @Input('clrMultiSteps') multiStep = false;
   @ContentChildren(ClrStep, { descendants: true })
   steps: QueryList<ClrStep>;
   subscriptions: Subscription[] = [];
@@ -47,9 +49,12 @@ export class ClrStepper {
   ) {}
 
   ngOnInit() {
-    this.form = this.formGroup ? this.formGroup : this.ngForm;
-    this.subscriptions.push(this.listenForStepsCompleted());
-    this.subscriptions.push(this.listenForFormResetChanges());
+    this.initializeStrategy();
+
+    if (this.stepperService.strategy === ClrStepperStrategy.Forms) {
+      this.subscriptions.push(this.listenForStepsCompleted());
+      this.subscriptions.push(this.listenForFormResetChanges());
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -64,6 +69,21 @@ export class ClrStepper {
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  private initializeStrategy() {
+    let strategy = ClrStepperStrategy.Default;
+    this.form = this.formGroup ? this.formGroup : this.ngForm;
+
+    if (this.form) {
+      strategy = ClrStepperStrategy.Forms;
+    }
+
+    if (this.multiStep) {
+      strategy = ClrStepperStrategy.Multi;
+    }
+
+    this.stepperService.setStrategy(strategy);
   }
 
   private listenForFormResetChanges() {

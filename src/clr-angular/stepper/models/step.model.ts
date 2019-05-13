@@ -11,5 +11,6 @@ export class Step {
   isLastStep = false;
   status = StepStatus.Inactive;
   open = false;
+  disabled = false;
   constructor(public id: string, public stepperId: number) {}
 }
