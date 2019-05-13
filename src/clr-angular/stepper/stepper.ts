@@ -28,15 +28,15 @@ import { ClrStep } from './step';
 import { ClrStepperStrategy } from './models/step-collection.model';
 
 @Component({
-  selector: 'form[clrStepper], clr-stepper',
+  selector: 'form[clrStepper], clr-stepper, clr-accordion',
   template: `<ng-content></ng-content>`,
   host: { '[class.clr-stepper]': 'true' },
   providers: [StepperService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClrStepper {
+  @Input('clrAccordionMultiPanel') multiPanel = false;
   @Input('clrInitialStep') initialStep: string;
-  @Input('clrMultiSteps') multiStep = false;
   @ContentChildren(ClrStep, { descendants: true })
   steps: QueryList<ClrStep>;
   subscriptions: Subscription[] = [];
@@ -79,7 +79,7 @@ export class ClrStepper {
       strategy = ClrStepperStrategy.Forms;
     }
 
-    if (this.multiStep) {
+    if (this.multiPanel) {
       strategy = ClrStepperStrategy.Multi;
     }
 

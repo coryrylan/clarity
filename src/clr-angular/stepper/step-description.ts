@@ -7,7 +7,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'clr-step-description',
+  selector: 'clr-step-description, clr-accordion-description',
   template: `<ng-content></ng-content>`,
   host: { '[class.clr-step-description]': 'true' },
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -28,9 +28,9 @@
           <clr-icon shape="exclamation-circle" class="clr-step-error-icon"></clr-icon>
           <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
         </div>
-        <ng-content select="clr-step-title"></ng-content>
+        <ng-content select="clr-step-title, clr-accordion-title"></ng-content>
       </button>
-      <ng-content select="clr-step-description"></ng-content>
+      <ng-content select="clr-step-description, clr-accordion-description"></ng-content>
     </div>
     <div
       @skipInitialRender

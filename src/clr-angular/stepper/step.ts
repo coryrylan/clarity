@@ -20,7 +20,7 @@ import { ClrStepperStrategy } from './models/step-collection.model';
 let stepCount = 0;
 
 @Component({
-  selector: 'clr-step',
+  selector: 'clr-step, clr-accordion-panel',
   templateUrl: './step.html',
   host: { '[class.clr-step]': 'true' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,8 +29,8 @@ let stepCount = 0;
 })
 export class ClrStep {
   @Input('name') defaultName = `${stepCount++}`;
-  @Input('clrStepOpen') stepOpen = false;
-  @Output('clrStepOpenChange') stepOpenChange = new EventEmitter<boolean>();
+  @Input('clrAccordionPanelOpen') stepOpen = false;
+  @Output('clrAccordionPanelOpenChange') stepOpenChange = new EventEmitter<boolean>();
 
   step: Observable<Step>;
   ClrStepperStrategy = ClrStepperStrategy;
