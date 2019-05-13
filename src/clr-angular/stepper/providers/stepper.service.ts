@@ -30,7 +30,7 @@ export class StepperService {
     return this.steps.pipe(map(steps => steps.find(s => s.id === stepId)));
   }
 
-  addStep(stepId: string, open: boolean) {
+  addStep(stepId: string, open = false) {
     this.stepCollection.addStep(stepId, open);
     this.emitUpdatedSteps();
   }

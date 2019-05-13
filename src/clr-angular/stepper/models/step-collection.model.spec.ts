@@ -4,7 +4,7 @@
 * The full license information can be found in LICENSE in the root directory of this project.
 */
 
-import { StepCollection } from './step-collection.model';
+import { StepCollection, ClrStepperStrategy } from './step-collection.model';
 import { StepStatus } from '../enums/step-status.enum';
 
 describe('StepCollection Model', () => {
@@ -15,6 +15,7 @@ describe('StepCollection Model', () => {
 
   beforeEach(() => {
     stepCollection = new StepCollection();
+    stepCollection.setStrategy(ClrStepperStrategy.Forms);
     stepCollection.addStep(step1Id);
     stepCollection.addStep(step2Id);
     stepCollection.addStep(step3Id);
@@ -67,11 +68,11 @@ describe('StepCollection Model', () => {
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].open).toBe(true);
 
-    stepCollection.navigateToPreviouslyCompletedStep(step1Id);
+    stepCollection.navigateToStep(step1Id);
     expect(stepCollection.steps[0].open).toBe(true);
     expect(stepCollection.steps[1].open).toBe(true);
 
-    stepCollection.navigateToPreviouslyCompletedStep(step1Id);
+    stepCollection.navigateToStep(step1Id);
     expect(stepCollection.steps[0].open).toBe(false);
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[1].open).toBe(true);
@@ -93,7 +94,6 @@ describe('StepCollection Model', () => {
     expect(stepCollection.steps[1].status).toBe(StepStatus.Complete);
     expect(stepCollection.steps[2].open).toBe(true);
 
-    stepCollection.navigateToPreviouslyCompletedStep(step1Id);
     stepCollection.navigateToNextStep(step1Id, true);
 
     expect(stepCollection.steps[0].status).toBe(StepStatus.Complete);

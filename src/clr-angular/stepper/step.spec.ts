@@ -32,25 +32,6 @@ describe('ClrStep', () => {
     fixture.detectChanges();
   });
 
-  it('should navigate to previously completed steps', () => {
-    const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);
-    const headerButton = fixture.nativeElement.querySelector('.clr-step-header-button');
-    const mockStep = new Step(step1Id, 0);
-    spyOn(stepperService, 'navigateToPreviouslyCompletedStep');
-
-    headerButton.click();
-    fixture.detectChanges();
-    expect(stepperService.navigateToPreviouslyCompletedStep).not.toHaveBeenCalled();
-
-    mockStep.status = StepStatus.Complete;
-    (stepperService as MockStepperService).step.next(mockStep);
-    fixture.detectChanges();
-
-    headerButton.click();
-    fixture.detectChanges();
-    expect(stepperService.navigateToPreviouslyCompletedStep).toHaveBeenCalled();
-  });
-
   it('should show the appropriate aria-live message', () => {
     const mockStep = new Step(step1Id, 0);
     const stepperService = fixture.debugElement.query(By.directive(ClrStep)).injector.get(StepperService);

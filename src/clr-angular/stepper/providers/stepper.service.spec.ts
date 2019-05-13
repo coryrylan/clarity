@@ -7,6 +7,7 @@
 import { StepperService } from './stepper.service';
 import { take } from 'rxjs/operators';
 import { StepStatus } from '../enums/step-status.enum';
+import { ClrStepperStrategy } from '../models/step-collection.model';
 
 describe('StepperService', () => {
   let stepperService: StepperService;
@@ -15,6 +16,7 @@ describe('StepperService', () => {
 
   beforeEach(() => {
     stepperService = new StepperService();
+    stepperService.setStrategy(ClrStepperStrategy.Forms);
   });
 
   it('should allow a step to be added', () => {
@@ -49,7 +51,7 @@ describe('StepperService', () => {
     stepperService.addStep(step1Id);
     stepperService.addStep(step2Id);
     stepperService.navigateToNextStep(step2Id, true);
-    stepperService.navigateToPreviouslyCompletedStep(step2Id);
+    stepperService.navigateToStep(step2Id);
     stepperService.steps.pipe(take(1)).subscribe(steps => expect(steps[0].open).toBe(true));
   });
 
