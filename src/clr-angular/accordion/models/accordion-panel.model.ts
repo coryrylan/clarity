@@ -8,7 +8,6 @@ import { AccordionStatus } from '../enums/accordion-status.enum';
 
 export class AccordionPanelModel {
   index: number = null;
-  isLastPanel = false;
   status = AccordionStatus.Inactive;
   open = false;
   disabled = false;

@@ -6,7 +6,7 @@
 
 <h1>Accordion</h1>
 
-<h2>Angular - Simple Accordion</h2>
+<h2>Angular - simple accordion</h2>
 
 <clr-accordion>
   <clr-accordion-panel>
@@ -26,7 +26,7 @@
 </clr-accordion>
 
 
-<h2>Angular - open panel (first panel {{stepOpen ? 'open' : 'closed'}})</h2>
+<h2>Angular - open panel</h2>
 
 <clr-accordion>
   <clr-accordion-panel [(clrAccordionPanelOpen)]="stepOpen">
@@ -45,24 +45,29 @@
   </clr-accordion-panel>
 </clr-accordion>
 
-<h2>Angular - multiple open panels</h2>
+
+<h2>Angular - complex multi panel example (first panel {{stepOpen ? 'open' : 'closed'}})</h2>
 
 <clr-accordion clrAccordionMultiPanel="true">
-  <clr-accordion-panel [clrAccordionPanelOpen]="true">
+  <clr-accordion-panel [(clrAccordionPanelOpen)]="stepOpen">
     <clr-accordion-title>Step 1</clr-accordion-title>
-    <clr-accordion-content>Content 1</clr-accordion-content>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-accordion-content *clrIfExpanded>Content 1</clr-accordion-content>
+  </clr-accordion-panel>
+
+  <clr-accordion-panel [clrAccordionPanelOpen]="true">
+    <clr-accordion-title>Step 2</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-accordion-content *clrIfExpanded>Content 2</clr-accordion-content>
   </clr-accordion-panel>
 
   <clr-accordion-panel>
-    <clr-accordion-title>Step 2</clr-accordion-title>
-    <clr-accordion-content>Content 2</clr-accordion-content>
-  </clr-accordion-panel>
-
-  <clr-accordion-panel [clrAccordionPanelOpen]="true">
     <clr-accordion-title>Step 3</clr-accordion-title>
-    <clr-accordion-content>Content 3</clr-accordion-content>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-accordion-content *clrIfExpanded>Content 3</clr-accordion-content>
   </clr-accordion-panel>
 </clr-accordion>
+
 
 <h2>Static HTML/CSS - Accordion</h2>
 

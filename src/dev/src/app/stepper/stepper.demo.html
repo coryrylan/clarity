@@ -13,8 +13,8 @@
 
 <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
   <clr-step formGroupName="name">
-    <clr-accordion-title>Legal Name</clr-accordion-title>
-    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-step-title>Legal Name</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
     <clr-step-content *clrIfExpanded>
       <clr-input-container>
         <label>First Name</label>
@@ -33,8 +33,8 @@
   </clr-step>
 
   <clr-step *ngIf="showSecondStep" formGroupName="contact">
-    <clr-accordion-title>Contact Information</clr-accordion-title>
-    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-step-title>Contact Information</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
     <clr-step-content *clrIfExpanded>
       <clr-input-container>
         <label>Email</label>
@@ -51,8 +51,8 @@
   </clr-step>
 
   <clr-step formGroupName="password">
-    <clr-accordion-title>Password</clr-accordion-title>
-    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-step-title>Password</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
     <clr-step-content *clrIfExpanded>
       <clr-password-container>
         <label>Password</label>
@@ -76,8 +76,8 @@
 
 <form clrStepper #contactForm="ngForm" (ngSubmit)="templateFormSubmit(contactForm.value)">
   <clr-step ngModelGroup="name">
-    <clr-accordion-title>Legal Name</clr-accordion-title>
-    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-step-title>Legal Name</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
     <clr-step-content>
       <clr-input-container>
         <label>First Name</label>
@@ -94,8 +94,8 @@
   </clr-step>
 
   <clr-step *ngIf="showSecondStep" ngModelGroup="contact">
-    <clr-accordion-title>Contact Information</clr-accordion-title>
-    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-step-title>Contact Information</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
     <clr-step-content>
       <clr-input-container>
         <label>Email</label>
@@ -112,8 +112,8 @@
   </clr-step>
 
   <clr-step ngModelGroup="password">
-    <clr-accordion-title>Password</clr-accordion-title>
-    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-step-title>Password</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
     <clr-step-content>
       <clr-password-container>
         <label>Password</label>
@@ -136,8 +136,8 @@
 
 <form clrStepper [formGroup]="partiallyCompletedForm" (ngSubmit)="submit()" [clrInitialStep]="initialStep">
   <clr-step formGroupName="name">
-    <clr-accordion-title>Legal Name</clr-accordion-title>
-    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-step-title>Legal Name</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
     <clr-step-content *clrIfExpanded>
       <clr-input-container>
         <label>First Name</label>
@@ -156,8 +156,8 @@
   </clr-step>
 
   <clr-step *ngIf="showSecondStep" formGroupName="contact">
-    <clr-accordion-title>Contact Information</clr-accordion-title>
-    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-step-title>Contact Information</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
     <clr-step-content *clrIfExpanded>
       <clr-input-container>
         <label>Email</label>
@@ -174,8 +174,8 @@
   </clr-step>
 
   <clr-step formGroupName="password">
-    <clr-accordion-title>Password</clr-accordion-title>
-    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
+    <clr-step-title>Password</clr-step-title>
+    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
     <clr-step-content *clrIfExpanded>
       <clr-password-container>
         <label>Password</label>
