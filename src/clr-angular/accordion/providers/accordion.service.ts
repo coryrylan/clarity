@@ -51,8 +51,8 @@ export class AccordionService {
     this.emitUpdatedPanels();
   }
 
-  overrideInitialPanel(stepId: string) {
-    this.accordionModel.overrideInitialPanel(stepId);
+  overrideInitialPanel(panelId: string) {
+    this.accordionModel.overrideInitialPanel(panelId);
     this.emitUpdatedPanels();
   }
 

@@ -52,7 +52,7 @@ export class ClrAccordion {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.panels && changes.initialStep.currentValue !== changes.initialStep.previousValue) {
+    if (changes.initialPanel && changes.initialPanel.currentValue !== changes.initialPanel.previousValue) {
       this.accordionService.overrideInitialPanel(this.initialPanel);
     }
   }

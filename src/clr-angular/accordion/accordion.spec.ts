@@ -34,7 +34,6 @@ describe('ClrStepper', () => {
   it('should project panels', () => {
     const text = fixture.nativeElement.textContent.trim();
     expect(text).toContain('Group 1');
-    expect(text).toContain('Group 2');
   });
 
   it('should reset panels when form is reset', () => {
