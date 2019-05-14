@@ -10,6 +10,7 @@ import { LandingComponent } from './landing.component';
 
 export const APP_ROUTES: Routes = [
   { path: '', component: LandingComponent },
+  { path: 'accordion', loadChildren: 'src/app/accordion/accordion.demo.module#AccordionDemoModule' },
   { path: 'alert', loadChildren: 'src/app/alert/alert.demo.module#AlertDemoModule' },
   { path: 'badges', loadChildren: 'src/app/badges/badges.demo.module#BadgesDemoModule' },
   { path: 'button-group', loadChildren: 'src/app/button-group/button-group.demo.module#ButtonGroupDemoModule' },

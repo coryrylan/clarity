@@ -1,0 +1,67 @@
+<!--
+  ~ Copyright (c) 2016-2019 VMware, Inc. All Rights Reserved.
+  ~ This software is released under MIT license.
+  ~ The full license information can be found in LICENSE in the root directory of this project.
+  -->
+
+<h1>Accordion</h1>
+
+<h2>Simple Accordion</h2>
+
+<clr-accordion>
+  <clr-accordion-panel>
+    <clr-accordion-title>Step 1</clr-accordion-title>
+    <clr-accordion-content>Content 1</clr-accordion-content>
+  </clr-accordion-panel>
+
+  <clr-accordion-panel>
+    <clr-accordion-title>Step 2</clr-accordion-title>
+    <clr-accordion-content>Content 2</clr-accordion-content>
+  </clr-accordion-panel>
+
+  <clr-accordion-panel>
+    <clr-accordion-title>Step 3</clr-accordion-title>
+    <clr-accordion-content>Content 3</clr-accordion-content>
+  </clr-accordion-panel>
+</clr-accordion>
+
+
+<h2>Angular - Accordion Open Panel</h2>
+
+<p>{{stepOpen}}</p>
+
+<clr-accordion>
+  <clr-accordion-panel [(clrAccordionPanelOpen)]="stepOpen">
+    <clr-accordion-title>Step 1</clr-accordion-title>
+    <clr-accordion-content>Content 1</clr-accordion-content>
+  </clr-accordion-panel>
+
+  <clr-accordion-panel>
+    <clr-accordion-title>Step 2</clr-accordion-title>
+    <clr-accordion-content>Content 2</clr-accordion-content>
+  </clr-accordion-panel>
+
+  <clr-accordion-panel>
+    <clr-accordion-title>Step 3</clr-accordion-title>
+    <clr-accordion-content>Content 3</clr-accordion-content>
+  </clr-accordion-panel>
+</clr-accordion>
+
+<h2>Angular - Accordion, multiple open panels</h2>
+
+<clr-accordion clrAccordionMultiPanel="true">
+  <clr-accordion-panel [clrAccordionPanelOpen]="true">
+    <clr-accordion-title>Step 1</clr-accordion-title>
+    <clr-accordion-content>Content 1</clr-accordion-content>
+  </clr-accordion-panel>
+
+  <clr-accordion-panel>
+    <clr-accordion-title>Step 2</clr-accordion-title>
+    <clr-accordion-content>Content 2</clr-accordion-content>
+  </clr-accordion-panel>
+
+  <clr-accordion-panel [clrAccordionPanelOpen]="true">
+    <clr-accordion-title>Step 3</clr-accordion-title>
+    <clr-accordion-content>Content 3</clr-accordion-content>
+  </clr-accordion-panel>
+</clr-accordion>
