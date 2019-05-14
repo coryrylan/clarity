@@ -10,9 +10,9 @@ import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-import { AccordionService } from './providers/accordion.service';
-import { ClrAccordionModule } from './accordion.module';
-import { ClrAccordion } from './accordion';
+import { AccordionService } from './../providers/accordion.service';
+import { ClrAccordionModule } from './../accordion.module';
+import { ClrStepper } from './stepper';
 
 describe('ClrStepper', () => {
   let fixture: ComponentFixture<any>;
@@ -28,7 +28,7 @@ describe('ClrStepper', () => {
     fixture = TestBed.createComponent(ReactiveFormsTestComponent);
     fixture.detectChanges();
     testComponent = fixture.componentInstance;
-    accordionService = fixture.debugElement.query(By.directive(ClrAccordion)).injector.get(AccordionService);
+    accordionService = fixture.debugElement.query(By.directive(ClrStepper)).injector.get(AccordionService);
   });
 
   it('should project panels', () => {
@@ -86,7 +86,7 @@ describe('ClrStepper Template Forms', () => {
     fixture = TestBed.createComponent(TemplateFormsTestComponent);
     fixture.detectChanges();
     testComponent = fixture.componentInstance;
-    stepperService = fixture.debugElement.query(By.directive(ClrAccordion)).injector.get(AccordionService);
+    stepperService = fixture.debugElement.query(By.directive(ClrStepper)).injector.get(AccordionService);
   });
 
   it(
@@ -121,7 +121,7 @@ describe('ClrStepper Template Forms', () => {
   `,
 })
 class ReactiveFormsTestComponent {
-  @ViewChild(ClrAccordion) stepper: ClrAccordion;
+  @ViewChild(ClrStepper) stepper: ClrStepper;
   showSecondStep = true;
   initialStep = '';
   form = new FormGroup({
@@ -145,7 +145,7 @@ class ReactiveFormsTestComponent {
   `,
 })
 class TemplateFormsTestComponent {
-  @ViewChild(ClrAccordion) stepper: ClrAccordion;
+  @ViewChild(ClrStepper) stepper: ClrStepper;
   @ViewChild('testForm') form: FormGroup;
   showSecondStep = true;
   submit() {}

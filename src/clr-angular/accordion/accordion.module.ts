@@ -16,6 +16,7 @@ import { ClrAccordion } from './accordion';
 import { ClrAccordionContent } from './accordion-content';
 import { AccordionOompaLoompa } from './chocolate/accordion-oompa-loompa';
 import { AccordionWillyWonka } from './chocolate/accordion-willy-wonka';
+import { ClrStepper } from './stepper/stepper';
 
 const declarations = [
   ClrAccordion,
@@ -23,6 +24,7 @@ const declarations = [
   ClrAccordionTitle,
   ClrAccordionDescription,
   ClrAccordionContent,
+  ClrStepper,
   ClrStepButton,
   AccordionOompaLoompa,
   AccordionWillyWonka,

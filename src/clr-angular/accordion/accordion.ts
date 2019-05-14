@@ -4,17 +4,8 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import {
-  Component,
-  ContentChildren,
-  QueryList,
-  Optional,
-  ChangeDetectionStrategy,
-  Input,
-  SimpleChanges,
-} from '@angular/core';
-import { FormGroupDirective, NgForm } from '@angular/forms';
-import { startWith, filter } from 'rxjs/operators';
+import { Component, ContentChildren, QueryList, ChangeDetectionStrategy, Input } from '@angular/core';
+import { startWith } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { AccordionService } from './providers/accordion.service';
@@ -22,7 +13,7 @@ import { ClrAccordionPanel } from './accordion-panel';
 import { ClrAccordionStrategy } from './enums/accordion-strategy.enum';
 
 @Component({
-  selector: 'clr-accordion, form[clrStepper]',
+  selector: 'clr-accordion',
   template: `<ng-content></ng-content>`,
   host: { '[class.clr-accordion]': 'true' },
   providers: [AccordionService],
@@ -30,30 +21,17 @@ import { ClrAccordionStrategy } from './enums/accordion-strategy.enum';
 })
 export class ClrAccordion {
   @Input('clrAccordionMultiPanel') multiPanel = false;
-  @Input('clrInitialStep') initialPanel: string;
   @ContentChildren(ClrAccordionPanel, { descendants: true })
   panels: QueryList<ClrAccordionPanel>;
   subscriptions: Subscription[] = [];
-  form: FormGroupDirective | NgForm;
 
-  constructor(
-    @Optional() private formGroup: FormGroupDirective,
-    @Optional() private ngForm: NgForm,
-    private accordionService: AccordionService
-  ) {}
+  constructor(private accordionService: AccordionService) {}
 
   ngOnInit() {
-    this.initializeStrategy();
-
-    if (this.accordionService.strategy === ClrAccordionStrategy.Forms) {
-      this.subscriptions.push(this.listenForPanelsCompleted());
-      this.subscriptions.push(this.listenForFormResetChanges());
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.initialPanel && changes.initialPanel.currentValue !== changes.initialPanel.previousValue) {
-      this.accordionService.overrideInitialPanel(this.initialPanel);
+    if (this.multiPanel) {
+      this.accordionService.setStrategy(ClrAccordionStrategy.Multi);
+    } else {
+      this.accordionService.setStrategy(ClrAccordionStrategy.Default);
     }
   }
 
@@ -65,49 +43,9 @@ export class ClrAccordion {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  private initializeStrategy() {
-    let strategy = ClrAccordionStrategy.Default;
-    this.form = this.formGroup ? this.formGroup : this.ngForm;
-
-    if (this.form) {
-      strategy = ClrAccordionStrategy.Forms;
-    }
-
-    if (this.multiPanel) {
-      strategy = ClrAccordionStrategy.Multi;
-    }
-
-    this.accordionService.setStrategy(strategy);
-  }
-
-  private listenForFormResetChanges() {
-    return this.form.statusChanges
-      .pipe(filter(() => this.form.pristine)) // https://github.com/angular/angular/issues/10887
-      .subscribe(() => this.accordionService.resetPanels());
-  }
-
-  private listenForPanelsCompleted() {
-    return this.accordionService.panelsCompleted.subscribe(panelsCompleted => {
-      if (panelsCompleted && this.form.valid) {
-        this.form.ngSubmit.emit();
-      } else if (!this.form.valid && this.form.touched) {
-        this.setPanelsWithFormErrors();
-      }
-    });
-  }
-
-  private setPanelsWithFormErrors() {
-    const panelsWithErrors = this.panels.reduce(
-      (panels, panel) => (panel.formGroup.invalid ? [...panels, panel.name] : panels),
-      []
-    );
-    this.accordionService.setPanelsWithErrors(panelsWithErrors);
-  }
-
   private listenForDOMChanges() {
-    return this.panels.changes.pipe(startWith(this.panels)).subscribe(panels => {
-      this.accordionService.syncPanels(panels.toArray().map((p: ClrAccordionPanel) => p.name));
-      this.accordionService.overrideInitialPanel(this.initialPanel);
-    });
+    return this.panels.changes
+      .pipe(startWith(this.panels))
+      .subscribe(panels => this.accordionService.syncPanels(panels.toArray().map((p: ClrAccordionPanel) => p.name)));
   }
 }

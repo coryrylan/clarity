@@ -10,7 +10,7 @@ import { OompaLoompa } from '../../utils/chocolate/oompa-loompa';
 import { AccordionWillyWonka } from './accordion-willy-wonka';
 import { IfExpandService } from '../../utils/conditional/if-expanded.service';
 
-@Directive({ selector: 'clr-step-content, [clrStepButton]' })
+@Directive({ selector: 'clr-accordion-content, clr-step-content, [clrStepButton]' })
 export class AccordionOompaLoompa extends OompaLoompa {
   private expand: IfExpandService;
 
