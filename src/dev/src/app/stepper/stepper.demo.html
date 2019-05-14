@@ -53,8 +53,8 @@
 
 <form clrStepper [formGroup]="form" (ngSubmit)="submit()">
   <clr-step formGroupName="name">
-    <clr-step-title>Legal Name</clr-step-title>
-    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-accordion-title>Legal Name</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
     <clr-step-content *clrIfExpanded>
       <clr-input-container>
         <label>First Name</label>
@@ -73,8 +73,8 @@
   </clr-step>
 
   <clr-step *ngIf="showSecondStep" formGroupName="contact">
-    <clr-step-title>Contact Information</clr-step-title>
-    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-accordion-title>Contact Information</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
     <clr-step-content *clrIfExpanded>
       <clr-input-container>
         <label>Email</label>
@@ -91,8 +91,8 @@
   </clr-step>
 
   <clr-step formGroupName="password">
-    <clr-step-title>Password</clr-step-title>
-    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-accordion-title>Password</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
     <clr-step-content *clrIfExpanded>
       <clr-password-container>
         <label>Password</label>
@@ -116,8 +116,8 @@
 
 <form clrStepper #contactForm="ngForm" (ngSubmit)="templateFormSubmit(contactForm.value)">
   <clr-step ngModelGroup="name">
-    <clr-step-title>Legal Name</clr-step-title>
-    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-accordion-title>Legal Name</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
     <clr-step-content>
       <clr-input-container>
         <label>First Name</label>
@@ -134,8 +134,8 @@
   </clr-step>
 
   <clr-step *ngIf="showSecondStep" ngModelGroup="contact">
-    <clr-step-title>Contact Information</clr-step-title>
-    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-accordion-title>Contact Information</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
     <clr-step-content>
       <clr-input-container>
         <label>Email</label>
@@ -152,8 +152,8 @@
   </clr-step>
 
   <clr-step ngModelGroup="password">
-    <clr-step-title>Password</clr-step-title>
-    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-accordion-title>Password</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
     <clr-step-content>
       <clr-password-container>
         <label>Password</label>
@@ -176,8 +176,8 @@
 
 <form clrStepper [formGroup]="partiallyCompletedForm" (ngSubmit)="submit()" [clrInitialStep]="initialStep">
   <clr-step formGroupName="name">
-    <clr-step-title>Legal Name</clr-step-title>
-    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-accordion-title>Legal Name</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
     <clr-step-content *clrIfExpanded>
       <clr-input-container>
         <label>First Name</label>
@@ -196,8 +196,8 @@
   </clr-step>
 
   <clr-step *ngIf="showSecondStep" formGroupName="contact">
-    <clr-step-title>Contact Information</clr-step-title>
-    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-accordion-title>Contact Information</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
     <clr-step-content *clrIfExpanded>
       <clr-input-container>
         <label>Email</label>
@@ -214,8 +214,8 @@
   </clr-step>
 
   <clr-step formGroupName="password">
-    <clr-step-title>Password</clr-step-title>
-    <clr-step-description>The full license information can be found in LICENSE in the root directory.</clr-step-description>
+    <clr-accordion-title>Password</clr-accordion-title>
+    <clr-accordion-description>The full license information can be found in LICENSE in the root directory.</clr-accordion-description>
     <clr-step-content *clrIfExpanded>
       <clr-password-container>
         <label>Password</label>
@@ -235,53 +235,53 @@
 <h2>Static Stepper States</h2>
 
 <h3>First Step</h3>
-<form class="clr-stepper">
-  <div role="group" aria-labelledby="clr-step-header-1" class="clr-step clr-step-open">
-    <div class="clr-step-header" id="clr-step-header-1">
-      <button aria-controls="clr-step-content-1" aria-expanded="true" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <div class="clr-step-number"></div>
+<form class="clr-accordion">
+  <div role="group" aria-labelledby="clr-accordion-header-1" class="clr-accordion-panel clr-accordion-panel-open">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-1">
+      <button aria-controls="clr-accordion-content-1" aria-expanded="true" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <div class="clr-accordion-number"></div>
         </div>
-        <div class="clr-step-title">Active Step</div>
+        <div class="clr-accordion-title">Active Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-1" aria-hidden="false">
+    <div class="clr-accordion-content" id="clr-accordion-content-1" aria-hidden="false">
       Step content goes here.
       <button class="btn clr-step-button">Next</button>
     </div>
   </div>
 
-  <div role="group" aria-labelledby="clr-step-header-2" class="clr-step">
-    <div class="clr-step-header" id="clr-step-header-2">
-      <button aria-controls="clr-step-content-2" aria-expanded="false" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <div class="clr-step-number"></div>
+  <div role="group" aria-labelledby="clr-accordion-header-2" class="clr-accordion-panel">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-2">
+      <button aria-controls="clr-accordion-content-2" aria-expanded="false" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <div class="clr-accordion-number"></div>
         </div>
-        <div class="clr-step-title">Future Step</div>
+        <div class="clr-accordion-title">Future Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-2" aria-hidden="true">
+    <div class="clr-accordion-content" id="clr-accordion-content-2" aria-hidden="true">
       Step content goes here.
       <button class="btn clr-step-button">Next</button>
     </div>
   </div>
 
-  <div role="group" aria-labelledby="clr-step-header-3" class="clr-step">
-    <div class="clr-step-header" id="clr-step-header-3">
-      <button aria-controls="clr-step-content-3" aria-expanded="false" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <div class="clr-step-number"></div>
+  <div role="group" aria-labelledby="clr-accordion-header-3" class="clr-accordion-panel">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-3">
+      <button aria-controls="clr-accordion-content-3" aria-expanded="false" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <div class="clr-accordion-number"></div>
         </div>
-        <div class="clr-step-title">Future Step</div>
+        <div class="clr-accordion-title">Future Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-3" aria-hidden="true">
+    <div class="clr-accordion-content" id="clr-accordion-content-3" aria-hidden="true">
       Step content goes here.
       <button class="btn btn-primary clr-step-button">Complete</button>
     </div>
@@ -289,53 +289,53 @@
 </form>
 
 <h3>Middle Step</h3>
-<form class="clr-stepper">
-  <div role="group" aria-labelledby="clr-step-header-4" class="clr-step clr-step-complete">
-    <div class="clr-step-header" id="clr-step-header-4">
-      <button aria-controls="clr-step-content-4" aria-expanded="true" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
+<form class="clr-accordion">
+  <div role="group" aria-labelledby="clr-accordion-header-4" class="clr-accordion-panel clr-accordion-panel-complete">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-4">
+      <button aria-controls="clr-accordion-content-4" aria-expanded="true" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-accordion-complete-icon"></clr-icon>
         </div>
-        <div class="clr-step-title">Active Step</div>
+        <div class="clr-accordion-title">Active Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-4" aria-hidden="false">
+    <div class="clr-accordion-content" id="clr-accordion-content-4" aria-hidden="false">
       Step content goes here.
       <button class="btn clr-step-button">Next</button>
     </div>
   </div>
 
-  <div role="group" aria-labelledby="clr-step-header-5" class="clr-step clr-step-open">
-    <div class="clr-step-header" id="clr-step-header-5">
-      <button aria-controls="clr-step-content-5" aria-expanded="false" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <div class="clr-step-number"></div>
+  <div role="group" aria-labelledby="clr-accordion-header-5" class="clr-accordion-panel clr-accordion-panel-open">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-5">
+      <button aria-controls="clr-accordion-content-5" aria-expanded="false" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <div class="clr-accordion-number"></div>
         </div>
-        <div class="clr-step-title">Future Step</div>
+        <div class="clr-accordion-title">Future Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-5" aria-hidden="true">
+    <div class="clr-accordion-content" id="clr-accordion-content-5" aria-hidden="true">
       Step content goes here.
       <button class="btn clr-step-button">Next</button>
     </div>
   </div>
 
-  <div role="group" aria-labelledby="clr-step-header-6" class="clr-step">
-    <div class="clr-step-header" id="clr-step-header-6">
-      <button aria-controls="clr-step-content-6" aria-expanded="false" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <div class="clr-step-number"></div>
+  <div role="group" aria-labelledby="clr-accordion-header-6" class="clr-step">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-6">
+      <button aria-controls="clr-accordion-content-6" aria-expanded="false" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <div class="clr-accordion-number"></div>
         </div>
-        <div class="clr-step-title">Future Step</div>
+        <div class="clr-accordion-title">Future Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-6" aria-hidden="true">
+    <div class="clr-accordion-content" id="clr-accordion-content-6" aria-hidden="true">
       Step content goes here.
       <button class="btn btn-primary clr-step-button">Complete</button>
     </div>
@@ -343,53 +343,53 @@
 </form>
 
 <h3>Last Step</h3>
-<form class="clr-stepper">
-  <div role="group" aria-labelledby="clr-step-header-7" class="clr-step clr-step-complete">
-    <div class="clr-step-header" id="clr-step-header-7">
-      <button aria-controls="clr-step-content-7" aria-expanded="true" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
+<form class="clr-accordion">
+  <div role="group" aria-labelledby="clr-accordion-header-7" class="clr-accordion-panel clr-accordion-panel-complete">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-7">
+      <button aria-controls="clr-accordion-content-7" aria-expanded="true" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-accordion-complete-icon"></clr-icon>
         </div>
-        <div class="clr-step-title">Active Step</div>
+        <div class="clr-accordion-title">Active Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-7" aria-hidden="false">
+    <div class="clr-accordion-content" id="clr-accordion-content-7" aria-hidden="false">
       Step content goes here.
       <button class="btn clr-step-button">Next</button>
     </div>
   </div>
 
-  <div role="group" aria-labelledby="clr-step-header-8" class="clr-step clr-step-complete">
-    <div class="clr-step-header" id="clr-step-header-8">
-      <button aria-controls="clr-step-content-8" aria-expanded="false" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
+  <div role="group" aria-labelledby="clr-accordion-header-8" class="clr-accordion-panel clr-accordion-panel-complete">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-8">
+      <button aria-controls="clr-accordion-content-8" aria-expanded="false" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-accordion-complete-icon"></clr-icon>
         </div>
-        <div class="clr-step-title">Future Step</div>
+        <div class="clr-accordion-title">Future Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-8" aria-hidden="true">
+    <div class="clr-accordion-content" id="clr-accordion-content-8" aria-hidden="true">
       Step content goes here.
       <button class="btn clr-step-button">Next</button>
     </div>
   </div>
 
-  <div role="group" aria-labelledby="clr-step-header-9" class="clr-step clr-step-open">
-    <div class="clr-step-header" id="clr-step-header-9">
-      <button aria-controls="clr-step-content-9" aria-expanded="false" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <div class="clr-step-number"></div>
+  <div role="group" aria-labelledby="clr-accordion-header-9" class="clr-accordion-panel clr-accordion-panel-open">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-9">
+      <button aria-controls="clr-accordion-content-9" aria-expanded="false" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <div class="clr-accordion-number"></div>
         </div>
-        <div class="clr-step-title">Future Step</div>
+        <div class="clr-accordion-title">Future Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-9" aria-hidden="true">
+    <div class="clr-accordion-content" id="clr-accordion-content-9" aria-hidden="true">
       Step content goes here.
       <button class="btn btn-primary clr-step-button">Complete</button>
     </div>
@@ -397,54 +397,54 @@
 </form>
 
 <h3>Error State</h3>
-<form class="clr-stepper">
-  <div role="group" aria-labelledby="clr-step-header-10" class="clr-step clr-step-complete">
-    <div class="clr-step-header" id="clr-step-header-10">
-      <button aria-controls="clr-step-content-10" aria-expanded="true" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <clr-icon shape="check-circle" class="clr-step-complete-icon"></clr-icon>
+<form class="clr-accordion">
+  <div role="group" aria-labelledby="clr-accordion-header-10" class="clr-accordion-panel clr-accordion-panel-complete">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-10">
+      <button aria-controls="clr-accordion-content-10" aria-expanded="true" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-accordion-complete-icon"></clr-icon>
         </div>
-        <div class="clr-step-title">Active Step</div>
+        <div class="clr-accordion-title">Active Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-10" aria-hidden="false">
+    <div class="clr-accordion-content" id="clr-accordion-content-10" aria-hidden="false">
       Step content goes here.
       <button class="btn clr-step-button">Next</button>
     </div>
   </div>
 
-  <div role="group" aria-labelledby="clr-step-header-11" class="clr-step clr-step-open clr-step-error">
-    <div class="clr-step-header" id="clr-step-header-11">
-      <button aria-controls="clr-step-content-11" aria-expanded="false" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <clr-icon shape="exclamation-circle" class="clr-step-error-icon"></clr-icon>
-          <div class="clr-step-number"></div>
+  <div role="group" aria-labelledby="clr-accordion-header-11" class="clr-accordion-panel clr-accordion-panel-open clr-accordion-panel-error">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-11">
+      <button aria-controls="clr-accordion-content-11" aria-expanded="false" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <clr-icon shape="exclamation-circle" class="clr-accordion-error-icon"></clr-icon>
+          <div class="clr-accordion-number"></div>
         </div>
-        <div class="clr-step-title">Future Step</div>
+        <div class="clr-accordion-title">Future Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-11" aria-hidden="true">
+    <div class="clr-accordion-content" id="clr-accordion-content-11" aria-hidden="true">
       Step content goes here.
       <button class="btn clr-step-button">Next</button>
     </div>
   </div>
 
-  <div role="group" aria-labelledby="clr-step-header-12" class="clr-step">
-    <div class="clr-step-header" id="clr-step-header-12">
-      <button aria-controls="clr-step-content-12" aria-expanded="false" class="clr-step-header-button">
-        <div class="clr-step-status">
-          <clr-icon shape="angle" dir="right" class="clr-step-angle"></clr-icon>
-          <div class="clr-step-number"></div>
+  <div role="group" aria-labelledby="clr-accordion-header-12" class="clr-accordion-panel">
+    <div class="clr-accordion-header clr-accordion-header-forms" id="clr-accordion-header-12">
+      <button aria-controls="clr-accordion-content-12" aria-expanded="false" class="clr-accordion-header-button">
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <div class="clr-accordion-number"></div>
         </div>
-        <div class="clr-step-title">Future Step</div>
+        <div class="clr-accordion-title">Future Step</div>
       </button>
-      <div class="clr-step-description">Description goes here.</div>
+      <div class="clr-accordion-description">Description goes here.</div>
     </div>
-    <div class="clr-step-content" id="clr-step-content-12" aria-hidden="true">
+    <div class="clr-accordion-content" id="clr-accordion-content-12" aria-hidden="true">
       Step content goes here.
       <button class="btn btn-primary clr-step-button">Complete</button>
     </div>

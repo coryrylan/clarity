@@ -1,0 +1,53 @@
+<ng-container *ngIf="panel | async; let panel">
+  <div *ngIf="panel.status !== AccordionStatus.Inactive" aria-live="assertive" class="clr-screen-reader-only">
+    <ng-container *ngIf="panel.status === AccordionStatus.Error">Please check step for errors.</ng-container>
+    <ng-container *ngIf="panel.status === AccordionStatus.Complete">Step completed.</ng-container>
+  </div>
+
+  <div
+    role="group"
+    [attr.aria-labelledby]="'clr-accordion-header-' + panel.id + panel.accordionId"
+    [class.clr-accordion-panel-complete]="panel.status === AccordionStatus.Complete"
+    [class.clr-accordion-panel-error]="panel.status === AccordionStatus.Error"
+    [class.clr-step-inactive]="panel.status === AccordionStatus.Inactive"
+    [class.clr-accordion-panel-open]="panel.open"
+  >
+    <div class="clr-accordion-header" [class.clr-accordion-header-forms]="strategy == ClrAccordionStrategy.Forms">
+      <button
+        type="button"
+        class="clr-accordion-header-button"
+        (click)="selectPanel()"
+        [id]="'clr-accordion-header-' + panel.id + panel.accordionId"
+        [attr.aria-controls]="'clr-accordion-content-' + panel.id + panel.accordionId"
+        [attr.aria-expanded]="panel.open"
+        [disabled]="panel.disabled"
+      >
+        <div class="clr-accordion-status">
+          <clr-icon shape="angle" dir="right" class="clr-accordion-angle"></clr-icon>
+          <div class="clr-accordion-number"></div>
+          <clr-icon shape="exclamation-circle" class="clr-accordion-error-icon"></clr-icon>
+          <clr-icon shape="check-circle" class="clr-accordion-complete-icon"></clr-icon>
+        </div>
+        <ng-content select="clr-accordion-title, clr-accordion-title"></ng-content>
+      </button>
+      <ng-content select="clr-accordion-description, clr-step-description"></ng-content>
+    </div>
+    <div
+      @skipInitialRender
+      role="region"
+      [id]="'clr-accordion-content-' + panel.id + panel.accordionId"
+      [attr.aria-hidden]="!panel.open"
+      [attr.aria-labelledby]="'clr-accordion-header-' + panel.id + panel.accordionId"
+    >
+      <div
+        *ngIf="panel.open"
+        @toggle
+        (@toggle.done)="collapsePanel(panel)"
+        class="clr-accordion-content">
+        <div class="clr-accordion-inner-content">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
