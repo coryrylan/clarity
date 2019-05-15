@@ -89,7 +89,10 @@ export class ClrStepper {
   private listenForDOMChanges() {
     return this.panels.changes.pipe(startWith(this.panels)).subscribe(panels => {
       this.accordionService.syncPanels(panels.toArray().map((p: ClrAccordionPanel) => p.name));
-      this.accordionService.overrideInitialPanel(this.initialPanel);
+
+      if (this.initialPanel) {
+        this.accordionService.overrideInitialPanel(this.initialPanel);
+      }
     });
   }
 }

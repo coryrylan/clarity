@@ -60,7 +60,7 @@ describe('ClrStep', () => {
     expect(headerButton.getAttribute('aria-expanded')).toBe('false');
     expect(stepContent.getAttribute('aria-hidden')).toBe('true');
 
-    mockStep.open = true;
+    mockStep.isOpen = true;
     (stepperService as MockStepperService).step.next(mockStep);
     fixture.detectChanges();
     expect(headerButton.getAttribute('aria-expanded')).toBe('true');
@@ -72,7 +72,7 @@ describe('ClrStep', () => {
     const stepperService = fixture.debugElement.query(By.directive(ClrAccordionPanel)).injector.get(AccordionService);
     expect(fixture.nativeElement.querySelector('.clr-accordion-content')).toBe(null);
 
-    mockStep.open = true;
+    mockStep.isOpen = true;
     (stepperService as MockStepperService).step.next(mockStep);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.clr-accordion-content').innerText.trim()).toBe('test step');

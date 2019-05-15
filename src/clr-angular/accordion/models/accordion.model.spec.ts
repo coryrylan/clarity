@@ -30,19 +30,19 @@ describe('StepCollection Model', () => {
   });
 
   it('should set the first step as the active step', () => {
-    expect(stepCollection.panels[0].open).toBe(true);
+    expect(stepCollection.panels[0].isOpen).toBe(true);
     expect(stepCollection.panels[1].status).toBe(AccordionStatus.Inactive);
   });
 
   it('should navigate to next step if current step is valid and mark step complete', () => {
     stepCollection.navigateToNextPanel(step1Id, true);
     expect(stepCollection.panels[0].status).toBe(AccordionStatus.Complete);
-    expect(stepCollection.panels[0].open).toBe(false);
-    expect(stepCollection.panels[1].open).toBe(true);
+    expect(stepCollection.panels[0].isOpen).toBe(false);
+    expect(stepCollection.panels[1].isOpen).toBe(true);
   });
 
   it('should set the error state of a invalid form group and prevent next step navigation', () => {
-    expect(stepCollection.panels[0].open).toBe(true);
+    expect(stepCollection.panels[0].isOpen).toBe(true);
     stepCollection.navigateToNextPanel(step1Id, false);
     expect(stepCollection.panels[0].status).toBe(AccordionStatus.Error);
     expect(stepCollection.panels[1].status).toBe(AccordionStatus.Inactive);
@@ -57,26 +57,26 @@ describe('StepCollection Model', () => {
   it('should reset all steps when reset by form', () => {
     stepCollection.navigateToNextPanel(step1Id, true);
     expect(stepCollection.panels[0].status).toBe(AccordionStatus.Complete);
-    expect(stepCollection.panels[1].open).toBe(true);
+    expect(stepCollection.panels[1].isOpen).toBe(true);
 
     stepCollection.resetPanels();
-    expect(stepCollection.panels[0].open).toBe(true);
+    expect(stepCollection.panels[0].isOpen).toBe(true);
     expect(stepCollection.panels[1].status).toBe(AccordionStatus.Inactive);
   });
 
   it('should allow user to open and close a previously completed step', () => {
     stepCollection.navigateToNextPanel(step1Id, true);
     expect(stepCollection.panels[0].status).toBe(AccordionStatus.Complete);
-    expect(stepCollection.panels[1].open).toBe(true);
+    expect(stepCollection.panels[1].isOpen).toBe(true);
 
     stepCollection.navigateToPanel(step1Id);
-    expect(stepCollection.panels[0].open).toBe(true);
-    expect(stepCollection.panels[1].open).toBe(true);
+    expect(stepCollection.panels[0].isOpen).toBe(true);
+    expect(stepCollection.panels[1].isOpen).toBe(true);
 
     stepCollection.navigateToPanel(step1Id);
-    expect(stepCollection.panels[0].open).toBe(false);
+    expect(stepCollection.panels[0].isOpen).toBe(false);
     expect(stepCollection.panels[0].status).toBe(AccordionStatus.Complete);
-    expect(stepCollection.panels[1].open).toBe(true);
+    expect(stepCollection.panels[1].isOpen).toBe(true);
   });
 
   it('should determine if all steps have been completed', () => {
@@ -93,12 +93,12 @@ describe('StepCollection Model', () => {
 
     expect(stepCollection.panels[0].status).toBe(AccordionStatus.Complete);
     expect(stepCollection.panels[1].status).toBe(AccordionStatus.Complete);
-    expect(stepCollection.panels[2].open).toBe(true);
+    expect(stepCollection.panels[2].isOpen).toBe(true);
 
     stepCollection.navigateToNextPanel(step1Id, true);
 
     expect(stepCollection.panels[0].status).toBe(AccordionStatus.Complete);
-    expect(stepCollection.panels[1].open).toBe(true);
+    expect(stepCollection.panels[1].isOpen).toBe(true);
     expect(stepCollection.panels[2].status).toBe(AccordionStatus.Inactive);
   });
 
@@ -106,10 +106,10 @@ describe('StepCollection Model', () => {
     stepCollection.overrideInitialPanel(step2Id);
 
     expect(stepCollection.panels[0].status).toBe(AccordionStatus.Complete);
-    expect(stepCollection.panels[0].open).toBe(false);
+    expect(stepCollection.panels[0].isOpen).toBe(false);
     expect(stepCollection.panels[1].status).toBe(AccordionStatus.Inactive);
-    expect(stepCollection.panels[1].open).toBe(true);
+    expect(stepCollection.panels[1].isOpen).toBe(true);
     expect(stepCollection.panels[2].status).toBe(AccordionStatus.Inactive);
-    expect(stepCollection.panels[2].open).toBe(false);
+    expect(stepCollection.panels[2].isOpen).toBe(false);
   });
 });

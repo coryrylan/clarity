@@ -16,19 +16,14 @@ import { ClrAccordionStrategy } from '../enums/accordion-strategy.enum';
 export class AccordionService {
   private accordionModel = new AccordionModel();
   private readonly _panelsChanges = new BehaviorSubject<AccordionPanelModel[]>(this.accordionModel.panels);
-  readonly panels = this._panelsChanges.asObservable();
   readonly panelsCompleted = this.getAllPanelsCompletedChanges();
-
-  get strategy() {
-    return this.accordionModel.strategy;
-  }
 
   setStrategy(strategy: ClrAccordionStrategy) {
     this.accordionModel.setStrategy(strategy);
   }
 
   getPanelChanges(panelId: string) {
-    return this.panels.pipe(map(panels => panels.find(s => s.id === panelId)));
+    return this._panelsChanges.pipe(map(panels => panels.find(s => s.id === panelId)));
   }
 
   addPanel(panelId: string, open = false) {
@@ -71,6 +66,6 @@ export class AccordionService {
   }
 
   private getAllPanelsCompletedChanges() {
-    return this.panels.pipe(map(() => this.accordionModel.allPanelsCompleted), distinctUntilChanged());
+    return this._panelsChanges.pipe(map(() => this.accordionModel.allPanelsCompleted), distinctUntilChanged());
   }
 }

@@ -50,10 +50,6 @@ export class ClrAccordionPanel {
     }
   }
 
-  get strategy() {
-    return this.accordionService.strategy;
-  }
-
   constructor(
     @Optional() private formGroupName: FormGroupName,
     @Optional() private ngModelGroup: NgModelGroup,
@@ -74,13 +70,13 @@ export class ClrAccordionPanel {
   }
 
   collapsePanel(panel: AccordionPanelModel) {
-    if (!panel.open) {
+    if (!panel.isOpen) {
       this.togglePanel(false);
     }
   }
 
   private expandPanel(panel: AccordionPanelModel) {
-    if (panel.open) {
+    if (panel.isOpen) {
       this.togglePanel(true);
     }
   }

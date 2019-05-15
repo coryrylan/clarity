@@ -12,9 +12,8 @@ let accordionCount = 0;
 
 export class AccordionModel {
   private accordionCount = accordionCount++;
-  private panelCount = 0;
-  private _panels: { [id: number]: AccordionPanelModel } = {};
-  private _strategy = ClrAccordionStrategy.Default;
+  private strategy = ClrAccordionStrategy.Default;
+  private _panels: { [id: string]: AccordionPanelModel } = {};
 
   get panels(): AccordionPanelModel[] {
     return Object.keys(this._panels).map(id => this._panels[id]);
@@ -24,12 +23,8 @@ export class AccordionModel {
     return this.panels.length && this.getNumberOfIncompletePanels() === 0 && this.getNumberOfOpenPanels() === 0;
   }
 
-  get strategy(): ClrAccordionStrategy {
-    return this._strategy;
-  }
-
   setStrategy(strategy: ClrAccordionStrategy) {
-    this._strategy = strategy;
+    this.strategy = strategy;
   }
 
   syncPanels(ids: string[]) {
@@ -38,143 +33,87 @@ export class AccordionModel {
   }
 
   addPanel(id: string, open = false) {
-    const panel = new AccordionPanelModel(id, this.accordionCount);
-    panel.open = open;
-
-    if (this.strategy === ClrAccordionStrategy.Forms) {
-      panel.open = this.panelCount++ === 0;
-      panel.disabled = true;
-    }
-
-    this._panels[panel.id] = panel;
+    this._panels[id] = new AccordionPanelModel(id, this.accordionCount, this.strategy, open);
   }
 
   resetPanels() {
-    this.panels.forEach((s, index) => {
-      const panel = this._panels[s.id];
-      panel.status = AccordionStatus.Inactive;
-      panel.open = false;
+    this.panels.forEach(p => this._panels[p.id].reset());
+  }
 
-      if (index === 0) {
-        panel.status = AccordionStatus.Inactive;
-        panel.open = true;
-      }
-
-      return panel;
-    });
+  setPanelsWithErrors(ids: string[]) {
+    ids.forEach(id => this._panels[id].setError());
   }
 
   navigateToPanel(panelId: string) {
-    const panelOpen = this._panels[panelId].open;
-
     if (this.strategy === ClrAccordionStrategy.Default) {
       this.closeAllPanels();
-      this._panels[panelId].open = !panelOpen;
     }
 
-    if (this.strategy === ClrAccordionStrategy.Multi) {
-      this._panels[panelId].open = !panelOpen;
-    }
-
-    if (this.strategy === ClrAccordionStrategy.Forms) {
-      this.navigateToPreviouslyCompletedPanel(panelId);
+    if (this.strategy !== ClrAccordionStrategy.Forms || this._panels[panelId].status === AccordionStatus.Complete) {
+      this._panels[panelId].toggle();
     }
   }
 
   navigateToNextPanel(currentPanelId: string, currentPanelValid = true) {
     if (currentPanelValid) {
-      const nextPanel = this.panels.find(s => s.index === this._panels[currentPanelId].index + 1);
-      this.completePanel(currentPanelId);
-
-      if (nextPanel) {
-        this.resetAllFuturePanels(nextPanel);
-        this._panels[nextPanel.id].open = true;
-      } else {
-        this.closeAllCompletedPanels();
-      }
+      this._panels[currentPanelId].complete();
+      this.openNextPanel(this._panels[currentPanelId].id);
     } else {
-      this._panels[currentPanelId].status = AccordionStatus.Error;
-      this.closeAllCompletedPanels();
+      this.setPanelError(currentPanelId);
     }
   }
 
   overrideInitialPanel(panelId: string) {
-    if (this._panels[panelId]) {
-      this.panels.forEach(panel => {
-        if (panel.index < this._panels[panelId].index) {
-          this.completePanel(panel.id);
-        } else if (panel.id === panelId) {
-          this._panels[panel.id].open = true;
-        } else {
-          this._panels[panel.id].open = false;
-        }
-      });
-    }
-  }
-
-  setPanelsWithErrors(ids: string[]) {
-    ids.forEach(id => {
-      this._panels[id].open = true;
-      this._panels[id].status = AccordionStatus.Error;
-    });
-  }
-
-  private closeAllPanels() {
-    this.panels.forEach(panel => (this._panels[panel.id].open = false));
-  }
-
-  private navigateToPreviouslyCompletedPanel(panelId: string) {
-    if (this._panels[panelId].status === AccordionStatus.Complete) {
-      this._panels[panelId].open = !this._panels[panelId].open;
-    }
-  }
-
-  private getNumberOfOpenPanels() {
-    return this.panels.reduce((prev, next) => (next.open !== false ? prev + 1 : prev), 0);
-  }
-
-  private closeAllCompletedPanels() {
     this.panels.forEach(panel => {
-      if (panel.status === AccordionStatus.Complete) {
-        this._panels[panel.id].open = false;
+      if (panel.index < this._panels[panelId].index) {
+        this._panels[panel.id].complete();
+      } else if (panel.id === panelId) {
+        this._panels[panel.id].open();
+      } else {
+        this._panels[panel.id].close();
       }
     });
   }
 
-  private completePanel(panelId: string) {
-    this._panels[panelId].status = AccordionStatus.Complete;
-    this._panels[panelId].disabled = false;
-    this._panels[panelId].open = false;
+  private openNextPanel(currentPanelId: string) {
+    const nextPanel = this.panels.find(s => s.index === this._panels[currentPanelId].index + 1);
+
+    if (nextPanel) {
+      this.resetAllFuturePanels(nextPanel.id);
+      this._panels[nextPanel.id].open();
+    }
+  }
+
+  private setPanelError(panelId: string) {
+    this.resetAllFuturePanels(panelId);
+    this._panels[panelId].setError();
+  }
+
+  private closeAllPanels() {
+    this.panels.forEach(panel => this._panels[panel.id].close());
+  }
+
+  private getNumberOfOpenPanels() {
+    return this.panels.reduce((prev, next) => (next.isOpen !== false ? prev + 1 : prev), 0);
   }
 
   private getNumberOfIncompletePanels() {
     return this.panels.reduce((prev, next) => (next.status !== AccordionStatus.Complete ? prev + 1 : prev), 0);
   }
 
-  private resetAllFuturePanels(nextPanel: AccordionPanelModel) {
-    // we close all future panels to in case future panels depend on prior panel values
-    this.panels.forEach(panel => {
-      if (panel.index >= nextPanel.index) {
-        panel.status = AccordionStatus.Inactive;
-        panel.open = false;
-      }
-    });
+  private resetAllFuturePanels(panelId: string) {
+    this.panels
+      .filter(panel => panel.index >= this._panels[panelId].index)
+      .forEach(panel => panel.reset());
   }
 
   private updatePanelOrder(ids: string[]) {
-    ids.forEach((id, index) => {
-      if (this._panels[id]) {
-        this._panels[id].index = index;
-        this._panels[id].isLastPanel = index === ids.length - 1;
-      }
-    });
+    ids.forEach((id, index) => this._panels[id].updateIndex(index));
   }
 
   private removeOldPanels(ids: string[]) {
-    this.panels.forEach(panel => {
-      if (ids.find(id => id === panel.id) === undefined) {
-        delete this._panels[panel.id];
-      }
-    });
+    this.panels
+      .filter(panel => ids.find(id => id === panel.id) === undefined)
+      .forEach(panel => delete this._panels[panel.id]);
   }
 }
