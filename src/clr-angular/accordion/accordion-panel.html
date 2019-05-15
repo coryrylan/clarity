@@ -10,16 +10,16 @@
     [class.clr-accordion-panel-complete]="panel.status === AccordionStatus.Complete"
     [class.clr-accordion-panel-error]="panel.status === AccordionStatus.Error"
     [class.clr-step-inactive]="panel.status === AccordionStatus.Inactive"
-    [class.clr-accordion-panel-open]="panel.isOpen"
+    [class.clr-accordion-panel-open]="panel.open"
   >
-    <div class="clr-accordion-header" [class.clr-accordion-header-forms]="panel.strategy == ClrAccordionStrategy.Forms">
+    <div class="clr-accordion-header" [class.clr-accordion-header-forms]="formGroupName || ngModelGroup">
       <button
         type="button"
         class="clr-accordion-header-button"
         (click)="selectPanel()"
         [id]="'clr-accordion-header-' + panel.id + panel.accordionId"
         [attr.aria-controls]="'clr-accordion-content-' + panel.id + panel.accordionId"
-        [attr.aria-expanded]="panel.isOpen"
+        [attr.aria-expanded]="panel.open"
         [disabled]="panel.disabled"
       >
         <div class="clr-accordion-status">
@@ -36,11 +36,11 @@
       @skipInitialRender
       role="region"
       [id]="'clr-accordion-content-' + panel.id + panel.accordionId"
-      [attr.aria-hidden]="!panel.isOpen"
+      [attr.aria-hidden]="!panel.open"
       [attr.aria-labelledby]="'clr-accordion-header-' + panel.id + panel.accordionId"
     >
       <div
-        *ngIf="panel.isOpen"
+        *ngIf="panel.open"
         @toggle
         (@toggle.done)="collapsePanel(panel)"
         class="clr-accordion-content">

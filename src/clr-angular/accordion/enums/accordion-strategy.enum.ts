@@ -7,5 +7,4 @@
 export enum ClrAccordionStrategy {
   Default = 'default', // only one panel at a time
   Multi = 'multi', // can have multiple panels open at a time
-  Forms = 'forms', // linear step progression for forms
 }

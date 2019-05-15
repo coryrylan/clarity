@@ -11,11 +11,10 @@ import { tap } from 'rxjs/operators';
 
 import { AccordionService } from './providers/accordion.service';
 import { AccordionStatus } from './enums/accordion-status.enum';
-import { AccordionPanelModel } from './models/accordion-panel.model';
 import { panelAnimation } from './utils/animation';
 import { triggerAllFormControlValidation } from '../utils/forms/validation';
 import { IfExpandService } from '../utils/conditional/if-expanded.service';
-import { ClrAccordionStrategy } from './enums/accordion-strategy.enum';
+import { AccordionPanelModel } from './models/accordion.model';
 
 let panelCount = 0;
 
@@ -33,7 +32,6 @@ export class ClrAccordionPanel {
   @Output('clrAccordionPanelOpenChange') panelOpenChange = new EventEmitter<boolean>();
 
   panel: Observable<AccordionPanelModel>;
-  ClrAccordionStrategy = ClrAccordionStrategy;
   readonly AccordionStatus = AccordionStatus;
 
   get formGroup() {
@@ -70,13 +68,13 @@ export class ClrAccordionPanel {
   }
 
   collapsePanel(panel: AccordionPanelModel) {
-    if (!panel.isOpen) {
+    if (!panel.open) {
       this.togglePanel(false);
     }
   }
 
   private expandPanel(panel: AccordionPanelModel) {
-    if (panel.isOpen) {
+    if (panel.open) {
       this.togglePanel(true);
     }
   }

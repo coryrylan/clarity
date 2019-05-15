@@ -6,20 +6,18 @@
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { map, distinctUntilChanged } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
-import { AccordionModel } from '../models/accordion.model';
-import { AccordionPanelModel } from '../models/accordion-panel.model';
+import { AccordionModel, AccordionPanelModel } from '../models/accordion.model';
 import { ClrAccordionStrategy } from '../enums/accordion-strategy.enum';
 
 @Injectable()
 export class AccordionService {
-  private accordionModel = new AccordionModel();
-  private readonly _panelsChanges = new BehaviorSubject<AccordionPanelModel[]>(this.accordionModel.panels);
-  readonly panelsCompleted = this.getAllPanelsCompletedChanges();
+  protected accordion = new AccordionModel();
+  protected readonly _panelsChanges = new BehaviorSubject<AccordionPanelModel[]>(this.accordion.panels);
 
   setStrategy(strategy: ClrAccordionStrategy) {
-    this.accordionModel.setStrategy(strategy);
+    this.accordion.setStrategy(strategy);
   }
 
   getPanelChanges(panelId: string) {
@@ -27,45 +25,21 @@ export class AccordionService {
   }
 
   addPanel(panelId: string, open = false) {
-    this.accordionModel.addPanel(panelId, open);
-    this.emitUpdatedPanels();
-  }
-
-  resetPanels() {
-    this.accordionModel.resetPanels();
-    this.emitUpdatedPanels();
-  }
-
-  navigateToNextPanel(currentPanelId: string, currentPanelValid = true) {
-    this.accordionModel.navigateToNextPanel(currentPanelId, currentPanelValid);
+    this.accordion.addPanel(panelId, open);
     this.emitUpdatedPanels();
   }
 
   navigateToPanel(panelId: string) {
-    this.accordionModel.navigateToPanel(panelId);
-    this.emitUpdatedPanels();
-  }
-
-  overrideInitialPanel(panelId: string) {
-    this.accordionModel.overrideInitialPanel(panelId);
+    this.accordion.navigateToPanel(panelId);
     this.emitUpdatedPanels();
   }
 
   syncPanels(ids: string[]) {
-    this.accordionModel.syncPanels(ids);
+    this.accordion.syncPanels(ids);
     this.emitUpdatedPanels();
   }
 
-  setPanelsWithErrors(ids: string[]) {
-    this.accordionModel.setPanelsWithErrors(ids);
-    this.emitUpdatedPanels();
-  }
-
-  private emitUpdatedPanels() {
-    this._panelsChanges.next(this.accordionModel.panels);
-  }
-
-  private getAllPanelsCompletedChanges() {
-    return this._panelsChanges.pipe(map(() => this.accordionModel.allPanelsCompleted), distinctUntilChanged());
+  protected emitUpdatedPanels() {
+    this._panelsChanges.next(this.accordion.panels);
   }
 }
