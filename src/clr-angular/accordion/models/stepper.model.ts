@@ -30,7 +30,7 @@ export class StepperModel extends AccordionModel {
 
   navigateToNextPanel(currentPanelId: string, currentPanelValid = true) {
     if (currentPanelValid) {
-      this.completeStep(currentPanelId);
+      this.completePanel(currentPanelId);
       this.openNextPanel(this._panels[currentPanelId].id);
     } else {
       this.setPanelError(currentPanelId);
@@ -39,8 +39,8 @@ export class StepperModel extends AccordionModel {
 
   overrideInitialPanel(panelId: string) {
     this.panels.forEach(panel => {
-      if (panel.index < this._panels[panel.id].index) {
-        this.completeStep(panel.id);
+      if (panel.index < this._panels[panelId].index) {
+        this.completePanel(panel.id);
       } else if (panel.id === panelId) {
         this._panels[panel.id].open = true;
       } else {
@@ -67,10 +67,10 @@ export class StepperModel extends AccordionModel {
   }
 
   private openFirstPanel(ids: string[]) {
-    ids.forEach((id, index) => (this._panels[id].open = this._panels[id].index === 0));
+    ids.forEach(id => (this._panels[id].open = this._panels[id].index === 0));
   }
 
-  private completeStep(panelId: string) {
+  private completePanel(panelId: string) {
     this._panels[panelId].status = AccordionStatus.Complete;
     this._panels[panelId].disabled = false;
     this._panels[panelId].open = false;

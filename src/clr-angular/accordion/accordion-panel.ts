@@ -4,7 +4,15 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ChangeDetectionStrategy, Optional, Input, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  Optional,
+  Input,
+  EventEmitter,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormGroupName, NgModelGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -61,6 +69,12 @@ export class ClrAccordionPanel {
       .pipe(tap(panel => this.expandPanel(panel)), tap(panel => this.triggerAllFormControlValidationIfError(panel)));
 
     this.accordionService.addPanel(this.name, this.panelOpen);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.panel && changes.panelOpen.currentValue !== changes.panelOpen.previousValue) {
+      this.selectPanel();
+    }
   }
 
   selectPanel() {

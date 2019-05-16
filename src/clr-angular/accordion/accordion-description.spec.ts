@@ -9,7 +9,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClrAccordionModule } from './accordion.module';
 
-describe('ClrStepDescription', () => {
+describe('ClrAccordionDescription', () => {
   let fixture: ComponentFixture<any>;
 
   beforeEach(() => {
@@ -28,6 +28,6 @@ describe('ClrStepDescription', () => {
 });
 
 @Component({
-  template: `<clr-step-description>Hello world</clr-step-description>`,
+  template: `<clr-accordion-description>Hello world</clr-accordion-description>`,
 })
 class TestComponent {}

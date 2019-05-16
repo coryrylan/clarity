@@ -9,14 +9,14 @@ import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { AccordionModel, AccordionPanelModel } from '../models/accordion.model';
-import { ClrAccordionStrategy } from '../enums/accordion-strategy.enum';
+import { AccordionStrategy } from '../enums/accordion-strategy.enum';
 
 @Injectable()
 export class AccordionService {
   protected accordion = new AccordionModel();
   protected readonly _panelsChanges = new BehaviorSubject<AccordionPanelModel[]>(this.accordion.panels);
 
-  setStrategy(strategy: ClrAccordionStrategy) {
+  setStrategy(strategy: AccordionStrategy) {
     this.accordion.setStrategy(strategy);
   }
 

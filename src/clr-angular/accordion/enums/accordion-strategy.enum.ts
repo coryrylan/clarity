@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export enum ClrAccordionStrategy {
+export enum AccordionStrategy {
   Default = 'default', // only one panel at a time
   Multi = 'multi', // can have multiple panels open at a time
 }

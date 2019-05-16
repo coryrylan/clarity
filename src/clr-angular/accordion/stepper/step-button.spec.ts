@@ -12,7 +12,7 @@ import { By } from '@angular/platform-browser';
 
 import { ClrStepButton, ClrStepButtonType } from './step-button';
 import { ClrAccordionModule } from '../accordion.module';
-import { AccordionService } from '../providers/accordion.service';
+import { StepperService } from '../providers/stepper.service';
 
 describe('ClrStepButton', () => {
   let fixture: ComponentFixture<any>;
@@ -21,7 +21,7 @@ describe('ClrStepButton', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      providers: [AccordionService, { provide: AccordionService, useClass: MockStepperService }],
+      providers: [StepperService, { provide: StepperService, useClass: MockStepperService }],
       imports: [ReactiveFormsModule, NoopAnimationsModule, ClrAccordionModule],
     });
 
@@ -38,7 +38,7 @@ describe('ClrStepButton', () => {
   });
 
   it('should trigger click that sets the next step', () => {
-    const stepperService = fixture.debugElement.query(By.directive(ClrStepButton)).injector.get(AccordionService);
+    const stepperService = fixture.debugElement.query(By.directive(ClrStepButton)).injector.get(StepperService);
     spyOn(stepperService, 'navigateToNextPanel');
 
     fixture.nativeElement.querySelector('.clr-step-button').click();
@@ -62,6 +62,6 @@ class TestComponent {
   form = new FormGroup({ group: new FormGroup({}) });
 }
 
-class MockStepperService extends AccordionService {
+class MockStepperService extends StepperService {
   navigateToNextPanel() {}
 }

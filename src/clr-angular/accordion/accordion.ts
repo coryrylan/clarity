@@ -4,13 +4,13 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { Component, ContentChildren, QueryList, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ContentChildren, QueryList, ChangeDetectionStrategy, Input, SimpleChanges } from '@angular/core';
 import { startWith } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { AccordionService } from './providers/accordion.service';
 import { ClrAccordionPanel } from './accordion-panel';
-import { ClrAccordionStrategy } from './enums/accordion-strategy.enum';
+import { AccordionStrategy } from './enums/accordion-strategy.enum';
 
 @Component({
   selector: 'clr-accordion',
@@ -28,10 +28,12 @@ export class ClrAccordion {
   constructor(private accordionService: AccordionService) {}
 
   ngOnInit() {
-    if (this.multiPanel) {
-      this.accordionService.setStrategy(ClrAccordionStrategy.Multi);
-    } else {
-      this.accordionService.setStrategy(ClrAccordionStrategy.Default);
+    this.setAccordionStrategy();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.multiPanel.currentValue !== changes.multiPanel.previousValue) {
+      this.setAccordionStrategy();
     }
   }
 
@@ -41,6 +43,11 @@ export class ClrAccordion {
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  private setAccordionStrategy() {
+    const strategy = this.multiPanel ? AccordionStrategy.Multi : AccordionStrategy.Default;
+    this.accordionService.setStrategy(strategy);
   }
 
   private listenForDOMChanges() {

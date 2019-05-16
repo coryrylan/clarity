@@ -4,7 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { ClrAccordionStrategy } from '../enums/accordion-strategy.enum';
+import { AccordionStrategy } from '../enums/accordion-strategy.enum';
 import { AccordionStatus } from '../enums/accordion-status.enum';
 
 let accordionCount = 0;
@@ -18,7 +18,7 @@ export class AccordionPanelModel {
 }
 
 export class AccordionModel {
-  protected strategy = ClrAccordionStrategy.Default;
+  protected strategy = AccordionStrategy.Default;
   protected accordionCount = accordionCount++;
   protected _panels: { [id: string]: AccordionPanelModel } = {};
 
@@ -26,7 +26,7 @@ export class AccordionModel {
     return Object.keys(this._panels).map(id => this._panels[id]);
   }
 
-  setStrategy(strategy: ClrAccordionStrategy) {
+  setStrategy(strategy: AccordionStrategy) {
     this.strategy = strategy;
   }
 
@@ -41,11 +41,12 @@ export class AccordionModel {
   }
 
   navigateToPanel(panelId: string) {
-    if (this.strategy === ClrAccordionStrategy.Default) {
+    const panelIsOpen = this._panels[panelId].open;
+    if (this.strategy === AccordionStrategy.Default) {
       this.closeAllPanels();
     }
 
-    this._panels[panelId].open = !this._panels[panelId].open;
+    this._panels[panelId].open = !panelIsOpen;
   }
 
   private closeAllPanels() {

@@ -5,11 +5,12 @@
 */
 
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClrAccordionModule } from './accordion.module';
+import { IfExpandService } from '../utils/conditional/if-expanded.service';
 
 describe('ClrAccordionContent', () => {
   let fixture: ComponentFixture<any>;
@@ -18,6 +19,7 @@ describe('ClrAccordionContent', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [ReactiveFormsModule, NoopAnimationsModule, ClrAccordionModule],
+      providers: [IfExpandService],
     });
 
     fixture = TestBed.createComponent(TestComponent);
@@ -31,13 +33,9 @@ describe('ClrAccordionContent', () => {
 
 @Component({
   template: `
-    <form clrStepper [formGroup]="form">
-      <clr-step formGroupName="group">
-        <clr-accordion-content>Hello world</clr-accordion-content>
-      </clr-step>
-    </form>
+    <clr-accordion>
+      <clr-accordion-content>Hello world</clr-accordion-content>
+    </clr-accordion>
   `,
 })
-class TestComponent {
-  form = new FormGroup({ group: new FormGroup({}) });
-}
+class TestComponent {}
