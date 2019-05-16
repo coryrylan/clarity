@@ -39,12 +39,12 @@ export class ClrAccordionPanel {
   constructor(private accordionService: AccordionService, private ifExpandService: IfExpandService) {}
 
   ngOnInit() {
-    this.panel = this.accordionService.getPanelChanges(this.id).pipe(tap(panel => this.expandPanel(panel)));
+    this.panel = this.accordionService.getPanelChanges(this.id).pipe(tap(panel => this.expandPanelIfOpen(panel)));
     this.accordionService.addPanel(this.id, this.panelOpen);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.panel && changes.panelOpen.currentValue !== changes.panelOpen.previousValue) {
+    if (this.panel && changes.panelOpen.currentValue !== this.panelOpen) {
       this.selectPanel();
     }
   }
@@ -53,21 +53,17 @@ export class ClrAccordionPanel {
     this.accordionService.navigateToPanel(this.id);
   }
 
-  collapsePanel(panel: AccordionPanelModel) {
+  collapsePanelOnAnimationDone(panel: AccordionPanelModel) {
     if (!panel.open) {
-      this.togglePanel(false);
+      this.ifExpandService.expanded = false;
+      this.panelOpenChange.emit(false);
     }
   }
 
-  private expandPanel(panel: AccordionPanelModel) {
+  private expandPanelIfOpen(panel: AccordionPanelModel) {
     if (panel.open) {
-      this.togglePanel(true);
+      this.ifExpandService.expanded = true;
+      this.panelOpenChange.emit(true);
     }
-  }
-
-  private togglePanel(open: boolean) {
-    this.ifExpandService.expanded = open;
-    this.panelOpen = open;
-    this.panelOpenChange.emit(open);
   }
 }

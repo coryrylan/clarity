@@ -42,7 +42,7 @@
       <div
         *ngIf="panel.open"
         @toggle
-        (@toggle.done)="collapsePanel(panel)"
+        (@toggle.done)="collapsePanelOnAnimationDone(panel)"
         class="clr-accordion-content">
         <div class="clr-accordion-inner-content">
           <ng-content></ng-content>
