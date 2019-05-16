@@ -6,8 +6,8 @@
 
 import { Directive, HostListener, HostBinding, Input } from '@angular/core';
 
-import { ClrAccordionPanel } from '../accordion-panel';
 import { StepperService } from '../providers/stepper.service';
+import { ClrStep } from './step';
 
 export enum ClrStepButtonType {
   Next = 'next',
@@ -26,7 +26,7 @@ export class ClrStepButton {
   @Input('clrStepButton') type: ClrStepButtonType | string = ClrStepButtonType.Next;
   @HostBinding('class.btn-primary') submitButton = false;
 
-  constructor(private clrStep: ClrAccordionPanel, private stepperService: StepperService) {}
+  constructor(private clrStep: ClrStep, private stepperService: StepperService) {}
 
   ngOnInit() {
     this.submitButton = this.type === ClrStepButtonType.Submit;
@@ -35,6 +35,6 @@ export class ClrStepButton {
   @HostListener('click')
   click() {
     const valid = this.clrStep.formGroup ? this.clrStep.formGroup.valid : true;
-    this.stepperService.navigateToNextPanel(this.clrStep.name, valid);
+    this.stepperService.navigateToNextPanel(this.clrStep.id, valid);
   }
 }

@@ -53,6 +53,6 @@ export class ClrAccordion {
   private listenForDOMChanges() {
     return this.panels.changes
       .pipe(startWith(this.panels))
-      .subscribe(panels => this.accordionService.syncPanels(panels.toArray().map((p: ClrAccordionPanel) => p.name)));
+      .subscribe(panels => this.accordionService.syncPanels(panels.toArray().map((p: ClrAccordionPanel) => p.id)));
   }
 }

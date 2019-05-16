@@ -20,6 +20,7 @@ import { Subscription } from 'rxjs';
 import { ClrAccordionPanel } from '../accordion-panel';
 import { StepperService } from '../providers/stepper.service';
 import { AccordionService } from '../providers/accordion.service';
+import { ClrStep } from './step';
 
 @Component({
   selector: 'form[clrStepper]',
@@ -33,8 +34,8 @@ import { AccordionService } from '../providers/accordion.service';
 })
 export class ClrStepper {
   @Input('clrInitialStep') initialPanel: string;
-  @ContentChildren(ClrAccordionPanel, { descendants: true })
-  panels: QueryList<ClrAccordionPanel>;
+  @ContentChildren(ClrStep, { descendants: true })
+  panels: QueryList<ClrStep>;
   subscriptions: Subscription[] = [];
   form: FormGroupDirective | NgForm;
 
@@ -51,7 +52,7 @@ export class ClrStepper {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.initialPanel && changes.initialPanel.currentValue !== changes.initialPanel.previousValue) {
+    if (changes.initialPanel.currentValue !== changes.initialPanel.previousValue) {
       this.stepperService.overrideInitialPanel(this.initialPanel);
     }
   }
@@ -82,7 +83,7 @@ export class ClrStepper {
 
   private setPanelsWithFormErrors() {
     const panelsWithErrors = this.panels.reduce(
-      (panels, panel) => (panel.formGroup.invalid ? [...panels, panel.name] : panels),
+      (panels, panel) => (panel.formGroup.invalid ? [...panels, panel.id] : panels),
       []
     );
     this.stepperService.setPanelsWithErrors(panelsWithErrors);
@@ -90,7 +91,7 @@ export class ClrStepper {
 
   private listenForDOMChanges() {
     return this.panels.changes.pipe(startWith(this.panels)).subscribe(panels => {
-      this.stepperService.syncPanels(panels.toArray().map((p: ClrAccordionPanel) => p.name));
+      this.stepperService.syncPanels(panels.toArray().map((p: ClrAccordionPanel) => p.id));
 
       if (this.initialPanel) {
         this.stepperService.overrideInitialPanel(this.initialPanel);

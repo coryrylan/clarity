@@ -4,30 +4,20 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import {
-  Component,
-  ChangeDetectionStrategy,
-  Optional,
-  Input,
-  EventEmitter,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
-import { FormGroupName, NgModelGroup } from '@angular/forms';
+import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { AccordionService } from './providers/accordion.service';
 import { AccordionStatus } from './enums/accordion-status.enum';
 import { panelAnimation } from './utils/animation';
-import { triggerAllFormControlValidation } from '../utils/forms/validation';
 import { IfExpandService } from '../utils/conditional/if-expanded.service';
 import { AccordionPanelModel } from './models/accordion.model';
 
 let panelCount = 0;
 
 @Component({
-  selector: 'clr-accordion-panel, clr-step',
+  selector: 'clr-accordion-panel',
   templateUrl: './accordion-panel.html',
   host: { '[class.clr-accordion-panel]': 'true' },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,40 +25,22 @@ let panelCount = 0;
   providers: [IfExpandService],
 })
 export class ClrAccordionPanel {
-  @Input('name') defaultName = `${panelCount++}`;
   @Input('clrAccordionPanelOpen') panelOpen = false;
   @Output('clrAccordionPanelOpenChange') panelOpenChange = new EventEmitter<boolean>();
 
   panel: Observable<AccordionPanelModel>;
   readonly AccordionStatus = AccordionStatus;
+  private _id = `${panelCount++}`;
 
-  get formGroup() {
-    return this.formGroupName ? this.formGroupName.control : this.ngModelGroup.control;
+  get id() {
+    return this._id;
   }
 
-  get name() {
-    if (this.formGroupName) {
-      return this.formGroupName.name;
-    } else if (this.ngModelGroup) {
-      return this.ngModelGroup.name;
-    } else {
-      return this.defaultName;
-    }
-  }
-
-  constructor(
-    @Optional() private formGroupName: FormGroupName,
-    @Optional() private ngModelGroup: NgModelGroup,
-    private accordionService: AccordionService,
-    private ifExpandService: IfExpandService
-  ) {}
+  constructor(private accordionService: AccordionService, private ifExpandService: IfExpandService) {}
 
   ngOnInit() {
-    this.panel = this.accordionService
-      .getPanelChanges(this.name)
-      .pipe(tap(panel => this.expandPanel(panel)), tap(panel => this.triggerAllFormControlValidationIfError(panel)));
-
-    this.accordionService.addPanel(this.name, this.panelOpen);
+    this.panel = this.accordionService.getPanelChanges(this.id).pipe(tap(panel => this.expandPanel(panel)));
+    this.accordionService.addPanel(this.id, this.panelOpen);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -78,7 +50,7 @@ export class ClrAccordionPanel {
   }
 
   selectPanel() {
-    this.accordionService.navigateToPanel(this.name);
+    this.accordionService.navigateToPanel(this.id);
   }
 
   collapsePanel(panel: AccordionPanelModel) {
@@ -97,11 +69,5 @@ export class ClrAccordionPanel {
     this.ifExpandService.expanded = open;
     this.panelOpen = open;
     this.panelOpenChange.emit(open);
-  }
-
-  private triggerAllFormControlValidationIfError(panel: AccordionPanelModel) {
-    if (panel.status === AccordionStatus.Error) {
-      triggerAllFormControlValidation(this.formGroup);
-    }
   }
 }

@@ -38,7 +38,7 @@ export class StepperModel extends AccordionModel {
   }
 
   overrideInitialPanel(panelId: string) {
-    this.panels.forEach(panel => {
+    this.panels.filter(panel => this._panels[panelId] !== undefined).forEach(panel => {
       if (panel.index < this._panels[panelId].index) {
         this.completePanel(panel.id);
       } else if (panel.id === panelId) {
