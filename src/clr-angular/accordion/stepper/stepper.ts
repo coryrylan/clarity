@@ -24,7 +24,10 @@ import { AccordionService } from '../providers/accordion.service';
 @Component({
   selector: 'form[clrStepper]',
   template: `<ng-content></ng-content>`,
-  host: { '[class.clr-accordion]': 'true' },
+  host: {
+    '[class.clr-accordion]': 'true',
+    '[class.clr-stepper-forms]': 'true',
+  },
   providers: [StepperService, { provide: AccordionService, useExisting: StepperService }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
