@@ -32,6 +32,12 @@
 //     fixture.detectChanges();
 //   });
 
+// it('should allow a panel to be programmatically opened', () => {
+//   testComponent.openThirdStep = true;
+//   fixture.detectChanges();
+//   expect(fixture.nativeElement.textContent.trim()).toContain('panel 3');
+// });
+
 //   it('should show the appropriate aria-live message', () => {
 //     const mockStep = new AccordionPanelModel(step1Id, 0);
 //     const stepperService = fixture.debugElement.query(By.directive(ClrAccordionPanel)).injector.get(AccordionService);

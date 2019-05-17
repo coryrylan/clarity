@@ -10,15 +10,13 @@ import { OompaLoompa } from '../../utils/chocolate/oompa-loompa';
 import { AccordionWillyWonka } from './accordion-willy-wonka';
 import { IfExpandService } from '../../utils/conditional/if-expanded.service';
 
-@Directive({ selector: 'clr-accordion-content, clr-step-content, [clrStepButton]' })
+@Directive({ selector: 'clr-step, clr-accordion-panel, [clrStepButton]' })
 export class AccordionOompaLoompa extends OompaLoompa {
   private expand: IfExpandService;
 
   constructor(cdr: ChangeDetectorRef, @Optional() willyWonka: AccordionWillyWonka, ifExpandService: IfExpandService) {
     if (!willyWonka) {
-      throw new Error(
-        'clr-step-content and clr-accordion-content should only be used inside of clr-stepper or clr-accordion'
-      );
+      throw new Error('clr-step and clr-accordion-panel should only be used inside of clrStepper or clr-accordion');
     }
     super(cdr, willyWonka);
     this.expand = ifExpandService;

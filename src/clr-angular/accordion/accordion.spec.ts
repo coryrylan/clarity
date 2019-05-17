@@ -13,6 +13,7 @@ import { By } from '@angular/platform-browser';
 import { AccordionService } from './providers/accordion.service';
 import { ClrAccordionModule } from './accordion.module';
 import { ClrAccordion } from './accordion';
+import { ClrAccordionPanel } from './accordion-panel';
 
 describe('ClrAccordion', () => {
   let fixture: ComponentFixture<any>;
@@ -39,13 +40,13 @@ describe('ClrAccordion', () => {
   it(
     'should open one panel at a time',
     fakeAsync(() => {
-      const panelButtons = fixture.nativeElement.querySelectorAll('clr-accordion-panel button');
+      const panels = fixture.debugElement.queryAll(By.directive(ClrAccordionPanel));
 
-      panelButtons[0].click();
+      panels[0].nativeElement.querySelector('button').click();
       fixture.detectChanges();
       expect(fixture.nativeElement.textContent.trim()).toContain('panel 1');
 
-      panelButtons[1].click();
+      panels[1].nativeElement.querySelector('button').click();
       fixture.detectChanges();
       tick(200); // delay for animation
 
@@ -55,23 +56,17 @@ describe('ClrAccordion', () => {
   );
 
   it('should allow multiple open panels when in multi panel mode', () => {
-    const panelButtons = fixture.nativeElement.querySelectorAll('clr-accordion-panel button');
+    const panels = fixture.debugElement.queryAll(By.directive(ClrAccordionPanel));
     testComponent.multi = true;
     fixture.detectChanges();
 
-    panelButtons[0].click();
-    panelButtons[1].click();
+    panels[0].nativeElement.querySelector('button').click();
+    panels[1].nativeElement.querySelector('button').click();
     fixture.detectChanges();
 
     expect(fixture.nativeElement.textContent.trim()).toContain('panel 1');
     expect(fixture.nativeElement.textContent.trim()).toContain('panel 2');
     expect(fixture.nativeElement.textContent.trim()).not.toContain('panel 3');
-  });
-
-  it('should allow a panel to be programmatically opened', () => {
-    testComponent.openThirdStep = true;
-    fixture.detectChanges();
-    expect(fixture.nativeElement.textContent.trim()).toContain('panel 3');
   });
 
   it(
@@ -91,7 +86,7 @@ describe('ClrAccordion', () => {
     <clr-accordion [clrAccordionMultiPanel]="multi">
       <clr-accordion-panel>panel 1</clr-accordion-panel>
       <clr-accordion-panel *ngIf="showSecondStep">panel 2</clr-accordion-panel>
-      <clr-accordion-panel [(clrAccordionPanelOpen)]="openThirdStep">panel 3</clr-accordion-panel>
+      <clr-accordion-panel [clrAccordionPanelOpen]="openThirdStep">panel 3</clr-accordion-panel>
     </clr-accordion>
   `,
 })

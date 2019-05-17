@@ -31,66 +31,62 @@ describe('ClrStepper', () => {
     stepperService = fixture.debugElement.query(By.directive(ClrStepper)).injector.get(StepperService);
   });
 
-  // it('should reset panels when form is reset', () => {
-  //   spyOn(stepperService, 'resetPanels');
-  //   testComponent.form.reset();
-  //   fixture.detectChanges();
-  //   expect(stepperService.resetPanels).toHaveBeenCalled();
-  // });
+  it('should reset panels when form is reset', () => {
+    spyOn(stepperService, 'resetPanels');
+    testComponent.form.reset();
+    fixture.detectChanges();
+    expect(stepperService.resetPanels).toHaveBeenCalled();
+  });
 
-  // it('should trigger ngSubmit event when all panels have completed', () => {
-  //   spyOn(testComponent, 'submit');
-  //   stepperService.navigateToNextPanel('group', true);
-  //   stepperService.navigateToNextPanel('group2', true);
-  //   expect(testComponent.submit).toHaveBeenCalled();
-  // });
+  it('should trigger ngSubmit event when all panels have completed', () => {
+    spyOn(testComponent, 'submit');
+    stepperService.navigateToNextPanel('group', true);
+    stepperService.navigateToNextPanel('group2', true);
+    expect(testComponent.submit).toHaveBeenCalled();
+  });
 
-  // it('should override the initial panel if developer overrides it via clrInitialStep', () => {
-  //   spyOn(stepperService, 'overrideInitialPanel');
-  //   fixture.detectChanges();
-  //   expect(stepperService.overrideInitialPanel).not.toHaveBeenCalled();
+  it('should override the initial panel if developer overrides it via clrInitialStep', () => {
+    spyOn(stepperService, 'overrideInitialPanel');
+    fixture.detectChanges();
+    expect(stepperService.overrideInitialPanel).not.toHaveBeenCalled();
 
-  //   testComponent.initialStep = 'group';
-  //   fixture.detectChanges();
-  //   expect(stepperService.overrideInitialPanel).toHaveBeenCalled();
-  // });
+    testComponent.initialStep = 'group';
+    fixture.detectChanges();
+    expect(stepperService.overrideInitialPanel).toHaveBeenCalled();
+  });
 });
 
-// describe('ClrStepper Template Forms', () => {
-//   let fixture: ComponentFixture<any>;
-//   let testComponent: TemplateFormsTestComponent;
-//   let stepperService: AccordionService;
+describe('ClrStepper Template Forms', () => {
+  let fixture: ComponentFixture<any>;
+  let testComponent: TemplateFormsTestComponent;
+  let stepperService: StepperService;
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [TemplateFormsTestComponent],
-//       imports: [ClrAccordionModule, FormsModule, NoopAnimationsModule],
-//     });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TemplateFormsTestComponent],
+      imports: [ClrAccordionModule, FormsModule, NoopAnimationsModule],
+    });
 
-//     fixture = TestBed.createComponent(TemplateFormsTestComponent);
-//     fixture.detectChanges();
-//     testComponent = fixture.componentInstance;
-//     stepperService = fixture.debugElement.query(By.directive(ClrStepper)).injector.get(AccordionService);
-//   });
+    fixture = TestBed.createComponent(TemplateFormsTestComponent);
+    fixture.detectChanges();
+    testComponent = fixture.componentInstance;
+    stepperService = fixture.debugElement.query(By.directive(ClrStepper)).injector.get(StepperService);
+  });
 
-//   it(
-//     'should reset steps when form is reset',
-//     fakeAsync(() => {
-//       spyOn(stepperService, 'resetPanels');
-//       testComponent.form.reset();
-//       fixture.detectChanges();
-//       tick(); // workaround for https://github.com/angular/angular/issues/10887
-//       expect(stepperService.resetPanels).toHaveBeenCalled();
-//     })
-//   );
+  it('should reset steps when form is reset', () => {
+    spyOn(stepperService, 'resetPanels');
+    testComponent.form.reset();
+    fixture.detectChanges();
+    expect(stepperService.resetPanels).toHaveBeenCalled();
+  });
 
-//   it('should trigger ngSubmit event when all steps have completed', () => {
-//     spyOn(testComponent, 'submit');
-//     stepperService.navigateToNextPanel('group', true);
-//     stepperService.navigateToNextPanel('group2', true);
-//     expect(testComponent.submit).toHaveBeenCalled();
-//   });
-// });
+  it('should trigger ngSubmit event when all steps have completed', () => {
+    spyOn(testComponent, 'submit');
+    stepperService.navigateToNextPanel('group', true);
+    stepperService.navigateToNextPanel('group2', true);
+    expect(testComponent.submit).toHaveBeenCalled();
+  });
+});
 
 @Component({
   template: `
