@@ -29,8 +29,8 @@ export class AccordionService {
     this.emitUpdatedPanels();
   }
 
-  navigateToPanel(panelId: string) {
-    this.accordion.navigateToPanel(panelId);
+  togglePanel(panelId: string, open?: boolean) {
+    this.accordion.togglePanel(panelId, open);
     this.emitUpdatedPanels();
   }
 

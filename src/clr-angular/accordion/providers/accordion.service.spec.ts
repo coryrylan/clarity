@@ -28,7 +28,7 @@ describe('AccordionService', () => {
   });
 
   it('should update of panel changes when toggling to new panel', () => {
-    accordionService.navigateToPanel(panel2Id);
+    accordionService.togglePanel(panel2Id);
     accordionService
       .getPanelChanges(panel1Id)
       .pipe(take(1))
@@ -45,8 +45,8 @@ describe('AccordionService', () => {
 
   it('should allow component to set the active accordion strategy', () => {
     accordionService.setStrategy(AccordionStrategy.Multi);
-    accordionService.navigateToPanel(panel1Id);
-    accordionService.navigateToPanel(panel2Id);
+    accordionService.togglePanel(panel1Id);
+    accordionService.togglePanel(panel2Id);
 
     accordionService
       .getPanelChanges(panel1Id)

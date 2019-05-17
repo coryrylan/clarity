@@ -30,8 +30,8 @@ export class ClrAccordionPanel {
 
   panel: Observable<AccordionPanelModel>;
   readonly AccordionStatus = AccordionStatus;
-  private _id = `${panelCount++}`;
 
+  private _id = `${panelCount++}`;
   get id() {
     return this._id;
   }
@@ -39,31 +39,31 @@ export class ClrAccordionPanel {
   constructor(private accordionService: AccordionService, private ifExpandService: IfExpandService) {}
 
   ngOnInit() {
-    this.panel = this.accordionService.getPanelChanges(this.id).pipe(tap(panel => this.expandPanelIfOpen(panel)));
+    this.panel = this.accordionService.getPanelChanges(this.id).pipe(tap(panel => this.togglePanel(panel)));
     this.accordionService.addPanel(this.id, this.panelOpen);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.panel && changes.panelOpen.currentValue !== this.panelOpen) {
-      this.selectPanel();
+    if (this.panel && changes.panelOpen.currentValue !== changes.panelOpen.previousValue) {
+      this.accordionService.togglePanel(this.id, changes.panelOpen.currentValue);
     }
   }
 
   selectPanel() {
-    this.accordionService.navigateToPanel(this.id);
+    this.accordionService.togglePanel(this.id);
   }
 
   collapsePanelOnAnimationDone(panel: AccordionPanelModel) {
     if (!panel.open) {
       this.ifExpandService.expanded = false;
-      this.panelOpenChange.emit(false);
     }
   }
 
-  private expandPanelIfOpen(panel: AccordionPanelModel) {
+  private togglePanel(panel: AccordionPanelModel) {
+    this.panelOpenChange.emit(panel.open);
+
     if (panel.open) {
       this.ifExpandService.expanded = true;
-      this.panelOpenChange.emit(true);
     }
   }
 }

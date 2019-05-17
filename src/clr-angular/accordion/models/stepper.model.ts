@@ -22,7 +22,7 @@ export class StepperModel extends AccordionModel {
     this.openFirstPanel(ids);
   }
 
-  navigateToPanel(panelId: string) {
+  togglePanel(panelId: string) {
     if (this._panels[panelId].status === AccordionStatus.Complete) {
       this._panels[panelId].open = !this._panels[panelId].open;
     }

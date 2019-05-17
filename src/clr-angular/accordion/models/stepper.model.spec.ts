@@ -65,11 +65,11 @@ describe('StepperModel', () => {
     expect(stepper.panels[0].status).toBe(AccordionStatus.Complete);
     expect(stepper.panels[1].open).toBe(true);
 
-    stepper.navigateToPanel(step1Id);
+    stepper.togglePanel(step1Id);
     expect(stepper.panels[0].open).toBe(true);
     expect(stepper.panels[1].open).toBe(true);
 
-    stepper.navigateToPanel(step1Id);
+    stepper.togglePanel(step1Id);
     expect(stepper.panels[0].open).toBe(false);
     expect(stepper.panels[0].status).toBe(AccordionStatus.Complete);
     expect(stepper.panels[1].open).toBe(true);
