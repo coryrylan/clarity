@@ -8,6 +8,7 @@ import { Component, ChangeDetectionStrategy, Optional } from '@angular/core';
 import { FormGroupName, NgModelGroup } from '@angular/forms';
 import { tap } from 'rxjs/operators';
 
+import { ClrCommonStrings } from '../../utils/i18n/common-strings.interface';
 import { StepperService } from './../providers/stepper.service';
 import { panelAnimation } from './../utils/animation';
 import { triggerAllFormControlValidation } from '../../utils/forms/validation';
@@ -36,12 +37,13 @@ export class ClrStep extends ClrAccordionPanel {
   set id(_value) {} // overriding parent id required empty setter
 
   constructor(
+    public commonStrings: ClrCommonStrings,
     @Optional() private formGroupName: FormGroupName,
     @Optional() private ngModelGroup: NgModelGroup,
     stepperService: StepperService,
     ifExpandService: IfExpandService
   ) {
-    super(stepperService, ifExpandService);
+    super(commonStrings, stepperService, ifExpandService);
   }
 
   ngOnInit() {

@@ -8,6 +8,7 @@ import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output, Simple
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+import { ClrCommonStrings } from '../utils/i18n/common-strings.interface';
 import { AccordionService } from './providers/accordion.service';
 import { AccordionStatus } from './enums/accordion-status.enum';
 import { panelAnimation } from './utils/animation';
@@ -36,7 +37,11 @@ export class ClrAccordionPanel {
     return this._id;
   }
 
-  constructor(private accordionService: AccordionService, private ifExpandService: IfExpandService) {}
+  constructor(
+    public commonStrings: ClrCommonStrings,
+    private accordionService: AccordionService,
+    private ifExpandService: IfExpandService
+  ) {}
 
   ngOnInit() {
     this.panel = this.accordionService.getPanelChanges(this.id).pipe(tap(panel => this.togglePanel(panel)));

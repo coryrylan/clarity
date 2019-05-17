@@ -17,7 +17,7 @@ import { AccordionService } from './providers/accordion.service';
 import { AccordionStatus } from './enums/accordion-status.enum';
 import { AccordionPanelModel } from './models/accordion.model';
 
-fdescribe('ClrAccordionPanel', () => {
+describe('ClrAccordionPanel', () => {
   let fixture: ComponentFixture<TestComponent>;
   let testComponent: TestComponent;
   const panel1Id = '0';

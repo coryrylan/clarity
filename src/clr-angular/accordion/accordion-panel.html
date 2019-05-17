@@ -1,7 +1,7 @@
 <ng-container *ngIf="panel | async; let panel">
   <div *ngIf="panel.status !== AccordionStatus.Inactive" aria-live="assertive" class="clr-screen-reader-only">
-    <ng-container *ngIf="panel.status === AccordionStatus.Error">Please check step for errors.</ng-container>
-    <ng-container *ngIf="panel.status === AccordionStatus.Complete">Step completed.</ng-container>
+    <ng-container *ngIf="panel.status === AccordionStatus.Error">{{commonStrings.danger}}</ng-container>
+    <ng-container *ngIf="panel.status === AccordionStatus.Complete">{{commonStrings.success}}</ng-container>
   </div>
 
   <div
