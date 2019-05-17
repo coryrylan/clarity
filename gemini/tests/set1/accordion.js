@@ -1,11 +1,11 @@
 var WAIT_TIME = 5000;
 var WAIT_LOAD_TIME = 1000;
 
-gemini.suite('stepper', child => {
+gemini.suite('accordion', child => {
   child
-    .setUrl('/stepper')
+    .setUrl('/accordion')
     .before((actions, find) => {
-      actions.setWindowSize(1200, 3550);
+      actions.setWindowSize(1200, 1550);
       actions.waitForElementToShow('.content-area', WAIT_TIME);
       actions.wait(WAIT_LOAD_TIME);
     })
