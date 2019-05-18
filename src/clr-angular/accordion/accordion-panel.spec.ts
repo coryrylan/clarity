@@ -4,101 +4,65 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-// import { Component } from '@angular/core';
-// import { TestBed, ComponentFixture } from '@angular/core/testing';
-// import { ReactiveFormsModule } from '@angular/forms';
-// import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-// import { BehaviorSubject } from 'rxjs';
+import { Component } from '@angular/core';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-// import { ClrAccordionModule } from './accordion.module';
-// import { AccordionService } from './providers/accordion.service';
-// import { AccordionPanelModel } from './models/accordion.model';
+import { ClrAccordionModule } from './accordion.module';
+import { By } from '@angular/platform-browser';
+import { ClrAccordionPanel } from './accordion-panel';
 
-// describe('ClrAccordionPanel', () => {
-//   let fixture: ComponentFixture<TestComponent>;
-//   let testComponent: TestComponent;
-//   const panel1Id = '0';
+describe('ClrAccordionPanel', () => {
+  let fixture: ComponentFixture<TestComponent>;
+  let testComponent: TestComponent;
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       declarations: [TestComponent],
-//       providers: [{ provide: AccordionService, useClass: MockAccordionService }],
-//       imports: [ClrAccordionModule, ReactiveFormsModule, NoopAnimationsModule],
-//     });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [ClrAccordionModule, ReactiveFormsModule, NoopAnimationsModule],
+    });
 
-//     fixture = TestBed.createComponent(TestComponent);
-//     fixture.detectChanges();
-//     testComponent = fixture.componentInstance;
-//   });
+    fixture = TestBed.createComponent(TestComponent);
+    fixture.detectChanges();
+    testComponent = fixture.componentInstance;
+  });
 
-//   it('should allow a panel to be programmatically opened', () => {
-//     testComponent.open = true;
-//     fixture.detectChanges();
-//     expect(fixture.nativeElement.textContent.trim()).toContain('panel');
-//   });
+  it('should allow a panel to be programmatically opened', () => {
+    testComponent.open = true;
+    fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).toContain('panel');
 
-//   // it('should show the appropriate aria-live message', () => {
-//   //   const mockPanel = new AccordionPanelModel(panel1Id, 0);
-//   //   const accordionService = fixture.debugElement.query(By.directive(ClrAccordionPanel)).injector.get(AccordionService);
-//   //   let liveSection: HTMLElement = fixture.nativeElement.querySelector('.clr-screen-reader-only');
-//   //   expect(liveSection).toBe(null);
+    testComponent.open = false;
+    fixture.detectChanges();
+    expect(fixture.nativeElement.textContent).toContain('');
+  });
 
-//   //   mockPanel.status = AccordionStatus.Error;
-//   //   (accordionService as MockAccordionService).panel.next(mockPanel);
-//   //   fixture.detectChanges();
-//   //   liveSection = fixture.nativeElement.querySelector('.clr-screen-reader-only');
-//   //   expect(liveSection.getAttribute('aria-live')).toBe('assertive');
-//   //   expect(liveSection.innerText.trim()).toBe('Please check step for errors.');
+  it('should set the appropriate aria attribute values', () => {
+    const panel = fixture.debugElement.query(By.directive(ClrAccordionPanel));
+    const headerButton: HTMLElement = panel.nativeElement.querySelector('button');
+    const content = panel.nativeElement.querySelector('#clr-accordion-content-11');
 
-//   //   mockPanel.status = AccordionStatus.Complete;
-//   //   (accordionService as MockAccordionService).panel.next(mockPanel);
-//   //   fixture.detectChanges();
-//   //   expect(liveSection.innerText.trim()).toBe('Step completed.');
-//   // });
+    expect(headerButton.getAttribute('aria-expanded')).toBe('false');
+    expect(headerButton.getAttribute('id')).toBe('clr-accordion-header-11');
+    expect(content.getAttribute('aria-hidden')).toBe('true');
+    expect(content.getAttribute('aria-labelledby')).toBe('clr-accordion-header-11');
 
-//   // it('should set the appropriate aria-hidden and aria-expanded attribute values', () => {
-//   //   const mockStep = new AccordionPanelModel(step1Id, 0);
-//   //   const stepperService = fixture.debugElement.query(By.directive(ClrAccordionPanel)).injector.get(AccordionService);
-//   //   const headerButton: HTMLElement = fixture.nativeElement.querySelector('.clr-accordion-header-button');
-//   //   const stepContent: HTMLElement = fixture.nativeElement.querySelector('#clr-accordion-content-groupName0');
+    headerButton.click();
+    fixture.detectChanges();
 
-//   //   expect(headerButton.getAttribute('aria-expanded')).toBe('false');
-//   //   expect(stepContent.getAttribute('aria-hidden')).toBe('true');
+    expect(headerButton.getAttribute('aria-expanded')).toBe('true');
+    expect(content.getAttribute('aria-hidden')).toBe('false');
+  });
+});
 
-//   //   mockStep.isOpen = true;
-//   //   (stepperService as MockStepperService).step.next(mockStep);
-//   //   fixture.detectChanges();
-//   //   expect(headerButton.getAttribute('aria-expanded')).toBe('true');
-//   //   expect(stepContent.getAttribute('aria-hidden')).toBe('false');
-//   // });
-
-//   // it('should show or hide content based on if step is open', () => {
-//   //   const mockStep = new AccordionPanelModel(step1Id, 0);
-//   //   const stepperService = fixture.debugElement.query(By.directive(ClrAccordionPanel)).injector.get(AccordionService);
-//   //   expect(fixture.nativeElement.querySelector('.clr-accordion-content')).toBe(null);
-
-//   //   mockStep.isOpen = true;
-//   //   (stepperService as MockStepperService).step.next(mockStep);
-//   //   fixture.detectChanges();
-//   //   expect(fixture.nativeElement.querySelector('.clr-accordion-content').innerText.trim()).toBe('test step');
-//   // });
-// });
-
-// @Component({
-//   template: `
-//     <clr-accordion>
-//       <clr-accordion-panel [clrAccordionPanelOpen]="open">panel</clr-accordion-panel>
-//     </clr-accordion>
-//   `,
-// })
-// class TestComponent {
-//   open = false;
-// }
-
-// class MockAccordionService extends AccordionService {
-//   panel = new BehaviorSubject<AccordionPanelModel>(new AccordionPanelModel('groupName', 0));
-
-//   getPanelChanges() {
-//     return this.panel;
-//   }
-// }
+@Component({
+  template: `
+    <clr-accordion>
+      <clr-accordion-panel [clrAccordionPanelOpen]="open">panel</clr-accordion-panel>
+    </clr-accordion>
+  `,
+})
+class TestComponent {
+  open = false;
+}
