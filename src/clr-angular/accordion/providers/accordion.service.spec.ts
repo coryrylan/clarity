@@ -17,7 +17,7 @@ describe('AccordionService', () => {
     accordionService = new AccordionService();
     accordionService.addPanel(panel1Id);
     accordionService.addPanel(panel2Id);
-    accordionService.syncPanels([panel1Id, panel2Id]);
+    accordionService.updatePanelOrder([panel1Id, panel2Id]);
   });
 
   it('should get updates of an individual panel change', () => {
@@ -36,7 +36,7 @@ describe('AccordionService', () => {
   });
 
   it('should notify of panel changes when panel order has changed', () => {
-    accordionService.syncPanels([panel2Id, panel1Id]);
+    accordionService.updatePanelOrder([panel2Id, panel1Id]);
     accordionService
       .getPanelChanges(panel1Id)
       .pipe(take(1))

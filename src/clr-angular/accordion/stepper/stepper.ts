@@ -17,7 +17,6 @@ import { FormGroupDirective, NgForm } from '@angular/forms';
 import { startWith, filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
-import { ClrAccordionPanel } from '../accordion-panel';
 import { StepperService } from '../providers/stepper.service';
 import { AccordionService } from '../providers/accordion.service';
 import { ClrStep } from './step';
@@ -82,16 +81,13 @@ export class ClrStepper {
   }
 
   private setPanelsWithFormErrors() {
-    const panelsWithErrors = this.panels.reduce(
-      (panels, panel) => (panel.formGroup.invalid ? [...panels, panel.id] : panels),
-      []
-    );
+    const panelsWithErrors = this.panels.reduce((panels, p) => (p.formGroup.invalid ? [...panels, p.id] : panels), []);
     this.stepperService.setPanelsWithErrors(panelsWithErrors);
   }
 
   private listenForDOMChanges() {
     return this.panels.changes.pipe(startWith(this.panels)).subscribe(panels => {
-      this.stepperService.syncPanels(panels.toArray().map((p: ClrAccordionPanel) => p.id));
+      this.stepperService.updatePanelOrder(panels.toArray().map(p => p.id));
 
       if (this.initialPanel) {
         this.stepperService.overrideInitialPanel(this.initialPanel);

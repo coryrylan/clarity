@@ -18,7 +18,7 @@ describe('AccordionModel', () => {
     accordion.addPanel(panel1Id);
     accordion.addPanel(panel2Id);
     accordion.addPanel(panel3Id);
-    accordion.syncPanels([panel1Id, panel2Id, panel3Id]);
+    accordion.updatePanelOrder([panel1Id, panel2Id, panel3Id]);
   });
 
   it('should add new AccordionPanelModel instances', () => {
@@ -27,7 +27,7 @@ describe('AccordionModel', () => {
 
   it('should remove panels from collection when re-synced with ContentChildren', () => {
     expect(accordion.panels.length).toBe(3);
-    accordion.syncPanels([panel1Id, panel3Id]);
+    accordion.updatePanelOrder([panel1Id, panel3Id]);
     expect(accordion.panels.length).toBe(2);
   });
 

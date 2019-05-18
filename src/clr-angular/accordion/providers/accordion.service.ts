@@ -34,8 +34,8 @@ export class AccordionService {
     this.emitUpdatedPanels();
   }
 
-  syncPanels(ids: string[]) {
-    this.accordion.syncPanels(ids);
+  updatePanelOrder(ids: string[]) {
+    this.accordion.updatePanelOrder(ids);
     this.emitUpdatedPanels();
   }
 

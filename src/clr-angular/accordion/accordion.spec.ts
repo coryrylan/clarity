@@ -72,11 +72,11 @@ describe('ClrAccordion', () => {
   it(
     'should reorder panels when panel content children has changed',
     fakeAsync(() => {
-      spyOn(accordionService, 'syncPanels');
+      spyOn(accordionService, 'updatePanelOrder');
       testComponent.showSecondStep = false;
       fixture.detectChanges();
       tick();
-      expect(accordionService.syncPanels).toHaveBeenCalled();
+      expect(accordionService.updatePanelOrder).toHaveBeenCalled();
     })
   );
 });

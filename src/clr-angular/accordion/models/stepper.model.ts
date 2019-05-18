@@ -17,8 +17,8 @@ export class StepperModel extends AccordionModel {
     this._panels[id].disabled = true;
   }
 
-  syncPanels(ids: string[]) {
-    super.syncPanels(ids);
+  updatePanelOrder(ids: string[]) {
+    super.updatePanelOrder(ids);
     this.openFirstPanel(ids);
   }
 

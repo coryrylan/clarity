@@ -30,8 +30,8 @@ export class AccordionModel {
     this.strategy = strategy;
   }
 
-  syncPanels(ids: string[]) {
-    this.updatePanelOrder(ids);
+  updatePanelOrder(ids: string[]) {
+    ids.forEach((id, index) => (this._panels[id].index = index));
     this.removeOldPanels(ids);
   }
 
@@ -51,10 +51,6 @@ export class AccordionModel {
 
   private closeAllPanels() {
     this.panels.forEach(panel => (this._panels[panel.id].open = false));
-  }
-
-  private updatePanelOrder(ids: string[]) {
-    ids.forEach((id, index) => (this._panels[id].index = index));
   }
 
   private removeOldPanels(ids: string[]) {

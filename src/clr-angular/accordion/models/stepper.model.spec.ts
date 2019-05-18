@@ -18,7 +18,7 @@ describe('StepperModel', () => {
     stepper.addPanel(step1Id);
     stepper.addPanel(step2Id);
     stepper.addPanel(step3Id);
-    stepper.syncPanels([step1Id, step2Id, step3Id]);
+    stepper.updatePanelOrder([step1Id, step2Id, step3Id]);
   });
 
   it('should add a new Step model instances', () => {
@@ -46,7 +46,7 @@ describe('StepperModel', () => {
 
   it('should remove steps from collection when re-synced with ContentChildren', () => {
     expect(stepper.panels.length).toBe(3);
-    stepper.syncPanels([step1Id, step3Id]);
+    stepper.updatePanelOrder([step1Id, step3Id]);
     expect(stepper.panels.length).toBe(2);
   });
 
