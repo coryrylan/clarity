@@ -6,8 +6,8 @@
 
 import { ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
-import { Component, ViewChild } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { AccordionService } from './providers/accordion.service';

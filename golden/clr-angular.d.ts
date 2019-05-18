@@ -41,6 +41,31 @@ export declare const CLR_VERTICAL_NAV_DIRECTIVES: Type<any>[];
 
 export declare const CLR_WIZARD_DIRECTIVES: any[];
 
+export declare class ClrAccordion {
+    multiPanel: boolean;
+    panels: QueryList<ClrAccordionPanel>;
+    subscriptions: Subscription[];
+    constructor(accordionService: AccordionService);
+    ngAfterViewInit(): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    ngOnDestroy(): void;
+    ngOnInit(): void;
+}
+
+export declare class ClrAccordionPanel {
+    readonly AccordionStatus: typeof AccordionStatus;
+    commonStrings: ClrCommonStrings;
+    readonly id: string;
+    panel: Observable<AccordionPanelModel>;
+    panelOpen: boolean;
+    panelOpenChange: EventEmitter<boolean>;
+    constructor(commonStrings: ClrCommonStrings, accordionService: AccordionService, ifExpandService: IfExpandService);
+    collapsePanelOnAnimationDone(panel: AccordionPanelModel): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    ngOnInit(): void;
+    selectPanel(): void;
+}
+
 export declare class ClrAlert {
     _closed: boolean;
     _closedChanged: EventEmitter<boolean>;
@@ -977,29 +1002,6 @@ export declare class ClrStackViewCustomTags {
 }
 
 export declare class ClrStackViewModule {
-}
-
-export declare class ClrStep {
-    readonly StepStatus: typeof StepStatus;
-    readonly formGroup: import("@angular/forms").FormGroup;
-    readonly name: string;
-    step: Observable<Step>;
-    constructor(formGroupName: FormGroupName, ngModelGroup: NgModelGroup, stepperService: StepperService, ifExpandService: IfExpandService);
-    collapseStep(step: Step): void;
-    ngOnInit(): void;
-    selectStep(): void;
-}
-
-export declare class ClrStepper {
-    form: FormGroupDirective | NgForm;
-    initialStep: string;
-    steps: QueryList<ClrStep>;
-    subscriptions: Subscription[];
-    constructor(formGroup: FormGroupDirective, ngForm: NgForm, stepperService: StepperService);
-    ngAfterViewInit(): void;
-    ngOnChanges(changes: SimpleChanges): void;
-    ngOnDestroy(): void;
-    ngOnInit(): void;
 }
 
 export declare class ClrTab {

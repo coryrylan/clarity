@@ -124,32 +124,8 @@
     }
   }
 
-  .clr-step-button {
-    display: block;
-    margin-top: 24px;
-  }
-
   .clr-accordion-angle {
     transition: all 200ms ease-in-out;
-  }
-
-  // forms/step mode
-  &.clr-stepper-forms {
-    .clr-accordion-angle {
-      visibility: hidden;
-    }
-
-    .clr-accordion-status {
-      width: 75px;
-    }
-
-    .clr-accordion-title {
-      width: calc(100% - 75px);
-    }
-
-    .clr-accordion-number {
-      display: inline-block;
-    }
   }
 
   .clr-accordion-error-icon,
@@ -213,5 +189,33 @@
   .clr-accordion-panel-error .clr-accordion-number,
   .clr-accordion-panel-complete .clr-accordion-number {
     @include screen-reader-only();
+  }
+
+  // stepper forms mode
+  .clr-stepper-forms {
+    .clr-accordion-panel-inactive .clr-accordion-angle {
+      visibility: hidden;
+    }
+
+    .clr-accordion-panel-open .clr-accordion-angle {
+      visibility: visible;
+    }
+
+    .clr-accordion-status {
+      width: 75px;
+    }
+
+    .clr-accordion-title {
+      width: calc(100% - 75px);
+    }
+
+    .clr-accordion-number {
+      display: inline-block;
+    }
+  }
+
+  .clr-step-button {
+    display: block;
+    margin-top: 24px;
   }
 }

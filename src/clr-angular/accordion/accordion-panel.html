@@ -9,7 +9,7 @@
     [attr.aria-labelledby]="'clr-accordion-header-' + panel.id + panel.accordionId"
     [class.clr-accordion-panel-complete]="panel.status === AccordionStatus.Complete"
     [class.clr-accordion-panel-error]="panel.status === AccordionStatus.Error"
-    [class.clr-step-inactive]="panel.status === AccordionStatus.Inactive"
+    [class.clr-accordion-panel-inactive]="panel.status === AccordionStatus.Inactive"
     [class.clr-accordion-panel-open]="panel.open"
   >
     <div class="clr-accordion-header">
