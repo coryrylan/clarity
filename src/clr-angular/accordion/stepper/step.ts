@@ -10,7 +10,7 @@ import { tap } from 'rxjs/operators';
 
 import { ClrCommonStrings } from '../../utils/i18n/common-strings.interface';
 import { StepperService } from './../providers/stepper.service';
-import { panelAnimation } from './../utils/animation';
+import { stepAnimation } from './../utils/animation';
 import { triggerAllFormControlValidation } from '../../utils/forms/validation';
 import { IfExpandService } from './../../utils/conditional/if-expanded.service';
 import { AccordionPanelModel } from './../models/accordion.model';
@@ -22,7 +22,7 @@ import { ClrAccordionPanel } from './../accordion-panel';
   templateUrl: './../accordion-panel.html',
   host: { '[class.clr-accordion-panel]': 'true' },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: panelAnimation,
+  animations: stepAnimation,
   providers: [IfExpandService],
 })
 export class ClrStep extends ClrAccordionPanel {

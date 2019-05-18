@@ -18,7 +18,7 @@
     border: 1px solid $clr-accordion-border-color;
     box-shadow: inset $clr-accordion-border-left-width 0 0 $clr-accordion-border-left-color;
     background: $clr-accordion-header-background-color;
-    transition: background-color 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
     border-bottom: 0;
     display: flex;
     flex-flow: row wrap;
@@ -127,6 +127,10 @@
   .clr-step-button {
     display: block;
     margin-top: 24px;
+  }
+
+  .clr-accordion-angle {
+    transition: all 200ms ease-in-out;
   }
 
   // forms/step mode

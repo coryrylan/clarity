@@ -40,13 +40,13 @@ export class AccordionModel {
     this._panels[id].open = open;
   }
 
-  togglePanel(panelId: string, open: boolean = null) {
+  togglePanel(panelId: string, open?: boolean) {
     const panelIsOpen = this._panels[panelId].open;
     if (this.strategy === AccordionStrategy.Default) {
       this.closeAllPanels();
     }
 
-    this._panels[panelId].open = open !== null ? open : !panelIsOpen;
+    this._panels[panelId].open = open !== undefined ? open : !panelIsOpen;
   }
 
   private closeAllPanels() {

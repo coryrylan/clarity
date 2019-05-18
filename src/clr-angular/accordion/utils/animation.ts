@@ -15,6 +15,16 @@ export const panelAnimation = [
       style({ display: 'block', height: 0 }),
       animate(defaultAnimationTiming, style({ height: '*' })),
     ]),
+  ]),
+];
+
+export const stepAnimation = [
+  trigger('skipInitialRender', [transition(':enter', [])]),
+  trigger('toggle', [
+    transition('void => *', [
+      style({ display: 'block', height: 0 }),
+      animate(defaultAnimationTiming, style({ height: '*' })),
+    ]),
     transition('* => void', [
       style({ display: 'block' }),
       animate(defaultAnimationTiming, style({ height: 0, display: 'none' })),
