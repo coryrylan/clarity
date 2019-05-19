@@ -40,13 +40,14 @@ describe('ClrAccordionPanel', () => {
 
   it('should set the appropriate aria attribute values', () => {
     const panel = fixture.debugElement.query(By.directive(ClrAccordionPanel));
+    const content = panel.nativeElement.querySelector('[role="region"]');
     const headerButton: HTMLElement = panel.nativeElement.querySelector('button');
-    const content = panel.nativeElement.querySelector('#clr-accordion-content-11');
+    const headerId = headerButton.getAttribute('id');
 
+    expect(headerId).toBeTruthy();
     expect(headerButton.getAttribute('aria-expanded')).toBe('false');
-    expect(headerButton.getAttribute('id')).toBe('clr-accordion-header-11');
     expect(content.getAttribute('aria-hidden')).toBe('true');
-    expect(content.getAttribute('aria-labelledby')).toBe('clr-accordion-header-11');
+    expect(content.getAttribute('aria-labelledby')).toBe(headerId);
 
     headerButton.click();
     fixture.detectChanges();
