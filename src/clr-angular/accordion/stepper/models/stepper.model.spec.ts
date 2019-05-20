@@ -4,7 +4,7 @@
 * The full license information can be found in LICENSE in the root directory of this project.
 */
 
-import { AccordionStatus } from '../enums/accordion-status.enum';
+import { AccordionStatus } from '../../enums/accordion-status.enum';
 import { StepperModel } from './stepper.model';
 
 describe('StepperModel', () => {
@@ -31,7 +31,7 @@ describe('StepperModel', () => {
   });
 
   it('should navigate to next step if current step is valid and mark step complete', () => {
-    stepper.navigateToNextPanel(step1Id, true);
+    stepper.navigateToNextPanel(step1Id);
     expect(stepper.panels[0].status).toBe(AccordionStatus.Complete);
     expect(stepper.panels[0].open).toBe(false);
     expect(stepper.panels[1].open).toBe(true);
@@ -51,7 +51,7 @@ describe('StepperModel', () => {
   });
 
   it('should reset all steps when reset by form', () => {
-    stepper.navigateToNextPanel(step1Id, true);
+    stepper.navigateToNextPanel(step1Id);
     expect(stepper.panels[0].status).toBe(AccordionStatus.Complete);
     expect(stepper.panels[1].open).toBe(true);
 
@@ -61,7 +61,7 @@ describe('StepperModel', () => {
   });
 
   it('should allow user to open and close a previously completed step', () => {
-    stepper.navigateToNextPanel(step1Id, true);
+    stepper.navigateToNextPanel(step1Id);
     expect(stepper.panels[0].status).toBe(AccordionStatus.Complete);
     expect(stepper.panels[1].open).toBe(true);
 
@@ -77,21 +77,22 @@ describe('StepperModel', () => {
 
   it('should determine if all steps have been completed', () => {
     expect(stepper.allPanelsCompleted).toBe(false);
-    stepper.navigateToNextPanel(step1Id, true);
-    stepper.navigateToNextPanel(step2Id, true);
-    stepper.navigateToNextPanel(step3Id, true);
+    stepper.navigateToNextPanel(step1Id);
+    stepper.navigateToNextPanel(step2Id);
+    stepper.navigateToNextPanel(step3Id);
+    stepper.panels[2].open = false;
     expect(stepper.allPanelsCompleted).toBe(true);
   });
 
   it('should close all future steps if user proceeded to continue to next step from previously completed step to avoid a dependency issue', () => {
-    stepper.navigateToNextPanel(step1Id, true);
-    stepper.navigateToNextPanel(step2Id, true);
+    stepper.navigateToNextPanel(step1Id);
+    stepper.navigateToNextPanel(step2Id);
 
     expect(stepper.panels[0].status).toBe(AccordionStatus.Complete);
     expect(stepper.panels[1].status).toBe(AccordionStatus.Complete);
     expect(stepper.panels[2].open).toBe(true);
 
-    stepper.navigateToNextPanel(step1Id, true);
+    stepper.navigateToNextPanel(step1Id);
 
     expect(stepper.panels[0].status).toBe(AccordionStatus.Complete);
     expect(stepper.panels[1].open).toBe(true);
@@ -107,5 +108,10 @@ describe('StepperModel', () => {
     expect(stepper.panels[1].open).toBe(true);
     expect(stepper.panels[2].status).toBe(AccordionStatus.Inactive);
     expect(stepper.panels[2].open).toBe(false);
+  });
+
+  it('should set the specified errors of a step', () => {
+    stepper.setPanelsWithErrors([step1Id]);
+    expect(stepper.panels[0].status).toBe(AccordionStatus.Error);
   });
 });

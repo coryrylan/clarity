@@ -6,7 +6,7 @@
 
 import { Directive, HostListener, HostBinding, Input } from '@angular/core';
 
-import { StepperService } from '../providers/stepper.service';
+import { StepperService } from './providers/stepper.service';
 import { ClrStep } from './step';
 
 export enum ClrStepButtonType {
@@ -34,7 +34,6 @@ export class ClrStepButton {
 
   @HostListener('click')
   click() {
-    const valid = this.clrStep.formGroup ? this.clrStep.formGroup.valid : true;
-    this.stepperService.navigateToNextPanel(this.clrStep.id, valid);
+    this.stepperService.navigateToNextPanel(this.clrStep.id, this.clrStep.formGroup.valid);
   }
 }

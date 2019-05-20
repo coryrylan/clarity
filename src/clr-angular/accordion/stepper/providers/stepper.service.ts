@@ -7,7 +7,7 @@
 import { Injectable } from '@angular/core';
 import { map, distinctUntilChanged } from 'rxjs/operators';
 
-import { AccordionService } from './accordion.service';
+import { AccordionService } from './../../providers/accordion.service';
 import { StepperModel } from '../models/stepper.model';
 
 @Injectable()

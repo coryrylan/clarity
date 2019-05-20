@@ -13,7 +13,7 @@ import { By } from '@angular/platform-browser';
 import { ClrAccordionModule } from '../accordion.module';
 import { ClrStepperModule } from './stepper.module';
 import { ClrStepButton, ClrStepButtonType } from './step-button';
-import { StepperService } from '../providers/stepper.service';
+import { StepperService } from './providers/stepper.service';
 
 describe('ClrStepButton', () => {
   let fixture: ComponentFixture<any>;

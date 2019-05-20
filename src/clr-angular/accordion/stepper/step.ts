@@ -9,7 +9,7 @@ import { FormGroupName, NgModelGroup } from '@angular/forms';
 import { tap } from 'rxjs/operators';
 
 import { ClrCommonStrings } from '../../utils/i18n/common-strings.interface';
-import { StepperService } from './../providers/stepper.service';
+import { StepperService } from './providers/stepper.service';
 import { stepAnimation } from './../utils/animation';
 import { triggerAllFormControlValidation } from '../../utils/forms/validation';
 import { IfExpandService } from './../../utils/conditional/if-expanded.service';

@@ -17,7 +17,7 @@ import { FormGroupDirective, NgForm } from '@angular/forms';
 import { startWith, filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
-import { StepperService } from '../providers/stepper.service';
+import { StepperService } from './providers/stepper.service';
 import { AccordionService } from '../providers/accordion.service';
 import { ClrStep } from './step';
 

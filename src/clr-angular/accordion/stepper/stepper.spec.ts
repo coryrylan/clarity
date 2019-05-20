@@ -6,13 +6,13 @@
 
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormsModule, FormControl, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 import { ClrAccordionModule } from '../accordion.module';
 import { ClrStepperModule } from './stepper.module';
-import { StepperService } from './../providers/stepper.service';
+import { StepperService } from '././providers/stepper.service';
 import { ClrStepper } from './stepper';
 
 describe('ClrStepper', () => {
@@ -41,9 +41,21 @@ describe('ClrStepper', () => {
 
   it('should trigger ngSubmit event when all panels have completed', () => {
     spyOn(testComponent, 'submit');
-    stepperService.navigateToNextPanel('group', true);
-    stepperService.navigateToNextPanel('group2', true);
+    (testComponent.form.controls.group as FormGroup).controls.name.setValue('1');
+    stepperService.navigateToNextPanel('group');
+    stepperService.navigateToNextPanel('group2');
     expect(testComponent.submit).toHaveBeenCalled();
+  });
+
+  it('should update panels for form errors', () => {
+    spyOn(stepperService, 'setPanelsWithErrors');
+
+    (testComponent.form.controls.group as FormGroup).controls.name.markAsTouched();
+    stepperService.navigateToNextPanel('group');
+    fixture.detectChanges();
+    stepperService.navigateToNextPanel('group2');
+
+    expect(stepperService.setPanelsWithErrors).toHaveBeenCalled();
   });
 
   it('should override the initial panel if developer overrides it via clrInitialStep', () => {
@@ -52,6 +64,10 @@ describe('ClrStepper', () => {
     expect(stepperService.overrideInitialPanel).not.toHaveBeenCalled();
 
     testComponent.initialStep = 'group';
+    fixture.detectChanges();
+    expect(stepperService.overrideInitialPanel).toHaveBeenCalled();
+
+    testComponent.showSecondStep = false;
     fixture.detectChanges();
     expect(stepperService.overrideInitialPanel).toHaveBeenCalled();
   });
@@ -83,8 +99,8 @@ describe('ClrStepper Template Forms', () => {
 
   it('should trigger ngSubmit event when all steps have completed', () => {
     spyOn(testComponent, 'submit');
-    stepperService.navigateToNextPanel('group', true);
-    stepperService.navigateToNextPanel('group2', true);
+    stepperService.navigateToNextPanel('group');
+    stepperService.navigateToNextPanel('group2');
     expect(testComponent.submit).toHaveBeenCalled();
   });
 });
@@ -93,11 +109,9 @@ describe('ClrStepper Template Forms', () => {
   template: `
     <form clrStepper [formGroup]="form" (ngSubmit)="submit()" [clrInitialStep]="initialStep">
       <clr-step formGroupName="group">
-        <clr-step-title>Group 1</clr-step-title>
+        <input formControlName="name" />
       </clr-step>
-      <clr-step *ngIf="showSecondStep" formGroupName="group2">
-        <clr-step-title>Group 2</clr-step-title>
-      </clr-step>
+      <clr-step *ngIf="showSecondStep" formGroupName="group2"></clr-step>
     </form>
   `,
 })
@@ -106,7 +120,9 @@ class ReactiveFormsTestComponent {
   showSecondStep = true;
   initialStep = '';
   form = new FormGroup({
-    group: new FormGroup({}),
+    group: new FormGroup({
+      name: new FormControl('', Validators.required),
+    }),
     group2: new FormGroup({}),
   });
 
@@ -116,12 +132,8 @@ class ReactiveFormsTestComponent {
 @Component({
   template: `
     <form clrStepper #testForm="ngForm" (ngSubmit)="submit()">
-      <clr-step ngModelGroup="group">
-        <clr-step-title>Group 1</clr-step-title>
-      </clr-step>
-      <clr-step *ngIf="showSecondStep" ngModelGroup="group2">
-        <clr-step-title>Group 2</clr-step-title>
-      </clr-step>
+      <clr-step ngModelGroup="group"></clr-step>
+      <clr-step *ngIf="showSecondStep" ngModelGroup="group2"></clr-step>
     </form>
   `,
 })

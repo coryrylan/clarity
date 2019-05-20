@@ -15,7 +15,7 @@ import { ClrAccordionModule } from '../accordion.module';
 import { ClrStepperModule } from './stepper.module';
 import { AccordionStatus } from './../enums/accordion-status.enum';
 import { AccordionPanelModel } from '../models/accordion.model';
-import { StepperService } from '../providers/stepper.service';
+import { StepperService } from './providers/stepper.service';
 import { ClrStep } from './step';
 import { ClrStepper } from './stepper';
 
