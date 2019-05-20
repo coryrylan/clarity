@@ -11,7 +11,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs';
 
-import { ClrAccordionModule } from './../accordion.module';
+import { ClrAccordionModule } from '../accordion.module';
+import { ClrStepperModule } from './stepper.module';
 import { AccordionStatus } from './../enums/accordion-status.enum';
 import { AccordionPanelModel } from '../models/accordion.model';
 import { StepperService } from '../providers/stepper.service';
@@ -25,7 +26,7 @@ describe('ClrStep Reactive Forms', () => {
     TestBed.configureTestingModule({
       declarations: [ReactiveFormsTestComponent],
       providers: [{ provide: StepperService, useClass: MockStepperService }],
-      imports: [ClrAccordionModule, ReactiveFormsModule, NoopAnimationsModule],
+      imports: [ReactiveFormsModule, NoopAnimationsModule, ClrStepperModule, ClrAccordionModule],
     });
 
     TestBed.overrideComponent(ClrStepper, {
@@ -67,7 +68,7 @@ describe('ClrStep Template Forms', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TemplateFormsTestComponent],
-      imports: [ClrAccordionModule, FormsModule, NoopAnimationsModule],
+      imports: [FormsModule, NoopAnimationsModule, ClrStepperModule, ClrAccordionModule],
     });
 
     fixture = TestBed.createComponent(TemplateFormsTestComponent);

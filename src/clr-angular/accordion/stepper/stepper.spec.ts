@@ -10,8 +10,9 @@ import { ReactiveFormsModule, FormGroup, FormsModule } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
+import { ClrAccordionModule } from '../accordion.module';
+import { ClrStepperModule } from './stepper.module';
 import { StepperService } from './../providers/stepper.service';
-import { ClrAccordionModule } from './../accordion.module';
 import { ClrStepper } from './stepper';
 
 describe('ClrStepper', () => {
@@ -22,7 +23,7 @@ describe('ClrStepper', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ReactiveFormsTestComponent],
-      imports: [ClrAccordionModule, ReactiveFormsModule, NoopAnimationsModule],
+      imports: [ReactiveFormsModule, NoopAnimationsModule, ClrStepperModule, ClrAccordionModule],
     });
 
     fixture = TestBed.createComponent(ReactiveFormsTestComponent);
@@ -64,7 +65,7 @@ describe('ClrStepper Template Forms', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TemplateFormsTestComponent],
-      imports: [ClrAccordionModule, FormsModule, NoopAnimationsModule],
+      imports: [FormsModule, NoopAnimationsModule, ClrStepperModule, ClrAccordionModule],
     });
 
     fixture = TestBed.createComponent(TemplateFormsTestComponent);

@@ -11,23 +11,17 @@ import { ClrIconModule } from '../icon/icon.module';
 import { ClrAccordionPanel } from './accordion-panel';
 import { ClrAccordionTitle } from './accordion-title';
 import { ClrAccordionDescription } from './accordion-description';
-import { ClrStepButton } from './stepper/step-button';
 import { ClrAccordion } from './accordion';
 import { ClrAccordionContent } from './accordion-content';
 import { AccordionOompaLoompa } from './chocolate/accordion-oompa-loompa';
 import { AccordionWillyWonka } from './chocolate/accordion-willy-wonka';
-import { ClrStepper } from './stepper/stepper';
-import { ClrStep } from './stepper/step';
 
-const declarations = [
+export const declarations = [
   ClrAccordion,
   ClrAccordionPanel,
   ClrAccordionTitle,
   ClrAccordionDescription,
   ClrAccordionContent,
-  ClrStepper,
-  ClrStepButton,
-  ClrStep,
   AccordionOompaLoompa,
   AccordionWillyWonka,
 ];

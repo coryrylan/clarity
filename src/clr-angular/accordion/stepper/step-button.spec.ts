@@ -10,8 +10,9 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 
-import { ClrStepButton, ClrStepButtonType } from './step-button';
 import { ClrAccordionModule } from '../accordion.module';
+import { ClrStepperModule } from './stepper.module';
+import { ClrStepButton, ClrStepButtonType } from './step-button';
 import { StepperService } from '../providers/stepper.service';
 
 describe('ClrStepButton', () => {
@@ -22,7 +23,7 @@ describe('ClrStepButton', () => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
       providers: [StepperService, { provide: StepperService, useClass: MockStepperService }],
-      imports: [ReactiveFormsModule, NoopAnimationsModule, ClrAccordionModule],
+      imports: [ReactiveFormsModule, NoopAnimationsModule, ClrStepperModule, ClrAccordionModule],
     });
 
     fixture = TestBed.createComponent(TestComponent);
