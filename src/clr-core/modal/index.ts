@@ -4,8 +4,4 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-export * from './common';
-export * from './button/button.element';
-export * from './test-dropdown/test-dropdown.element';
-export * from './icon';
-export * from './modal';
+export * from './modal.element';

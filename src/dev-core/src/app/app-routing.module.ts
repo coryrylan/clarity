@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'dropdown', loadChildren: () => import('./dropdown/dropdown.demo.module').then(m => m.DropdownDemoModule) },
   { path: 'i18n', loadChildren: () => import('./i18n/i18n.demo.module').then(m => m.I18nDemoModule) },
   { path: 'icon', loadChildren: () => import('./icon/icon.demo.module').then(m => m.IconDemoModule) },
+  { path: 'modal', loadChildren: () => import('./modal/modal.demo.module').then(m => m.ModalDemoModule) },
 ];
 
 @NgModule({

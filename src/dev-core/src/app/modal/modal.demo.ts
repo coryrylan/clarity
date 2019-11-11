@@ -3,9 +3,13 @@
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
+import { Component } from '@angular/core';
+import '@clr/core/modal';
 
-export * from './common';
-export * from './button/button.element';
-export * from './test-dropdown/test-dropdown.element';
-export * from './icon';
-export * from './modal';
+@Component({
+  selector: 'app-modal-demo',
+  templateUrl: './modal.demo.html',
+})
+export class ModalDemoComponent {
+  open = false;
+}
