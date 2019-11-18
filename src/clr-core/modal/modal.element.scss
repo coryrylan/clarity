@@ -1,3 +1,45 @@
-:host {
-  color: blue;
+.modal-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 300;
+  overscroll-behavior: contain;
+}
+
+.modal {
+  border: 1px solid #ccc;
+  padding: 1.6em;
+  background-color: #fff;
+  width: 100%;
+  max-width: 400px;
+  max-height: 200px;
+  margin: 10vh auto 0 auto;
+  position: relative;
+  z-index: 302;
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 301;
+}
+
+header button {
+  position: absolute;
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+  top: 0;
+  right: 0;
+  line-height: 1.5;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }

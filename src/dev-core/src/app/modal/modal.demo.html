@@ -4,8 +4,15 @@
 
 <br/>
 
-<cwc-modal>
-  Hello World
+<button (click)="open = !open">open</button>
+
+<cwc-modal [open]="open" (openChange)="open = $event.detail" #modal>
+  <cwc-modal-header>Modal Header</cwc-modal-header>
+  <cwc-modal-content>Modal Content</cwc-modal-content>
+  <cwc-modal-actions>
+    <button (click)="modal.open = false">Cancel</button>
+    <button (click)="modal.open = false">Save</button>
+  </cwc-modal-actions>
 </cwc-modal>
 
 <app-element-api element="cwc-modal"></app-element-api>
