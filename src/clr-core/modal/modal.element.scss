@@ -1,3 +1,7 @@
+@import './../styles/core-component';
+@import './properties.modal';
+@import './variables.modal';
+
 .modal-wrapper {
   position: absolute;
   top: 0;
@@ -9,12 +13,11 @@
 }
 
 .modal {
-  border: 1px solid #ccc;
+  @include css-var(background-color, clr-modal-bg-color, $clr-modal-bg-color);
   padding: 1.6em;
-  background-color: #fff;
   width: 100%;
-  max-width: 400px;
-  max-height: 200px;
+  max-width: 20rem;
+  max-height: 2010rem;
   margin: 10vh auto 0 auto;
   position: relative;
   z-index: 302;

@@ -4,6 +4,7 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 import { Component } from '@angular/core';
+import '@clr/core/button';
 import '@clr/core/modal';
 
 @Component({
