@@ -8,9 +8,6 @@ import { commonStringsService, KeyCodes, registerElementSafely } from '@clr/core
 import { ClarityIcons, userIcon } from '@clr/core/icon';
 import { html, LitElement, property } from 'lit-element';
 
-import { CwcModalActions } from './modal-actions.element';
-import { CwcModalContent } from './modal-content.element';
-import { CwcModalHeader } from './modal-header.element';
 import { styles } from './modal.element.css';
 
 // TODO: update to close
@@ -136,9 +133,6 @@ export class CwcModal extends LitElement {
 }
 
 registerElementSafely('cwc-modal', CwcModal);
-registerElementSafely('cwc-modal-header', CwcModalHeader);
-registerElementSafely('cwc-modal-content', CwcModalContent);
-registerElementSafely('cwc-modal-actions', CwcModalActions);
 
 declare global {
   interface HTMLElementTagNameMap {

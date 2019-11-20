@@ -6,6 +6,8 @@
 
 import { html, LitElement } from 'lit-element';
 
+import { registerElementSafely } from '@clr/core/common';
+
 export class CwcModalContent extends LitElement {
   protected render() {
     return html`
@@ -13,6 +15,8 @@ export class CwcModalContent extends LitElement {
     `;
   }
 }
+
+registerElementSafely('cwc-modal-content', CwcModalContent);
 
 declare global {
   interface HTMLElementTagNameMap {

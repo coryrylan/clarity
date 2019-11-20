@@ -6,6 +6,8 @@
 
 import { html, LitElement } from 'lit-element';
 
+import { registerElementSafely } from '@clr/core/common';
+
 export class CwcModalHeader extends LitElement {
   connectedCallback() {
     super.connectedCallback();
@@ -18,6 +20,8 @@ export class CwcModalHeader extends LitElement {
     `;
   }
 }
+
+registerElementSafely('cwc-modal-header', CwcModalHeader);
 
 declare global {
   interface HTMLElementTagNameMap {

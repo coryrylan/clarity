@@ -8,7 +8,8 @@
     "./esm2015/**/*.element.js",
     "./**/clr-core-button.js",
     "./**/clr-core-test-dropdown.js",
-    "./**/clr-core-icon.js"
+    "./**/clr-core-icon.js",
+    "./**/clr-core-modal.js"
   ],
   "main": "index.js",
   "types": "index.d.ts",
