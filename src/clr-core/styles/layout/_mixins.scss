@@ -1,0 +1,31 @@
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+@mixin column-generator($suffix) {
+  @for $i from 1 through $cols {
+    // implicit columns
+    cds-layout[type='grid'][columns~='#{$i}\@#{$suffix}'] {
+      grid-template-columns: repeat($cols / $i, 1fr);
+    }
+
+    // explicit columns
+    [cds-layout~='#{$i}\@#{$suffix}'] {
+      grid-column: span $i / span $i;
+    }
+  }
+
+  @for $i from 1 through $cols {
+    [cds-layout~='offset-#{$i}\@#{$suffix}'] {
+      grid-column-start: $i;
+    }
+  }
+
+  [cds-layout~='hide\@#{$suffix}'] {
+    display: none !important;
+  }
+
+  [cds-layout~='show\@#{$suffix}'] {
+    display: initial !important;
+  }
+}

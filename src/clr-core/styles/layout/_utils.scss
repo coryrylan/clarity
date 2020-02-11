@@ -1,0 +1,64 @@
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+cds-layout[align-text~='left'],
+[cds-layout~='text-left'] {
+  text-align: left;
+}
+
+cds-layout[align-text~='right'],
+[cds-layout~='text-right'] {
+  text-align: right;
+}
+
+cds-layout[align-text~='center'],
+[cds-layout~='text-center'] {
+  text-align: center;
+}
+
+// cds-box {
+//   --xs: 4px;
+//   --sm: 12px;
+//   --md: 24px;
+//   --lg: 36px;
+//   --xl: 48px;
+
+//   // TODO: support @ breakpoint syntax
+//   &[padding='xs'] {
+//     padding: var(--xs);
+//   }
+
+//   &[padding='sm'] {
+//     padding: var(--sm);
+//   }
+
+//   &[padding='md'] {
+//     padding: var(--md);
+//   }
+
+//   &[padding='lg'] {
+//     padding: var(--lg);
+//   }
+
+//   &[padding='sxl'] {
+//     padding: var(--xl);
+//   }
+// }
+
+// cds-hidden {
+//   display: none;
+
+//   // todo media query breakpoints
+//   &[below='sm'] {
+
+//   }
+
+//   &[below='md'] {
+
+//   }
+
+//   &[below='lg'] {
+
+//   }
+// }

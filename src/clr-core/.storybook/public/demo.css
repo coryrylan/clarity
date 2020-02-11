@@ -11,22 +11,6 @@ body {
   line-height: 1.2rem;
 }
 
-h1,
-h2 {
-  color: hsl(0, 0%, 40%);
-  font-weight: 200;
-  font-size: 1.6rem;
-}
-
-h2 {
-  font-size: 1.4rem;
-}
-
-p {
-  color: hsl(0, 0%, 40%);
-  font-size: 0.7rem;
-}
-
 /* Doc styles for getting started */
 .doc {
   padding: 1.1rem;

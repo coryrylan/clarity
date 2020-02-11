@@ -1,0 +1,165 @@
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+cds-layout {
+  --xs: 4px;
+  --sm: 12px;
+  --md: 24px;
+  --lg: 36px;
+  --xl: 48px;
+  --gap: 0;
+
+  &[gap='xs'] {
+    --gap: var(--xs);
+  }
+
+  &[gap='sm'] {
+    --gap: var(--sm);
+  }
+
+  &[gap='md'] {
+    --gap: var(--md);
+  }
+
+  &[gap='lg'] {
+    --gap: var(--lg);
+  }
+
+  &[gap='xl'] {
+    --gap: var(--xl);
+  }
+
+  &[type='inline'] {
+    display: flex;
+
+    & > *:not(:last-child) {
+      margin-right: var(--gap);
+    }
+  }
+
+  &[type='stack'] {
+    display: flex;
+    flex-direction: column;
+
+    &[align-items='start'] {
+      align-items: flex-start;
+    }
+
+    &[align-items='end'] {
+      align-items: flex-end;
+    }
+
+    &[align-items='center'] {
+      align-items: center;
+    }
+
+    &[gap='xs'] > *:not(:last-child) {
+      margin-bottom: var(--xs);
+    }
+
+    &[gap='sm'] > *:not(:last-child) {
+      margin-bottom: var(--sm);
+    }
+
+    &[gap='md'] > *:not(:last-child) {
+      margin-bottom: var(--md);
+    }
+
+    &[gap='lg'] > *:not(:last-child) {
+      margin-bottom: var(--lg);
+    }
+
+    &[gap='xl'] > *:not(:last-child) {
+      margin-bottom: var(--xl);
+    }
+  }
+}
+
+cds-layout[type='grid'] {
+  --columns: #{$cols};
+  display: grid;
+  grid-gap: var(--gap);
+  grid-auto-flow: row;
+  grid-template-columns: repeat(var(--columns), 1fr);
+
+  &[columns='auto'] {
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    grid-template-columns: initial;
+  }
+
+  &[align-items='start'] {
+    align-items: start;
+  }
+
+  &[align-items='end'] {
+    align-items: end;
+  }
+
+  &[align-items='center'] {
+    align-items: center;
+  }
+}
+
+[cds-layout~='hide'] {
+  display: none !important;
+}
+
+[cds-layout~='show'] {
+  display: initial !important;
+}
+
+// implicit columns
+[cds-layout~='grid'][cds-layout*='\@'] {
+  grid-template-columns: #{$cols}fr;
+}
+
+// explicit columns default
+cds-layout[type~='grid'][columns*='\@'] {
+  grid-template-columns: #{$cols}fr;
+}
+
+@for $i from 1 through $cols {
+  // explicit columns default
+  [cds-layout~='#{$i}\@sm'],
+  [cds-layout~='#{$i}\@md'],
+  [cds-layout~='#{$i}\@lg'],
+  [cds-layout~='#{$i}\@xl'] {
+    grid-column: span $cols;
+  }
+}
+
+@for $i from 1 through $cols {
+  // implicit columns
+  cds-layout[type='grid'][columns~='#{$i}'] {
+    grid-template-columns: repeat($cols / $i, 1fr);
+  }
+
+  // explicit columns
+  [cds-layout~='#{$i}'] {
+    grid-column: span $i / span $i;
+  }
+}
+
+@for $i from 1 through $cols {
+  [cds-layout~='offset-#{$i}'] {
+    grid-column-start: $i;
+  }
+}
+
+@media (min-width: $sm-break) {
+  @include column-generator('sm');
+}
+
+@media (min-width: $md-break) {
+  @include column-generator('md');
+}
+
+@media (min-width: $lg-break) {
+  @include column-generator('lg');
+}
+
+@media (min-width: $xl-break) {
+  @include column-generator('xl');
+}
