@@ -53,6 +53,21 @@ export const horizontal = () => {
         </cds-layout>
       </div>
 
+      <h2 cds-heading="2">Horizontal Wrap</h2>
+      <!-- demonstrates gap is only applied between inline elements even when wrapped without pushing parent container -->
+      <div style="background: #ccc; width: 245px">
+        <cds-layout type="horizontal" gap="sm">
+          <cds-placeholder>1</cds-placeholder>
+          <cds-placeholder>2</cds-placeholder>
+          <cds-placeholder>3</cds-placeholder>
+          <cds-placeholder>4</cds-placeholder>
+          <cds-placeholder>5</cds-placeholder>
+          <cds-placeholder>6</cds-placeholder>
+          <cds-placeholder>7</cds-placeholder>
+          <cds-placeholder>8</cds-placeholder>
+        </cds-layout>
+      </div>
+
       <h2 cds-heading="2">Align Right</h2>
       <div class="cds-layout-demo">
         <cds-layout type="horizontal" gap="sm" x-align="right" demo>
@@ -586,18 +601,3 @@ export const applicationLayout = () => {
     </cds-layout>
   `;
 };
-
-// export const box = () => {
-//   return html`
-//     <style>
-//       cds-box {
-//         border: 1px solid #ccc;
-//       }
-//     </style>
-//     <cds-box padding="xs">padding xs</cds-box>
-//     <cds-box padding="sm">padding sm</cds-box>
-//     <cds-box padding="md">padding md</cds-box>
-//     <cds-box padding="lg">padding lg</cds-box>
-//     <cds-box padding="xl">padding xl</cds-box>
-//   `;
-// };
