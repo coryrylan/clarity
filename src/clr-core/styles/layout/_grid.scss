@@ -62,7 +62,7 @@ cds-layout {
 }
 
 cds-layout[type='horizontal'] {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: var(--y-align);
@@ -106,7 +106,7 @@ cds-layout[type='horizontal'] {
 }
 
 cds-layout[type='vertical'] {
-  display: flex;
+  display: inline-flex;
   align-items: flex-start;
   flex-direction: column;
   justify-content: var(--y-align);

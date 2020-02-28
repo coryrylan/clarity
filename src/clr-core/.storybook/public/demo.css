@@ -47,7 +47,7 @@ p {
 
 .doc pre {
   background: hsl(214, 100%, 99%);
-  padding: 1rem;
+  padding: 0 1rem 0.5rem 1rem;
   border: 0;
   overflow-x: auto;
 }
@@ -96,25 +96,42 @@ p {
   background: hsl(0, 0%, 34%);
 }
 
-.cds-layout-demo {
+.layout-demo {
   background: hsl(92, 46%, 74%);
+  overflow: hidden;
+  display: inline-block;
 }
 
-.cds-layout-demo.tall-demo > cds-layout {
+.layout-demo.tall-demo > cds-layout {
   min-height: 300px;
 }
 
-.cds-layout-demo.wide-demo {
+.layout-demo.wide-demo {
+  width: 100%;
+  display: block;
+}
+
+.layout-demo.block-items cds-placeholder {
   width: 100%;
 }
 
-.cds-layout-demo.block-items cds-placeholder {
-  display: flex;
-  width: 100%;
-}
-
-.cds-layout-demo.fixed-items cds-placeholder {
+.layout-demo.fixed-items cds-placeholder {
   width: 125px;
+}
+
+.layout-api-demo {
+  width: 100%;
+  max-width: 750px;
+  height: 500px;
+  border: 1px solid hsl(0, 0%, 90%);
+}
+
+.layout-api-demo.wide-demo {
+  max-width: 750px;
+}
+
+.layout-api-demo.tall-demo > cds-layout {
+  height: 500px;
 }
 
 /* temp for layout prototyping */
