@@ -173,6 +173,47 @@ cds-layout[type='grid'] {
     align-items: end;
     align-content: end;
   }
+
+  // gap axis
+  &[gap^='[xs'] {
+    column-gap: var(--cds-token-size-xs);
+  }
+
+  &[gap$='xs]'] {
+    row-gap: var(--cds-token-size-xs);
+  }
+
+  &[gap^='[sm'] {
+    column-gap: var(--cds-token-size-sm);
+  }
+
+  &[gap$='sm]'] {
+    row-gap: var(--cds-token-size-sm);
+  }
+
+  &[gap^='[md'] {
+    column-gap: var(--cds-token-size-md);
+  }
+
+  &[gap$='md]'] {
+    row-gap: var(--cds-token-size-md);
+  }
+
+  &[gap^='[lg'] {
+    column-gap: var(--cds-token-size-lg);
+  }
+
+  &[gap$='lg]'] {
+    row-gap: var(--cds-token-size-lg);
+  }
+
+  &[gap^='[xl'] {
+    column-gap: var(--cds-token-size-xl);
+  }
+
+  &[gap$='xl]'] {
+    row-gap: var(--cds-token-size-xl);
+  }
 }
 
 cds-layout[cols*='\@'] {

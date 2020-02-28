@@ -17,11 +17,14 @@ export default {
 
 export const API = () => {
   const type = select('type', ['horizontal', 'vertical', 'grid'], 'horizontal');
-  const gap = select('gap', ['none', 'xs', 'sm', 'md', 'lg', 'xl'], 'sm');
+  const gap = select('gap', ['none', 'xs', 'sm', 'md', 'lg', 'xl'], 'none');
   const xAlign = select('x-align', ['left', 'right', 'center', 'stretch'], 'left');
   const yAlign = select('y-align', ['top', 'bottom', 'center', 'stretch'], 'top');
   const cols = select('cols (grid only)', ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 'auto');
   const rows = select('rows (grid only)', ['auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 'auto');
+  // grid only temporary, gap wip still
+  const colGap = select('col gap (grid only)', ['none', 'xs', 'sm', 'md', 'lg', 'xl'], 'none');
+  const rowGap = select('row gap (grid only)', ['none', 'xs', 'sm', 'md', 'lg', 'xl'], 'none');
   const itemWidth = select(
     'set item width',
     { inline: 'inline-items', 'width 100%': 'block-items', 'fixed width 125px': 'fixed-items' },
@@ -34,7 +37,9 @@ export const API = () => {
 
 <div class="doc" style="margin-left: 0;padding:0">
 <pre style="margin:0"><code>
-&#x3C;cds-layout type=&#x22;${type}&#x22; gap=&#x22;${gap}&#x22; cols=&#x22;${cols}&#x22; rows=&#x22;${rows}&#x22; x-align=&#x22;${xAlign}&#x22; y-align=&#x22;${yAlign}&#x22;&#x3E;
+&#x3C;cds-layout type=&#x22;${type}&#x22; gap=&#x22;${
+    colGap === 'none' && rowGap === 'none' ? gap : `[${colGap}, ${rowGap}]`
+  }&#x22; cols=&#x22;${cols}&#x22; rows=&#x22;${rows}&#x22; x-align=&#x22;${xAlign}&#x22; y-align=&#x22;${yAlign}&#x22;&#x3E;
   &#x3C;cds-placeholder&#x3E;1&#x3C;/cds-placeholder&#x3E;
   &#x3C;cds-placeholder&#x3E;2&#x3C;/cds-placeholder&#x3E;
   &#x3C;cds-placeholder&#x3E;3&#x3C;/cds-placeholder&#x3E;
@@ -46,7 +51,9 @@ export const API = () => {
       <p cds-text="p1">Container dimensions 750x500</p>
 
       <div class="layout-demo layout-api-demo wide-demo tall-demo ${itemWidth}">
-        <cds-layout type="${type}" gap="${gap}" cols="${cols}" rows="${rows}" x-align="${xAlign}" y-align="${yAlign}">
+        <cds-layout type="${type}" gap="${
+    colGap === 'none' && rowGap === 'none' ? gap : `[${colGap}, ${rowGap}]`
+  }" cols="${cols}" rows="${rows}" x-align="${xAlign}" y-align="${yAlign}">
           <cds-placeholder>1</cds-placeholder>
           <cds-placeholder>2</cds-placeholder>
           <cds-placeholder>3</cds-placeholder>
