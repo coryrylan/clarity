@@ -43,13 +43,3 @@
     }
   }
 }
-
-@mixin visibility($breakpoint) {
-  [cds-layout~='hide\@#{$breakpoint}'] {
-    display: none !important;
-  }
-
-  [cds-layout~='show\@#{$breakpoint}'] {
-    display: initial !important;
-  }
-}

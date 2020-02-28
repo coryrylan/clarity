@@ -2,16 +2,52 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-// wip: what should we support? To what extent?
-[cds-layout~='block'] {
+@mixin display($breakpoint) {
+  [cds-display~='none\@#{$breakpoint}'] {
+    display: none !important;
+  }
+
+  [cds-display~='flex\@#{$breakpoint}'] {
+    display: flex !important;
+  }
+
+  [cds-display~='block\@#{$breakpoint}'] {
+    display: flex !important;
+  }
+
+  [cds-display~='inline\@#{$breakpoint}'] {
+    display: inline !important;
+  }
+}
+
+[cds-display~='none'] {
+  display: none !important;
+}
+
+[cds-display~='flex'] {
+  display: flex !important;
+}
+
+[cds-display~='block'] {
   display: block !important;
 }
 
-[cds-layout~='stretch'] {
-  flex-grow: 1 !important;
+[cds-display~='inline'] {
+  display: inline !important;
 }
 
-[cds-layout~='shrink'] {
-  flex-shrink: 1 !important;
-  flex-grow: 0 !important;
+@media (min-width: $sm-break) {
+  @include display('sm');
+}
+
+@media (min-width: $md-break) {
+  @include display('md');
+}
+
+@media (min-width: $lg-break) {
+  @include display('lg');
+}
+
+@media (min-width: $xl-break) {
+  @include display('xl');
 }
