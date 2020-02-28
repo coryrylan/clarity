@@ -2,6 +2,7 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
+[cds-layout],
 cds-layout {
   width: 100%;
   --gap: 0px;
@@ -40,26 +41,6 @@ cds-layout {
     --x-align: center;
   }
 
-  &[gap='xs'] {
-    --gap: var(--cds-token-size-xs);
-  }
-
-  &[gap='sm'] {
-    --gap: var(--cds-token-size-sm);
-  }
-
-  &[gap='md'] {
-    --gap: var(--cds-token-size-md);
-  }
-
-  &[gap='lg'] {
-    --gap: var(--cds-token-size-lg);
-  }
-
-  &[gap='xl'] {
-    --gap: var(--cds-token-size-xl);
-  }
-
   &[debug] {
     box-shadow: 0 0 0 2px red;
 
@@ -69,20 +50,14 @@ cds-layout {
   }
 }
 
+[cds-layout*='horizontal'],
 cds-layout[type='horizontal'] {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: var(--y-align);
   justify-content: var(--x-align);
-  margin-left: calc(-1 * var(--gap));
-  margin-top: calc(-1 * var(--gap));
   width: calc(100% + var(--gap));
-
-  & > * {
-    margin-left: var(--gap);
-    margin-top: var(--gap);
-  }
 
   &[x-align~='stretch'] > * {
     flex-grow: 1;
@@ -92,27 +67,16 @@ cds-layout[type='horizontal'] {
     align-content: stretch;
   }
 
-  &[gap='xs'] {
-    --gap: var(--cds-token-size-xs);
+  & > *:first-child {
+    margin-left: 0 !important;
   }
 
-  &[gap='sm'] {
-    --gap: var(--cds-token-size-sm);
-  }
-
-  &[gap='md'] {
-    --gap: var(--cds-token-size-md);
-  }
-
-  &[gap='lg'] {
-    --gap: var(--cds-token-size-lg);
-  }
-
-  &[gap='xl'] {
-    --gap: var(--cds-token-size-xl);
+  & > *:last-child {
+    margin-right: 0 !important;
   }
 }
 
+[cds-layout*='vertical'],
 cds-layout[type='vertical'] {
   display: flex;
   align-items: flex-start;
@@ -129,28 +93,12 @@ cds-layout[type='vertical'] {
     flex-grow: 1;
   }
 
-  &[gap='xs'] > * {
-    margin-bottom: var(--cds-token-size-xs);
-  }
-
-  &[gap='sm'] > * {
-    margin-bottom: var(--cds-token-size-sm);
-  }
-
-  &[gap='md'] > * {
-    margin-bottom: var(--cds-token-size-md);
-  }
-
-  &[gap='lg'] > * {
-    margin-bottom: var(--cds-token-size-lg);
-  }
-
-  &[gap='xl'] > * {
-    margin-bottom: var(--cds-token-size-xl);
+  & > *:first-child {
+    margin-top: 0 !important;
   }
 
   & > *:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
   }
 }
 

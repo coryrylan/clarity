@@ -453,9 +453,13 @@ export const gridAlign = () => {
 export const spacing = () => {
   return html`
     <style>
-      .spacing-demos span {
+      .spacing-demos span, .spacing-demos div {
         background: hsl(0, 0%, 100%);
         color: hsl(198, 0%, 20%);
+      }
+
+      .gap-test div {
+        box-shadow: 0 0 0 0.1rem hsl(198, 0%, 70%) inset;
       }
 
       .spacing-demos cds-placeholder {
@@ -483,13 +487,6 @@ export const spacing = () => {
       <cds-placeholder cds-pad="[xs,xl]"><span>cds-pad="[xs,xl]"</span></cds-placeholder>
       <cds-placeholder cds-pad="[lg,sm]"><span>cds-pad="[xs,xl]"</span></cds-placeholder>
 
-      <!-- <h2 cds-text="h2">Margin</h2>
-      <cds-placeholder><span cds-layout="m-xs">m-xs</span></cds-placeholder>
-      <cds-placeholder><span cds-layout="m-sm">m-sm</span></cds-placeholder>
-      <cds-placeholder><span cds-layout="m-md">m-md</span></cds-placeholder>
-      <cds-placeholder><span cds-layout="m-lg">m-lg</span></cds-placeholder>
-      <cds-placeholder><span cds-layout="m-xl">m-xl</span></cds-placeholder> -->
-
       <h2 cds-heading="2">Padding cds-layout</h2>
       <cds-layout type="horizontal" pad="xs" x-align="center">
         <span>pad='xs'</span>
@@ -514,6 +511,59 @@ export const spacing = () => {
       </cds-layout>
       <cds-layout type="horizontal" pad="[xl,lg]" x-align="center">
         <span>pad='[xl,lg]'</span>
+      </cds-layout>
+
+      <h2 cds-heading="2">Margin</h2>
+      <cds-placeholder class="gap-test" cds-layout="horizontal" cds-gap="none"><div cds-pad="sm">cds-gap="none"</div><div cds-pad="sm">cds-gap="none"</div><div cds-pad="sm">cds-gap="none"</div></cds-placeholder>
+      <cds-placeholder class="gap-test" cds-layout="horizontal" cds-gap="xs"><div cds-pad="sm">cds-gap="xs"</div><div cds-pad="sm">cds-gap="xs"</div><div cds-pad="sm">cds-gap="xs"</div></cds-placeholder>
+      <cds-placeholder class="gap-test" cds-layout="horizontal" cds-gap="sm"><div cds-pad="sm">cds-gap="sm"</div><div cds-pad="sm">cds-gap="sm"</div><div cds-pad="sm">cds-gap="sm"</div></cds-placeholder>
+      <cds-placeholder class="gap-test" cds-layout="horizontal" cds-gap="md"><div cds-pad="sm">cds-gap="md"</div><div cds-pad="sm">cds-gap="md"</div><div cds-pad="sm">cds-gap="md"</div></cds-placeholder>
+      <cds-placeholder class="gap-test" cds-layout="horizontal" cds-gap="lg"><div cds-pad="sm">cds-gap="lg"</div><div cds-pad="sm">cds-gap="lg"</div><div cds-pad="sm">cds-gap="lg"</div></cds-placeholder>
+      <cds-placeholder class="gap-test" cds-layout="horizontal" cds-gap="xl"><div cds-pad="sm">cds-gap="xl"</div><div cds-pad="sm">cds-gap="xl"</div><div cds-pad="sm">cds-gap="xl"</div></cds-placeholder>
+      <cds-placeholder class="gap-test" cds-layout="horizontal" cds-gap="[md,none]"><div cds-pad="sm">cds-gap="[md,none]"</div><div cds-pad="sm">cds-gap="[md,none]"</div><div cds-pad="sm">cds-gap="[md,none]"</div></cds-placeholder>
+      <cds-placeholder class="gap-test" cds-layout="horizontal" cds-gap="[xs,xl]"><div cds-pad="sm">cds-gap="[xs,xl]"</div><div cds-pad="sm">cds-gap="[xs,xl]"</div><div cds-pad="sm">cds-gap="[xs,xl]"</div></cds-placeholder>
+      <cds-placeholder class="gap-test" cds-layout="horizontal" cds-gap="[lg,sm]"><div cds-pad="sm">cds-gap="[xs,xl]"</div><div cds-pad="sm">cds-gap="[xs,xl]"</div><div cds-pad="sm">cds-gap="[xs,xl]"</div></cds-placeholder>
+
+      <h2 cds-heading="2">Margin cds-layout</h2>
+      <cds-layout class="gap-test" type="horizontal" gap="xs" x-align="center">
+        <div cds-pad="sm">gap='xs'</div>
+        <div cds-pad="sm">gap='xs'</div>
+        <div cds-pad="sm">gap='xs'</div>
+      </cds-layout>
+      <cds-layout class="gap-test" type="horizontal" gap="sm" x-align="center">
+        <div cds-pad="sm">gap='sm'</div>
+        <div cds-pad="sm">gap='sm'</div>
+        <div cds-pad="sm">gap='sm'</div>
+      </cds-layout>
+      <cds-layout class="gap-test" type="horizontal" gap="md" x-align="center">
+        <div cds-pad="sm">gap='md'</div>
+        <div cds-pad="sm">gap='md'</div>
+        <div cds-pad="sm">gap='md'</div>
+      </cds-layout>
+      <cds-layout class="gap-test" type="horizontal" gap="lg" x-align="center">
+        <div cds-pad="sm">gap='lg'</div>
+        <div cds-pad="sm">gap='lg'</div>
+        <div cds-pad="sm">gap='lg'</div>
+      </cds-layout>
+      <cds-layout class="gap-test" type="horizontal" gap="xl" x-align="center">
+        <div cds-pad="sm">gap='xl'</div>
+        <div cds-pad="sm">gap='xl'</div>
+        <div cds-pad="sm">gap='xl'</div>
+      </cds-layout>
+      <cds-layout class="gap-test" type="horizontal" gap="[none,md]" x-align="center">
+        <div cds-pad="sm">gap='[none,md]'</div>
+        <div cds-pad="sm">gap='[none,md]'</div>
+        <div cds-pad="sm">gap='[none,md]'</div>
+      </cds-layout>
+      <cds-layout class="gap-test" type="horizontal" gap="[sm,xs]" x-align="center">
+        <div cds-pad="sm">gap='[sm,xs]'</div>
+        <div cds-pad="sm">gap='[sm,xs]'</div>
+        <div cds-pad="sm">gap='[sm,xs]'</div>
+      </cds-layout>
+      <cds-layout class="gap-test" type="horizontal" gap="[xl,lg]" x-align="center">
+        <div cds-pad="sm">gap='[xl,lg]'</div>
+        <div cds-pad="sm">gap='[xl,lg]'</div>
+        <div cds-pad="sm">gap='[xl,lg]'</div>
       </cds-layout>
     </cds-layout>
   `;

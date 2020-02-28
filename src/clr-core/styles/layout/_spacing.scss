@@ -2,7 +2,10 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-// wip: need specific sides and @ breakpoints
+/* PADDING */
+
+/* Padding all sides */
+
 [cds-pad='none'],
 cds-layout[pad='none'] {
   padding: 0 !important;
@@ -105,4 +108,112 @@ cds-layout[pad^='[xl'] {
 cds-layout[pad$='xl]'] {
   padding-left: var(--cds-token-size-xl) !important;
   padding-right: var(--cds-token-size-xl) !important;
+}
+
+/* MARGIN */
+
+/* Margin all sides */
+
+[cds-gap='none'] > *,
+cds-layout[gap='none'] > * {
+  margin: 0 !important;
+}
+
+[cds-gap='xs'] > *,
+cds-layout[gap='xs'] > * {
+  margin: var(--cds-token-size-xs) !important;
+}
+
+[cds-gap='sm'] > *,
+cds-layout[gap='sm'] > * {
+  margin: var(--cds-token-size-sm) !important;
+}
+
+[cds-gap='md'] > *,
+cds-layout[gap='md'] > * {
+  margin: var(--cds-token-size-md) !important;
+}
+
+[cds-gap='lg'] > *,
+cds-layout[gap='lg'] > * {
+  margin: var(--cds-token-size-lg) !important;
+}
+
+[cds-gap='xl'] > *,
+cds-layout[gap='xl'] > * {
+  margin: var(--cds-token-size-xl) !important;
+}
+
+/* Margin by axis */
+
+[cds-gap^='[none'] > *,
+cds-layout[gap^='[none'] > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+[cds-gap$='none]'] > *,
+cds-layout[gap$='none]'] > * {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+[cds-gap^='[xs'] > *,
+cds-layout[gap^='[xs'] > * {
+  margin-top: var(--cds-token-size-xs) !important;
+  margin-bottom: var(--cds-token-size-xs) !important;
+}
+
+[cds-gap$='xs]'] > *,
+cds-layout[gap$='xs]'] > * {
+  margin-left: var(--cds-token-size-xs) !important;
+  margin-right: var(--cds-token-size-xs) !important;
+}
+
+[cds-gap^='[sm'] > *,
+cds-layout[gap^='[sm'] > * {
+  margin-top: var(--cds-token-size-sm) !important;
+  margin-bottom: var(--cds-token-size-sm) !important;
+}
+
+[cds-gap$='sm]'] > *,
+cds-layout[gap$='sm]'] > * {
+  margin-left: var(--cds-token-size-sm) !important;
+  margin-right: var(--cds-token-size-sm) !important;
+}
+
+[cds-gap^='[md'] > *,
+cds-layout[gap^='[md'] > * {
+  margin-top: var(--cds-token-size-md) !important;
+  margin-bottom: var(--cds-token-size-md) !important;
+}
+
+[cds-gap$='md]'] > *,
+cds-layout[gap$='md]'] > * {
+  margin-left: var(--cds-token-size-md) !important;
+  margin-right: var(--cds-token-size-md) !important;
+}
+
+[cds-gap^='[lg'] > *,
+cds-layout[gap^='[lg'] > * {
+  margin-top: var(--cds-token-size-lg) !important;
+  margin-bottom: var(--cds-token-size-lg) !important;
+}
+
+[cds-gap$='lg]'] > *,
+cds-layout[gap$='lg]'] > * {
+  margin-left: var(--cds-token-size-lg) !important;
+  margin-right: var(--cds-token-size-lg) !important;
+}
+
+[cds-gap^='[xl'] > *,
+cds-layout[gap^='[xl'] > * {
+  margin-top: var(--cds-token-size-xl) !important;
+  margin-bottom: var(--cds-token-size-xl) !important;
+}
+
+[cds-gap$='xl]'] > *,
+cds-layout[gap$='xl]'] > * {
+  margin-left: var(--cds-token-size-xl) !important;
+  margin-right: var(--cds-token-size-xl) !important;
 }
