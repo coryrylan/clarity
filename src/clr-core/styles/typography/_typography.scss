@@ -35,7 +35,7 @@ html {
   // TODO: need line height fix
 }
 
-[cds-text~='h'] {
+[cds-text*='h'] {
   font-weight: 200;
   color: var(--clr-color-neutral-1000, #{$clr-color-neutral-1000});
 }
