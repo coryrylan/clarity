@@ -55,7 +55,7 @@ export const horizontal = () => {
 
       <h2 cds-text="h2">Horizontal Wrap</h2>
       <!-- demonstrates gap is only applied between inline elements even when wrapped without pushing parent container -->
-      <div style="background: #ccc; width: 245px">
+      <div style="border: 1px solid blue; width: 247px">
         <cds-layout type="horizontal" gap="sm">
           <cds-placeholder>1</cds-placeholder>
           <cds-placeholder>2</cds-placeholder>
