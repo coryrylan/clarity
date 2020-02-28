@@ -274,3 +274,12 @@ cds-layout[columns*='\@'] {
 @media (min-width: $xl-break) {
   @include position('xl');
 }
+
+[cds-layout~='stretch'] {
+  flex-grow: 1 !important;
+}
+
+[cds-layout~='shrink'] {
+  flex-shrink: 1 !important;
+  flex-grow: 0 !important;
+}

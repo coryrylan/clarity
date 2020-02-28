@@ -1,0 +1,23 @@
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+cds-layout[contain='xs'],
+[cds-contain='xs'] {
+  max-width: 480px;
+}
+
+cds-layout[contain='sm'],
+[cds-contain='sm'] {
+  max-width: 720px;
+}
+
+cds-layout[contain='md'],
+[cds-contain='md'] {
+  max-width: 1024px;
+}
+
+cds-layout[contain='lg'],
+[cds-contain='lg'] {
+  max-width: 1200px;
+}
