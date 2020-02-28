@@ -97,13 +97,24 @@ p {
 }
 
 .cds-layout-demo {
-  border: 1px solid hsl(0, 0%, 90%);
-  padding: 12px;
+  background: hsl(92, 46%, 74%);
+}
+
+.cds-layout-demo.tall-demo > cds-layout {
+  min-height: 300px;
+}
+
+.cds-layout-demo.wide-demo {
   width: 100%;
 }
 
-.cds-layout-demo > cds-layout {
-  min-height: 300px;
+.cds-layout-demo.block-items cds-placeholder {
+  display: flex;
+  width: 100%;
+}
+
+.cds-layout-demo.fixed-items cds-placeholder {
+  width: 125px;
 }
 
 /* temp for layout prototyping */
