@@ -160,7 +160,7 @@ cds-layout[type='grid'] {
   align-items: start;
   grid-template-columns: repeat($cols, 1fr);
 
-  &[columns='auto'] {
+  &[cols='auto'] {
     grid-auto-flow: column;
     grid-template-columns: initial;
   }
@@ -181,13 +181,13 @@ cds-layout[type='grid'] {
   }
 }
 
-cds-layout[columns*='\@'] {
+cds-layout[cols*='\@'] {
   grid-template-columns: 12fr;
   grid-column: span $cols;
 }
 
-[cds-layout*='row-span-'],
-[cds-layout*='row-end-'] {
+[cds-row*='span-'],
+[cds-row*='end-'] {
   align-self: stretch;
 }
 
@@ -196,16 +196,16 @@ cds-layout[columns*='\@'] {
 }
 
 @for $i from 1 through $cols {
-  [cds-layout~='col-span-#{$i}\@sm'],
-  [cds-layout~='col-span-#{$i}\@md'],
-  [cds-layout~='col-span-#{$i}\@lg'],
-  [cds-layout~='col-span-#{$i}\@xl'] {
+  [cds-col~='span-#{$i}\@sm'],
+  [cds-col~='span-#{$i}\@md'],
+  [cds-col~='span-#{$i}\@lg'],
+  [cds-col~='span-#{$i}\@xl'] {
     @extend %full-width-columns-explicit;
   }
 }
 
 @for $i from 1 through $cols {
-  cds-layout[columns~='#{$i}'] {
+  cds-layout[cols~='#{$i}'] {
     grid-template-columns: repeat($i, 1fr);
   }
 
@@ -215,11 +215,11 @@ cds-layout[columns*='\@'] {
 }
 
 @for $i from 1 through $cols {
-  [cds-layout~='col-span-#{$i}'] {
+  [cds-col~='span-#{$i}'] {
     grid-column: span $i / span $i;
   }
 
-  [cds-layout~='row-span-#{$i}'] {
+  [cds-row~='span-#{$i}'] {
     grid-row: span $i / span $i;
   }
 }
@@ -242,19 +242,19 @@ cds-layout[columns*='\@'] {
 
 // start/end positions
 @for $i from 1 through $cols {
-  [cds-layout~='col-start-#{$i}'] {
+  [cds-col~='start-#{$i}'] {
     grid-column-start: $i;
   }
 
-  [cds-layout~='row-start-#{$i}'] {
+  [cds-row~='start-#{$i}'] {
     grid-row-start: $i;
   }
 
-  [cds-layout~='col-end-#{$i}'] {
+  [cds-col~='end-#{$i}'] {
     grid-column-end: $i;
   }
 
-  [cds-layout~='row-end-#{$i}'] {
+  [cds-row~='end-#{$i}'] {
     grid-row-end: $i;
   }
 }

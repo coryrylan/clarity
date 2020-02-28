@@ -5,7 +5,7 @@
 @mixin column($breakpoint) {
   @for $i from 1 through $cols {
     // implicit columns/rows
-    cds-layout[columns~='#{$i}\@#{$breakpoint}'] {
+    cds-layout[cols~='#{$i}\@#{$breakpoint}'] {
       grid-template-columns: repeat($i, 1fr);
     }
 
@@ -14,11 +14,11 @@
     }
 
     // explicit column/row positions
-    [cds-layout~='col-span-#{$i}\@#{$breakpoint}'] {
+    [cds-col~='span-#{$i}\@#{$breakpoint}'] {
       grid-column: span $i / span $i;
     }
 
-    [cds-layout~='row-span-#{$i}\@#{$breakpoint}'] {
+    [cds-row~='span-#{$i}\@#{$breakpoint}'] {
       grid-row: span $i / span $i;
     }
   }
@@ -26,19 +26,19 @@
 
 @mixin position($breakpoint) {
   @for $i from 1 through $cols {
-    [cds-layout~='col-start-#{$i}\@#{$breakpoint}'] {
+    [cds-col~='start-#{$i}\@#{$breakpoint}'] {
       grid-column-start: $i;
     }
 
-    [cds-layout~='col-end-#{$i}\@#{$breakpoint}'] {
+    [cds-col~='end-#{$i}\@#{$breakpoint}'] {
       grid-column-end: $i;
     }
 
-    [cds-layout~='row-start-#{$i}\@#{$breakpoint}'] {
+    [cds-row~='start-#{$i}\@#{$breakpoint}'] {
       grid-row-start: $i;
     }
 
-    [cds-layout~='row-end-#{$i}\@#{$breakpoint}'] {
+    [cds-row~='end-#{$i}\@#{$breakpoint}'] {
       grid-row-end: $i;
     }
   }
