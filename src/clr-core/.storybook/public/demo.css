@@ -1,6 +1,7 @@
 /* Temporary Clarity typography for demos until core global styles are complete */
 body {
   font-family: 'Clarity City', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
+  max-width: 1600px;
 }
 
 h1,

@@ -51,23 +51,23 @@ cds-layout {
   }
 
   &[gap='xs'] {
-    --gap: var(--cds-token-size-xs);
+    --gap: var(--cds-token-layout-space-xs);
   }
 
   &[gap='sm'] {
-    --gap: var(--cds-token-size-sm);
+    --gap: var(--cds-token-layout-space-sm);
   }
 
   &[gap='md'] {
-    --gap: var(--cds-token-size-md);
+    --gap: var(--cds-token-layout-space-md);
   }
 
   &[gap='lg'] {
-    --gap: var(--cds-token-size-lg);
+    --gap: var(--cds-token-layout-space-lg);
   }
 
   &[gap='xl'] {
-    --gap: var(--cds-token-size-xl);
+    --gap: var(--cds-token-layout-space-xl);
   }
 }
 
@@ -97,23 +97,23 @@ cds-layout[type='horizontal'] {
   }
 
   &[gap='xs'] {
-    --gap: var(--cds-token-size-xs);
+    --gap: var(--cds-token-layout-space-xs);
   }
 
   &[gap='sm'] {
-    --gap: var(--cds-token-size-sm);
+    --gap: var(--cds-token-layout-space-sm);
   }
 
   &[gap='md'] {
-    --gap: var(--cds-token-size-md);
+    --gap: var(--cds-token-layout-space-md);
   }
 
   &[gap='lg'] {
-    --gap: var(--cds-token-size-lg);
+    --gap: var(--cds-token-layout-space-lg);
   }
 
   &[gap='xl'] {
-    --gap: var(--cds-token-size-xl);
+    --gap: var(--cds-token-layout-space-xl);
   }
 }
 
@@ -136,23 +136,23 @@ cds-layout[type='vertical'] {
   }
 
   &[gap='xs'] > * {
-    margin-bottom: var(--cds-token-size-xs);
+    margin-bottom: var(--cds-token-layout-space-xs);
   }
 
   &[gap='sm'] > * {
-    margin-bottom: var(--cds-token-size-sm);
+    margin-bottom: var(--cds-token-layout-space-sm);
   }
 
   &[gap='md'] > * {
-    margin-bottom: var(--cds-token-size-md);
+    margin-bottom: var(--cds-token-layout-space-md);
   }
 
   &[gap='lg'] > * {
-    margin-bottom: var(--cds-token-size-lg);
+    margin-bottom: var(--cds-token-layout-space-lg);
   }
 
   &[gap='xl'] > * {
-    margin-bottom: var(--cds-token-size-xl);
+    margin-bottom: var(--cds-token-layout-space-xl);
   }
 
   & > *:last-child {
@@ -166,7 +166,7 @@ cds-layout[type='grid'] {
   align-items: start;
   align-content: start;
   justify-items: var(--x-align);
-  grid-template-columns: repeat($cols, 1fr);
+  grid-template-columns: repeat($cds-internal-token-layout-grid-cols, 1fr);
 
   &[cols='auto'] {
     grid-auto-flow: column;
@@ -200,49 +200,49 @@ cds-layout[type='grid'] {
 
   // gap axis
   &[gap^='[xs'] {
-    row-gap: var(--cds-token-size-xs);
+    row-gap: var(--cds-token-layout-space-xs);
   }
 
   &[gap$='xs]'] {
-    column-gap: var(--cds-token-size-xs);
+    column-gap: var(--cds-token-layout-space-xs);
   }
 
   &[gap^='[sm'] {
-    row-gap: var(--cds-token-size-sm);
+    row-gap: var(--cds-token-layout-space-sm);
   }
 
   &[gap$='sm]'] {
-    column-gap: var(--cds-token-size-sm);
+    column-gap: var(--cds-token-layout-space-sm);
   }
 
   &[gap^='[md'] {
-    row-gap: var(--cds-token-size-md);
+    row-gap: var(--cds-token-layout-space-md);
   }
 
   &[gap$='md]'] {
-    column-gap: var(--cds-token-size-md);
+    column-gap: var(--cds-token-layout-space-md);
   }
 
   &[gap^='[lg'] {
-    row-gap: var(--cds-token-size-lg);
+    row-gap: var(--cds-token-layout-space-lg);
   }
 
   &[gap$='lg]'] {
-    column-gap: var(--cds-token-size-lg);
+    column-gap: var(--cds-token-layout-space-lg);
   }
 
   &[gap^='[xl'] {
-    row-gap: var(--cds-token-size-xl);
+    row-gap: var(--cds-token-layout-space-xl);
   }
 
   &[gap$='xl]'] {
-    column-gap: var(--cds-token-size-xl);
+    column-gap: var(--cds-token-layout-space-xl);
   }
 }
 
 cds-layout[cols*='\@'] {
   grid-template-columns: 12fr;
-  grid-column: span $cols;
+  grid-column: span $cds-internal-token-layout-grid-cols;
 }
 
 [cds-row*='span-'],
@@ -251,10 +251,10 @@ cds-layout[cols*='\@'] {
 }
 
 %full-width-columns-explicit {
-  grid-column: span $cols;
+  grid-column: span $cds-internal-token-layout-grid-cols;
 }
 
-@for $i from 1 through $cols {
+@for $i from 1 through $cds-internal-token-layout-grid-cols {
   [cds-col~='span-#{$i}\@sm'],
   [cds-col~='span-#{$i}\@md'],
   [cds-col~='span-#{$i}\@lg'],
@@ -263,7 +263,7 @@ cds-layout[cols*='\@'] {
   }
 }
 
-@for $i from 1 through $cols {
+@for $i from 1 through $cds-internal-token-layout-grid-cols {
   cds-layout[cols~='#{$i}'] {
     grid-template-columns: repeat($i, 1fr);
   }
@@ -273,7 +273,7 @@ cds-layout[cols*='\@'] {
   }
 }
 
-@for $i from 1 through $cols {
+@for $i from 1 through $cds-internal-token-layout-grid-cols {
   [cds-col~='span-#{$i}'] {
     grid-column: span $i / span $i;
   }
@@ -283,24 +283,24 @@ cds-layout[cols*='\@'] {
   }
 }
 
-@media (min-width: $sm-break) {
+@media (min-width: $cds-internal-token-layout-width-sm) {
   @include generateColumnsAndRows('sm');
 }
 
-@media (min-width: $md-break) {
+@media (min-width: $cds-internal-token-layout-width-md) {
   @include generateColumnsAndRows('md');
 }
 
-@media (min-width: $lg-break) {
+@media (min-width: $cds-internal-token-layout-width-lg) {
   @include generateColumnsAndRows('lg');
 }
 
-@media (min-width: $xl-break) {
+@media (min-width: $cds-internal-token-layout-width-xl) {
   @include generateColumnsAndRows('xl');
 }
 
 // start/end positions
-@for $i from 1 through $cols {
+@for $i from 1 through $cds-internal-token-layout-grid-cols {
   [cds-col~='start-#{$i}'] {
     grid-column-start: $i;
   }
@@ -318,19 +318,19 @@ cds-layout[cols*='\@'] {
   }
 }
 
-@media (min-width: $sm-break) {
+@media (min-width: $cds-internal-token-layout-width-sm) {
   @include position('sm');
 }
 
-@media (min-width: $md-break) {
+@media (min-width: $cds-internal-token-layout-width-md) {
   @include position('md');
 }
 
-@media (min-width: $lg-break) {
+@media (min-width: $cds-internal-token-layout-width-lg) {
   @include position('lg');
 }
 
-@media (min-width: $xl-break) {
+@media (min-width: $cds-internal-token-layout-width-xl) {
   @include position('xl');
 }
 

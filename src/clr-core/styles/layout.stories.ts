@@ -608,8 +608,50 @@ export const gridGap = () => {
   return html`
     <cds-layout type="vertical" gap="lg">
       <h1 cds-text="h1">Grid Gap</h1>
+
+      <h2 cds-text="h2">Grid Gap xs</h2>
       <div class="layout-demo wide-demo">
-        <cds-layout type="grid" gap="xs" cols="2" align-items="horizontal-stretch">
+        <cds-layout type="grid" gap="xs" cols="2" align-items="stretch">
+          <cds-placeholder>1</cds-placeholder>
+          <cds-placeholder>2</cds-placeholder>
+          <cds-placeholder>3</cds-placeholder>
+          <cds-placeholder>4</cds-placeholder>
+        </cds-layout>
+      </div>
+
+      <h2 cds-text="h2">Grid Gap sm</h2>
+      <div class="layout-demo wide-demo">
+        <cds-layout type="grid" gap="sm" cols="2" align-items="stretch">
+          <cds-placeholder>1</cds-placeholder>
+          <cds-placeholder>2</cds-placeholder>
+          <cds-placeholder>3</cds-placeholder>
+          <cds-placeholder>4</cds-placeholder>
+        </cds-layout>
+      </div>
+
+      <h2 cds-text="h2">Grid Gap md</h2>
+      <div class="layout-demo wide-demo">
+        <cds-layout type="grid" gap="md" cols="2" align-items="stretch">
+          <cds-placeholder>1</cds-placeholder>
+          <cds-placeholder>2</cds-placeholder>
+          <cds-placeholder>3</cds-placeholder>
+          <cds-placeholder>4</cds-placeholder>
+        </cds-layout>
+      </div>
+
+      <h2 cds-text="h2">Grid Gap lg</h2>
+      <div class="layout-demo wide-demo">
+        <cds-layout type="grid" gap="lg" cols="2" align-items="stretch">
+          <cds-placeholder>1</cds-placeholder>
+          <cds-placeholder>2</cds-placeholder>
+          <cds-placeholder>3</cds-placeholder>
+          <cds-placeholder>4</cds-placeholder>
+        </cds-layout>
+      </div>
+
+      <h2 cds-text="h2">Grid Gap lg</h2>
+      <div class="layout-demo wide-demo">
+        <cds-layout type="grid" gap="lg" cols="2" align-items="stretch">
           <cds-placeholder>1</cds-placeholder>
           <cds-placeholder>2</cds-placeholder>
           <cds-placeholder>3</cds-placeholder>
@@ -619,7 +661,7 @@ export const gridGap = () => {
 
       <h2 cds-text="h2">Grid Gap Horizontal/Vertical</h2>
       <div class="layout-demo wide-demo">
-        <cds-layout type="grid" gap="[sm, xl]" cols="2" align-items="horizontal-stretch">
+        <cds-layout type="grid" gap="[sm, xl]" cols="2" align-items="stretch">
           <cds-placeholder>1</cds-placeholder>
           <cds-placeholder>2</cds-placeholder>
           <cds-placeholder>3</cds-placeholder>
@@ -726,41 +768,54 @@ export const spacing = () => {
   `;
 };
 
-export const contain = () => {
+export const width = () => {
   return html`
-    <h1 cds-text="h1">Contain</h1>
     <cds-layout type="vertical" gap="lg">
+      <h1 cds-text="h1">Width</h1>
       <div class="layout-demo wide-demo">
-        <cds-layout type="horizontal" contain="xs" align-items="stretch">
-          <cds-placeholder>contain xs</cds-placeholder>
+        <cds-layout type="horizontal" width="xs" align-items="stretch">
+          <cds-placeholder>width xs</cds-placeholder>
         </cds-layout>
       </div>
 
       <div class="layout-demo wide-demo">
-        <cds-layout type="horizontal" contain="sm" align-items="stretch">
-          <cds-placeholder>contain sm</cds-placeholder>
+        <cds-layout type="horizontal" width="sm" align-items="stretch">
+          <cds-placeholder>width sm</cds-placeholder>
         </cds-layout>
       </div>
 
       <div class="layout-demo wide-demo">
-        <cds-layout type="horizontal" contain="md" align-items="stretch">
-          <cds-placeholder>contain md</cds-placeholder>
+        <cds-layout type="horizontal" width="md" align-items="stretch">
+          <cds-placeholder>width md</cds-placeholder>
         </cds-layout>
       </div>
 
       <div class="layout-demo wide-demo">
-        <cds-layout type="horizontal" contain="lg" align-items="stretch">
-          <cds-placeholder>contain lg</cds-placeholder>
+        <cds-layout type="horizontal" width="lg" align-items="stretch">
+          <cds-placeholder>width lg</cds-placeholder>
         </cds-layout>
       </div>
 
       <div class="layout-demo wide-demo">
-        <cds-layout type="vertical" gap="lg" align-items="stretch">
-          <cds-placeholder cds-contain="xs" >contain xs</cds-placeholder>
-          <cds-placeholder cds-contain="sm">contain sm</cds-placeholder>
-          <cds-placeholder cds-contain="md">contain md</cds-placeholder>
-          <cds-placeholder cds-contain="lg">contain lg</cds-placeholder>
+        <cds-layout type="horizontal" width="xl" align-items="stretch">
+          <cds-placeholder>width xl</cds-placeholder>
         </cds-layout>
+      </div>
+
+      <div class="layout-demo wide-demo">
+        <cds-placeholder cds-width="xs" >cds-width xs</cds-placeholder>
+      </div>
+      <div class="layout-demo wide-demo">
+        <cds-placeholder cds-width="sm">cds-width sm</cds-placeholder>
+      </div>
+      <div class="layout-demo wide-demo">
+        <cds-placeholder cds-width="md">cds-width md</cds-placeholder>
+      </div>
+      <div class="layout-demo wide-demo">
+        <cds-placeholder cds-width="lg">cds-width lg</cds-placeholder>
+      </div>
+      <div class="layout-demo wide-demo">
+        <cds-placeholder cds-width="xl">cds-width xl</cds-placeholder>
       </div>
     </cds-layout>
   `;

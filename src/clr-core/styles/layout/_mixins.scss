@@ -3,7 +3,7 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @mixin generateColumnsAndRows($breakpoint) {
-  @for $i from 1 through $cols {
+  @for $i from 1 through $cds-internal-token-layout-grid-cols {
     // implicit columns/rows
     cds-layout[cols~='#{$i}\@#{$breakpoint}'] {
       grid-template-columns: repeat($i, 1fr);
@@ -25,7 +25,7 @@
 }
 
 @mixin position($breakpoint) {
-  @for $i from 1 through $cols {
+  @for $i from 1 through $cds-internal-token-layout-grid-cols {
     [cds-col~='start-#{$i}\@#{$breakpoint}'] {
       grid-column-start: $i;
     }

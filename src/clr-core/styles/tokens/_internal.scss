@@ -1,0 +1,24 @@
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+// TODO: generate with a token system, provide a revamp and clean up of our variables in a centralized location for core.
+// https://github.com/amzn/style-dictionary
+// https://github.com/salesforce-ux/theo
+
+// Internal private tokens
+
+/*
+ * Layout Tokens
+ */
+$cds-internal-token-layout-grid-cols: 12;
+$cds-internal-token-layout-space-xs: 4px;
+$cds-internal-token-layout-space-sm: 12px;
+$cds-internal-token-layout-space-md: 24px;
+$cds-internal-token-layout-space-lg: 36px;
+$cds-internal-token-layout-space-xl: 48px;
+$cds-internal-token-layout-width-xs: 480px;
+$cds-internal-token-layout-width-sm: 720px;
+$cds-internal-token-layout-width-md: 1024px;
+$cds-internal-token-layout-width-lg: 1200px;
+$cds-internal-token-layout-width-xl: 1440px;

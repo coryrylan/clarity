@@ -36,18 +36,18 @@
   display: inline !important;
 }
 
-@media (min-width: $sm-break) {
+@media (min-width: $cds-internal-token-layout-width-sm) {
   @include display('sm');
 }
 
-@media (min-width: $md-break) {
+@media (min-width: $cds-internal-token-layout-width-md) {
   @include display('md');
 }
 
-@media (min-width: $lg-break) {
+@media (min-width: $cds-internal-token-layout-width-lg) {
   @include display('lg');
 }
 
-@media (min-width: $xl-break) {
+@media (min-width: $cds-internal-token-layout-width-xl) {
   @include display('xl');
 }
