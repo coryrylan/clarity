@@ -8,36 +8,46 @@ cds-layout {
   --x-align: flex-start;
   --y-align: flex-start;
 
-  &[y-align~='top'] {
+  &[align-items~='top'] {
     --y-align: flex-start;
   }
 
-  &[y-align~='bottom'] {
+  &[align-items~='bottom'] {
     --y-align: flex-end;
   }
 
-  &[y-align~='center'] {
+  &[align-items~='vertical-center'] {
     --y-align: center;
   }
 
-  &[x-align~='left'] {
+  &[align-items~='left'] {
     --x-align: flex-start;
   }
 
-  &[x-align~='stretch'] {
+  &[align-items~='horizontal-stretch'] {
     --x-align: stretch;
   }
 
-  &[y-align~='stretch'] {
+  &[align-items~='vertical-stretch'] {
     --y-align: stretch;
   }
 
-  &[x-align~='right'] {
+  &[align-items~='right'] {
     --x-align: flex-end;
   }
 
-  &[x-align~='center'] {
+  &[align-items~='horizontal-center'] {
     --x-align: center;
+  }
+
+  &[align-items~='center'] {
+    --x-align: center;
+    --y-align: center;
+  }
+
+  &[align-items~='stretch'] {
+    --x-align: stretch;
+    --y-align: stretch;
   }
 
   &[gap='xs'] {
@@ -76,11 +86,13 @@ cds-layout[type='horizontal'] {
     margin-top: var(--gap);
   }
 
-  &[x-align~='stretch'] > * {
+  &[align-items~='stretch'] > *,
+  &[align-items~='horizontal-stretch'] > * {
     flex-grow: 1;
   }
 
-  &[y-align~='stretch'] {
+  &[align-items~='stretch'] > *,
+  &[align-items~='vertical-stretch'] {
     align-content: stretch;
   }
 
@@ -113,11 +125,13 @@ cds-layout[type='vertical'] {
   justify-items: var(--y-align);
   align-items: var(--x-align);
 
-  &[x-align~='stretch'] {
+  &[align-items~='stretch'],
+  &[align-items~='horizontal-stretch'] {
     align-items: stretch;
   }
 
-  &[y-align~='stretch'] > * {
+  &[align-items~='stretch'] > *,
+  &[align-items~='vertical-stretch'] > * {
     flex-grow: 1;
   }
 
@@ -159,60 +173,70 @@ cds-layout[type='grid'] {
     grid-template-columns: initial;
   }
 
-  &[y-align='stretch'] {
+  &[align-items~='vertical-stretch'] {
     align-items: stretch;
     align-content: stretch;
   }
 
-  &[y-align='center'] {
+  &[align-items~='vertical-center'] {
     align-items: center;
     align-content: center;
   }
 
-  &[y-align='bottom'] {
+  &[align-items~='stretch'] {
+    align-items: stretch;
+    align-content: stretch;
+  }
+
+  &[align-items~='center'] {
+    align-items: center;
+    align-content: center;
+  }
+
+  &[align-items~='bottom'] {
     align-items: end;
     align-content: end;
   }
 
   // gap axis
   &[gap^='[xs'] {
-    column-gap: var(--cds-token-size-xs);
-  }
-
-  &[gap$='xs]'] {
     row-gap: var(--cds-token-size-xs);
   }
 
-  &[gap^='[sm'] {
-    column-gap: var(--cds-token-size-sm);
+  &[gap$='xs]'] {
+    column-gap: var(--cds-token-size-xs);
   }
 
-  &[gap$='sm]'] {
+  &[gap^='[sm'] {
     row-gap: var(--cds-token-size-sm);
   }
 
-  &[gap^='[md'] {
-    column-gap: var(--cds-token-size-md);
+  &[gap$='sm]'] {
+    column-gap: var(--cds-token-size-sm);
   }
 
-  &[gap$='md]'] {
+  &[gap^='[md'] {
     row-gap: var(--cds-token-size-md);
   }
 
-  &[gap^='[lg'] {
-    column-gap: var(--cds-token-size-lg);
+  &[gap$='md]'] {
+    column-gap: var(--cds-token-size-md);
   }
 
-  &[gap$='lg]'] {
+  &[gap^='[lg'] {
     row-gap: var(--cds-token-size-lg);
   }
 
+  &[gap$='lg]'] {
+    column-gap: var(--cds-token-size-lg);
+  }
+
   &[gap^='[xl'] {
-    column-gap: var(--cds-token-size-xl);
+    row-gap: var(--cds-token-size-xl);
   }
 
   &[gap$='xl]'] {
-    row-gap: var(--cds-token-size-xl);
+    column-gap: var(--cds-token-size-xl);
   }
 }
 
@@ -260,19 +284,19 @@ cds-layout[cols*='\@'] {
 }
 
 @media (min-width: $sm-break) {
-  @include column('sm');
+  @include generateColumnsAndRows('sm');
 }
 
 @media (min-width: $md-break) {
-  @include column('md');
+  @include generateColumnsAndRows('md');
 }
 
 @media (min-width: $lg-break) {
-  @include column('lg');
+  @include generateColumnsAndRows('lg');
 }
 
 @media (min-width: $xl-break) {
-  @include column('xl');
+  @include generateColumnsAndRows('xl');
 }
 
 // start/end positions
@@ -310,11 +334,11 @@ cds-layout[cols*='\@'] {
   @include position('xl');
 }
 
-[cds-layout~='stretch'] {
+cds-layout > [cds-align~='stretch'] {
   flex-grow: 1 !important;
 }
 
-[cds-layout~='shrink'] {
+cds-layout > [cds-align~='shrink'] {
   flex-shrink: 1 !important;
   flex-grow: 0 !important;
 }

@@ -2,7 +2,7 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-@mixin column($breakpoint) {
+@mixin generateColumnsAndRows($breakpoint) {
   @for $i from 1 through $cols {
     // implicit columns/rows
     cds-layout[cols~='#{$i}\@#{$breakpoint}'] {
