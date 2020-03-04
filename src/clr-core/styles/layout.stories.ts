@@ -9,7 +9,7 @@ import { select } from '@storybook/addon-knobs';
 import { html } from 'lit-html';
 
 export default {
-  title: 'Documentation|Layout (Experimental)',
+  title: 'Experimental|Layout',
   parameters: {
     options: { showPanel: true },
     a11y: { disable: true },

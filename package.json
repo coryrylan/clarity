@@ -85,7 +85,7 @@
     "core:test:watch": "ng test clr-core --watch",
     "core:test:unit": "ng test clr-core --watch=false",
     "core:test:treeshaking": "webpack --config src/clr-core/test-bundles/webpack.config.js && bundlesize --config src/clr-core/test-bundles/bundlesize.json",
-    "core:build": "npm-run-all core:build:sass -p 'core:build:ts -- --force' core:build:api -s core:build:package core:build:clean",
+    "core:build": "npm-run-all core:build:tokens core:build:sass -p 'core:build:ts -- --force' core:build:api -s core:build:package core:build:clean",
     "core:build:watch": "npm-run-all -p core:build:sass:watch 'core:build:ts -- -w'",
     "core:build:clean": "node ./src/clr-core/package.js",
     "core:build:package": "cpy '**/package.json' '../../dist/clr-core/' --cwd=src/clr-core --parents && cpy ./src/clr-core/README.md ./dist/clr-core/; replace '@VERSION' $npm_package_version ./dist/clr-core/package.json; replace '@VERSION' $npm_package_version ./dist/clr-core/common/utils/global.js",
@@ -96,7 +96,8 @@
     "core:build:sass:components": "sass-render --q --suffix '.css.ts' -t ./src/clr-core/sass-template.js './src/clr-core/**/*element.scss'",
     "core:build:sass:global": "sass --source-map --precision=8 ./src/clr-core/styles/global.scss ./dist/clr-core/global.css",
     "core:build:sass:global:min": "csso -i ./dist/clr-core/global.css -o ./dist/clr-core/global.min.css -s file --no-restructure",
-    "core:build:api": "wca analyze 'src/clr-core/**/*.element.ts' --silent --format=json --outFile dist/clr-core/custom-elements.json"
+    "core:build:api": "wca analyze 'src/clr-core/**/*.element.ts' --silent --format=json --outFile dist/clr-core/custom-elements.json",
+    "core:build:tokens": "node src/clr-core/tokens/tokens-build.js"
   },
   "dependencies": {
     "@angular/animations": "9.0.2",
@@ -213,6 +214,7 @@
     "stylelint-no-px": "0.12.1",
     "stylelint-scss": "3.9.2",
     "superagent": "5.1.0",
+    "theo": "8.1.5",
     "ts-api-guardian": "0.4.4",
     "ts-loader": "6.0.2",
     "ts-node": "8.2.0",

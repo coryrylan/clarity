@@ -4,25 +4,25 @@
 
 cds-layout[width='xs'],
 [cds-width='xs'] {
-  max-width: var(--cds-token-layout-width-xs);
+  max-width: $cds-token-layout-width-xs;
 }
 
 cds-layout[width='sm'],
 [cds-width='sm'] {
-  max-width: var(--cds-token-layout-width-sm);
+  max-width: $cds-token-layout-width-sm;
 }
 
 cds-layout[width='md'],
 [cds-width='md'] {
-  max-width: var(--cds-token-layout-width-md);
+  max-width: $cds-token-layout-width-md;
 }
 
 cds-layout[width='lg'],
 [cds-width='lg'] {
-  max-width: var(--cds-token-layout-width-lg);
+  max-width: $cds-token-layout-width-lg;
 }
 
 cds-layout[width='xl'],
 [cds-width='lg'] {
-  max-width: var(--cds-token-layout-width-xl);
+  max-width: $cds-token-layout-width-xl;
 }

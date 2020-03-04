@@ -51,23 +51,23 @@ cds-layout {
   }
 
   &[gap='xs'] {
-    --gap: var(--cds-token-layout-space-xs);
+    --gap: #{$cds-token-layout-space-xs};
   }
 
   &[gap='sm'] {
-    --gap: var(--cds-token-layout-space-sm);
+    --gap: #{$cds-token-layout-space-sm};
   }
 
   &[gap='md'] {
-    --gap: var(--cds-token-layout-space-md);
+    --gap: #{$cds-token-layout-space-md};
   }
 
   &[gap='lg'] {
-    --gap: var(--cds-token-layout-space-lg);
+    --gap: #{$cds-token-layout-space-lg};
   }
 
   &[gap='xl'] {
-    --gap: var(--cds-token-layout-space-xl);
+    --gap: #{$cds-token-layout-space-xl};
   }
 }
 
@@ -97,29 +97,28 @@ cds-layout[type='horizontal'] {
   }
 
   &[gap='xs'] {
-    --gap: var(--cds-token-layout-space-xs);
+    --gap: #{$cds-token-layout-space-xs};
   }
 
   &[gap='sm'] {
-    --gap: var(--cds-token-layout-space-sm);
+    --gap: #{$cds-token-layout-space-sm};
   }
 
   &[gap='md'] {
-    --gap: var(--cds-token-layout-space-md);
+    --gap: #{$cds-token-layout-space-md};
   }
 
   &[gap='lg'] {
-    --gap: var(--cds-token-layout-space-lg);
+    --gap: #{$cds-token-layout-space-lg};
   }
 
   &[gap='xl'] {
-    --gap: var(--cds-token-layout-space-xl);
+    --gap: #{$cds-token-layout-space-xl};
   }
 }
 
 cds-layout[type='vertical'] {
   display: inline-flex;
-  align-items: flex-start;
   flex-direction: column;
   justify-content: var(--y-align);
   justify-items: var(--y-align);
@@ -136,23 +135,23 @@ cds-layout[type='vertical'] {
   }
 
   &[gap='xs'] > * {
-    margin-bottom: var(--cds-token-layout-space-xs);
+    margin-bottom: $cds-token-layout-space-xs;
   }
 
   &[gap='sm'] > * {
-    margin-bottom: var(--cds-token-layout-space-sm);
+    margin-bottom: $cds-token-layout-space-sm;
   }
 
   &[gap='md'] > * {
-    margin-bottom: var(--cds-token-layout-space-md);
+    margin-bottom: $cds-token-layout-space-md;
   }
 
   &[gap='lg'] > * {
-    margin-bottom: var(--cds-token-layout-space-lg);
+    margin-bottom: $cds-token-layout-space-lg;
   }
 
   &[gap='xl'] > * {
-    margin-bottom: var(--cds-token-layout-space-xl);
+    margin-bottom: $cds-token-layout-space-xl;
   }
 
   & > *:last-child {
@@ -166,7 +165,7 @@ cds-layout[type='grid'] {
   align-items: start;
   align-content: start;
   justify-items: var(--x-align);
-  grid-template-columns: repeat($cds-internal-token-layout-grid-cols, 1fr);
+  grid-template-columns: repeat($cds-token-layout-grid-cols, 1fr);
 
   &[cols='auto'] {
     grid-auto-flow: column;
@@ -200,49 +199,49 @@ cds-layout[type='grid'] {
 
   // gap axis
   &[gap^='[xs'] {
-    row-gap: var(--cds-token-layout-space-xs);
+    row-gap: $cds-token-layout-space-xs;
   }
 
   &[gap$='xs]'] {
-    column-gap: var(--cds-token-layout-space-xs);
+    column-gap: $cds-token-layout-space-xs;
   }
 
   &[gap^='[sm'] {
-    row-gap: var(--cds-token-layout-space-sm);
+    row-gap: $cds-token-layout-space-sm;
   }
 
   &[gap$='sm]'] {
-    column-gap: var(--cds-token-layout-space-sm);
+    column-gap: $cds-token-layout-space-sm;
   }
 
   &[gap^='[md'] {
-    row-gap: var(--cds-token-layout-space-md);
+    row-gap: $cds-token-layout-space-md;
   }
 
   &[gap$='md]'] {
-    column-gap: var(--cds-token-layout-space-md);
+    column-gap: $cds-token-layout-space-md;
   }
 
   &[gap^='[lg'] {
-    row-gap: var(--cds-token-layout-space-lg);
+    row-gap: $cds-token-layout-space-lg;
   }
 
   &[gap$='lg]'] {
-    column-gap: var(--cds-token-layout-space-lg);
+    column-gap: $cds-token-layout-space-lg;
   }
 
   &[gap^='[xl'] {
-    row-gap: var(--cds-token-layout-space-xl);
+    row-gap: $cds-token-layout-space-xl;
   }
 
   &[gap$='xl]'] {
-    column-gap: var(--cds-token-layout-space-xl);
+    column-gap: $cds-token-layout-space-xl;
   }
 }
 
 cds-layout[cols*='\@'] {
   grid-template-columns: 12fr;
-  grid-column: span $cds-internal-token-layout-grid-cols;
+  grid-column: span $cds-token-layout-grid-cols;
 }
 
 [cds-row*='span-'],
@@ -251,10 +250,10 @@ cds-layout[cols*='\@'] {
 }
 
 %full-width-columns-explicit {
-  grid-column: span $cds-internal-token-layout-grid-cols;
+  grid-column: span $cds-token-layout-grid-cols;
 }
 
-@for $i from 1 through $cds-internal-token-layout-grid-cols {
+@for $i from 1 through $cds-token-layout-grid-cols-static {
   [cds-col~='span-#{$i}\@sm'],
   [cds-col~='span-#{$i}\@md'],
   [cds-col~='span-#{$i}\@lg'],
@@ -263,7 +262,7 @@ cds-layout[cols*='\@'] {
   }
 }
 
-@for $i from 1 through $cds-internal-token-layout-grid-cols {
+@for $i from 1 through $cds-token-layout-grid-cols-static {
   cds-layout[cols~='#{$i}'] {
     grid-template-columns: repeat($i, 1fr);
   }
@@ -273,7 +272,7 @@ cds-layout[cols*='\@'] {
   }
 }
 
-@for $i from 1 through $cds-internal-token-layout-grid-cols {
+@for $i from 1 through $cds-token-layout-grid-cols-static {
   [cds-col~='span-#{$i}'] {
     grid-column: span $i / span $i;
   }
@@ -283,24 +282,24 @@ cds-layout[cols*='\@'] {
   }
 }
 
-@media (min-width: $cds-internal-token-layout-width-sm) {
+@media (min-width: $cds-token-layout-width-sm-static) {
   @include generateColumnsAndRows('sm');
 }
 
-@media (min-width: $cds-internal-token-layout-width-md) {
+@media (min-width: $cds-token-layout-width-md-static) {
   @include generateColumnsAndRows('md');
 }
 
-@media (min-width: $cds-internal-token-layout-width-lg) {
+@media (min-width: $cds-token-layout-width-lg-static) {
   @include generateColumnsAndRows('lg');
 }
 
-@media (min-width: $cds-internal-token-layout-width-xl) {
+@media (min-width: $cds-token-layout-width-xl-static) {
   @include generateColumnsAndRows('xl');
 }
 
 // start/end positions
-@for $i from 1 through $cds-internal-token-layout-grid-cols {
+@for $i from 1 through $cds-token-layout-grid-cols-static {
   [cds-col~='start-#{$i}'] {
     grid-column-start: $i;
   }
@@ -318,19 +317,19 @@ cds-layout[cols*='\@'] {
   }
 }
 
-@media (min-width: $cds-internal-token-layout-width-sm) {
+@media (min-width: $cds-token-layout-width-sm-static) {
   @include position('sm');
 }
 
-@media (min-width: $cds-internal-token-layout-width-md) {
+@media (min-width: $cds-token-layout-width-md-static) {
   @include position('md');
 }
 
-@media (min-width: $cds-internal-token-layout-width-lg) {
+@media (min-width: $cds-token-layout-width-lg-static) {
   @include position('lg');
 }
 
-@media (min-width: $cds-internal-token-layout-width-xl) {
+@media (min-width: $cds-token-layout-width-xl-static) {
   @include position('xl');
 }
 

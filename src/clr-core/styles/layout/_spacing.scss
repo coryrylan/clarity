@@ -10,27 +10,27 @@ cds-layout[pad='none'] {
 
 [cds-pad='xs'],
 cds-layout[pad='xs'] {
-  padding: var(--cds-token-layout-space-xs) !important;
+  padding: $cds-token-layout-space-xs !important;
 }
 
 [cds-pad='sm'],
 cds-layout[pad='sm'] {
-  padding: var(--cds-token-layout-space-sm) !important;
+  padding: $cds-token-layout-space-sm !important;
 }
 
 [cds-pad='md'],
 cds-layout[pad='md'] {
-  padding: var(--cds-token-layout-space-md) !important;
+  padding: $cds-token-layout-space-md !important;
 }
 
 [cds-pad='lg'],
 cds-layout[pad='lg'] {
-  padding: var(--cds-token-layout-space-lg) !important;
+  padding: $cds-token-layout-space-lg !important;
 }
 
 [cds-pad='xl'],
 cds-layout[pad='xl'] {
-  padding: var(--cds-token-layout-space-xl) !important;
+  padding: $cds-token-layout-space-xl !important;
 }
 
 /* Padding by axis */
@@ -49,60 +49,60 @@ cds-layout[pad$='none]'] {
 
 [cds-pad^='[xs'],
 cds-layout[pad^='[xs'] {
-  padding-top: var(--cds-token-layout-space-xs) !important;
-  padding-bottom: var(--cds-token-layout-space-xs) !important;
+  padding-top: $cds-token-layout-space-xs !important;
+  padding-bottom: $cds-token-layout-space-xs !important;
 }
 
 [cds-pad$='xs]'],
 cds-layout[pad$='xs]'] {
-  padding-left: var(--cds-token-layout-space-xs) !important;
-  padding-right: var(--cds-token-layout-space-xs) !important;
+  padding-left: $cds-token-layout-space-xs !important;
+  padding-right: $cds-token-layout-space-xs !important;
 }
 
 [cds-pad^='[sm'],
 cds-layout[pad^='[sm'] {
-  padding-top: var(--cds-token-layout-space-sm) !important;
-  padding-bottom: var(--cds-token-layout-space-sm) !important;
+  padding-top: $cds-token-layout-space-sm !important;
+  padding-bottom: $cds-token-layout-space-sm !important;
 }
 
 [cds-pad$='sm]'],
 cds-layout[pad$='sm]'] {
-  padding-left: var(--cds-token-layout-space-sm) !important;
-  padding-right: var(--cds-token-layout-space-sm) !important;
+  padding-left: $cds-token-layout-space-sm !important;
+  padding-right: $cds-token-layout-space-sm !important;
 }
 
 [cds-pad^='[md'],
 cds-layout[pad^='[md'] {
-  padding-top: var(--cds-token-layout-space-md) !important;
-  padding-bottom: var(--cds-token-layout-space-md) !important;
+  padding-top: $cds-token-layout-space-md !important;
+  padding-bottom: $cds-token-layout-space-md !important;
 }
 
 [cds-pad$='md]'],
 cds-layout[pad$='md]'] {
-  padding-left: var(--cds-token-layout-space-md) !important;
-  padding-right: var(--cds-token-layout-space-md) !important;
+  padding-left: $cds-token-layout-space-md !important;
+  padding-right: $cds-token-layout-space-md !important;
 }
 
 [cds-pad^='[lg'],
 cds-layout[pad^='[lg'] {
-  padding-top: var(--cds-token-layout-space-lg) !important;
-  padding-bottom: var(--cds-token-layout-space-lg) !important;
+  padding-top: $cds-token-layout-space-lg !important;
+  padding-bottom: $cds-token-layout-space-lg !important;
 }
 
 [cds-pad$='lg]'],
 cds-layout[pad$='lg]'] {
-  padding-left: var(--cds-token-layout-space-lg) !important;
-  padding-right: var(--cds-token-layout-space-lg) !important;
+  padding-left: $cds-token-layout-space-lg !important;
+  padding-right: $cds-token-layout-space-lg !important;
 }
 
 [cds-pad^='[xl'],
 cds-layout[pad^='[xl'] {
-  padding-top: var(--cds-token-layout-space-xl) !important;
-  padding-bottom: var(--cds-token-layout-space-xl) !important;
+  padding-top: $cds-token-layout-space-xl !important;
+  padding-bottom: $cds-token-layout-space-xl !important;
 }
 
 [cds-pad$='xl]'],
 cds-layout[pad$='xl]'] {
-  padding-left: var(--cds-token-layout-space-xl) !important;
-  padding-right: var(--cds-token-layout-space-xl) !important;
+  padding-left: $cds-token-layout-space-xl !important;
+  padding-right: $cds-token-layout-space-xl !important;
 }

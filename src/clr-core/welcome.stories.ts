@@ -80,9 +80,6 @@ export const clarityCore = () => {
         <a href="https://medium.com/claritydesignsystem/clarity-core-72f6d3a029bc" target="_blank" rel="noopener">Learn More</a>
       </cds-button>
     </section>
-    <section>
-      
-    </section>
   `;
 };
 

@@ -36,18 +36,18 @@
   display: inline !important;
 }
 
-@media (min-width: $cds-internal-token-layout-width-sm) {
+@media (min-width: $cds-token-layout-width-sm-static) {
   @include display('sm');
 }
 
-@media (min-width: $cds-internal-token-layout-width-md) {
+@media (min-width: $cds-token-layout-width-md-static) {
   @include display('md');
 }
 
-@media (min-width: $cds-internal-token-layout-width-lg) {
+@media (min-width: $cds-token-layout-width-lg-static) {
   @include display('lg');
 }
 
-@media (min-width: $cds-internal-token-layout-width-xl) {
+@media (min-width: $cds-token-layout-width-xl-static) {
   @include display('xl');
 }
