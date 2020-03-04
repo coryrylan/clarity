@@ -4,42 +4,45 @@
 
 @mixin generateColumnsAndRows($breakpoint) {
   @for $i from 1 through $cds-token-layout-grid-cols-static {
+    $span: $cds-token-layout-grid-cols-static / $i !important;
+
     // implicit columns/rows
-    cds-layout[cols~='#{$i}\@#{$breakpoint}'] {
-      grid-template-columns: repeat($i, 1fr);
+    cds-layout[cols~='#{$i}\@#{$breakpoint}'] > * {
+      grid-column: span $span / span $span !important;
     }
 
-    cds-layout[rows~='#{$i}\@#{$breakpoint}'] {
-      grid-template-rows: repeat($i, 1fr);
+    cds-layout[rows~='#{$i}\@#{$breakpoint}'] > * {
+      grid-row: span $i / span $i !important;
     }
 
     // explicit column/row positions
-    [cds-col~='span-#{$i}\@#{$breakpoint}'] {
-      grid-column: span $i / span $i;
+    [cds-col~='#{$i}\@#{$breakpoint}'] {
+      grid-column: span $i / span $i !important;
     }
 
-    [cds-row~='span-#{$i}\@#{$breakpoint}'] {
-      grid-row: span $i / span $i;
+    [cds-row~='#{$i}\@#{$breakpoint}'] {
+      grid-row: span $i / span $i !important;
     }
   }
 }
 
 @mixin position($breakpoint) {
-  @for $i from 1 through $cds-token-layout-grid-cols-static {
+  // +1 for grid cols/rows which end at beginning of next item
+  @for $i from 1 through $cds-token-layout-grid-cols-static + 1 {
     [cds-col~='start-#{$i}\@#{$breakpoint}'] {
-      grid-column-start: $i;
+      grid-column-start: $i !important;
     }
 
     [cds-col~='end-#{$i}\@#{$breakpoint}'] {
-      grid-column-end: $i;
+      grid-column-end: $i !important;
     }
 
     [cds-row~='start-#{$i}\@#{$breakpoint}'] {
-      grid-row-start: $i;
+      grid-row-start: $i !important;
     }
 
     [cds-row~='end-#{$i}\@#{$breakpoint}'] {
-      grid-row-end: $i;
+      grid-row-end: $i !important;
     }
   }
 }

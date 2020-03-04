@@ -166,6 +166,7 @@ cds-layout[type='grid'] {
   align-content: start;
   justify-items: var(--x-align);
   grid-template-columns: repeat($cds-token-layout-grid-cols, 1fr);
+  grid-auto-rows: auto;
 
   &[cols='auto'] {
     grid-auto-flow: column;
@@ -239,13 +240,11 @@ cds-layout[type='grid'] {
   }
 }
 
-cds-layout[cols*='\@'] {
-  grid-template-columns: 12fr;
-  grid-column: span $cds-token-layout-grid-cols;
+cds-layout[cols*='\@'] > * {
+  grid-column: span $cds-token-layout-grid-cols-static / span $cds-token-layout-grid-cols-static;
 }
 
-[cds-row*='span-'],
-[cds-row*='end-'] {
+[cds-row] {
   align-self: stretch;
 }
 
@@ -254,31 +253,32 @@ cds-layout[cols*='\@'] {
 }
 
 @for $i from 1 through $cds-token-layout-grid-cols-static {
-  [cds-col~='span-#{$i}\@sm'],
-  [cds-col~='span-#{$i}\@md'],
-  [cds-col~='span-#{$i}\@lg'],
-  [cds-col~='span-#{$i}\@xl'] {
+  [cds-col~='#{$i}\@sm'],
+  [cds-col~='#{$i}\@md'],
+  [cds-col~='#{$i}\@lg'],
+  [cds-col~='#{$i}\@xl'] {
     @extend %full-width-columns-explicit;
   }
 }
 
 @for $i from 1 through $cds-token-layout-grid-cols-static {
-  cds-layout[cols~='#{$i}'] {
-    grid-template-columns: repeat($i, 1fr);
+  $span: $cds-token-layout-grid-cols-static / $i;
+  cds-layout[cols~='#{$i}'] > * {
+    grid-column: span $span / span $span;
   }
 
-  cds-layout[rows~='#{$i}'] {
-    grid-template-rows: repeat($i, 1fr);
+  cds-layout[rows~='#{$i}'] > * {
+    grid-row: span $span / span $span;
   }
 }
 
 @for $i from 1 through $cds-token-layout-grid-cols-static {
-  [cds-col~='span-#{$i}'] {
-    grid-column: span $i / span $i;
+  [cds-col~='#{$i}'] {
+    grid-column: span $i / span $i !important;
   }
 
-  [cds-row~='span-#{$i}'] {
-    grid-row: span $i / span $i;
+  [cds-row~='#{$i}'] {
+    grid-row: span $i / span $i !important;
   }
 }
 
@@ -299,21 +299,22 @@ cds-layout[cols*='\@'] {
 }
 
 // start/end positions
-@for $i from 1 through $cds-token-layout-grid-cols-static {
+@for $i from 1 through $cds-token-layout-grid-cols-static + 1 {
+  // +1 for grid cols/rows which end at beginning of next item
   [cds-col~='start-#{$i}'] {
-    grid-column-start: $i;
+    grid-column-start: $i !important;
   }
 
   [cds-row~='start-#{$i}'] {
-    grid-row-start: $i;
+    grid-row-start: $i !important;
   }
 
   [cds-col~='end-#{$i}'] {
-    grid-column-end: $i;
+    grid-column-end: $i !important;
   }
 
   [cds-row~='end-#{$i}'] {
-    grid-row-end: $i;
+    grid-row-end: $i !important;
   }
 }
 
