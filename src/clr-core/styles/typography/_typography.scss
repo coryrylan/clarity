@@ -4,6 +4,7 @@
 
 @import './../variables/variables.color';
 @import './../variables/variables.global';
+@import './../mixins/mixins';
 // TODO: with an explicit API that can be used internally and externally we no
 // longer need the $clr typography variables and can move the sass typography
 // vars back into clr-angular/clr-ui. This will encourage us to use the Typography
@@ -13,7 +14,20 @@ html {
   font-size: $clr-basefont-size;
 }
 
-[cds-body-text] {
+@mixin LHE($lh-gap: 0.5em) {
+  @include line-height-eraser(
+    $lh-gap,
+    $cds-token-global-font-top-gap-height,
+    $cds-token-global-font-ascender-height,
+    $cds-token-global-font-x-height
+  );
+}
+
+[cds-body-text],
+[cds-text] {
+  $lh-gap: getLineHeightGap($cds-token-typography-body-line-height-static, $cds-token-typography-body-line-height);
+  @include LHE($lh-gap);
+
   font-family: $cds-token-typography-font-family;
   color: $cds-token-typography-body-color;
   font-weight: $cds-token-typography-body-font-weight;
@@ -26,116 +40,387 @@ html {
   display: block;
   width: 100%;
   margin: 0;
-  letter-spacing: normal;
-  // TODO: need line height fix
 }
 
+[cds-text*='display'],
+[cds-text*='heading'],
+[cds-text*='title'],
+[cds-text*='section'],
+[cds-text*='subsection'],
 [cds-text*='h'] {
+  font-family: $cds-token-typography-header-font-family;
+}
+
+// LEGACY FONT STYLES
+
+[cds-text*='h0'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-h0-line-height-static, $cds-token-typography-h0-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-h0-font-size;
+  font-weight: $cds-token-typography-h0-font-weight;
+  color: $cds-token-typography-h0-color;
+  line-height: $cds-token-typography-h0-line-height;
+  letter-spacing: $cds-token-typography-h0-letter-spacing;
+}
+
+[cds-text*='h1'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-h1-line-height-static, $cds-token-typography-h1-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-h1-font-size;
+  font-weight: $cds-token-typography-h1-font-weight;
+  color: $cds-token-typography-h1-color;
+  line-height: $cds-token-typography-h1-line-height;
+  letter-spacing: $cds-token-typography-h1-letter-spacing;
+}
+
+[cds-text*='h2'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-h2-line-height-static, $cds-token-typography-h2-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-h2-font-size;
+  font-weight: $cds-token-typography-h2-font-weight;
+  color: $cds-token-typography-h2-color;
+  line-height: $cds-token-typography-h2-line-height;
+  letter-spacing: $cds-token-typography-h2-letter-spacing;
+}
+
+[cds-text*='h3'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-h3-line-height-static, $cds-token-typography-h3-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-h3-font-size;
+  font-weight: $cds-token-typography-h3-font-weight;
+  color: $cds-token-typography-h3-color;
+  line-height: $cds-token-typography-h3-line-height;
+  letter-spacing: $cds-token-typography-h3-letter-spacing;
+}
+
+[cds-text*='h4'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-h4-line-height-static, $cds-token-typography-h4-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-h4-font-size;
+  font-weight: $cds-token-typography-h4-font-weight;
+  color: $cds-token-typography-h4-color;
+  line-height: $cds-token-typography-h4-line-height;
+  letter-spacing: $cds-token-typography-h4-letter-spacing;
+}
+
+[cds-text*='h5'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-h5-line-height-static, $cds-token-typography-h5-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-h5-font-size;
+  font-weight: $cds-token-typography-h5-font-weight;
+  color: $cds-token-typography-h5-color;
+  line-height: $cds-token-typography-h5-line-height;
+  letter-spacing: $cds-token-typography-h5-letter-spacing;
+}
+
+[cds-text*='h6'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-h6-line-height-static, $cds-token-typography-h6-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-h6-font-size;
+  font-weight: $cds-token-typography-h6-font-weight;
+  color: $cds-token-typography-h6-color;
+  line-height: $cds-token-typography-h6-line-height;
+  letter-spacing: $cds-token-typography-h6-letter-spacing;
+}
+
+[cds-text*='p0'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-p0-line-height-static, $cds-token-typography-p0-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-p0-font-size;
+  font-weight: $cds-token-typography-p0-font-weight;
+  color: $cds-token-typography-p0-color;
+  line-height: $cds-token-typography-p0-line-height;
+  letter-spacing: $cds-token-typography-p0-letter-spacing;
+}
+
+[cds-text*='p1'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-p1-line-height-static, $cds-token-typography-p1-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-p1-font-size;
+  font-weight: $cds-token-typography-p1-font-weight;
+  color: $cds-token-typography-p1-color;
+  line-height: $cds-token-typography-p1-line-height;
+  letter-spacing: $cds-token-typography-p1-letter-spacing;
+}
+
+[cds-text*='p2'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-p2-line-height-static, $cds-token-typography-p2-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-p2-font-size;
+  font-weight: $cds-token-typography-p2-font-weight;
+  color: $cds-token-typography-p2-color;
+  line-height: $cds-token-typography-p2-line-height;
+  letter-spacing: $cds-token-typography-p2-letter-spacing;
+}
+
+[cds-text*='p3'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-p3-line-height-static, $cds-token-typography-p3-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-p3-font-size;
+  font-weight: $cds-token-typography-p3-font-weight;
+  color: $cds-token-typography-p3-color;
+  line-height: $cds-token-typography-p3-line-height;
+  letter-spacing: $cds-token-typography-p3-letter-spacing;
+}
+
+[cds-text*='p4'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-p4-line-height-static, $cds-token-typography-p4-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-p4-font-size;
+  font-weight: $cds-token-typography-p4-font-weight;
+  color: $cds-token-typography-p4-color;
+  line-height: $cds-token-typography-p4-line-height;
+  letter-spacing: $cds-token-typography-p4-letter-spacing;
+}
+
+[cds-text*='p5'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-p5-line-height-static, $cds-token-typography-p5-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-p5-font-size;
+  font-weight: $cds-token-typography-p5-font-weight;
+  color: $cds-token-typography-p5-color;
+  line-height: $cds-token-typography-p5-line-height;
+  letter-spacing: $cds-token-typography-p5-letter-spacing;
+}
+
+[cds-text*='p6'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-p6-line-height-static, $cds-token-typography-p6-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-p6-font-size;
+  font-weight: $cds-token-typography-p6-font-weight;
+  color: $cds-token-typography-p6-color;
+  line-height: $cds-token-typography-p6-line-height;
+  letter-spacing: $cds-token-typography-p6-letter-spacing;
+}
+
+[cds-text*='p7'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-p7-line-height-static, $cds-token-typography-p7-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-p7-font-size;
+  font-weight: $cds-token-typography-p7-font-weight;
+  color: $cds-token-typography-p7-color;
+  line-height: $cds-token-typography-p7-line-height;
+  letter-spacing: $cds-token-typography-p7-letter-spacing;
+}
+
+[cds-text*='p8'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-p8-line-height-static, $cds-token-typography-p8-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-p8-font-size;
+  font-weight: $cds-token-typography-p8-font-weight;
+  color: $cds-token-typography-p8-color;
+  line-height: $cds-token-typography-p8-line-height;
+  letter-spacing: $cds-token-typography-p8-letter-spacing;
+}
+
+// NEW FONT STYLES
+
+[cds-text*='display'] {
+  $lh-gap: getLineHeightGap(
+    $cds-token-typography-display-line-height-static,
+    $cds-token-typography-display-line-height
+  );
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-display-font-size;
+  font-weight: $cds-token-typography-display-font-weight;
+  color: $cds-token-typography-display-color;
+  line-height: $cds-token-typography-display-line-height;
+  letter-spacing: $cds-token-typography-display-letter-spacing;
+}
+
+[cds-text*='heading'] {
+  $lh-gap: getLineHeightGap(
+    $cds-token-typography-heading-line-height-static,
+    $cds-token-typography-heading-line-height
+  );
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-heading-font-size;
   font-weight: $cds-token-typography-heading-font-weight;
   color: $cds-token-typography-heading-color;
+  line-height: $cds-token-typography-heading-line-height;
+  letter-spacing: $cds-token-typography-heading-letter-spacing;
 }
 
-[cds-text~='h1'] {
-  font-size: $cds-token-typography-h1-font-size;
-  line-height: $cds-token-typography-h1-line-height;
+[cds-text*='title'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-title-line-height-static, $cds-token-typography-title-line-height);
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-title-font-size;
+  font-weight: $cds-token-typography-title-font-weight;
+  color: $cds-token-typography-title-color;
+  line-height: $cds-token-typography-title-line-height;
+  letter-spacing: $cds-token-typography-title-letter-spacing;
 }
 
-[cds-text~='h2'] {
-  font-size: $cds-token-typography-h2-font-size;
-  line-height: $cds-token-typography-h2-line-height;
+[cds-text*='section'] {
+  $lh-gap: getLineHeightGap(
+    $cds-token-typography-section-line-height-static,
+    $cds-token-typography-section-line-height
+  );
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-section-font-size;
+  font-weight: $cds-token-typography-section-font-weight;
+  color: $cds-token-typography-section-color;
+  line-height: $cds-token-typography-section-line-height;
+  letter-spacing: $cds-token-typography-section-letter-spacing;
 }
 
-[cds-text~='h3'] {
-  font-size: $cds-token-typography-h3-font-size;
-  line-height: $cds-token-typography-h3-line-height;
+[cds-text*='subsection'] {
+  $lh-gap: getLineHeightGap(
+    $cds-token-typography-subsection-line-height-static,
+    $cds-token-typography-subsection-line-height
+  );
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-subsection-font-size;
+  font-weight: $cds-token-typography-subsection-font-weight;
+  color: $cds-token-typography-subsection-color;
+  line-height: $cds-token-typography-subsection-line-height;
+  letter-spacing: $cds-token-typography-subsection-letter-spacing;
 }
 
-[cds-text~='h4'] {
-  font-size: $cds-token-typography-h4-font-size;
-  line-height: $cds-token-typography-h4-line-height;
+[cds-text*='message'] {
+  $lh-gap: getLineHeightGap(
+    $cds-token-typography-message-line-height-static,
+    $cds-token-typography-message-line-height
+  );
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-message-font-size;
+  font-weight: $cds-token-typography-message-font-weight;
+  color: $cds-token-typography-message-color;
+  line-height: $cds-token-typography-message-line-height;
+  letter-spacing: $cds-token-typography-message-letter-spacing;
 }
 
-[cds-text~='h5'] {
-  font-size: $cds-token-typography-h5-font-size;
-  line-height: $cds-token-typography-h5-line-height;
+[cds-text*='secondary'] {
+  $lh-gap: getLineHeightGap(
+    $cds-token-typography-secondary-line-height-static,
+    $cds-token-typography-secondary-line-height
+  );
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-secondary-font-size;
+  font-weight: $cds-token-typography-secondary-font-weight;
+  color: $cds-token-typography-secondary-color;
+  line-height: $cds-token-typography-secondary-line-height;
+  letter-spacing: $cds-token-typography-secondary-letter-spacing;
 }
 
-[cds-text~='h6'] {
-  font-size: $cds-token-typography-h6-font-size;
-  line-height: $cds-token-typography-h6-line-height;
+[cds-text*='caption'] {
+  $lh-gap: getLineHeightGap(
+    $cds-token-typography-caption-line-height-static,
+    $cds-token-typography-caption-line-height
+  );
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-caption-font-size;
+  font-weight: $cds-token-typography-caption-font-weight;
+  color: $cds-token-typography-caption-color;
+  line-height: $cds-token-typography-caption-line-height;
+  letter-spacing: $cds-token-typography-caption-letter-spacing;
 }
 
-[cds-text*='p'] {
-  color: $cds-token-typography-paragraph-color;
-  letter-spacing: $cds-token-typography-paragraph-letter-spacing;
-  line-height: $cds-token-typography-paragraph-line-height;
+[cds-text*='smallcaption'] {
+  $lh-gap: getLineHeightGap(
+    $cds-token-typography-smallcaption-line-height-static,
+    $cds-token-typography-smallcaption-line-height
+  );
+  @include LHE($lh-gap);
+
+  font-size: $cds-token-typography-smallcaption-font-size;
+  font-weight: $cds-token-typography-smallcaption-font-weight;
+  color: $cds-token-typography-smallcaption-color;
+  line-height: $cds-token-typography-smallcaption-line-height;
+  letter-spacing: $cds-token-typography-smallcaption-letter-spacing;
 }
 
-[cds-text~='p1'] {
-  font-weight: $cds-token-typography-p1-font-weight;
-  font-size: $cds-token-typography-p1-font-size;
-}
-
-[cds-text~='p2'] {
-  font-weight: $cds-token-typography-p2-font-weight;
-  font-size: $cds-token-typography-p2-font-size;
-}
-
-[cds-text~='p3'] {
-  font-weight: $cds-token-typography-p3-font-weight;
-  font-size: $cds-token-typography-p3-font-size;
-}
-
-[cds-text~='p4'] {
-  font-weight: $cds-token-typography-p4-font-weight;
-  font-size: $cds-token-typography-p4-font-size;
-}
-
-[cds-text~='p5'] {
-  font-weight: $cds-token-typography-p5-font-weight;
-  font-size: $cds-token-typography-p5-font-size;
-}
-
-[cds-text~='p6'] {
-  font-weight: $cds-token-typography-p6-font-weight;
-  font-size: $cds-token-typography-p6-font-size;
-  letter-spacing: $cds-token-typography-p6-letter-spacing;
-  line-height: $cds-token-typography-p6-line-height;
-}
-
-[cds-text~='p7'] {
-  font-weight: $cds-token-typography-p7-font-weight;
-  font-size: $cds-token-typography-p7-font-size;
-  letter-spacing: $cds-token-typography-p7-letter-spacing;
-  line-height: $cds-token-typography-p7-line-height;
-}
-
-[cds-text~='p8'] {
-  font-weight: $cds-token-typography-p8-font-weight;
-  font-size: $cds-token-typography-p8-font-size;
-  letter-spacing: $cds-token-typography-p8-letter-spacing;
-  line-height: $cds-token-typography-p8-line-height;
+// these values need to not be block level
+[cds-text~='link'],
+[cds-text~='code'],
+[cds-text~='xb'],
+[cds-text~='bd'],
+[cds-text~='sb'],
+[cds-text~='md'],
+[cds-text~='rg'],
+[cds-text~='lt'] {
+  display: inline;
+  @include remove-line-height-erasers;
 }
 
 [cds-text~='link'] {
   // TODO: clean up with proper styles
-  color: var(--clr-link-hover-color, hsl(198, 100%, 32%));
+  color: var(--clr-link-hover-color, #{$clr-color-action-600});
   text-decoration: underline;
-  display: inline;
 }
 
 [cds-text~='code'] {
   // TODO: clean up with proper styles
-  color: var(--clr-color-danger-800, hsl(9, 100%, 38%));
-  display: inline;
+  color: var(--clr-color-danger-800, #{$clr-color-danger-800});
   font-family: monospace;
   font-size: 1.1em;
 }
 
+// hr
 [cds-divider] {
-  height: 1px;
-  box-shadow: var(--clr-color-neutral-300, #{$clr-color-neutral-300}) 0 0 0 1px inset;
+  display: block;
+  height: $clr_baselineRem_1px;
+  overflow: hidden;
+  box-shadow: var(--clr-color-neutral-300, #{$clr-color-neutral-300}) 0 0 0 $clr_baselineRem_1px inset;
 }
+
+// font-weight
+
+[cds-text~='xb'],
+[cds-text*='-xb'] {
+  font-weight: $cds-token-typography-font-weight-extrabold !important;
+}
+
+[cds-text~='bd'],
+[cds-text*='-bd'] {
+  font-weight: $cds-token-typography-font-weight-bold !important;
+}
+
+[cds-text~='sb'],
+[cds-text*='-sb'] {
+  font-weight: $cds-token-typography-font-weight-semibold !important;
+}
+
+[cds-text~='md'],
+[cds-text*='-md'] {
+  font-weight: $cds-token-typography-font-weight-medium !important;
+}
+
+[cds-text~='rg'],
+[cds-text*='-rg'] {
+  font-weight: $cds-token-typography-font-weight-regular !important;
+}
+
+[cds-text~='lt'],
+[cds-text*='-lt'] {
+  font-weight: $cds-token-typography-font-weight-light !important;
+}
+
+// alignment
 
 [cds-text~='left'] {
   text-align: left !important;
@@ -147,4 +432,9 @@ html {
 
 [cds-text~='center'] {
   text-align: center !important;
+}
+
+// remove line-height eraser from element
+[cds-disable-lhe] {
+  @include remove-line-height-erasers;
 }

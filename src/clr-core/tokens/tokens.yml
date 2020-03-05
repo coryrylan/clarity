@@ -9,6 +9,7 @@ props:
     type: 'number'
     category: 'global'
     private: true
+
   # layout
   space-xs:
     value: '4px'
@@ -62,16 +63,41 @@ props:
     private: true
 
   # Typography
+  # Font
   font-family:
     value: "'Clarity City', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif"
     type: 'string'
     category: 'typography'
+  header-font-family:
+    value: "'Clarity City', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif"
+    type: 'string'
+    category: 'typography'
+
+  # font settings for line height erasers
+  font-top-gap-height: 
+    value: '0.147em'
+    type: 'em'
+    category: 'global'
+  font-ascender-height: 
+    value: '0.17em'
+    type: 'em'
+    category: 'global'
+  font-x-height: 
+    value: '0.517em'
+    type: 'em'
+    category: 'global'
+
+  # global font weights
   font-weight-light:
     value: 200
     type: 'number'
     category: 'typography'
   font-weight-regular:
     value: 400
+    type: 'number'
+    category: 'typography'
+  font-weight-medium:
+    value: 500
     type: 'number'
     category: 'typography'
   font-weight-semibold:
@@ -86,183 +112,579 @@ props:
     value: 600
     type: 'number'
     category: 'typography'
+
+  # NEW TYPOGRAPHY
+  # body text settings - equivalent to p1 w/slightly tighter line height
+  body-font-size:
+    value: '14px'
+    type: 'px'
+    category: 'typography'
   body-color:
-    value: hsl(198, 0%, 40%) # $clr-color-neutral-700
+    value: hsl(198, 0%, 10%)
     type: 'color'
+    category: 'typography'
+  body-line-height:
+    value: '1.42857em'
+    type: 'em'
+    category: 'typography'
+  body-letter-spacing:
+    value: '-0.014286em'
+    type: 'em'
     category: 'typography'
   body-font-weight:
     value: 400
     type: 'number'
     category: 'typography'
-  body-font-size:
-    value: '14px'
+
+  # display
+  display-font-size:
+    value: '40px'
     type: 'px'
     category: 'typography'
-  body-line-spacing:
-    value: 'normal'
-    type: 'string'
+  display-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
     category: 'typography'
-  body-letter-spacing:
-    value: 'normal'
-    type: 'string'
+  display-line-height:
+    value: '1.1em'
+    type: 'em'
     category: 'typography'
-  body-line-height:
+  display-letter-spacing:
+    value: '-0.0125em'
+    type: 'em'
+    category: 'typography'
+  display-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  # heading
+  heading-font-size:
+    value: '32px'
+    type: 'px'
+    category: 'typography'
+  heading-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
+    category: 'typography'
+  heading-line-height:
+    value: '1.125em'
+    type: 'em'
+    category: 'typography'
+  heading-letter-spacing:
+    value: '-0.0125em'
+    type: 'em'
+    category: 'typography'
+  heading-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  # title
+  title-font-size:
     value: '24px'
     type: 'px'
     category: 'typography'
-  heading-font-weight:
-    value: 200
-    type: 'number'
-    category: 'typography'
-  heading-color:
-    value: 'hsl(198, 0%, 0%)' #$clr-color-neutral-1000
+  title-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
     type: 'color'
     category: 'typography'
+  title-line-height:
+    value: '1.16667em'
+    type: 'em'
+    category: 'typography'
+  title-letter-spacing:
+    value: '-0.008333em'
+    type: 'em'
+    category: 'typography'
+  title-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  # section
+  section-font-size:
+    value: '20px'
+    type: 'px'
+    category: 'typography'
+  section-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
+    category: 'typography'
+  section-line-height:
+    value: '1.2em'
+    type: 'em'
+    category: 'typography'
+  section-letter-spacing:
+    value: '-0.01em'
+    type: 'em'
+    category: 'typography'
+  section-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  # subsection
+  subsection-font-size:
+    value: '16px'
+    type: 'px'
+    category: 'typography'
+  subsection-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
+    category: 'typography'
+  subsection-line-height:
+    value: '1.25em'
+    type: 'em'
+    category: 'typography'
+  subsection-letter-spacing:
+    value: '-0.0125em'
+    type: 'em'
+    category: 'typography'
+  subsection-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  # message
+  message-font-size:
+    value: '16px'
+    type: 'px'
+    category: 'typography'
+  message-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
+    category: 'typography'
+  message-line-height:
+    value: '1.25em'
+    type: 'em'
+    category: 'typography'
+  message-letter-spacing:
+    value: '-0.0125em'
+    type: 'em'
+    category: 'typography'
+  message-font-weight:
+    value: 400
+    type: 'number'
+    category: 'typography'
+
+  # secondary
+  secondary-font-size:
+    value: '13px'
+    type: 'px'
+    category: 'typography'
+  secondary-color:
+    value: hsl(198, 0%, 10%)
+    type: 'color'
+    category: 'typography'
+  secondary-line-height:
+    value: '1.23077em'
+    type: 'em'
+    category: 'typography'
+  secondary-letter-spacing:
+    value: '-0.007692em'
+    type: 'em'
+    category: 'typography'
+  secondary-font-weight:
+    value: 400
+    type: 'number'
+    category: 'typography'
+
+  # caption
+  caption-font-size:
+    value: '11px'
+    type: 'px'
+    category: 'typography'
+  caption-color:
+    value: hsl(198, 0%, 0%) # $clr-color-neutral-1000
+    type: 'color'
+    category: 'typography'
+  caption-line-height:
+    value: '1.454545em'
+    type: 'em'
+    category: 'typography'
+  caption-letter-spacing:
+    value: '0.018182em'
+    type: 'em'
+    category: 'typography'
+  caption-font-weight:
+    value: 400
+    type: 'number'
+    category: 'typography'
+
+  # smallcaption
+  smallcaption-font-size:
+    value: '10px'
+    type: 'px'
+    category: 'typography'
+  smallcaption-color:
+    value: hsl(198, 0%, 0%) # $clr-color-neutral-1000
+    type: 'color'
+    category: 'typography'
+  smallcaption-line-height:
+    value: '1.2em'
+    type: 'em'
+    category: 'typography'
+  smallcaption-letter-spacing:
+    value: '0.05em'
+    type: 'em'
+    category: 'typography'
+  smallcaption-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  # LEGACY TYPOGRAPHY
+  # headings h0-h6
+  # h0
+  h0-font-size:
+    value: '40px'
+    type: 'px'
+    category: 'typography'
+  h0-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
+    category: 'typography'
+  h0-line-height:
+    value: '1.2em'
+    type: 'em'
+    category: 'typography'
+  h0-letter-spacing:
+    value: '-0.0125em'
+    type: 'em'
+    category: 'typography'
+  h0-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  #h1
   h1-font-size:
     value: '32px'
     type: 'px'
     category: 'typography'
-  h1-line-height:
-    value: '48px'
-    type: 'px'
+  h1-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
     category: 'typography'
+  h1-line-height:
+    value: '1.5em'
+    type: 'em'
+    category: 'typography'
+  h1-letter-spacing:
+    value: '-0.0156em'
+    type: 'em'
+    category: 'typography'
+  h1-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  #h2
   h2-font-size:
     value: '28px'
     type: 'px'
     category: 'typography'
-  h2-line-height:
-    value: '48px'
-    type: 'px'
+  h2-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
     category: 'typography'
+  h2-line-height:
+    value: '1.7143em'
+    type: 'em'
+    category: 'typography'
+  h2-letter-spacing:
+    value: '-0.017857em'
+    type: 'em'
+    category: 'typography'
+  h2-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  #h3
   h3-font-size:
     value: '22px'
     type: 'px'
     category: 'typography'
-  h3-line-height:
-    value: '24px'
-    type: 'px'
+  h3-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
     category: 'typography'
+  h3-line-height:
+    value: '1.0909em'
+    type: 'em'
+    category: 'typography'
+  h3-letter-spacing:
+    value: '-0.013636em'
+    type: 'em'
+    category: 'typography'
+  h3-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  #h4
   h4-font-size:
     value: '18px'
     type: 'px'
     category: 'typography'
-  h4-line-height:
-    value: '24px'
-    type: 'px'
+  h4-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
     category: 'typography'
+  h4-line-height:
+    value: '1.333333em'
+    type: 'em'
+    category: 'typography'
+  h4-letter-spacing:
+    value: '-0.011111em'
+    type: 'em'
+    category: 'typography'
+  h4-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  #h5
   h5-font-size:
     value: '16px'
     type: 'px'
     category: 'typography'
-  h5-line-height:
-    value: '24px'
-    type: 'px'
+  h5-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
     category: 'typography'
+  h5-line-height:
+    value: '1.5em'
+    type: 'em'
+    category: 'typography'
+  h5-letter-spacing:
+    value: '-0.0125em'
+    type: 'em'
+    category: 'typography'
+  h5-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  #h6
   h6-font-size:
     value: '14px'
     type: 'px'
     category: 'typography'
-  h6-line-height:
-    value: '24px'
-    type: 'px'
-    category: 'typography'
-  paragraph-color:
-    value: hsl(198, 0%, 40%) # $clr-color-neutral-700
+  h6-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
     type: 'color'
     category: 'typography'
-  paragraph-letter-spacing:
-    value: 'normal'
-    type: 'string'
+  h6-line-height:
+    value: '1.5em'
+    type: 'em'
     category: 'typography'
-  paragraph-line-height:
+  h6-letter-spacing:
+    value: '-0.03125em'
+    type: 'em'
+    category: 'typography'
+  h6-font-weight:
+    value: 500
+    type: 'number'
+    category: 'typography'
+
+  # paragraph settings - p0-p8
+  # p0 / title
+  p0-font-size:
     value: '24px'
     type: 'px'
+    category: 'typography'
+  p0-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
+    category: 'typography'
+  p0-line-height:
+    value: '1.16667em'
+    type: 'em'
+    category: 'typography'
+  p0-letter-spacing:
+    value: '-0.008333em'
+    type: 'em'
+    category: 'typography'
+  p0-font-weight:
+    value: 400
+    type: 'number'
+    category: 'typography'
+
+  # p1
+  p1-font-size:
+    value: '14px'
+    type: 'px'
+    category: 'typography'
+  p1-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
+    category: 'typography'
+  p1-line-height:
+    value: '1.71429em'
+    type: 'em'
+    category: 'typography'
+  p1-letter-spacing:
+    value: '-0.014286em'
+    type: 'em'
     category: 'typography'
   p1-font-weight:
     value: 400
     type: 'number'
     category: 'typography'
-  p1-font-size:
+
+  # p2
+  p2-font-size:
     value: '13px'
     type: 'px'
+    category: 'typography'
+  p2-color:
+    value: hsl(198, 0%, 20%) # $clr-color-neutral-900
+    type: 'color'
+    category: 'typography'
+  p2-line-height:
+    value: '1.84615em'
+    type: 'em'
+    category: 'typography'
+  p2-letter-spacing:
+    value: '-0.007692em'
+    type: 'em'
     category: 'typography'
   p2-font-weight:
     value: 500
     type: 'number'
     category: 'typography'
-  p2-font-size:
+
+  # p3
+  p3-font-size:
     value: '13px'
     type: 'px'
+    category: 'typography'
+  p3-color:
+    value: hsl(198, 0%, 10%)
+    type: 'color'
+    category: 'typography'
+  p3-line-height:
+    value: '1.84615em'
+    type: 'em'
+    category: 'typography'
+  p3-letter-spacing:
+    value: '-0.007692em'
+    type: 'em'
     category: 'typography'
   p3-font-weight:
     value: 400
     type: 'number'
     category: 'typography'
-  p3-font-size:
-    value: '13px'
+
+  # p4
+  p4-font-size:
+    value: '12px'
     type: 'px'
+    category: 'typography'
+  p4-color:
+    value: hsl(198, 0%, 30%)
+    type: 'color'
+    category: 'typography'
+  p4-line-height:
+    value: '2em'
+    type: 'em'
+    category: 'typography'
+  p4-letter-spacing:
+    value: '-0.008333em'
+    type: 'em'
     category: 'typography'
   p4-font-weight:
     value: 600
     type: 'number'
     category: 'typography'
-  p4-font-size:
+
+  # p5
+  p5-font-size:
     value: '12px'
     type: 'px'
+    category: 'typography'
+  p5-color:
+    value: hsl(198, 0%, 10%)
+    type: 'color'
+    category: 'typography'
+  p5-line-height:
+    value: '2em'
+    type: 'em'
+    category: 'typography'
+  p5-letter-spacing:
+    value: '-0.008333em'
+    type: 'em'
     category: 'typography'
   p5-font-weight:
     value: 400
     type: 'number'
     category: 'typography'
-  p5-font-size:
-    value: '12px'
+
+  #p6
+  p6-font-size:
+    value: '11px'
     type: 'px'
+    category: 'typography'
+  p6-color:
+    value: hsl(198, 0%, 30%)
+    type: 'color'
+    category: 'typography'
+  p6-line-height:
+    value: '1.090909em'
+    type: 'em'
+    category: 'typography'
+  p6-letter-spacing:
+    value: '0.018182em'
+    type: 'em'
     category: 'typography'
   p6-font-weight:
     value: 600
     type: 'number'
     category: 'typography'
-  p6-font-size:
+
+  #p7
+  p7-font-size:
     value: '11px'
     type: 'px'
     category: 'typography'
-  p6-letter-spacing:
-    value: '0.03em'
+  p7-color:
+    value: hsl(198, 0%, 10%)
+    type: 'color'
+    category: 'typography'
+  p7-line-height:
+    value: '1.090909em'
     type: 'em'
     category: 'typography'
-  p6-line-height:
-    value: '12px'
-    type: 'px'
+  p7-letter-spacing:
+    value: '0.018182em'
+    type: 'em'
     category: 'typography'
   p7-font-weight:
     value: 400
     type: 'number'
     category: 'typography'
-  p7-font-size:
-    value: '11px'
+
+  #p8
+  p8-font-size:
+    value: '10px'
     type: 'px'
     category: 'typography'
-  p7-letter-spacing:
-    value: '0.03em'
+  p8-color:
+    value: hsl(198, 0%, 0%) # $clr-color-neutral-1000
+    type: 'color'
+    category: 'typography'
+  p8-line-height:
+    value: '1.2em'
     type: 'em'
     category: 'typography'
-  p7-line-height:
-    value: '12px'
-    type: 'px'
+  p8-letter-spacing:
+    value: '0.02em'
+    type: 'em'
     category: 'typography'
   p8-font-weight:
    value: 400
    type: 'number'
    category: 'typography'
-  p8-font-size:
-    value: '10px'
-    type: 'px'
-    category: 'typography'
-  p8-letter-spacing:
-    value: '0.03em'
-    type: 'em'
-    category: 'typography'
-  p8-line-height:
-    value: '12px'
-    type: 'px'
-    category: 'typography'
