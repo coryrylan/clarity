@@ -165,6 +165,7 @@ cds-card {
   padding-top: 30px;
 }
 
+.sbdocs-title,
 .sbdocs .sbdocs-h1,
 .sbdocs .sbdocs-h2,
 .sbdocs .sbdocs-h3 {
@@ -173,6 +174,8 @@ cds-card {
 }
 
 .sbdocs img,
-.sbdocs .sbdocs-p {
+.sbdocs .sbdocs-p,
+.sbdocs .sbdocs-ol,
+.sbdocs .sbdocs-ul {
   margin: 0 0 24px 0 !important;
 }

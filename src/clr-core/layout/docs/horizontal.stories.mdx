@@ -10,21 +10,37 @@ The horizontal layout type allows horizontal rows of items that can wrap automat
 Spacing, alignments and gap between items can all be configured with the component.
 
 ## Horizontal Layout
+
+Horizontal layout is usefull for horizontal lists of items such as buttons,
+tags or labels.
+
 <Preview>
   <Story id="experimental-layout-all--horizontal-layout" />
 </Preview>
 
 ## Wrap
+
+By default the horizontal layout will allow items to wrap and ensure the gap
+is only applied between layout items.
+
 <Preview>
   <Story id="experimental-layout-all--horizontal-layout-wrap" />
 </Preview>
 
 ## No Wrap
+
+You can disable wrapping using the `wrap="none"` attribute. This will force
+the items to follow standard CSS overflow rules (`hidden`/`scroll`).
+
 <Preview>
   <Story id="experimental-layout-all--horizontal-layout-no-wrap" />
 </Preview>
 
 ## Align Top
+
+Items within a horizontal layout can be aligned in multiple directions.
+Alignments are relative to the size of the `cds-layout` container.
+
 <Preview>
   <Story id="experimental-layout-all--horizontal-layout-align-top" />
 </Preview>
@@ -60,6 +76,9 @@ Spacing, alignments and gap between items can all be configured with the compone
 </Preview>
 
 ## Align Vertical Stretch
+
+Align stretch allows control to stretch or fill wihtin the `cds-layout`.
+
 <Preview>
   <Story id="experimental-layout-all--horizontal-layout-align-vertical-stretch" />
 </Preview>
@@ -75,6 +94,10 @@ Spacing, alignments and gap between items can all be configured with the compone
 </Preview>
 
 ## Item Stretch
+
+Item stretch and shrink allows items to fill or contract their width within
+a horizontal layout.
+
 <Preview>
   <Story id="experimental-layout-all--horizontal-layout-item-stretch" />
 </Preview>

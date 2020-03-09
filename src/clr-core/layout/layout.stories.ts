@@ -381,7 +381,7 @@ export const verticalLayoutItemShrink = () => {
 export const gridLayout = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" gap="sm" align-items="stretch">
+      <cds-layout type="grid" gap="sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
@@ -423,7 +423,7 @@ export const gridLayout = () => {
 export const gridLayoutColumns = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="6" gap="sm" align-items="stretch">
+      <cds-layout type="grid" cols="6" gap="sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
       </cds-layout>
@@ -434,7 +434,7 @@ export const gridLayoutColumns = () => {
 export const gridLayoutColumnsExplicit = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" gap="sm" align-items="horizontal-stretch">
+      <cds-layout type="grid" gap="sm">
         <cds-placeholder cds-col="4">1</cds-placeholder>
         <cds-placeholder cds-col="8">2</cds-placeholder>
       </cds-layout>
@@ -445,7 +445,7 @@ export const gridLayoutColumnsExplicit = () => {
 export const gridLayoutColumnsAuto = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="horizontal-stretch">
+      <cds-layout type="grid" cols="auto" gap="sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
@@ -457,7 +457,7 @@ export const gridLayoutColumnsAuto = () => {
 export const gridLayoutColumnsResponsive = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="6@sm 3@md" gap="sm" align-items="horizontal-stretch">
+      <cds-layout type="grid" cols="6@sm 3@md" gap="sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
@@ -470,7 +470,7 @@ export const gridLayoutColumnsResponsive = () => {
 export const gridLayoutColumnsResponsiveExplicit = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" gap="sm" align-items="horizontal-stretch">
+      <cds-layout type="grid" gap="sm">
         <cds-placeholder cds-col="4@sm">1</cds-placeholder>
         <cds-placeholder cds-col="8@sm">2</cds-placeholder>
       </cds-layout>
@@ -481,7 +481,7 @@ export const gridLayoutColumnsResponsiveExplicit = () => {
 export const gridLayoutColumnsWrap = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="6" gap="sm" align-items="horizontal-stretch">
+      <cds-layout type="grid" cols="6" gap="sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
@@ -494,7 +494,7 @@ export const gridLayoutColumnsWrap = () => {
 export const gridLayoutColumnsStartEnd = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" gap="sm" align-items="horizontal-stretch">
+      <cds-layout type="grid" gap="sm">
         <cds-placeholder cds-col="start-3 8">1</cds-placeholder>
         <cds-placeholder cds-col="start-1 end-5">2</cds-placeholder>
         <cds-placeholder cds-col="4 end-13">3</cds-placeholder>
@@ -507,7 +507,7 @@ export const gridLayoutColumnsStartEnd = () => {
 export const gridLayoutColumnsStartEndResponsive = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="6@sm 4@md" gap="sm" align-items="stretch">
+      <cds-layout type="grid" cols="6@sm 4@md" gap="sm">
         <cds-placeholder cds-col="start-2@md">1</cds-placeholder>
         <cds-placeholder cds-col="end-12@md">2</cds-placeholder>
       </cds-layout>
@@ -518,10 +518,22 @@ export const gridLayoutColumnsStartEndResponsive = () => {
 export const gridLayoutRows = () => {
   return html`
     <div class="layout-demo wide-demo tall-demo">
+      <cds-layout type="grid" cols="6" rows="8" gap="sm" align-items="stretch">
+        <cds-placeholder>1</cds-placeholder>
+        <cds-placeholder>2</cds-placeholder>
+        <cds-placeholder cds-col="12" cds-row="4">3</cds-placeholder>
+      </cds-layout>
+    </div>
+  `;
+};
+
+export const gridLayoutRowsResponsive = () => {
+  return html`
+    <div class="layout-demo wide-demo tall-demo">
       <cds-layout type="grid" cols="6" rows="4 8@sm" gap="sm" align-items="stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-        <cds-placeholder cds-col="12" cds-row="8 4@sm">6</cds-placeholder>
+        <cds-placeholder cds-col="12" cds-row="8 4@sm">3</cds-placeholder>
       </cds-layout>
     </div>
   `;
@@ -553,7 +565,7 @@ export const gridLayoutRowsStartEndResponsive = () => {
 export const gridLayoutAlignTop = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="horizontal-stretch">
+      <cds-layout type="grid" cols="auto" gap="sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
@@ -566,7 +578,7 @@ export const gridLayoutAlignTop = () => {
 export const gridLayoutAlignBottom = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="horizontal-stretch bottom">
+      <cds-layout type="grid" cols="auto" gap="sm" align-items="bottom">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
@@ -605,7 +617,7 @@ export const gridLayoutAlignRight = () => {
 export const gridLayoutAlignVerticalCenter = () => {
   return html`
     <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="horizontal-stretch vertical-center">
+      <cds-layout type="grid" cols="auto" gap="sm" align-items="vertical-center">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
