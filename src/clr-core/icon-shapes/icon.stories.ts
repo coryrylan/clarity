@@ -56,7 +56,7 @@ loadTravelIconSet();
 ClarityIcons.addIcons(userIcon, imageIcon);
 
 export default {
-  title: 'Components|Icon',
+  title: 'Components/Icon',
   component: 'cds-icon',
   parameters: {
     options: { showPanel: true },

@@ -16,7 +16,7 @@ import { html } from 'lit-html';
 ClarityIcons.addIcons(userIcon);
 
 export default {
-  title: 'Components|Button',
+  title: 'Components/Button',
   component: 'cds-button',
   parameters: {
     options: { showPanel: true },

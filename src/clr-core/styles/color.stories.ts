@@ -8,7 +8,7 @@ import { html } from 'lit-html';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'Documentation|Color',
+  title: 'Experimental/Design Tokens',
   decorators: [withDesign],
   parameters: {
     options: { showPanel: true },
@@ -119,7 +119,7 @@ const colors = [
   },
 ];
 
-export const API = () => {
+export const color = () => {
   return html`
     <style>
       .color {
@@ -143,10 +143,9 @@ export const API = () => {
       <h3>${palette.name} color</h3>
       <div class="color-list">
       ${palette.weights.map(
-        color => html`
-        <div class="color" style="background: ${color.hsl}; color: ${color.on}">
-          ${color.hsl}
-          <!-- --clr-color-${palette.name}-${color.weight} -->
+        c => html`
+        <div class="color" style="background: ${c.hsl}; color: ${c.on}">
+          ${c.hsl}
         </div>
       `
       )}
@@ -160,10 +159,9 @@ export const API = () => {
       <h3>${palette.name} color</h3>
       <div class="color-list">
       ${palette.weights.map(
-        color => html`
-        <div class="color" style="background: ${color.on}; color: ${color.hsl}">
-          ${color.hsl}
-          <!-- --clr-color-${palette.name}-${color.weight} -->
+        colorOn => html`
+        <div class="color" style="background: ${colorOn.on}; color: ${colorOn.hsl}">
+          ${colorOn.hsl}
         </div>
       `
       )}

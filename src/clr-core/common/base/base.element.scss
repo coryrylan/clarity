@@ -3,10 +3,10 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @import './../../styles/tokens/index.generated';
-@import './../../styles/layout/layout';
 @import './../../styles/mixins/utils';
 @import './../../styles/variables/variables';
 @import './../../styles/utils/a11y';
+@import './../../layout/layout.styles';
 
 /*
  * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
@@ -17,13 +17,6 @@
 // Every Web Component will need to import a minimal amount of core CSS
 
 $clr-use-custom-properties: true;
-
-*,
-*:before,
-*:after,
-:host {
-  box-sizing: border-box;
-}
 
 :host {
   font-family: inherit;

@@ -5,10 +5,10 @@
  */
 
 import { html } from 'lit-html';
-import tokens from './tokens/index.json';
+import * as tokenData from './tokens/index.json';
 
 export default {
-  title: 'Experimental|Design Tokens',
+  title: 'Experimental/Design Tokens',
   parameters: {
     options: { showPanel: true },
     a11y: { disable: true },
@@ -16,17 +16,17 @@ export default {
 };
 
 function getTokens(): {}[] {
-  return Object.keys((tokens as any).props)
-    .filter(tokenName => (tokens as any).props[tokenName].private !== true)
+  return Object.keys((tokenData as any).props)
+    .filter(tokenName => (tokenData as any).props[tokenName].private !== true)
     .map(tokenName => {
-      const token = (tokens as any).props[tokenName];
+      const token = (tokenData as any).props[tokenName];
       const value = token.base20Rem && !token['absolute-value'] ? `${token.base20Rem} (${token.value})` : token.value;
       return `--cds-token-${token.category}-${token.name}: ${value}`;
     })
     .sort();
 }
 
-export const API = () => {
+export const tokens = () => {
   return html`
     <cds-layout type="horizontal" gap="md">
       <h1 cds-text="h1">Design Tokens</h1>

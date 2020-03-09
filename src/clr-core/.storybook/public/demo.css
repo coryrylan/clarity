@@ -166,3 +166,19 @@ cds-card {
   display: block;
   width: 100%;
 }
+
+.sbdocs.sbdocs-wrapper {
+  padding-top: 30px;
+}
+
+.sbdocs .sbdocs-h1,
+.sbdocs .sbdocs-h2,
+.sbdocs .sbdocs-h3 {
+  font-weight: 300 !important;
+  margin-bottom: 24px !important;
+}
+
+.sbdocs img,
+.sbdocs .sbdocs-p {
+  margin: 0 0 24px 0 !important;
+}

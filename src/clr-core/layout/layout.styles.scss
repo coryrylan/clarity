@@ -1,0 +1,20 @@
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+// This is not imported into the layout component but instead the base element
+// styles so all Core components can use the layout system internally
+
+@import './styles/type-horizontal';
+@import './styles/type-vertical';
+@import './styles/type-grid';
+@import './styles/type-item';
+@import './styles/display';
+@import './styles/spacing';
+
+*,
+*:before,
+*:after,
+:host {
+  box-sizing: border-box;
+}

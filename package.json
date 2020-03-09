@@ -146,15 +146,15 @@
     "@commitlint/cli": "8.0.0",
     "@commitlint/config-conventional": "8.0.0",
     "@ng-select/ng-select": "3.7.2",
-    "@storybook/addon-a11y": "6.0.0-alpha.15",
-    "@storybook/addon-actions": "6.0.0-alpha.15",
-    "@storybook/addon-cssresources": "6.0.0-alpha.15",
-    "@storybook/addon-docs": "6.0.0-alpha.15",
-    "@storybook/addon-knobs": "6.0.0-alpha.15",
-    "@storybook/addon-storysource": "6.0.0-alpha.15",
-    "@storybook/addons": "6.0.0-alpha.15",
-    "@storybook/cli": "6.0.0-alpha.15",
-    "@storybook/web-components": "6.0.0-alpha.15",
+    "@storybook/addon-a11y": "6.0.0-alpha.21",
+    "@storybook/addon-actions": "6.0.0-alpha.21",
+    "@storybook/addon-cssresources": "6.0.0-alpha.21",
+    "@storybook/addon-docs": "6.0.0-alpha.21",
+    "@storybook/addon-knobs": "6.0.0-alpha.21",
+    "@storybook/addon-storysource": "6.0.0-alpha.21",
+    "@storybook/addons": "6.0.0-alpha.21",
+    "@storybook/cli": "6.0.0-alpha.21",
+    "@storybook/web-components": "6.0.0-alpha.21",
     "@types/jasmine": "3.3.13",
     "@types/jasmine-expect": "3.8.1",
     "@types/jasmine-matchers": "0.2.32",
@@ -232,11 +232,5 @@
   "engines": {
     "node": ">=10.9.0 <11.0.0",
     "npm": ">=5.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format:fix && npm run ngcc:check && npm run license:fix",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }

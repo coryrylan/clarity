@@ -1,0 +1,72 @@
+import { Meta, Story, Preview, API } from '@storybook/addon-docs/blocks';
+import { html, LitElement } from 'lit-element';
+import '@clr/core/layout';
+
+<Meta title="Experimental/Layout/Get Started" component={'cds-layout'} />
+
+# Layout
+
+Clarity Core components should not provide surrounding white space. Spacing
+between components is managed entirely by layout components. This ensures that
+the system is as composable as possible while keeping white space predictable.
+
+The `cds-layout` component include three layout types, horizontal, veritcal or
+grid. Each is designed to handle particular layout senarios as well as responsive
+use cases.
+
+## Horizontal
+
+The horizontal layout type allows horizontal rows of items that can wrap automatically.
+Spacing, alignments and gap between items can all be configured with the component.
+
+<Preview>
+  <Story id="experimental-layout-all--horizontal-layout" />
+</Preview>
+
+```html
+<cds-layout type="horizontal" gap="sm">
+  <cds-placeholder>1</cds-placeholder>
+  <cds-placeholder>2</cds-placeholder>
+  <cds-placeholder>3</cds-placeholder>
+</cds-layout>
+```
+
+## Vertical
+
+The vertical layout type enables stacks of items. This is usefull for spacing
+cards, content and other block level items. Spacing, alignments and gap between
+stacked items can all be configured with the component.
+
+<Preview>
+  <Story id="experimental-layout-all--vertical-layout" />
+</Preview>
+
+```html
+<cds-layout type="vertical" gap="sm">
+  <cds-placeholder>1</cds-placeholder>
+  <cds-placeholder>2</cds-placeholder>
+  <cds-placeholder>3</cds-placeholder>
+</cds-layout>
+```
+
+## Grid
+
+The grid layout type enables columns to be defined for layout. This is usefull
+for controling the spacing of items within a container as well as responsive
+layout. Spacing, alignments and gap between items can all be configured with
+the component.
+
+<Preview>
+  <Story id="experimental-layout-all--grid-layout-columns-responsive-explicit" />
+</Preview>
+
+```html
+<cds-layout type="grid" gap="sm" align-items="stretch">
+  <cds-placeholder cds-col="4@sm">1</cds-placeholder>
+  <cds-placeholder cds-col="8@sm">2</cds-placeholder>
+</cds-layout>
+```
+
+## Utilities
+
+The layout system includes a suite of utilities for controling spacing and visibility.
