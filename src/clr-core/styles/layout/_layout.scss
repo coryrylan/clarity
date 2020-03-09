@@ -5,12 +5,12 @@
 // This is not imported into the layout component but instead the base element
 // styles so all Core components can use the layout system internally
 
-@import './styles/type-horizontal';
-@import './styles/type-vertical';
-@import './styles/type-grid';
-@import './styles/type-item';
-@import './styles/display';
-@import './styles/spacing';
+@import './type-horizontal';
+@import './type-vertical';
+@import './type-grid';
+@import './type-item';
+@import './display';
+@import './spacing';
 
 *,
 *:before,
