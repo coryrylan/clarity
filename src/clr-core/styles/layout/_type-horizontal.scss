@@ -1,0 +1,118 @@
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+cds-layout[type='horizontal'] {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  width: 100%;
+  margin: 0;
+  min-height: 0;
+
+  justify-content: flex-start;
+  align-content: flex-start;
+
+  &[align-items~='top'] {
+    align-content: flex-start;
+  }
+
+  &[align-items~='bottom'] {
+    align-content: flex-end;
+  }
+
+  &[align-items~='vertical-center'] {
+    align-content: center;
+  }
+
+  &[align-items~='left'] {
+    justify-content: flex-start;
+  }
+
+  &[align-items~='horizontal-stretch'] {
+    justify-content: stretch;
+  }
+
+  &[align-items~='vertical-stretch'] {
+    align-content: stretch;
+  }
+
+  &[align-items~='right'] {
+    justify-content: flex-end;
+  }
+
+  &[align-items~='horizontal-center'] {
+    justify-content: center;
+  }
+
+  &[align-items~='center'] {
+    justify-content: center;
+    align-content: center;
+  }
+
+  &[align-items~='stretch'] {
+    justify-content: stretch;
+    align-content: stretch;
+  }
+
+  &[gap='xs'] {
+    margin: calc(-1 * #{$cds-token-layout-space-xs}) 0 0 calc(-1 * #{$cds-token-layout-space-xs});
+    width: calc(100% + #{$cds-token-layout-space-xs});
+
+    & > * {
+      margin: $cds-token-layout-space-xs 0 0 $cds-token-layout-space-xs;
+    }
+  }
+
+  &[gap='sm'] {
+    margin: calc(-1 * #{$cds-token-layout-space-sm}) 0 0 calc(-1 * #{$cds-token-layout-space-sm});
+    width: calc(100% + #{$cds-token-layout-space-sm});
+
+    & > * {
+      margin: $cds-token-layout-space-sm 0 0 $cds-token-layout-space-sm;
+    }
+  }
+
+  &[gap='md'] {
+    margin: calc(-1 * #{$cds-token-layout-space-md}) 0 0 calc(-1 * #{$cds-token-layout-space-md});
+    width: calc(100% + #{$cds-token-layout-space-md});
+
+    & > * {
+      margin: $cds-token-layout-space-md 0 0 $cds-token-layout-space-md;
+    }
+  }
+
+  &[gap='lg'] {
+    margin: calc(-1 * #{$cds-token-layout-space-lg}) 0 0 calc(-1 * #{$cds-token-layout-space-lg});
+    width: calc(100% + #{$cds-token-layout-space-lg});
+
+    & > * {
+      margin: $cds-token-layout-space-lg 0 0 $cds-token-layout-space-lg;
+    }
+  }
+
+  &[gap='xl'] {
+    margin: calc(-1 * #{$cds-token-layout-space-xl}) 0 0 calc(-1 * #{$cds-token-layout-space-xl});
+    width: calc(100% + #{$cds-token-layout-space-xl});
+
+    & > * {
+      margin: $cds-token-layout-space-xl 0 0 $cds-token-layout-space-xl;
+    }
+  }
+
+  &[wrap='nowrap'] {
+    flex-wrap: nowrap;
+  }
+
+  &[align-items~='stretch'] > *,
+  &[align-items~='horizontal-stretch'] > * {
+    flex-grow: 1;
+  }
+
+  &[align-items~='stretch'] > *,
+  &[align-items~='vertical-stretch'] {
+    align-content: stretch;
+  }
+}

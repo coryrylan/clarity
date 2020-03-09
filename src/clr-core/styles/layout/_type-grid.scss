@@ -1,0 +1,271 @@
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+@mixin generateColumnsAndRows($breakpoint) {
+  @for $i from 1 through $cds-token-layout-grid-cols-static {
+    // implicit columns/rows
+    cds-layout[cols~='#{$i}\@#{$breakpoint}'] > * {
+      grid-column: span $i / span $i;
+    }
+
+    cds-layout[rows~='#{$i}\@#{$breakpoint}'] > * {
+      grid-row: span $i / span $i;
+    }
+  }
+
+  @for $i from 1 through $cds-token-layout-grid-cols-static {
+    // explicit column/row positions
+    [cds-col~='#{$i}\@#{$breakpoint}'] {
+      grid-column: span $i / span $i !important;
+    }
+
+    [cds-row~='#{$i}\@#{$breakpoint}'] {
+      grid-row: span $i / span $i !important;
+    }
+  }
+}
+
+@mixin position($breakpoint) {
+  // +1 for grid cols/rows which end at beginning of next item
+  @for $i from 1 through $cds-token-layout-grid-cols-static + 1 {
+    [cds-col~='start-#{$i}\@#{$breakpoint}'] {
+      grid-column-start: $i !important;
+    }
+
+    [cds-col~='end-#{$i}\@#{$breakpoint}'] {
+      grid-column-end: $i !important;
+    }
+
+    [cds-row~='start-#{$i}\@#{$breakpoint}'] {
+      grid-row-start: $i !important;
+    }
+
+    [cds-row~='end-#{$i}\@#{$breakpoint}'] {
+      grid-row-end: $i !important;
+    }
+  }
+}
+
+cds-layout[type='grid'] {
+  display: grid;
+  align-items: flex-start;
+  align-content: flex-start;
+  grid-template-columns: repeat($cds-token-layout-grid-cols, 1fr);
+  width: 100%;
+
+  // alignments
+  &[align-items~='top'] {
+    align-items: start;
+    align-content: start;
+  }
+
+  &[align-items~='right'] {
+    justify-items: flex-end;
+  }
+
+  &[align-items~='bottom'] {
+    align-items: end;
+    align-content: end;
+  }
+
+  &[align-items~='left'] {
+    justify-items: flex-start;
+    align-content: flex-start;
+  }
+
+  &[align-items~='vertical-stretch'] {
+    align-items: stretch;
+    align-content: stretch;
+  }
+
+  &[align-items~='vertical-center'] {
+    align-items: center;
+    align-content: center;
+  }
+
+  &[align-items~='horizontal-stretch'] {
+    justify-items: stretch;
+    justify-content: stretch;
+  }
+
+  &[align-items~='horizontal-center'] {
+    justify-items: center;
+    justify-content: center;
+  }
+
+  &[align-items~='stretch'] {
+    align-items: stretch;
+    align-content: stretch;
+  }
+
+  &[align-items~='center'] {
+    align-items: center;
+    align-content: center;
+  }
+
+  // gap control
+  &[gap='xs'] {
+    grid-gap: #{$cds-token-layout-space-xs};
+  }
+
+  &[gap='sm'] {
+    grid-gap: #{$cds-token-layout-space-sm};
+  }
+
+  &[gap='md'] {
+    grid-gap: #{$cds-token-layout-space-md};
+  }
+
+  &[gap='lg'] {
+    grid-gap: #{$cds-token-layout-space-lg};
+  }
+
+  &[gap='xl'] {
+    grid-gap: #{$cds-token-layout-space-xl};
+  }
+
+  &[gap^='[xs'] {
+    row-gap: $cds-token-layout-space-xs;
+  }
+
+  &[gap$='xs]'] {
+    column-gap: $cds-token-layout-space-xs;
+  }
+
+  &[gap^='[sm'] {
+    row-gap: $cds-token-layout-space-sm;
+  }
+
+  &[gap$='sm]'] {
+    column-gap: $cds-token-layout-space-sm;
+  }
+
+  &[gap^='[md'] {
+    row-gap: $cds-token-layout-space-md;
+  }
+
+  &[gap$='md]'] {
+    column-gap: $cds-token-layout-space-md;
+  }
+
+  &[gap^='[lg'] {
+    row-gap: $cds-token-layout-space-lg;
+  }
+
+  &[gap$='lg]'] {
+    column-gap: $cds-token-layout-space-lg;
+  }
+
+  &[gap^='[xl'] {
+    row-gap: $cds-token-layout-space-xl;
+  }
+
+  &[gap$='xl]'] {
+    column-gap: $cds-token-layout-space-xl;
+  }
+}
+
+cds-layout {
+  &[cols='auto'] {
+    grid-auto-flow: column;
+    grid-template-columns: initial;
+  }
+
+  &[cols*='\@'] > * {
+    grid-column: span $cds-token-layout-grid-cols-static / span $cds-token-layout-grid-cols-static;
+  }
+
+  &[rows] {
+    grid-template-rows: repeat(12, auto);
+  }
+
+  & > [cds-row] {
+    align-self: stretch;
+  }
+}
+
+%full-width-columns-explicit {
+  grid-column: span $cds-token-layout-grid-cols;
+}
+
+@for $i from 1 through $cds-token-layout-grid-cols-static {
+  [cds-col~='#{$i}\@sm'],
+  [cds-col~='#{$i}\@md'],
+  [cds-col~='#{$i}\@lg'],
+  [cds-col~='#{$i}\@xl'] {
+    @extend %full-width-columns-explicit;
+  }
+}
+
+@for $i from 1 through $cds-token-layout-grid-cols-static {
+  cds-layout[cols~='#{$i}'] > * {
+    grid-column: span $i / span $i;
+  }
+
+  cds-layout[rows~='#{$i}'] > * {
+    grid-row: span $i / span $i;
+  }
+}
+
+@for $i from 1 through $cds-token-layout-grid-cols-static {
+  [cds-col~='#{$i}'] {
+    grid-column: span $i / span $i !important;
+  }
+
+  [cds-row~='#{$i}'] {
+    grid-row: span $i / span $i !important;
+  }
+}
+
+@media (min-width: $cds-token-layout-width-sm-static) {
+  @include generateColumnsAndRows('sm');
+}
+
+@media (min-width: $cds-token-layout-width-md-static) {
+  @include generateColumnsAndRows('md');
+}
+
+@media (min-width: $cds-token-layout-width-lg-static) {
+  @include generateColumnsAndRows('lg');
+}
+
+@media (min-width: $cds-token-layout-width-xl-static) {
+  @include generateColumnsAndRows('xl');
+}
+
+// start/end positions
+@for $i from 1 through $cds-token-layout-grid-cols-static + 1 {
+  // +1 for grid cols/rows which end at beginning of next item
+  [cds-col~='start-#{$i}'] {
+    grid-column-start: $i !important;
+  }
+
+  [cds-row~='start-#{$i}'] {
+    grid-row-start: $i !important;
+  }
+
+  [cds-col~='end-#{$i}'] {
+    grid-column-end: $i !important;
+  }
+
+  [cds-row~='end-#{$i}'] {
+    grid-row-end: $i !important;
+  }
+}
+
+@media (min-width: $cds-token-layout-width-sm-static) {
+  @include position('sm');
+}
+
+@media (min-width: $cds-token-layout-width-md-static) {
+  @include position('md');
+}
+
+@media (min-width: $cds-token-layout-width-lg-static) {
+  @include position('lg');
+}
+
+@media (min-width: $cds-token-layout-width-xl-static) {
+  @include position('xl');
+}

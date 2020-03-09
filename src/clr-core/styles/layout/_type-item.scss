@@ -2,15 +2,11 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-@import './type-horizontal';
-@import './type-vertical';
-@import './type-grid';
-@import './type-item';
-@import './display';
-@import './spacing';
+cds-layout > [cds-align~='stretch'] {
+  flex-grow: 1 !important;
+}
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+cds-layout > [cds-align~='shrink'] {
+  flex-shrink: 1 !important;
+  flex-grow: 0 !important;
 }

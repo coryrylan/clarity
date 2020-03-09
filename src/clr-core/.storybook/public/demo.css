@@ -122,12 +122,6 @@ p {
 .layout-api-demo {
   width: 100%;
   max-width: 750px;
-  height: 500px;
-  border: 1px solid hsl(0, 0%, 90%);
-}
-
-.layout-api-demo.wide-demo {
-  max-width: 750px;
 }
 
 .layout-api-demo.tall-demo > cds-layout {
@@ -139,9 +133,29 @@ cds-placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   background: hsl(198, 14%, 92%);
-  min-width: 2.6rem;
+  min-width: 50px;
+  min-height: 50px;
+}
+
+cds-placeholder[demo-side-bar] {
+  width: 240px;
+  max-width: 240px;
+}
+
+cds-placeholder[demo-content] {
+  overflow-y: auto;
+  justify-content: start;
+  align-items: start;
+  padding: 12px;
+}
+
+cds-placeholder[demo-content] > div {
+  height: 1000px;
+}
+
+[demo-img] {
+  width: 100%;
 }
 
 cds-card {

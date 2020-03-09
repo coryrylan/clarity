@@ -85,7 +85,7 @@ export class CdsLayout extends LitElement {
   /**
    * Set the gap spacing between layout items
    *
-   * Gap Sizes: xs | sm | md | lg | xl | none
+   * Gap Sizes: xs | sm | md | lg | xl | none | '[vertical, horizontal]'
    *
    * ```html
    * <cds-layout type="horizontal" gap="sm"></cds-layout>
