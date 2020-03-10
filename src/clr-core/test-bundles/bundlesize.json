@@ -2,7 +2,23 @@
   "files": [
     {
       "path": "./dist/clr-core/global.min.css",
-      "maxSize": "10 kB"
+      "maxSize": "2 kB"
+    },
+    {
+      "path": "./dist/clr-core/module.layout.min.css",
+      "maxSize": "5 kB"
+    },
+    {
+      "path": "./dist/clr-core/module.reset.min.css",
+      "maxSize": "2 kB"
+    },
+    {
+      "path": "./dist/clr-core/module.tokens.min.css",
+      "maxSize": "2 kB"
+    },
+    {
+      "path": "./dist/clr-core/module.typography.min.css",
+      "maxSize": "3 kB"
     },
     {
       "path": "./dist/test-bundles/webpack.bundle.js",

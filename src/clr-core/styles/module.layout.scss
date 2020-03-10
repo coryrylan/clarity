@@ -2,5 +2,6 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-// Core ships a minimal global styles to set CSS reset and base font size
-@import './module.reset';
+/*! Experimental API - Do not use in production! */
+@import './tokens/index.generated';
+@import './layout/_layout';

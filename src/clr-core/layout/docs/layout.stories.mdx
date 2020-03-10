@@ -1,10 +1,16 @@
 import { Meta, Story, Preview, API } from '@storybook/addon-docs/blocks';
 import { html, LitElement } from 'lit-element';
 import '@clr/core/layout';
+import '@clr/core/alert';
 
 <Meta title="Experimental/Layout/Get Started" component={'cds-layout'} />
 
 # Layout
+
+<cds-alert status="danger" closable="false">
+  <cds-alert-content>This is a experimental API and will change. Do not use this in production enviroments!</cds-alert-content>
+</cds-alert>
+<br />
 
 Clarity Core components do not provide surrounding white space. Spacing
 between components is managed entirely by layout components. This ensures that
@@ -17,6 +23,22 @@ handle particular layout senarios.
 1. Horizontal
 2. Vertical
 3. Grid
+
+## Installation
+
+To use the layout system import the global CSS as well as the optional Web component
+for improved IDE experience.
+
+```scss
+// import into sass or css
+@import '~@clr/core/module.layout.min';
+
+// or import in html
+<link href="/node_modules/@clr/core/module.layout.min.css" rel="stylesheet">
+
+// optional import in JavaScript
+import '@clr/core/layout';
+```
 
 ## Horizontal
 
