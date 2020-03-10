@@ -1,79 +1,6 @@
-/* Temporary Clarity typography for demos until core global styles are complete */
+/* We dont have access to the body element to place the cds-body-text attribute */
 body {
-  font-family: 'Clarity City', 'Avenir Next', 'Helvetica Neue', Arial, sans-serif;
-}
-
-.doc {
-  color: hsl(0, 0%, 40%);
-  font-weight: 400;
-  font-size: 0.7rem;
-  letter-spacing: normal;
-  line-height: 1.2rem;
-}
-
-h1,
-h2 {
-  color: hsl(0, 0%, 40%);
-  font-weight: 200;
-  font-size: 1.6rem;
-}
-
-h2 {
-  font-size: 1.4rem;
-}
-
-h1 span {
-  font-size: 1.4rem;
-}
-
-p {
-  color: hsl(0, 0%, 40%);
-  font-size: 0.7rem;
-}
-
-/* Doc styles for getting started */
-.doc {
-  padding: 1.1rem;
-  margin: 0 auto;
-  text-align: left;
-  max-width: 40rem;
-}
-
-.doc pre {
-  background: hsl(214, 100%, 99%);
-  padding: 0 1rem 0.5rem 1rem;
-  border: 0;
-  overflow-x: auto;
-}
-
-.doc code {
-  background: hsl(214, 100%, 99%);
-}
-
-.doc ul,
-.doc ol {
-  padding: 0;
-}
-
-.doc li {
-  list-style: none;
-  margin-bottom: 3rem;
-}
-
-.doc li li {
-  list-style: disc;
-  margin-bottom: 0.5rem;
-  margin-left: 2rem;
-}
-
-.doc .link-list {
-  padding-left: 1rem;
-}
-
-.doc .link-list li {
-  padding-left: 1rem;
-  list-style: disc;
-  margin-bottom: 0.5rem;
+  font-family: var(--cds-token-typography-font-family);
 }
 
 .docblock-propstable-body td {
@@ -84,45 +11,26 @@ p {
   list-style-position: outside;
 }
 
-.demo-inverse {
-  padding: 0.2rem;
-  display: inline-block;
-  background: hsl(0, 0%, 34%);
-}
-
+/* Demo Components */
+cds-demo[layout],
 .layout-demo {
   background: hsl(92, 46%, 74%);
   overflow: hidden;
   display: inline-block;
 }
 
+cds-demo[layout][tall] > [cds-layout],
 .layout-demo.tall-demo > cds-layout {
   min-height: 300px;
 }
 
+cds-demo[layout][wide],
 .layout-demo.wide-demo {
   width: 100%;
   display: block;
 }
 
-.layout-demo.block-items cds-placeholder {
-  width: 100%;
-}
-
-.layout-demo.fixed-items cds-placeholder {
-  width: 125px;
-}
-
-.layout-api-demo {
-  width: 100%;
-  max-width: 750px;
-}
-
-.layout-api-demo.tall-demo > cds-layout {
-  height: 500px;
-}
-
-/* temp for layout prototyping */
+cds-demo[placeholder],
 cds-placeholder {
   display: flex;
   justify-content: center;
@@ -130,6 +38,14 @@ cds-placeholder {
   background: hsl(198, 14%, 92%);
   min-width: 50px;
   min-height: 50px;
+}
+
+cds-demo[inverse] {
+  background: hsl(0, 0%, 34%);
+}
+
+cds-demo[inline-block] {
+  display: inline-block;
 }
 
 cds-placeholder[demo-side-bar] {

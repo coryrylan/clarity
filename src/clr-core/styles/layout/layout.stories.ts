@@ -4,7 +4,6 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { boolean, select } from '@storybook/addon-knobs';
 import { html } from 'lit-html';
 
 export default {
@@ -379,8 +378,8 @@ export const verticalLayoutItemShrink = () => {
  */
 export const gridLayout = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" gap="sm">
+    <cds-demo layout tall wide>
+      <div cds-layout="grid gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
@@ -394,286 +393,286 @@ export const gridLayout = () => {
         <cds-placeholder>11</cds-placeholder>
         <cds-placeholder>12</cds-placeholder>
 
-        <cds-placeholder cds-col="2">2</cds-placeholder>
-        <cds-placeholder cds-col="2">2</cds-placeholder>
-        <cds-placeholder cds-col="2">2</cds-placeholder>
-        <cds-placeholder cds-col="2">2</cds-placeholder>
-        <cds-placeholder cds-col="2">2</cds-placeholder>
-        <cds-placeholder cds-col="2">2</cds-placeholder>
+        <cds-placeholder cds-layout="col-2">2</cds-placeholder>
+        <cds-placeholder cds-layout="col-2">2</cds-placeholder>
+        <cds-placeholder cds-layout="col-2">2</cds-placeholder>
+        <cds-placeholder cds-layout="col-2">2</cds-placeholder>
+        <cds-placeholder cds-layout="col-2">2</cds-placeholder>
+        <cds-placeholder cds-layout="col-2">2</cds-placeholder>
 
-        <cds-placeholder cds-col="3">3</cds-placeholder>
-        <cds-placeholder cds-col="3">3</cds-placeholder>
-        <cds-placeholder cds-col="3">3</cds-placeholder>
-        <cds-placeholder cds-col="3">3</cds-placeholder>
+        <cds-placeholder cds-layout="col-3">3</cds-placeholder>
+        <cds-placeholder cds-layout="col-3">3</cds-placeholder>
+        <cds-placeholder cds-layout="col-3">3</cds-placeholder>
+        <cds-placeholder cds-layout="col-3">3</cds-placeholder>
 
-        <cds-placeholder cds-col="4">4</cds-placeholder>
-        <cds-placeholder cds-col="4">4</cds-placeholder>
-        <cds-placeholder cds-col="4">4</cds-placeholder>
+        <cds-placeholder cds-layout="col-4">4</cds-placeholder>
+        <cds-placeholder cds-layout="col-4">4</cds-placeholder>
+        <cds-placeholder cds-layout="col-4">4</cds-placeholder>
 
-        <cds-placeholder cds-col="6">6</cds-placeholder>
-        <cds-placeholder cds-col="6">6</cds-placeholder>
+        <cds-placeholder cds-layout="col-6">6</cds-placeholder>
+        <cds-placeholder cds-layout="col-6">6</cds-placeholder>
 
-        <cds-placeholder cds-col="12">12</cds-placeholder>
-      </cds-layout>
-    </div>
+        <cds-placeholder cds-layout="col-12">12</cds-placeholder>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutColumns = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="6" gap="sm">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-6 gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutColumnsExplicit = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" gap="sm">
-        <cds-placeholder cds-col="4">1</cds-placeholder>
-        <cds-placeholder cds-col="8">2</cds-placeholder>
-      </cds-layout>
-    </div>
+    <cds-demo layout wide>
+      <div cds-layout="grid gap-sm">
+        <cds-placeholder cds-layout="col-4">1</cds-placeholder>
+        <cds-placeholder cds-layout="col-8">2</cds-placeholder>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutColumnsAuto = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-auto gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutColumnsResponsive = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="6@sm 3@md" gap="sm">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-6@sm cols-3@md gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder>4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutColumnsResponsiveExplicit = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" gap="sm">
-        <cds-placeholder cds-col="4@sm">1</cds-placeholder>
-        <cds-placeholder cds-col="8@sm">2</cds-placeholder>
-      </cds-layout>
-    </div>
+    <cds-demo layout wide>
+      <div cds-layout="grid gap-sm">
+        <cds-placeholder cds-layout="col-4@sm">1</cds-placeholder>
+        <cds-placeholder cds-layout="col-8@sm">2</cds-placeholder>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutColumnsWrap = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="6" gap="sm">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-6 gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder>4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutColumnsStartEnd = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" gap="sm">
-        <cds-placeholder cds-col="start-3 8">1</cds-placeholder>
-        <cds-placeholder cds-col="start-1 end-5">2</cds-placeholder>
-        <cds-placeholder cds-col="4 end-13">3</cds-placeholder>
-        <cds-placeholder cds-col="start-1 end-13">4</cds-placeholder>
-      </cds-layout>
-    </div>
+    <cds-demo layout wide>
+      <div cds-layout="grid gap-sm">
+        <cds-placeholder cds-layout="col-start-3 col-8">1</cds-placeholder>
+        <cds-placeholder cds-layout="col-start-1 col-end-5">2</cds-placeholder>
+        <cds-placeholder cds-layout="col-4 col-end-13">3</cds-placeholder>
+        <cds-placeholder cds-layout="col-start-1 col-end-13">4</cds-placeholder>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutColumnsStartEndResponsive = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="6@sm 4@md" gap="sm">
-        <cds-placeholder cds-col="start-2@md">1</cds-placeholder>
-        <cds-placeholder cds-col="end-12@md">2</cds-placeholder>
-      </cds-layout>
-    </div>
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-6@sm cols-4@md gap-sm">
+        <cds-placeholder cds-layout="col-start-2@md">1</cds-placeholder>
+        <cds-placeholder cds-layout="col-end-12@md">2</cds-placeholder>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutRows = () => {
   return html`
-    <div class="layout-demo wide-demo tall-demo">
-      <cds-layout type="grid" cols="6" rows="8" gap="sm" align-items="stretch">
+    <cds-demo layout tall wide>
+      <div cds-layout="grid cols-6 rows-8 gap-sm align-items-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-        <cds-placeholder cds-col="12" cds-row="4">3</cds-placeholder>
-      </cds-layout>
-    </div>
+        <cds-placeholder cds-layout="col-12 row-4">3</cds-placeholder>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutRowsResponsive = () => {
   return html`
-    <div class="layout-demo wide-demo tall-demo">
-      <cds-layout type="grid" cols="6" rows="4 8@sm" gap="sm" align-items="stretch">
+    <cds-demo layout tall wide>
+      <div cds-layout="grid cols-6 rows-4 rows-8@sm gap-sm align-items-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-        <cds-placeholder cds-col="12" cds-row="8 4@sm">3</cds-placeholder>
-      </cds-layout>
-    </div>
+        <cds-placeholder cds-layout="col-12 row-8 row-4@sm">3</cds-placeholder>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutRowsStartEnd = () => {
   return html`
-    <div class="layout-demo wide-demo tall-demo">
-      <cds-layout type="grid" cols="4" gap="sm" align-items="stretch">
-        <cds-placeholder cds-row="4 start-6">1</cds-placeholder>
-        <cds-placeholder cds-row="3 start-4">2</cds-placeholder>
-        <cds-placeholder cds-row="12">3</cds-placeholder>
-      </cds-layout>
-    </div>
+    <cds-demo layout tall wide>
+      <div cds-layout="grid cols-4 gap-sm align-items-stretch">
+        <cds-placeholder cds-layout="row-4 row-start-6">1</cds-placeholder>
+        <cds-placeholder cds-layout="row-3 row-start-4">2</cds-placeholder>
+        <cds-placeholder cds-layout="row-12">3</cds-placeholder>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutRowsStartEndResponsive = () => {
   return html`
-    <div class="layout-demo wide-demo tall-demo">
-      <cds-layout type="grid" cols="12@md" rows="4@sm" gap="sm" align-items="stretch">
+    <cds-demo layout tall wide>
+      <div cds-layout="grid cols-12@md rows-4@sm gap-sm align-items-stretch">
         <cds-placeholder>1</cds-placeholder>
-        <cds-placeholder cds-row="start-10@sm">2</cds-placeholder>
-      </cds-layout>
-    </div>
+        <cds-placeholder cds-layout="row-start-10@sm">2</cds-placeholder>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutAlignTop = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-auto gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder style="height:300px">4</cds-placeholder>
-      </cds-layout>
-    </div>  
+      </div>
+    </cds-demo>  
   `;
 };
 
 export const gridLayoutAlignBottom = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="bottom">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-auto gap-sm align-items-bottom">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder style="height:300px">4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutAlignLeft = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="left">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-auto gap-sm align-items-left">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder>4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutAlignRight = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="right">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-auto gap-sm align-items-right">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder>4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutAlignVerticalCenter = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="vertical-center">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-auto gap-sm align-items-vertical-center">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder style="height:300px">4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutAlignCenter = () => {
   return html`
-    <div class="layout-demo tall-demo wide-demo">
-      <cds-layout type="grid" gap="sm" cols="auto" align-items="center">
+    <cds-demo layout tall wide>
+      <div cds-layout="grid gap-sm cols-auto align-items-center">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutAlignVerticalStretch = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="vertical-stretch">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-auto gap-sm align-items-vertical-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder style="height:300px">4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutAlignHorizontalStretch = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="horizontal-stretch">
+    <cds-demo layout wide>
+      <div cds-layout="grid cols-auto gap-sm align-items-horizontal-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder>4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const gridLayoutAlignStretch = () => {
   return html`
-    <div class="layout-demo wide-demo tall-demo">
-      <cds-layout type="grid" cols="auto" gap="sm" align-items="stretch">
+    <cds-demo layout tall wide>
+      <div cds-layout="grid cols-auto gap-sm align-items-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder style="height:300px">4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
@@ -789,8 +788,8 @@ export const patternsContentSite = () => {
 
 export const patternsResponsiveImageGallery = () => {
   return html`
-    <cds-layout type="grid" cols="6@sm 4@md 3@lg 2@xl" gap="sm" align-items="horizontal-stretch">
-      <cds-placeholder cds-col="12">header</cds-placeholder>
+    <div cds-layout="grid cols-6@sm cols-4@md cols-3@lg cols-2@xl gap-sm align-items-horizontal-stretch">
+      <cds-placeholder cds-layout="col-12">header</cds-placeholder>
       <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
       <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
       <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
@@ -803,7 +802,7 @@ export const patternsResponsiveImageGallery = () => {
       <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
       <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
       <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <cds-placeholder cds-col="12">footer</cds-placeholder>
-    </cds-layout>
+      <cds-placeholder cds-layout="col-12">footer</cds-placeholder>
+    </div>
   `;
 };

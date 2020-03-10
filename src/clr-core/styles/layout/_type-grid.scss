@@ -5,22 +5,22 @@
 @mixin generateColumnsAndRows($breakpoint) {
   @for $i from 1 through $cds-token-layout-grid-cols-static {
     // implicit columns/rows
-    cds-layout[cols~='#{$i}\@#{$breakpoint}'] > * {
+    [cds-layout~='cols-#{$i}\@#{$breakpoint}'] > * {
       grid-column: span $i / span $i;
     }
 
-    cds-layout[rows~='#{$i}\@#{$breakpoint}'] > * {
+    [cds-layout~='rows-#{$i}\@#{$breakpoint}'] > * {
       grid-row: span $i / span $i;
     }
   }
 
   @for $i from 1 through $cds-token-layout-grid-cols-static {
     // explicit column/row positions
-    [cds-col~='#{$i}\@#{$breakpoint}'] {
+    [cds-layout~='col-#{$i}\@#{$breakpoint}'] {
       grid-column: span $i / span $i !important;
     }
 
-    [cds-row~='#{$i}\@#{$breakpoint}'] {
+    [cds-layout~='row-#{$i}\@#{$breakpoint}'] {
       grid-row: span $i / span $i !important;
     }
   }
@@ -29,25 +29,25 @@
 @mixin position($breakpoint) {
   // +1 for grid cols/rows which end at beginning of next item
   @for $i from 1 through $cds-token-layout-grid-cols-static + 1 {
-    [cds-col~='start-#{$i}\@#{$breakpoint}'] {
+    [cds-layout~='col-start-#{$i}\@#{$breakpoint}'] {
       grid-column-start: $i !important;
     }
 
-    [cds-col~='end-#{$i}\@#{$breakpoint}'] {
+    [cds-layout~='col-end-#{$i}\@#{$breakpoint}'] {
       grid-column-end: $i !important;
     }
 
-    [cds-row~='start-#{$i}\@#{$breakpoint}'] {
+    [cds-layout~='row-start-#{$i}\@#{$breakpoint}'] {
       grid-row-start: $i !important;
     }
 
-    [cds-row~='end-#{$i}\@#{$breakpoint}'] {
+    [cds-layout~='row-end-#{$i}\@#{$breakpoint}'] {
       grid-row-end: $i !important;
     }
   }
 }
 
-cds-layout[type='grid'] {
+[cds-layout~='grid'] {
   display: grid;
   align-items: flex-start;
   align-content: flex-start;
@@ -55,132 +55,93 @@ cds-layout[type='grid'] {
   width: 100%;
 
   // alignments
-  &[align-items~='top'] {
+  &[cds-layout~='align-items-top'] {
     align-items: start;
     align-content: start;
   }
 
-  &[align-items~='right'] {
+  &[cds-layout~='align-items-right'] {
     justify-items: flex-end;
   }
 
-  &[align-items~='bottom'] {
+  &[cds-layout~='align-items-bottom'] {
     align-items: end;
     align-content: end;
   }
 
-  &[align-items~='left'] {
+  &[cds-layout~='align-items-left'] {
     justify-items: flex-start;
     align-content: flex-start;
   }
 
-  &[align-items~='vertical-stretch'] {
+  &[cds-layout~='align-items-vertical-stretch'] {
     align-items: stretch;
     align-content: stretch;
   }
 
-  &[align-items~='vertical-center'] {
+  &[cds-layout~='align-items-vertical-center'] {
     align-items: center;
     align-content: center;
   }
 
-  &[align-items~='horizontal-stretch'] {
+  &[cds-layout~='align-items-horizontal-stretch'] {
     justify-items: stretch;
     justify-content: stretch;
   }
 
-  &[align-items~='horizontal-center'] {
+  &[cds-layout~='align-items-horizontal-center'] {
     justify-items: center;
     justify-content: center;
   }
 
-  &[align-items~='stretch'] {
+  &[cds-layout~='align-items-stretch'] {
     align-items: stretch;
     align-content: stretch;
+    justify-items: stretch;
+    justify-content: stretch;
   }
 
-  &[align-items~='center'] {
+  &[cds-layout~='align-items-center'] {
     align-items: center;
     align-content: center;
   }
 
-  // gap control
-  &[gap='xs'] {
+  &[cds-layout~='gap-xs'] {
     grid-gap: #{$cds-token-layout-space-xs};
   }
 
-  &[gap='sm'] {
+  &[cds-layout~='gap-sm'] {
     grid-gap: #{$cds-token-layout-space-sm};
   }
 
-  &[gap='md'] {
+  &[cds-layout~='gap-md'] {
     grid-gap: #{$cds-token-layout-space-md};
   }
 
-  &[gap='lg'] {
+  &[cds-layout~='gap-lg'] {
     grid-gap: #{$cds-token-layout-space-lg};
   }
 
-  &[gap='xl'] {
+  &[cds-layout~='gap-xl'] {
     grid-gap: #{$cds-token-layout-space-xl};
-  }
-
-  &[gap^='[xs'] {
-    row-gap: $cds-token-layout-space-xs;
-  }
-
-  &[gap$='xs]'] {
-    column-gap: $cds-token-layout-space-xs;
-  }
-
-  &[gap^='[sm'] {
-    row-gap: $cds-token-layout-space-sm;
-  }
-
-  &[gap$='sm]'] {
-    column-gap: $cds-token-layout-space-sm;
-  }
-
-  &[gap^='[md'] {
-    row-gap: $cds-token-layout-space-md;
-  }
-
-  &[gap$='md]'] {
-    column-gap: $cds-token-layout-space-md;
-  }
-
-  &[gap^='[lg'] {
-    row-gap: $cds-token-layout-space-lg;
-  }
-
-  &[gap$='lg]'] {
-    column-gap: $cds-token-layout-space-lg;
-  }
-
-  &[gap^='[xl'] {
-    row-gap: $cds-token-layout-space-xl;
-  }
-
-  &[gap$='xl]'] {
-    column-gap: $cds-token-layout-space-xl;
   }
 }
 
-cds-layout {
-  &[cols='auto'] {
+[cds-layout~='grid'] {
+  &[cds-layout~='cols-auto'] {
     grid-auto-flow: column;
     grid-template-columns: initial;
   }
 
-  &[cols*='\@'] > * {
+  &[cds-layout*='\@'] {
     grid-column: span $cds-token-layout-grid-cols-static / span $cds-token-layout-grid-cols-static;
   }
 
-  &[rows] {
+  &[cds-layout~='rows'] {
     grid-template-rows: repeat(12, auto);
   }
 
-  & > [cds-row] {
+  & > [cds-layout~='row'] {
     align-self: stretch;
   }
 }
@@ -190,30 +151,30 @@ cds-layout {
 }
 
 @for $i from 1 through $cds-token-layout-grid-cols-static {
-  [cds-col~='#{$i}\@sm'],
-  [cds-col~='#{$i}\@md'],
-  [cds-col~='#{$i}\@lg'],
-  [cds-col~='#{$i}\@xl'] {
+  [cds-layout~='col-#{$i}\@sm'],
+  [cds-layout~='col-#{$i}\@md'],
+  [cds-layout~='col-#{$i}\@lg'],
+  [cds-layout~='col-#{$i}\@xl'] {
     @extend %full-width-columns-explicit;
   }
 }
 
 @for $i from 1 through $cds-token-layout-grid-cols-static {
-  cds-layout[cols~='#{$i}'] > * {
+  [cds-layout~='cols-#{$i}'] > * {
     grid-column: span $i / span $i;
   }
 
-  cds-layout[rows~='#{$i}'] > * {
+  [cds-layout~='rows-#{$i}'] > * {
     grid-row: span $i / span $i;
   }
 }
 
 @for $i from 1 through $cds-token-layout-grid-cols-static {
-  [cds-col~='#{$i}'] {
+  [cds-layout~='col-#{$i}'] {
     grid-column: span $i / span $i !important;
   }
 
-  [cds-row~='#{$i}'] {
+  [cds-layout~='row-#{$i}'] {
     grid-row: span $i / span $i !important;
   }
 }
@@ -237,19 +198,19 @@ cds-layout {
 // start/end positions
 @for $i from 1 through $cds-token-layout-grid-cols-static + 1 {
   // +1 for grid cols/rows which end at beginning of next item
-  [cds-col~='start-#{$i}'] {
+  [cds-layout~='col-start-#{$i}'] {
     grid-column-start: $i !important;
   }
 
-  [cds-row~='start-#{$i}'] {
+  [cds-layout~='row-start-#{$i}'] {
     grid-row-start: $i !important;
   }
 
-  [cds-col~='end-#{$i}'] {
+  [cds-layout~='col-end-#{$i}'] {
     grid-column-end: $i !important;
   }
 
-  [cds-row~='end-#{$i}'] {
+  [cds-layout~='row-end-#{$i}'] {
     grid-row-end: $i !important;
   }
 }
