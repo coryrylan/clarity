@@ -743,15 +743,14 @@ export const utilitiesSpacing = () => {
 
 export const utilitiesDisplay = () => {
   return html`
-  <h1 cds-text="h1">Display</h1>
-    <div class="layout-demo wide-demo">
+    <cds-demo layout wide>
       <cds-layout type="vertical" gap="md" align-items="stretch">
-        <cds-placeholder cds-display="none flex@sm">none flex@sm</cds-placeholder>
-        <cds-placeholder>...<span cds-display="none inline@md">none inline@md</span>...</cds-placeholder>
-        <cds-placeholder cds-display="none block@lg">none block@lg</cds-placeholder>
-        <cds-placeholder cds-display="none@lg">none@lg</cds-placeholder>
+        <cds-placeholder cds-layout="hide display-flex@sm">none flex@sm</cds-placeholder>
+        <cds-placeholder>...<span cds-layout="hide display-inline@md">none inline@md</span>...</cds-placeholder>
+        <cds-placeholder cds-layout="hide display-block@lg">none block@lg</cds-placeholder>
+        <cds-placeholder cds-layout="hide@lg">none@lg</cds-placeholder>
       </cds-layout>
-    </div>
+    </cds-demo>
   `;
 };
 

@@ -3,36 +3,36 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @mixin display($breakpoint) {
-  [cds-display~='none\@#{$breakpoint}'] {
+  [cds-layout~='hide\@#{$breakpoint}'] {
     display: none !important;
   }
 
-  [cds-display~='flex\@#{$breakpoint}'] {
+  [cds-layout~='display-flex\@#{$breakpoint}'] {
     display: flex !important;
   }
 
-  [cds-display~='block\@#{$breakpoint}'] {
+  [cds-layout~='display-block\@#{$breakpoint}'] {
     display: block !important;
   }
 
-  [cds-display~='inline\@#{$breakpoint}'] {
+  [cds-layout~='display-inline\@#{$breakpoint}'] {
     display: inline !important;
   }
 }
 
-[cds-display~='none'] {
+[cds-layout~='hide'] {
   display: none !important;
 }
 
-[cds-display~='flex'] {
+[cds-layout~='display-flex'] {
   display: flex !important;
 }
 
-[cds-display~='block'] {
+[cds-layout~='display-block'] {
   display: block !important;
 }
 
-[cds-display~='inline'] {
+[cds-layout~='display-inline'] {
   display: inline !important;
 }
 
