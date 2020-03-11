@@ -2,7 +2,7 @@ import { Meta, Story, Preview, API } from '@storybook/addon-docs/blocks';
 import { html, LitElement } from 'lit-element';
 import '@clr/core/alert';
 
-<Meta title="Experimental/Layout/Get Started" component={'cds-layout'} />
+<Meta title="Experimental/Layout/Get Started" />
 
 # Layout
 
@@ -12,11 +12,11 @@ import '@clr/core/alert';
 <br />
 
 Clarity Core components do not provide surrounding white space. Spacing
-between components is managed entirely by layout components. This ensures that
-the system is as composable as possible while keeping white space predictable
-and consistent.
+between components is managed entirely by the `cds-layout` attribute. This
+ensures that the system is as composable as possible while keeping white space
+predictable and consistent.
 
-The `cds-layout` component include three layout types. Each is designed to
+The `cds-layout` attribute include three layout types. Each is designed to
 handle particular layout senarios.
 
 1. Horizontal
@@ -25,8 +25,7 @@ handle particular layout senarios.
 
 ## Installation
 
-To use the layout system import the global CSS as well as the optional Web component
-for improved IDE experience.
+To use the layout system import the global CSS.
 
 ```scss
 // import into sass or css
@@ -44,11 +43,11 @@ Spacing, alignments and gap between items can all be configured with the compone
 <Story id="experimental-layout-all--horizontal-layout" />
 
 ```html
-<cds-layout type="horizontal" gap="sm">
+<div cds-layout="horizontal gap-sm">
   <cds-placeholder>1</cds-placeholder>
   <cds-placeholder>2</cds-placeholder>
   <cds-placeholder>3</cds-placeholder>
-</cds-layout>
+</div>
 ```
 
 ## Vertical
@@ -60,11 +59,11 @@ stacked items can all be configured with the component.
 <Story id="experimental-layout-all--vertical-layout" />
 
 ```html
-<cds-layout type="vertical" gap="sm">
+<div cds-layout="vertical gap-sm">
   <cds-placeholder>1</cds-placeholder>
   <cds-placeholder>2</cds-placeholder>
   <cds-placeholder>3</cds-placeholder>
-</cds-layout>
+</div>
 ```
 
 ## Grid

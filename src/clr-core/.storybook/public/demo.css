@@ -1,3 +1,9 @@
+@import './../../../../dist/clr-core/module.reset.min.css';
+@import './../../../../dist/clr-core/module.tokens.min.css';
+@import './../../../../dist/clr-core/module.layout.min.css';
+@import './../../../../dist/clr-core/module.typography.min.css';
+@import '~@clr/city/css/bundles/default.min.css';
+
 /* We dont have access to the body element to place the cds-body-text attribute */
 body {
   font-family: var(--cds-token-typography-font-family);
@@ -14,7 +20,7 @@ body {
 /* Demo Components */
 cds-demo[layout],
 .layout-demo {
-  background: hsl(92, 46%, 74%);
+  background: hsl(91, 56%, 78%);
   overflow: hidden;
   display: inline-block;
 }

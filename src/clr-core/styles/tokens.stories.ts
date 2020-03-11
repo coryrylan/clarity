@@ -28,7 +28,7 @@ function getTokens(): {}[] {
 
 export const tokens = () => {
   return html`
-    <cds-layout type="horizontal" gap="md">
+    <div cds-layout="horizontal gap-md">
       <h1 cds-text="h1">Design Tokens</h1>
       <p cds-text="p1">
         Design Tokens are global variables to configure the foundation of the
@@ -36,6 +36,6 @@ export const tokens = () => {
         typography. Changes to a design token will propagate throughout the entire system.
       </p>
       ${getTokens().map(token => html`<p cds-text="h4"><span cds-text="code">${token}</span></p>`)}
-    </cds-layout>
+    </div>
   `;
 };

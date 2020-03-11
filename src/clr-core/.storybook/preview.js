@@ -30,6 +30,7 @@ addParameters({
         [
           'Design Tokens',
           'Typography',
+          ['Getting Started', 'Stories'],
           'Layout',
           ['Get Started', 'Horizontal', 'Vertical', 'Grid', 'Utilities', 'Patterns', 'All'],
         ],

@@ -19,21 +19,21 @@ export default {
  */
 export const horizontalLayout = () => {
   return html`
-    <div class="layout-demo">
-      <cds-layout type="horizontal" gap="sm">
+    <cds-demo layout>
+      <div cds-layout="horizontal gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutWrap = () => {
   return html`
     <!-- demonstrates gap is only applied between inline elements even when wrapped without pushing parent container -->
-    <div class="layout-demo" style="max-width: 236px">
-      <cds-layout type="horizontal" gap="sm">
+    <cds-demo layout style="max-width: 236px">
+      <div cds-layout="horizontal gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
@@ -42,15 +42,15 @@ export const horizontalLayoutWrap = () => {
         <cds-placeholder>6</cds-placeholder>
         <cds-placeholder>7</cds-placeholder>
         <cds-placeholder>8</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutNoWrap = () => {
   return html`
-    <div class="layout-demo" style="max-width: 273px">
-      <cds-layout type="horizontal" gap="sm" wrap="none">
+    <cds-demo layout style="max-width: 273px">
+      <div cds-layout="horizontal gap-sm no-wrap">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
@@ -59,152 +59,152 @@ export const horizontalLayoutNoWrap = () => {
         <cds-placeholder>6</cds-placeholder>
         <cds-placeholder>7</cds-placeholder>
         <cds-placeholder>8</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutAlignTop = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="top">
+    <cds-demo layout tall>
+      <div cds-layout="horizontal gap-sm align-items-top">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutAlignBottom = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="bottom">
+    <cds-demo layout tall>
+      <div cds-layout="horizontal gap-sm align-items-bottom">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutAlignLeft = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="left">
+    <cds-demo layout wide>
+      <div cds-layout="horizontal gap-sm align-items-left">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>  
+      </div>
+    </cds-demo>  
   `;
 };
 
 export const horizontalLayoutAlignRight = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="right">
+    <cds-demo layout wide>
+      <div cds-layout="horizontal gap-sm align-items-right">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutAlignVerticalCenter = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="vertical-center">
+    <cds-demo layout tall>
+      <div cds-layout="horizontal gap-sm align-items-vertical-center">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutAlignHorizontalCenter = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="horizontal-center">
+    <cds-demo layout wide>
+      <div cds-layout="horizontal gap-sm align-items-horizontal-center">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutAlignCenter = () => {
   return html`
-    <div class="layout-demo tall-demo wide-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="center">
+    <cds-demo layout wide tall>
+      <div cds-layout="horizontal gap-sm align-items-center">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutAlignVerticalStretch = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="vertical-stretch">
+    <cds-demo layout wide tall>
+      <div cds-layout="horizontal gap-sm align-items-vertical-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutAlignHorizontalStretch = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="horizontal-stretch">
+    <cds-demo layout wide tall>
+      <div cds-layout="horizontal gap-sm align-items-horizontal-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutAlignStretch = () => {
   return html`
-    <div class="layout-demo tall-demo wide-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="stretch">
+    <cds-demo layout wide tall>
+      <div cds-layout="horizontal gap-sm align-items-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutItemStretch = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="horizontal" gap="sm">
+    <cds-demo layout wide tall>
+      <div cds-layout="horizontal gap-sm">
         <cds-placeholder>1</cds-placeholder>
-        <cds-placeholder cds-align="stretch">2</cds-placeholder>
+        <cds-placeholder cds-layout="align-stretch">2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const horizontalLayoutItemShrink = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="horizontal" gap="sm" align-items="horizontal-stretch">
+    <cds-demo layout wide>
+      <div cds-layout="horizontal gap-sm align-items-horizontal-stretch">
         <cds-placeholder>1</cds-placeholder>
-        <cds-placeholder cds-align="shrink">2</cds-placeholder>
+        <cds-placeholder cds-layout="align-shrink">2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
@@ -214,162 +214,162 @@ export const horizontalLayoutItemShrink = () => {
 
 export const verticalLayout = () => {
   return html`
-    <div class="layout-demo">
-      <cds-layout type="vertical" gap="sm">
+    <cds-demo layout>
+      <div cds-layout="vertical gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutWrap = () => {
   return html`
     <!-- demonstrates gap is only applied between stacked elements without pushing parent container -->
-    <div class="layout-demo" style="width: 50px">
-      <cds-layout type="vertical" gap="sm">
+    <cds-demo layout style="width: 50px">
+      <div cds-layout="vertical gap-sm">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
         <cds-placeholder>4</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignTop = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="vertical" gap="sm" align-items="top">
+    <cds-demo layout tall>
+      <div cds-layout="vertical gap-sm align-items-top">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignBottom = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="vertical" gap="sm" align-items="bottom">
+    <cds-demo layout tall>
+      <div cds-layout="vertical gap-sm align-items-bottom">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignLeft = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="vertical" gap="sm" align-items="left">
+    <cds-demo layout wide>
+      <div cds-layout="vertical gap-sm align-items-left">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignRight = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="vertical" gap="sm" align-items="right">
+    <cds-demo layout wide>
+      <div cds-layout="vertical gap-sm align-items-right">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignVerticalCenter = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="vertical" gap="sm" align-items="vertical-center">
+    <cds-demo layout tall>
+      <div cds-layout="vertical gap-sm align-items-vertical-center">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignHorizontalCenter = () => {
   return html`
-    <div class="layout-demo wide-demo">
-      <cds-layout type="vertical" gap="sm" align-items="horizontal-center">
+    <cds-demo layout wide>
+      <div cds-layout="vertical gap-sm align-items-horizontal-center">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignCenter = () => {
   return html`
-    <div class="layout-demo tall-demo wide-demo">
-      <cds-layout type="vertical" gap="sm" align-items="center">
+    <cds-demo layout wide tall>
+      <div cds-layout="vertical gap-sm align-items-center">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignVerticalStretch = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="vertical" gap="sm" align-items="vertical-stretch">
+    <cds-demo layout tall>
+      <div cds-layout="vertical gap-sm align-items-vertical-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignHorizontalStretch = () => {
   return html`
-  <div class="layout-demo wide-demo">
-    <cds-layout type="vertical" gap="sm" align-items="horizontal-stretch">
+  <cds-demo layout wide>
+    <div cds-layout="vertical gap-sm align-items-horizontal-stretch">
       <cds-placeholder>1</cds-placeholder>
       <cds-placeholder>2</cds-placeholder>
-    </cds-layout>
-  </div>
+    </div>
+  </cds-demo>
   `;
 };
 
 export const verticalLayoutAlignStretch = () => {
   return html`
-    <div class="layout-demo wide-demo tall-demo">
-      <cds-layout type="vertical" gap="sm" align-items="stretch">
+    <cds-demo layout wide tall>
+      <div cds-layout="vertical gap-sm align-items-stretch">
         <cds-placeholder>1</cds-placeholder>
         <cds-placeholder>2</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutItemStretch = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="vertical" gap="sm">
+    <cds-demo layout tall>
+      <div cds-layout="vertical gap-sm">
         <cds-placeholder>1</cds-placeholder>
-        <cds-placeholder cds-align="stretch">2</cds-placeholder>
+        <cds-placeholder cds-layout="align-stretch">2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
 export const verticalLayoutItemShrink = () => {
   return html`
-    <div class="layout-demo tall-demo">
-      <cds-layout type="vertical" gap="sm" align-items="vertical-stretch">
+    <cds-demo layout tall>
+      <div cds-layout="vertical gap-sm align-items-vertical-stretch">
         <cds-placeholder>1</cds-placeholder>
-        <cds-placeholder cds-align="shrink">2</cds-placeholder>
+        <cds-placeholder cds-layout="align-shrink">2</cds-placeholder>
         <cds-placeholder>3</cds-placeholder>
-      </cds-layout>
-    </div>
+      </div>
+    </cds-demo>
   `;
 };
 
@@ -680,76 +680,41 @@ export const gridLayoutAlignStretch = () => {
  * Utilities
  */
 
-export const utilitiesSpacing = () => {
+export const utilitiesPad = () => {
   return html`
     <style>
-      .spacing-demo cds-placeholder {
+      .pad-demo cds-placeholder {
         padding: 0;
       }
 
-      .spacing-demo div[cds-pad] {
+      .pad-demo div[cds-layout] {
         background: hsl(92, 46%, 74%);
       }
 
-      .spacing-demo cds-layout[pad] {
+      .pad-demo > [cds-layout] {
         background: hsl(92, 46%, 74%);
       }
     </style>
-    <cds-layout type="vertical" gap="lg" class="spacing-demo">
-      <h1 cds-text="h1">Spacing</h1>
-
-      <h2 cds-heading="2">Padding</h2>
-      <cds-layout type="vertical" gap="lg">
-        <div cds-pad="none"><cds-placeholder>cds-pad="none"</cds-placeholder></div>
-        <div cds-pad="xs"><cds-placeholder>cds-pad="xs"</cds-placeholder></div>
-        <div cds-pad="sm"><cds-placeholder>cds-pad="sm"</cds-placeholder></div>
-        <div cds-pad="md"><cds-placeholder>cds-pad="md"</cds-placeholder></div>
-        <div cds-pad="lg"><cds-placeholder>cds-pad="lg"</cds-placeholder></div>
-        <div cds-pad="xl"><cds-placeholder>cds-pad="xl"</cds-placeholder></div>
-
-        <div cds-pad="[md,none]"><cds-placeholder>cds-pad="[md,none]"</cds-placeholder></div>
-        <div cds-pad="[xs,xl]"><cds-placeholder>cds-pad="[xs,xl]"</cds-placeholder></div>
-        <div cds-pad="[lg,sm]@lg"><cds-placeholder>cds-pad="[xs,xl]"</cds-placeholder></div>
-      </cds-layout>
-
-      <h2 cds-heading="2">Padding cds-layout</h2>
-      <cds-layout type="horizontal" pad="xs">
-        <cds-placeholder>pad='xs'</cds-placeholder>
-      </cds-layout>
-      <cds-layout type="horizontal" pad="sm">
-        <cds-placeholder>pad='sm'</cds-placeholder>
-      </cds-layout>
-      <cds-layout type="horizontal" pad="md">
-        <cds-placeholder>pad='md'</cds-placeholder>
-      </cds-layout>
-      <cds-layout type="horizontal" pad="lg">
-        <cds-placeholder>pad='lg'</cds-placeholder>
-      </cds-layout>
-      <cds-layout type="horizontal" pad="xl">
-        <cds-placeholder>pad='xl'</cds-placeholder>
-      </cds-layout>
-      <cds-layout type="horizontal" pad="[none,md]">
-        <cds-placeholder>pad='[none,md]'</cds-placeholder>
-      </cds-layout>
-      <cds-layout type="horizontal" pad="[sm,xs]">
-        <cds-placeholder>pad='[sm,xs]'</cds-placeholder>
-      </cds-layout>
-      <cds-layout type="horizontal" pad="[xl,lg]">
-        <cds-placeholder>pad='[xl,lg]'</cds-placeholder>
-      </cds-layout>
-    </cds-layout>
+    <cds-demo cds-layout="vertical gap-lg" class="pad-demo">
+      <div cds-layout="pad-none"><cds-placeholder>pad-none</cds-placeholder></div>
+      <div cds-layout="pad-xs"><cds-placeholder>pad-xs</cds-placeholder></div>
+      <div cds-layout="pad-sm"><cds-placeholder>pad-sm</cds-placeholder></div>
+      <div cds-layout="pad-md"><cds-placeholder>pad-md</cds-placeholder></div>
+      <div cds-layout="pad-lg"><cds-placeholder>pad-lg</cds-placeholder></div>
+      <div cds-layout="pad-xl"><cds-placeholder>pad-xl</cds-placeholder></div>
+    </cds-demo>
   `;
 };
 
 export const utilitiesDisplay = () => {
   return html`
     <cds-demo layout wide>
-      <cds-layout type="vertical" gap="md" align-items="stretch">
+      <div cds-layout="vertical gap-md align-items-stretch">
         <cds-placeholder cds-layout="hide display-flex@sm">none flex@sm</cds-placeholder>
         <cds-placeholder>...<span cds-layout="hide display-inline@md">none inline@md</span>...</cds-placeholder>
         <cds-placeholder cds-layout="hide display-block@lg">none block@lg</cds-placeholder>
         <cds-placeholder cds-layout="hide@lg">none@lg</cds-placeholder>
-      </cds-layout>
+      </div>
     </cds-demo>
   `;
 };
@@ -759,29 +724,29 @@ export const utilitiesDisplay = () => {
  */
 export const patternsApplication = () => {
   return html`
-    <cds-layout type="vertical" gap="sm" align-items="stretch" style="height: 100vh">
+    <div cds-layout="vertical gap-sm align-items-stretch" style="height: 100vh">
       <cds-placeholder cds-align="shrink">header</cds-placeholder>
-      <cds-layout type="horizontal" gap="sm" align-items="stretch" wrap="none">
+      <div cds-layout="horizontal gap-sm align-items-stretch" wrap="none">
         <cds-placeholder demo-side-bar>Sidebar</cds-placeholder>
         <cds-placeholder demo-content>
           <div>Scrollable Content</div>
         </cds-placeholder>
-      </cds-layout>
-    </cds-layout>
+      </div>
+    </div>
   `;
 };
 
 export const patternsContentSite = () => {
   return html`
-    <cds-layout type="vertical" gap="sm" align-items="stretch" style="height: 100vh">
+    <div cds-layout="vertical gap-sm align-items-stretch" style="height: 100vh">
       <cds-placeholder cds-align="shrink">header</cds-placeholder>
-      <cds-layout type="horizontal" gap="sm" align-items="stretch">
+      <div cds-layout="horizontal gap-sm align-items-stretch">
         <cds-placeholder demo-side-bar>Sidebar</cds-placeholder>
         <cds-placeholder>content</cds-placeholder>
         <cds-placeholder demo-side-bar>Sidebar</cds-placeholder>
-      </cds-layout>
+      </div>
       <cds-placeholder cds-align="shrink">footer</cds-placeholder>
-    </cds-layout>
+    </div>
   `;
 };
 

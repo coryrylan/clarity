@@ -5,17 +5,28 @@ import { html, LitElement } from 'lit-element';
 
 # Utilities
 
+Outside of the horizontal, vertical and grid layout types the `cds-layout`
+system provides additional utilities for managing space and visibility.
+
 <cds-alert status="danger" closable="false">
   <cds-alert-content>This is a experimental API and will change. Do not use this in production enviroments!</cds-alert-content>
 </cds-alert>
 <br />
 
-## Spacing
+## Spacing / Pad
+
+The `pad` attribute allows you to apply a pad space value that cooresponds to
+the Clarity Design spacing token values.
+
 <Preview>
-  <Story id="experimental-layout-all--utilities-spacing" />
+  <Story id="experimental-layout-all--utilities-pad" />
 </Preview>
 
 ## Display
+
+The display option allows us to change the visibility of a element based on the
+Clarity Design size breakpoint tokens.
+
 <Preview>
   <Story id="experimental-layout-all--utilities-display" />
 </Preview>

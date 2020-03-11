@@ -3,101 +3,101 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @function getSpacerAttributeString($prefix: 'pad', $side: null, $size: 'none', $breakpoint: null) {
-    $formattedSide: '';
-    $formattedBreakpoint: '';
+  $formattedSide: '';
+  $formattedBreakpoint: '';
 
-    @if $side {
-        $formattedSide: #{'-' + $side};
-    }
+  @if $side {
+    $formattedSide: #{'-' + $side};
+  }
 
-    @if $breakpoint {
-        $formattedBreakpoint: #{'@' + $breakpoint};
-    }
+  @if $breakpoint {
+    $formattedBreakpoint: #{'@' + $breakpoint};
+  }
 
-    @return #{$prefix + $formattedSide + '-' + $size + $formattedBreakpoint};
+  @return #{$prefix + $formattedSide + '-' + $size + $formattedBreakpoint};
 }
 
 @function getPadAttributeString($side: null, $size: 'none', $breakpoint: null) {
-    @return getSpacerAttributeString('pad', $side, $size, $breakpoint);
+  @return getSpacerAttributeString('pad', $side, $size, $breakpoint);
 }
 
 @function getGapAttributeString($size: 'none', $breakpoint: null) {
-    @return getSpacerAttributeString('gap', null, $size, $breakpoint);
+  @return getSpacerAttributeString('gap', null, $size, $breakpoint);
 }
 
 @function getLayoutSpacingToken($size: null) {
-    @if $size == 'xs' {
-        @return $cds-token-layout-space-xs;
-    } @else if $size == 'sm' {
-        @return $cds-token-layout-space-sm;
-    } @else if $size == 'md' {
-        @return $cds-token-layout-space-md;
-    } @else if $size == 'lg' {
-        @return $cds-token-layout-space-lg;
-    } @else if $size == 'xl' {
-        @return $cds-token-layout-space-xl;
-    } @else {
-        @return 0;
-    }
+  @if $size == 'xs' {
+    @return $cds-token-layout-space-xs;
+  } @else if $size == 'sm' {
+    @return $cds-token-layout-space-sm;
+  } @else if $size == 'md' {
+    @return $cds-token-layout-space-md;
+  } @else if $size == 'lg' {
+    @return $cds-token-layout-space-lg;
+  } @else if $size == 'xl' {
+    @return $cds-token-layout-space-xl;
+  } @else {
+    @return 0;
+  }
 }
 
 $tShirtSizes: 'none', 'xs', 'sm', 'md', 'lg', 'xl';
 
 @mixin cdsLayoutPadder($sides: null, $breakpoint: null) {
-    @each $size in $tShirtSizes {
-        $value: getLayoutSpacingToken($size);
+  @each $size in $tShirtSizes {
+    $value: getLayoutSpacingToken($size);
 
-        @if $sides == null {
-            [cds-layout~=#{'"' + getPadAttributeString(null, $size, $breakpoint) + '"'}] {
-                padding: $value !important;
-            }
+    @if $sides == null {
+      [cds-layout~=#{'"' + getPadAttributeString(null, $size, $breakpoint) + '"'}] {
+        padding: $value !important;
+      }
+    } @else {
+      @each $side in $sides {
+        @if $side == 'horizontal' {
+          [cds-layout~=#{'"' + getPadAttributeString($side, $size, $breakpoint) + '"'}] {
+            padding-left: $value !important;
+            padding-right: $value !important;
+          }
+        } @else if $side == 'vertical' {
+          [cds-layout~=#{'"' + getPadAttributeString($side, $size, $breakpoint) + '"'}] {
+            padding-top: $value !important;
+            padding-bottom: $value !important;
+          }
         } @else {
-            @each $side in $sides {
-                @if $side == 'horizontal' {
-                    [cds-layout~=#{'"' + getPadAttributeString($side, $size, $breakpoint) + '"'}] {
-                        padding-left: $value !important;
-                        padding-right: $value !important;
-                    }
-                } @else if $side == 'vertical' {
-                    [cds-layout~=#{'"' + getPadAttributeString($side, $size, $breakpoint) + '"'}] {
-                        padding-top: $value !important;
-                        padding-bottom: $value !important;
-                    }
-                } @else {
-                    [cds-layout~=#{'"' + getPadAttributeString($side, $size, $breakpoint) + '"'}] {
-                        padding-#{$side}: $value !important;
-                    }
-                }
-            }
+          [cds-layout~=#{'"' + getPadAttributeString($side, $size, $breakpoint) + '"'}] {
+            padding-#{$side}: $value !important;
+          }
         }
+      }
     }
+  }
 }
 
 @mixin cdsLayoutHorizontalGapper($breakpoint: null) {
-    @each $size in $tShirtSizes {
-        @if $size != 'none' {
-            $value: getLayoutSpacingToken($size);
-    
-            &[cds-layout~=#{'"' + getGapAttributeString($size, $breakpoint) + '"'}] {
-                margin: calc(-1 * #{$value} 0 0 calc(-1 * #{$value}));
-                width: calc(100% + #{$value});
+  @each $size in $tShirtSizes {
+    @if $size != 'none' {
+      $value: getLayoutSpacingToken($size);
 
-                & > * {
-                    margin: #{$value} 0 0 #{$value};
-                }
-            }
+      &[cds-layout~=#{'"' + getGapAttributeString($size, $breakpoint) + '"'}] {
+        margin: calc(-1 * #{$value} 0 0 calc(-1 * #{$value}));
+        width: calc(100% + #{$value});
+
+        & > * {
+          margin: #{$value} 0 0 #{$value};
         }
+      }
     }
+  }
 }
 
 @mixin cdsLayoutVerticalGapper($breakpoint: null) {
-    @each $size in $tShirtSizes {
-        @if $size != 'none' {
-            $value: getLayoutSpacingToken($size);
-    
-            &[cds-layout~=#{'"' + getGapAttributeString($size, $breakpoint) + '"'}] > * {
-                margin-bottom: #{$value};
-            }
-        }
+  @each $size in $tShirtSizes {
+    @if $size != 'none' {
+      $value: getLayoutSpacingToken($size);
+
+      &[cds-layout~=#{'"' + getGapAttributeString($size, $breakpoint) + '"'}] > * {
+        margin-bottom: #{$value};
+      }
     }
+  }
 }

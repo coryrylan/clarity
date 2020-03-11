@@ -285,7 +285,6 @@ html {
   letter-spacing: $cds-token-typography-subsection-letter-spacing;
 }
 
-[cds-body-text],
 [cds-text*='body'] {
   font-family: $cds-token-typography-font-family;
   color: $cds-token-typography-body-color;
@@ -437,6 +436,6 @@ html {
 }
 
 // remove line-height eraser from element
-[cds-disable-lhe] {
+[cds-text~='disable-lhe'] {
   @include remove-line-height-erasers;
 }

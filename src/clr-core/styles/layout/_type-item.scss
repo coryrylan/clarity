@@ -2,11 +2,11 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-cds-layout > [cds-align~='stretch'] {
+[cds-layout~='align-stretch'] {
   flex-grow: 1 !important;
 }
 
-cds-layout > [cds-align~='shrink'] {
+[cds-layout~='align-shrink'] {
   flex-shrink: 1 !important;
   flex-grow: 0 !important;
 }
