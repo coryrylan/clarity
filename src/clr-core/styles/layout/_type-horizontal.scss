@@ -2,7 +2,7 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-cds-layout[type='horizontal'] {
+[cds-layout~='horizontal'] {
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -12,49 +12,49 @@ cds-layout[type='horizontal'] {
   margin: 0;
   min-height: 0;
 
-  &[align-items~='top'] {
+  &[cds-layout~='align-items-top'] {
     align-content: flex-start;
   }
 
-  &[align-items~='bottom'] {
+  &[cds-layout~='align-items-bottom'] {
     align-content: flex-end;
   }
 
-  &[align-items~='vertical-center'] {
+  &[cds-layout~='align-items-vertical-center'] {
     align-content: center;
   }
 
-  &[align-items~='left'] {
+  &[cds-layout~='align-items-left'] {
     justify-content: flex-start;
   }
 
-  &[align-items~='horizontal-stretch'] {
+  &[cds-layout~='align-items-horizontal-stretch'] {
     justify-content: stretch;
   }
 
-  &[align-items~='vertical-stretch'] {
+  &[cds-layout~='align-items-vertical-stretch'] {
     align-content: stretch;
   }
 
-  &[align-items~='right'] {
+  &[cds-layout~='align-items-right'] {
     justify-content: flex-end;
   }
 
-  &[align-items~='horizontal-center'] {
+  &[cds-layout~='align-items-horizontal-center'] {
     justify-content: center;
   }
 
-  &[align-items~='center'] {
+  &[cds-layout~='align-items-center'] {
     justify-content: center;
     align-content: center;
   }
 
-  &[align-items~='stretch'] {
+  &[cds-layout~='align-items-stretch'] {
     justify-content: stretch;
     align-content: stretch;
   }
 
-  &[gap='xs'] {
+  &[cds-layout~='gap-xs'] {
     margin: calc(-1 * #{$cds-token-layout-space-xs}) 0 0 calc(-1 * #{$cds-token-layout-space-xs});
     width: calc(100% + #{$cds-token-layout-space-xs});
 
@@ -63,7 +63,7 @@ cds-layout[type='horizontal'] {
     }
   }
 
-  &[gap='sm'] {
+  &[cds-layout~='gap-sm'] {
     margin: calc(-1 * #{$cds-token-layout-space-sm}) 0 0 calc(-1 * #{$cds-token-layout-space-sm});
     width: calc(100% + #{$cds-token-layout-space-sm});
 
@@ -72,7 +72,7 @@ cds-layout[type='horizontal'] {
     }
   }
 
-  &[gap='md'] {
+  &[cds-layout~='gap-md'] {
     margin: calc(-1 * #{$cds-token-layout-space-md}) 0 0 calc(-1 * #{$cds-token-layout-space-md});
     width: calc(100% + #{$cds-token-layout-space-md});
 
@@ -81,7 +81,7 @@ cds-layout[type='horizontal'] {
     }
   }
 
-  &[gap='lg'] {
+  &[cds-layout~='gap-lg'] {
     margin: calc(-1 * #{$cds-token-layout-space-lg}) 0 0 calc(-1 * #{$cds-token-layout-space-lg});
     width: calc(100% + #{$cds-token-layout-space-lg});
 
@@ -90,7 +90,7 @@ cds-layout[type='horizontal'] {
     }
   }
 
-  &[gap='xl'] {
+  &[cds-layout~='gap-xl'] {
     margin: calc(-1 * #{$cds-token-layout-space-xl}) 0 0 calc(-1 * #{$cds-token-layout-space-xl});
     width: calc(100% + #{$cds-token-layout-space-xl});
 
@@ -99,17 +99,17 @@ cds-layout[type='horizontal'] {
     }
   }
 
-  &[wrap='none'] {
+  &[cds-layout~='no-wrap'] {
     flex-wrap: nowrap;
   }
 
-  &[align-items~='stretch'] > *,
-  &[align-items~='horizontal-stretch'] > * {
+  &[cds-layout~='align-items-stretch'] > *,
+  &[cds-layout~='align-items-horizontal-stretch'] > * {
     flex-grow: 1;
   }
 
-  &[align-items~='stretch'] > *,
-  &[align-items~='vertical-stretch'] {
+  &[cds-layout~='align-items-stretch'] > *,
+  &[cds-layout~='align-items-vertical-stretch'] {
     align-content: stretch;
   }
 }
