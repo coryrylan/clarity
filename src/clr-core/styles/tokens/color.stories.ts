@@ -8,7 +8,7 @@ import { html } from 'lit-html';
 import { withDesign } from 'storybook-addon-designs';
 
 export default {
-  title: 'Experimental/Design Tokens',
+  title: 'Experimental/Tokens/Color',
   decorators: [withDesign],
   parameters: {
     options: { showPanel: true },

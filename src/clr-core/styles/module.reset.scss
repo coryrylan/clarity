@@ -4,7 +4,7 @@
 
 // Core ships a minimal global styles to set CSS reset and base font size
 @import './../../../node_modules/normalize.css/normalize';
-@import './tokens/index.generated';
+@import './tokens/generated/index';
 
 html {
   font-size: $cds-token-global-base-font-size-static;

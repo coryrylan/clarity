@@ -84,20 +84,20 @@ cds-card {
 }
 
 .sbdocs.sbdocs-wrapper {
-  padding-top: 30px;
+  padding-top: 30px !important;
 }
 
 .sbdocs-title,
-.sbdocs .sbdocs-h1,
-.sbdocs .sbdocs-h2,
-.sbdocs .sbdocs-h3 {
+.sbdocs-h1,
+.sbdocs-h2,
+.sbdocs-h3 {
   font-weight: 300 !important;
   margin-bottom: 24px !important;
 }
 
-.sbdocs img,
-.sbdocs .sbdocs-p,
-.sbdocs .sbdocs-ol,
-.sbdocs .sbdocs-ul {
+.sbdocs-img,
+.sbdocs-p,
+.sbdocs-ol,
+.sbdocs-ul {
   margin: 0 0 24px 0 !important;
 }

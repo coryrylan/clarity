@@ -39,13 +39,13 @@ export const core = () => {
       <h1 cds-text="display">Clarity Core <clr-icon shape="beta" size="xl" solid status="info" style="transform: translate3d(-0.3em, -0.4em, 0)"></clr-icon></h1>
       <h2 cds-text="section">Web Component Implementation of the Clarity Design System</h2>
 
-      <div cds-layout="vertical gap-sm" cds-text="body left" class="welcome-intro">
-        <p>
+      <div cds-layout="vertical gap-md" cds-text="body left" class="welcome-intro">
+        <p cds-text="body">
           Clarity Core is a Web Component implementation of the <a href="https://clarity.design">Clarity Design System</a>.
           Clarity Core provides a set of reusable UI components that work in any JavaScript framework or no framework at all.
         </p>
 
-        <p>
+        <p cds-text="body">
           Core is currently in a beta state but is ready to try out.
           We are actively looking for <a href="https://github.com/vmware/clarity/issues/new/choose">feedback</a>
           from teams on their experiences. You can read more about Core and its goals

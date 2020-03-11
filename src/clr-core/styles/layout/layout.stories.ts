@@ -7,7 +7,7 @@
 import { html } from 'lit-html';
 
 export default {
-  title: 'Experimental/Layout/All',
+  title: 'Experimental/Layout/Stories',
   parameters: {
     options: { showPanel: true },
     a11y: { disable: true },
@@ -725,7 +725,7 @@ export const utilitiesDisplay = () => {
 export const patternsApplication = () => {
   return html`
     <div cds-layout="vertical gap-sm align-items-stretch" style="height: 100vh">
-      <cds-placeholder cds-align="shrink">header</cds-placeholder>
+      <cds-placeholder cds-layout="align-shrink">header</cds-placeholder>
       <div cds-layout="horizontal gap-sm align-items-stretch" wrap="none">
         <cds-placeholder demo-side-bar>Sidebar</cds-placeholder>
         <cds-placeholder demo-content>
@@ -739,13 +739,13 @@ export const patternsApplication = () => {
 export const patternsContentSite = () => {
   return html`
     <div cds-layout="vertical gap-sm align-items-stretch" style="height: 100vh">
-      <cds-placeholder cds-align="shrink">header</cds-placeholder>
+      <cds-placeholder cds-layout="align-shrink">header</cds-placeholder>
       <div cds-layout="horizontal gap-sm align-items-stretch">
         <cds-placeholder demo-side-bar>Sidebar</cds-placeholder>
         <cds-placeholder>content</cds-placeholder>
         <cds-placeholder demo-side-bar>Sidebar</cds-placeholder>
       </div>
-      <cds-placeholder cds-align="shrink">footer</cds-placeholder>
+      <cds-placeholder cds-layout="align-shrink">footer</cds-placeholder>
     </div>
   `;
 };

@@ -44,15 +44,6 @@ export const content = () => {
   `;
 };
 
-export const body = () => {
-  return html`
-    <!-- should be placed on body element -->
-    <div cds-text="body">
-      The quick brown fox jumps over the lazy dog. (body)   
-    </div>
-  `;
-};
-
 export const links = () => {
   return html`
     <p cds-text="body">
@@ -85,9 +76,9 @@ export const weights = () => {
 export const position = () => {
   return html`
     <cds-demo cds-layout="vertical gap-md align-items-stretch">
-      <p cds-text="left">Text Left (left)</p>
-      <p cds-text="right">Text Right (right)</p>
-      <p cds-text="center">Text Center (center)</p>
+      <p cds-text="body left">Text Left (left)</p>
+      <p cds-text="body right">Text Right (right)</p>
+      <p cds-text="body center">Text Center (center)</p>
     </cds-demo>
   `;
 };

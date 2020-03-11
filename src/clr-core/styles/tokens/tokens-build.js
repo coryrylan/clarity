@@ -50,37 +50,37 @@ theo.registerFormat('core-tokens-scss', result => {
     .reduce((props, next) => `${props}\n${next}`, '')}`;
 });
 
-fs.mkdir('./src/clr-core/styles/tokens/', { recursive: true }, () => {});
+fs.mkdir('./src/clr-core/styles/tokens/generated', { recursive: true }, () => {});
 
 theo
   .convert({
     transform: {
       type: 'web',
-      file: './src/clr-core/tokens/tokens.yml',
+      file: './src/clr-core/styles/tokens/tokens.yml',
     },
     format: {
       type: 'core-tokens-public',
     },
   })
-  .then(scss => fs.writeFileSync('./src/clr-core/styles/tokens/_public.generated.scss', scss));
+  .then(scss => fs.writeFileSync('./src/clr-core/styles/tokens/generated/_public.scss', scss));
 
 theo
   .convert({
     transform: {
       type: 'web',
-      file: './src/clr-core/tokens/tokens.yml',
+      file: './src/clr-core/styles/tokens/tokens.yml',
     },
     format: {
       type: 'core-tokens-scss',
     },
   })
-  .then(scss => fs.writeFileSync('./src/clr-core/styles/tokens/_index.generated.scss', scss));
+  .then(scss => fs.writeFileSync('./src/clr-core/styles/tokens/generated/_index.scss', scss));
 
 theo
   .convert({
     transform: {
       type: 'web',
-      file: './src/clr-core/tokens/tokens.yml',
+      file: './src/clr-core/styles/tokens/tokens.yml',
     },
     format: {
       type: 'raw.json',
@@ -94,5 +94,5 @@ theo
         data.props[propName].base20Rem = getPropValue(data.props[propName]);
       });
 
-    fs.writeFileSync('./src/clr-core/styles/tokens/index.json', JSON.stringify(data, {}, 2));
+    fs.writeFileSync('./src/clr-core/styles/tokens/generated/index.json', JSON.stringify(data, {}, 2));
   });
