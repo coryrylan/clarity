@@ -2,108 +2,61 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-// TODO: phase two needs specific sides and @ breakpoints
+@import './mixins/mixins';
 
-[cds-pad='none'],
-cds-layout[pad='none'] {
-  padding: 0 !important;
+// why are we doing these in groups?
+// so that more explicit side declarations can override more general axis declarations
+// it's more verbose but allows customization through greater specificity
+// <div cds-layout="pad-sm pad-top-lg pad-bottom-none">...</div>
+
+// padding all around
+
+@include cdsLayoutPadder();
+
+// Padding by axis
+
+@include cdsLayoutPadder('horizontal' 'vertical');
+
+// Padding by side
+
+@include cdsLayoutPadder('top' 'right' 'bottom' 'left');
+
+// responsive breakpoint – sm
+@media (min-width: $cds-token-layout-width-sm-static) {
+  @include cdsLayoutPadder(null, 'sm');
+  @include cdsLayoutPadder('horizontal' 'vertical', 'sm');
+  @include cdsLayoutPadder('top' 'right' 'bottom' 'left', 'sm');
 }
 
-[cds-pad='xs'],
-cds-layout[pad='xs'] {
-  padding: $cds-token-layout-space-xs !important;
+// responsive breakpoint – md
+@media (min-width: $cds-token-layout-width-md-static) {
+  @include cdsLayoutPadder(null, 'md');
+  @include cdsLayoutPadder('horizontal' 'vertical', 'md');
+  @include cdsLayoutPadder('top' 'right' 'bottom' 'left', 'md');
 }
 
-[cds-pad='sm'],
-cds-layout[pad='sm'] {
-  padding: $cds-token-layout-space-sm !important;
+// responsive breakpoint – lg
+@media (min-width: $cds-token-layout-width-lg-static) {
+  @include cdsLayoutPadder(null, 'lg');
+  @include cdsLayoutPadder('horizontal' 'vertical', 'lg');
+  @include cdsLayoutPadder('top' 'right' 'bottom' 'left', 'lg');
 }
 
-[cds-pad='md'],
-cds-layout[pad='md'] {
-  padding: $cds-token-layout-space-md !important;
+// TODO: REMOVE ALL TESTER CODE!
+
+#tester {
+  @include cdsLayoutHorizontalGapper();
+  @include cdsLayoutVerticalGapper();
 }
 
-[cds-pad='lg'],
-cds-layout[pad='lg'] {
-  padding: $cds-token-layout-space-lg !important;
-}
+// responsive breakpoint – xl
+@media (min-width: $cds-token-layout-width-xl-static) {
+  @include cdsLayoutPadder(null, 'xl');
+  @include cdsLayoutPadder('horizontal' 'vertical', 'xl');
+  @include cdsLayoutPadder('top' 'right' 'bottom' 'left', 'xl');
 
-[cds-pad='xl'],
-cds-layout[pad='xl'] {
-  padding: $cds-token-layout-space-xl !important;
-}
-
-/* Padding by axis */
-
-[cds-pad^='[none'],
-cds-layout[pad^='[none'] {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-[cds-pad$='none]'],
-cds-layout[pad$='none]'] {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-[cds-pad^='[xs'],
-cds-layout[pad^='[xs'] {
-  padding-top: $cds-token-layout-space-xs !important;
-  padding-bottom: $cds-token-layout-space-xs !important;
-}
-
-[cds-pad$='xs]'],
-cds-layout[pad$='xs]'] {
-  padding-left: $cds-token-layout-space-xs !important;
-  padding-right: $cds-token-layout-space-xs !important;
-}
-
-[cds-pad^='[sm'],
-cds-layout[pad^='[sm'] {
-  padding-top: $cds-token-layout-space-sm !important;
-  padding-bottom: $cds-token-layout-space-sm !important;
-}
-
-[cds-pad$='sm]'],
-cds-layout[pad$='sm]'] {
-  padding-left: $cds-token-layout-space-sm !important;
-  padding-right: $cds-token-layout-space-sm !important;
-}
-
-[cds-pad^='[md'],
-cds-layout[pad^='[md'] {
-  padding-top: $cds-token-layout-space-md !important;
-  padding-bottom: $cds-token-layout-space-md !important;
-}
-
-[cds-pad$='md]'],
-cds-layout[pad$='md]'] {
-  padding-left: $cds-token-layout-space-md !important;
-  padding-right: $cds-token-layout-space-md !important;
-}
-
-[cds-pad^='[lg'],
-cds-layout[pad^='[lg'] {
-  padding-top: $cds-token-layout-space-lg !important;
-  padding-bottom: $cds-token-layout-space-lg !important;
-}
-
-[cds-pad$='lg]'],
-cds-layout[pad$='lg]'] {
-  padding-left: $cds-token-layout-space-lg !important;
-  padding-right: $cds-token-layout-space-lg !important;
-}
-
-[cds-pad^='[xl'],
-cds-layout[pad^='[xl'] {
-  padding-top: $cds-token-layout-space-xl !important;
-  padding-bottom: $cds-token-layout-space-xl !important;
-}
-
-[cds-pad$='xl]'],
-cds-layout[pad$='xl]'] {
-  padding-left: $cds-token-layout-space-xl !important;
-  padding-right: $cds-token-layout-space-xl !important;
+  #tester {
+    @include cdsLayoutHorizontalGapper('xl');
+    @include cdsLayoutVerticalGapper('xl');
+  }
 }

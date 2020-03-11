@@ -23,19 +23,6 @@ html {
   );
 }
 
-[cds-body-text],
-[cds-text] {
-  $lh-gap: getLineHeightGap($cds-token-typography-body-line-height-static, $cds-token-typography-body-line-height);
-  @include LHE($lh-gap);
-
-  font-family: $cds-token-typography-font-family;
-  color: $cds-token-typography-body-color;
-  font-weight: $cds-token-typography-body-font-weight;
-  font-size: $cds-token-typography-body-font-size;
-  letter-spacing: $cds-token-typography-body-letter-spacing;
-  line-height: $cds-token-typography-body-line-height;
-}
-
 [cds-text] {
   display: block;
   width: 100%;
@@ -296,6 +283,21 @@ html {
   color: $cds-token-typography-subsection-color;
   line-height: $cds-token-typography-subsection-line-height;
   letter-spacing: $cds-token-typography-subsection-letter-spacing;
+}
+
+[cds-body-text],
+[cds-text*='body'] {
+  font-family: $cds-token-typography-font-family;
+  color: $cds-token-typography-body-color;
+  font-weight: $cds-token-typography-body-font-weight;
+  font-size: $cds-token-typography-body-font-size;
+  letter-spacing: $cds-token-typography-body-letter-spacing;
+  line-height: $cds-token-typography-body-line-height;
+}
+
+[cds-text*='body'] {
+  $lh-gap: getLineHeightGap($cds-token-typography-body-line-height-static, $cds-token-typography-body-line-height);
+  @include LHE($lh-gap);
 }
 
 [cds-text*='message'] {
