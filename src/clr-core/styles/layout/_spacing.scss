@@ -2,73 +2,12 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
+@import './mixins/mixins';
+
 // why are we doing these in groups?
 // so that more explicit side declarations can override more general axis declarations
 // it's more verbose but allows customization through greater specificity
 // <div cds-layout="pad-sm pad-top-lg pad-bottom-none">...</div>
-
-@function getPadAttributeString($side: null, $size: 'none', $breakpoint: null) {
-  $formattedSide: '';
-  $formattedBreakpoint: '';
-
-  @if $side {
-    $formattedSide: #{'-' + $side};
-  }
-
-  @if $breakpoint {
-    $formattedBreakpoint: #{'@' + $breakpoint};
-  }
-
-  @return #{'pad' + $formattedSide + '-' + $size + $formattedBreakpoint};
-}
-
-@function getLayoutSpacingToken($size: null) {
-  @if $size == 'xs' {
-    @return $cds-token-layout-space-xs;
-  } @else if $size == 'sm' {
-    @return $cds-token-layout-space-sm;
-  } @else if $size == 'md' {
-    @return $cds-token-layout-space-md;
-  } @else if $size == 'lg' {
-    @return $cds-token-layout-space-md;
-  } @else if $size == 'xl' {
-    @return $cds-token-layout-space-md;
-  } @else {
-    @return 0;
-  }
-}
-
-@mixin cdsLayoutPadder($sides: null, $breakpoint: null) {
-  $tShirtSizes: 'none', 'xs', 'sm', 'md', 'lg', 'xl';
-
-  @each $size in $tShirtSizes {
-    $value: getLayoutSpacingToken($size);
-
-    @if $sides == null {
-      [cds-layout~=#{'"' + getPadAttributeString(null, $size, $breakpoint) + '"'}] {
-        padding: $value !important;
-      }
-    } @else {
-      @each $side in $sides {
-        @if $side == 'horizontal' {
-          [cds-layout~=#{'"' + getPadAttributeString($side, $size, $breakpoint) + '"'}] {
-            padding-left: $value !important;
-            padding-right: $value !important;
-          }
-        } @else if $side == 'vertical' {
-          [cds-layout~=#{'"' + getPadAttributeString($side, $size, $breakpoint) + '"'}] {
-            padding-top: $value !important;
-            padding-bottom: $value !important;
-          }
-        } @else {
-          [cds-layout~=#{'"' + getPadAttributeString($side, $size, $breakpoint) + '"'}] {
-            padding-#{$side}: $value !important;
-          }
-        }
-      }
-    }
-  }
-}
 
 // padding all around
 
@@ -103,9 +42,21 @@
   @include cdsLayoutPadder('top' 'right' 'bottom' 'left', 'lg');
 }
 
+// TODO: REMOVE ALL TESTER CODE!
+
+#tester {
+  @include cdsLayoutHorizontalGapper();
+  @include cdsLayoutVerticalGapper();
+}
+
 // responsive breakpoint – xl
 @media (min-width: $cds-token-layout-width-xl-static) {
   @include cdsLayoutPadder(null, 'xl');
   @include cdsLayoutPadder('horizontal' 'vertical', 'xl');
   @include cdsLayoutPadder('top' 'right' 'bottom' 'left', 'xl');
+
+  #tester {
+    @include cdsLayoutHorizontalGapper('xl');
+    @include cdsLayoutVerticalGapper('xl');
+  }
 }
