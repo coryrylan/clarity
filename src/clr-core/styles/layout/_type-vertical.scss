@@ -2,7 +2,7 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-cds-layout[type='vertical'] {
+[cds-layout='vertical'] {
   width: 100%;
   display: inline-flex;
   flex-direction: column;
@@ -10,76 +10,76 @@ cds-layout[type='vertical'] {
   justify-items: flex-start;
   align-items: flex-start;
 
-  &[align-items~='top'] {
+  &[cds-layout~='align-items-top'] {
     justify-content: flex-start;
     justify-items: flex-start;
   }
 
-  &[align-items~='bottom'] {
+  &[cds-layout~='align-items-bottom'] {
     justify-content: flex-end;
     justify-items: flex-end;
   }
 
-  &[align-items~='left'] {
+  &[cds-layout~='align-items-left'] {
     align-items: flex-start;
   }
 
-  &[align-items~='right'] {
+  &[cds-layout~='align-items-right'] {
     align-items: flex-end;
   }
 
-  &[align-items~='vertical-center'] {
+  &[cds-layout~='align-items-vertical-center'] {
     justify-content: center;
     justify-items: center;
   }
 
-  &[align-items~='vertical-stretch'] {
+  &[cds-layout~='align-items-vertical-stretch'] {
     justify-content: stretch;
     justify-items: stretch;
   }
 
-  &[align-items~='horizontal-center'] {
+  &[cds-layout~='align-items-horizontal-center'] {
     align-items: center;
   }
 
-  &[align-items~='horizontal-stretch'] {
+  &[cds-layout~='align-items-horizontal-stretch'] {
     align-items: stretch;
   }
 
-  &[align-items~='center'] {
+  &[cds-layout~='align-items-center'] {
     align-items: center;
     justify-content: center;
     justify-items: center;
   }
 
-  &[align-items~='stretch'] {
+  &[cds-layout~='align-items-stretch'] {
     align-items: stretch;
     justify-content: stretch;
     justify-items: stretch;
   }
 
-  &[align-items~='stretch'] > *,
-  &[align-items~='vertical-stretch'] > * {
+  &[cds-layout~='align-items-stretch'] > *,
+  &[cds-layout~='align-items-vertical-stretch'] > * {
     flex-grow: 1;
   }
 
-  &[gap='xs'] > * {
+  &[cds-layout~='gap-xs'] > * {
     margin-bottom: $cds-token-layout-space-xs;
   }
 
-  &[gap='sm'] > * {
+  &[cds-layout~='gap-sm'] > * {
     margin-bottom: $cds-token-layout-space-sm;
   }
 
-  &[gap='md'] > * {
+  &[cds-layout~='gap-md'] > * {
     margin-bottom: $cds-token-layout-space-md;
   }
 
-  &[gap='lg'] > * {
+  &[cds-layout~='gap-lg'] > * {
     margin-bottom: $cds-token-layout-space-lg;
   }
 
-  &[gap='xl'] > * {
+  &[cds-layout~='gap-xl'] > * {
     margin-bottom: $cds-token-layout-space-xl;
   }
 
