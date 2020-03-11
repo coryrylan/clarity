@@ -1,0 +1,73 @@
+// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+$list-indent: $cds-token-layout-space-md;
+
+@mixin renderListStyles($type: ul, $styles: null) {
+    $ul-default: disc;
+    $ol-default: decimal;
+
+    @if $styles != null {
+        @each $style in $styles {
+            @if $style == $ul-default or $style == $ol-default {
+                #{$type}[cds-list],
+                #{$type}[cds-list='#{$style}'] {
+                    list-style-type: $style;
+                }
+            } @else {
+                #{$type}[cds-list='#{$style}'] {
+                    list-style-type: $style;
+                }
+            }
+        }
+    }
+}
+
+%kill-list-styles {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    // zero-width blank space added to help VoiceOver screen reader read a list-style-type none list
+    list-style: '\200B' !important;
+    list-style-position: inside !important;
+}
+
+ul[cds-list]:not([cds-list='unstyled']),
+ol[cds-list] {
+    list-style-position: outside;
+    padding-left: $list-indent;
+}
+
+@include renderListStyles(ul, disc circle square);
+
+@include renderListStyles(ol, arabic-indic armenian bengali cjk-earthly-branch cjk-heavenly-stem cjk-ideographic decimal decimal-leading-zero devanagari ethiopic-halehame-am ethiopic-halehame-ti-er ethiopic-halehame-ti-et georgian gujarati gurmukhi hangul hangul-consonant hiragana hiragana-iroha kannada katakana katakana-iroha khmer korean-hangul-formal korean-hanja-formal korean-hanja-informal lao lower-alpha lower-greek lower-latin lower-roman malayalam mongolian myanmar oriya persian simp-chinese-formal simp-chinese-informal telugu thai upper-alpha upper-latin upper-roman urdu);
+
+ul[cds-list='unstyled'] {
+    @extend %kill-list-styles;
+
+    & > li {
+        & > ul:not[cds-list='unstyled'],
+        ol {
+            margin-left: 0;
+            padding-left: $list-indent;
+        }
+
+        & > ul[cds-list='unstyled'] {
+            margin-left: 0;
+            padding-left: $list-indent !important;
+        }
+    }
+}
+
+ul:not([cds-list='unstyled']),
+ol[cds-list] {
+    & > li > ul[cds-list='unstyled'] {
+        margin-left: 0;
+        padding-left: $list-indent !important;
+    }
+}
+
+ol[cds-list] > li > ol[cds-list] {
+    margin-left: 0;
+    padding-left: $list-indent;
+}
