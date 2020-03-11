@@ -33,9 +33,9 @@
     } @else if $size == 'md' {
         @return $cds-token-layout-space-md;
     } @else if $size == 'lg' {
-        @return $cds-token-layout-space-md;
+        @return $cds-token-layout-space-lg;
     } @else if $size == 'xl' {
-        @return $cds-token-layout-space-md;
+        @return $cds-token-layout-space-xl;
     } @else {
         @return 0;
     }
