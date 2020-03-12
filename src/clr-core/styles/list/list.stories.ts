@@ -25,50 +25,14 @@ const unorderedListOptions: object = {
 
 const orderedListOptions: object = { 
     'none (default decimal)': '', 
-    'arabic-indic': 'arabic-indic',
-    'armenian': 'armenian',
-    'bengali': 'bengali',
-    'cjk-earthly-branch': 'cjk-earthly-branch',
-    'cjk-heavenly-stem': 'cjk-heavenly-stem',
-    'cjk-ideographic': 'cjk-ideographic',
     'decimal': 'decimal',
     'decimal-leading-zero': 'decimal-leading-zero',
-    'devanagari': 'devanagari',
-    'ethiopic-halehame-am': 'ethiopic-halehame-am',
-    'ethiopic-halehame-ti-er': 'ethiopic-halehame-ti-er',
-    'ethiopic-halehame-ti-et': 'ethiopic-halehame-ti-et',
-    'georgian': 'georgian',
-    'gujarati': 'gujarati',
-    'gurmukhi': 'gurmukhi',
-    'hangul': 'hangul',
-    'hangul-consonant': 'hangul-consonant',
-    'hiragana': 'hiragana',
-    'hiragana-iroha': 'hiragana-iroha',
-    'kannada': 'kannada',
-    'katakana': 'katakana',
-    'katakana-iroha': 'katakana-iroha',
-    'khmer': 'khmer',
-    'korean-hangul-formal': 'korean-hangul-formal',
-    'korean-hanja-formal': 'korean-hanja-formal',
-    'korean-hanja-informal': 'korean-hanja-informal',
-    'lao': 'lao',
     'lower-alpha': 'lower-alpha',
-    'lower-greek': 'lower-greek',
     'lower-latin': 'lower-latin',
     'lower-roman': 'lower-roman',
-    'malayalam': 'malayalam',
-    'mongolian': 'mongolian',
-    'myanmar': 'myanmar',
-    'oriya': 'oriya',
-    'persian': 'persian',
-    'simp-chinese-formal': 'simp-chinese-formal',
-    'simp-chinese-informal': 'simp-chinese-informal',
-    'telugu': 'telugu',
-    'thai': 'thai',
     'upper-alpha': 'upper-alpha',
     'upper-latin': 'upper-latin',
-    'upper-roman': 'upper-roman',
-    'urdu': 'urdu'
+    'upper-roman': 'upper-roman'
 };
 
 export const API = () => {
@@ -386,6 +350,59 @@ export const API = () => {
             </ul>
         </div>
       </cds-card>
+
+      <cds-card>
+        <div cds-layout="vertical gap-sm">
+            <h2 cds-text="h2">Custom/Regional Ordered Lists</h2>
+            <ol cds-list class="mongolian">
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+            </ol>
+        </div>
+      </cds-card>
+
+      <style>
+        ol.mongolian {
+          list-style-type: 'mongolian';
+        }
+      </style>
+
+      <cds-card>
+        <div cds-layout="vertical gap-md">
+            <h2 cds-text="h2">Lists + Layouts</h2>
+            <h3 cds-text="section">Vertical</h3>
+            <ul cds-list cds-layout="vertical gap-md">
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+            </ul>
+            <h3 cds-text="section">Horizontal</h3>
+            <ol cds-list="upper-roman" cds-layout="horizontal gap-sm">
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+                <li>The quick brown fox jumps over the lazy dog</li>
+            </ol>
+        </div>
+      </cds-card>
+
+      <style>
+        ol.mongolian {
+          list-style-type: mongolian;
+        }
+      </style>
 
     </div>
   `;

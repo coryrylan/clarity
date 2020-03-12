@@ -10,15 +10,8 @@ $list-indent: $cds-token-layout-space-md;
 
     @if $styles != null {
         @each $style in $styles {
-            @if $style == $ul-default or $style == $ol-default {
-                #{$type}[cds-list],
-                #{$type}[cds-list='#{$style}'] {
-                    list-style-type: $style;
-                }
-            } @else {
-                #{$type}[cds-list='#{$style}'] {
-                    list-style-type: $style;
-                }
+            #{$type}[cds-list='#{$style}'] {
+                list-style-type: $style;
             }
         }
     }
@@ -32,15 +25,21 @@ $list-indent: $cds-token-layout-space-md;
     list-style-position: inside !important;
 }
 
-ul[cds-list]:not([cds-list='unstyled']),
 ol[cds-list] {
+    list-style-type: $cds-token-list-default-ordered-type;
+    list-style-position: outside;
+    padding-left: $list-indent;
+}
+
+ul[cds-list]:not([cds-list='unstyled']) {
+    list-style-type: $cds-token-list-default-unordered-type;
     list-style-position: outside;
     padding-left: $list-indent;
 }
 
 @include renderListStyles(ul, disc circle square);
 
-@include renderListStyles(ol, arabic-indic armenian bengali cjk-earthly-branch cjk-heavenly-stem cjk-ideographic decimal decimal-leading-zero devanagari ethiopic-halehame-am ethiopic-halehame-ti-er ethiopic-halehame-ti-et georgian gujarati gurmukhi hangul hangul-consonant hiragana hiragana-iroha kannada katakana katakana-iroha khmer korean-hangul-formal korean-hanja-formal korean-hanja-informal lao lower-alpha lower-greek lower-latin lower-roman malayalam mongolian myanmar oriya persian simp-chinese-formal simp-chinese-informal telugu thai upper-alpha upper-latin upper-roman urdu);
+@include renderListStyles(ol, decimal decimal-leading-zero lower-alpha lower-latin lower-roman upper-alpha upper-latin upper-roman);
 
 ul[cds-list='unstyled'] {
     @extend %kill-list-styles;
@@ -70,4 +69,10 @@ ol[cds-list] {
 ol[cds-list] > li > ol[cds-list] {
     margin-left: 0;
     padding-left: $list-indent;
+}
+
+ul[cds-layout~='horizontal'], ol[cds-layout~='horizontal'] {
+    li {
+        list-style-position: inside;
+    }
 }

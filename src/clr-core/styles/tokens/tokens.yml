@@ -688,3 +688,13 @@ props:
    value: 400
    type: 'number'
    category: 'typography'
+
+  # lists
+  default-unordered-type:
+    value: 'disc'
+    type: 'string'
+    category: 'list'
+  default-ordered-type:
+    value: 'decimal'
+    type: 'string'
+    category: 'list'
