@@ -67,3 +67,6 @@ cypress/videos
 
 # Local Netlify folder
 .netlify
+src/clr-core/styles/tokens/index.json
+src/clr-core/styles/tokens/_index.generated.scss
+src/clr-core/styles/tokens/_public.generated.scss

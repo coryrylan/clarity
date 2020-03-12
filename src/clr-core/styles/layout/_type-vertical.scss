@@ -63,6 +63,11 @@
     flex-grow: 1;
   }
 
+  &[cds-layout~='align-items-stretch'] > *[cds-align='shrink'],
+  &[cds-layout~='align-items-vertical-stretch'] > *[cds-align='shrink'] {
+    flex-grow: 0;
+  }
+
   &[cds-layout~='gap-xs'] > * {
     margin-bottom: $cds-token-layout-space-xs;
   }

@@ -719,54 +719,213 @@ export const utilitiesDisplay = () => {
   `;
 };
 
+function buildScrollableContent() {
+  const text = html`<p cds-text="p1">scrollable content</p>`;
+  const filler = html`<p cds-text="p1">...</p><p cds-text="p1">...</p>`;
+  const returnHtml = [];
+
+  returnHtml.push(text);
+
+  for (let i=0; i < 15; i++) {
+    returnHtml.push(filler);
+    returnHtml.push(text);
+  }
+
+  return returnHtml;
+}
+
+const scrollableContent = buildScrollableContent();
+
+const scrollableContentHtml = html`${scrollableContent}`;
+
 /**
  * Patterns
  */
 export const patternsApplication = () => {
   return html`
-    <div cds-layout="vertical gap-sm align-items-stretch" style="height: 100vh">
-      <cds-placeholder cds-layout="align-shrink">header</cds-placeholder>
-      <div cds-layout="horizontal gap-sm align-items-stretch" wrap="none">
-        <cds-placeholder demo-side-bar>Sidebar</cds-placeholder>
-        <cds-placeholder demo-content>
-          <div>Scrollable Content</div>
-        </cds-placeholder>
+    <div cds-layout="vertical gap-xl">
+
+      <div cds-layout="vertical gap-sm">
+        <h3 cds-text="h3">Vertical layout with subnav, sidebar, and scrollable content</h3>
+        <div class="demo-layout demo-app-layout" cds-layout="vertical gap-none align-items-stretch">
+          <header class="demo-header" cds-layout="pad-sm pad-md@md" cds-text="left xb" cds-align="shrink">
+            header
+          </header>
+          <div class="demo-subnav" cds-layout="pad-vertical-xs pad-horizontal-sm pad-horizontal-md@md" cds-align="shrink" cds-text="left">subnav</div>
+          <div cds-layout="horizontal gap-none align-items-stretch" wrap="none">
+            <nav class="demo-sidenav" cds-layout="pad-sm pad-md@md" cds-align="shrink">sidebar</nav>
+            <div class="demo-content demo-scrollable-content" cds-align="stretch">
+              <div cds-layout="vertical gap-sm pad-md">
+                ${scrollableContentHtml}
+              </div>
+            </div>
+          </div>
+          <footer class="demo-footer" cds-layout="pad-sm pad-md@md" cds-text="left" cds-align="shrink">footer</footer>
+        </div>
       </div>
+
+      <div cds-layout="vertical gap-sm">
+        <h3 cds-text="h3">Horizontal layout with scrollable content</h3>
+        <div class="demo-layout demo-app-layout" cds-layout="horizontal gap-none align-items-stretch no-wrap">
+          <header class="demo-header demo-alt-header" cds-layout="pad-sm vertical gap-md align-items-vertical-stretch" cds-align="shrink">
+            <cds-icon shape="applications" size="lg" inverse cds-align="shrink"></cds-icon>
+            <cds-icon class="demo-alt-navicon" shape="blocks-group" size="lg" inverse cds-align="shrink"></cds-icon>
+            <cds-icon class="demo-alt-navicon" shape="bundle" size="lg" inverse cds-align="shrink"></cds-icon>
+            <cds-icon class="demo-alt-navicon" shape="building" size="lg" inverse cds-align="shrink"></cds-icon>
+            <div>&nbsp;</div>
+            <cds-icon class="demo-alt-navicon" shape="cog" size="lg" inverse cds-align="shrink"></cds-icon>
+          </header>
+          <div cds-layout="horizontal gap-none align-items-stretch no-wrap">
+            <nav class="demo-sidenav" cds-layout="pad-md" cds-align="shrink">
+              <p cds-text="h3">sidebar</p>
+            </nav>
+            <div cds-layout="vertical align-items-stretch" cds-align="stretch">
+              <div class="demo-header demo-alt-content-header" cds-align="shrink" cds-layout="pad-sm" cds-text="left">header</div>
+              <div class="demo-content demo-scrollable-content demo-alt-content" cds-align="stretch">
+                <div cds-layout="vertical gap-sm pad-md">
+                  ${scrollableContentHtml}
+                </div>
+              </div>
+              <footer class="demo-footer" cds-layout="pad-sm" cds-text="left" cds-align="shrink">footer</footer>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div cds-layout="vertical gap-sm">
+        <h3 cds-text="h3">Vertical layout with content footer and scrollable content</h3>
+        <div class="demo-layout demo-app-layout" cds-layout="vertical gap-none align-items-stretch">
+          <header class="demo-header" cds-layout="pad-sm pad-md@md" cds-text="left xb" cds-align="shrink">
+            header
+          </header>
+          <div cds-layout="horizontal gap-none align-items-stretch no-wrap">
+            <nav class="demo-sidenav" cds-layout="pad-sm pad-md@md" cds-align="shrink">sidebar</nav>
+            <div cds-layout="vertical align-items-stretch" cds-align="stretch">
+              <div class="demo-content demo-scrollable-content" cds-align="stretch">
+                <div cds-layout="vertical gap-sm pad-md">
+                  ${scrollableContentHtml}
+                </div>
+              </div>
+              <footer class="demo-footer" cds-layout="pad-vertical-sm pad-horizontal-md" cds-text="left" cds-align="shrink">footer</footer>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div cds-layout="vertical gap-sm">
+        <h3 cds-text="h3">Hybrid layout with scrollable content</h3>
+        <div class="demo-layout demo-app-layout" cds-layout="horizontal gap-none align-items-stretch no-wrap">
+          <header class="demo-header demo-alt-header-2" cds-layout="pad-sm vertical gap-md align-items-vertical-stretch" cds-align="shrink">
+            <cds-icon shape="applications" size="lg" inverse cds-align="shrink"></cds-icon>
+            <cds-icon class="demo-alt-navicon" shape="blocks-group" size="lg" inverse cds-align="shrink"></cds-icon>
+            <cds-icon class="demo-alt-navicon" shape="bundle" size="lg" inverse cds-align="shrink"></cds-icon>
+            <cds-icon class="demo-alt-navicon" shape="building" size="lg" inverse cds-align="shrink"></cds-icon>
+            <div>&nbsp;</div>
+            <cds-icon class="demo-alt-navicon" shape="cog" size="lg" inverse cds-align="shrink"></cds-icon>
+          </header>
+          <div cds-layout="vertical gap-none align-items-stretch">
+            <header class="demo-header" cds-layout="pad-sm pad-md@md" cds-text="left xb" cds-align="shrink">
+              header
+            </header>
+            <div cds-layout="horizontal gap-none align-items-stretch" wrap="none">
+              <nav class="demo-sidenav" cds-layout="pad-sm pad-md@md" cds-align="shrink">sidebar</nav>
+              <div class="demo-content demo-scrollable-content" cds-align="stretch">
+                <div cds-layout="vertical gap-sm pad-md">
+                  ${scrollableContentHtml}
+                </div>
+              </div>
+            </div>
+            <footer class="demo-footer" cds-layout="pad-sm pad-md@md" cds-text="left" cds-align="shrink">footer</footer>
+          </div>
+        </div>
+      </div>
+
     </div>
   `;
 };
 
 export const patternsContentSite = () => {
   return html`
-    <div cds-layout="vertical gap-sm align-items-stretch" style="height: 100vh">
-      <cds-placeholder cds-layout="align-shrink">header</cds-placeholder>
-      <div cds-layout="horizontal gap-sm align-items-stretch">
-        <cds-placeholder demo-side-bar>Sidebar</cds-placeholder>
-        <cds-placeholder>content</cds-placeholder>
-        <cds-placeholder demo-side-bar>Sidebar</cds-placeholder>
+    <div cds-layout="vertical gap-xl">
+      <div cds-layout="vertical gap-sm">
+        <h3 cds-text="h3">Three-column layout</h3>
+        <div class="demo-layout" cds-layout="vertical gap-none align-items-stretch" style="height: 100vh">
+          <header class="demo-header" cds-layout="pad-sm pad-md@md" cds-text="left xb" cds-align="shrink">
+            header
+          </header>
+          <div cds-layout="horizontal gap-none align-items-stretch" class="demo-content">
+            <nav class="demo-sidenav" cds-layout="pad-sm pad-md@md" cds-align="shrink">sidebar</nav>
+            <div class="demo-content" cds-layout="pad-sm pad-md@md" cds-align="stretch">content</div>
+            <section class="demo-sidebar" cds-layout="pad-sm pad-md@md" cds-align="shrink">sidebar</section>
+          </div>
+          <footer class="demo-footer" cds-layout="pad-sm pad-md@md" cds-text="left" cds-align="shrink">footer</footer>
+        </div>
       </div>
-      <cds-placeholder cds-layout="align-shrink">footer</cds-placeholder>
+
+      <div cds-layout="vertical gap-sm">
+        <h3 cds-text="h3">Single rail layout</h3>
+        <div class="demo-layout" cds-layout="vertical gap-none align-items-stretch" style="height: 100vh">
+          <header class="demo-header" cds-layout="pad-sm pad-md@md" cds-text="left xb" cds-align="shrink">
+            header
+          </header>
+          <div cds-layout="pad-xl horizontal gap-md no-wrap align-items-horizontal-center">
+            <div cds-layout="vertical gap-md" style="max-width: 80%;">
+              <h3 cds-text="h1">Title</h3>
+              <p cds-text="body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+            </div>
+            <div style="background: #CCC; width: 100%">&nbsp;</div>
+          </div>
+          <div cds-layout="pad-xl horizontal align-items-center" class="demo-content">
+            <div cds-layout="horizontal no-wrap gap-md align-items-horizontal-center" style="max-width: 80%">
+              <cds-card cds-layout="pad-xl" cds-text="center">card</cds-card>
+              <cds-card cds-layout="pad-xl" cds-text="center">card</cds-card>
+              <cds-card cds-layout="pad-xl" cds-text="center">card</cds-card>
+            </div>
+          </div>
+          <footer cds-layout="pad-xl horizontal no-wrap">
+              <div cds-layout="pad-xl" cds-text="center">
+                footer links<br>
+                footer links<br>
+                footer links
+              </div>
+              <div cds-layout="pad-xl" cds-text="center">
+                footer links<br>
+                footer links<br>
+                footer links
+              </div>
+              <div cds-layout="pad-xl" cds-text="center">
+                footer links<br>
+                footer links<br>
+                footer links
+              </div>
+          </footer>
+        </div>
+      </div>
     </div>
   `;
 };
 
 export const patternsResponsiveImageGallery = () => {
   return html`
-    <div cds-layout="grid cols-6@sm cols-4@md cols-3@lg cols-2@xl gap-sm align-items-horizontal-stretch">
-      <cds-placeholder cds-layout="col-12">header</cds-placeholder>
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
-      <cds-placeholder cds-layout="col-12">footer</cds-placeholder>
+    <div class="demo-layout" cds-layout="vertical gap-none align-items-horizontal-stretch">
+      <header class="demo-header" cds-layout="pad-sm pad-md@md" cds-text="left xb">
+        header
+      </header>
+      <div cds-layout="grid cols-12 cols-6@sm cols-4@md cols-3@lg cols-2@xl pad-xs pad-sm@md pad-md@lg gap-xs gap-sm@md gap-md@lg align-items-horizontal-stretch" class="demo-content">
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+        <img src="https://dummyimage.com/600x400/000/fff" alt="placeholder image" demo-img />
+      </div>
+      <footer class="demo-footer" cds-layout="pad-sm pad-md@md" cds-text="left">footer</footer>
     </div>
   `;
 };
