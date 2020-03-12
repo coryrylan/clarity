@@ -16,46 +16,31 @@ export default {
   },
 };
 
-const unorderedListOptions: object = { 
-    'none (default disc)': '', 
-    'disc': 'disc',
-    'circle': 'circle',
-    'square': 'square'
+const unorderedListOptions: object = {
+  'none (default disc)': '',
+  disc: 'disc',
+  circle: 'circle',
+  square: 'square',
 };
 
-const orderedListOptions: object = { 
-    'none (default decimal)': '', 
-    'decimal': 'decimal',
-    'decimal-leading-zero': 'decimal-leading-zero',
-    'lower-alpha': 'lower-alpha',
-    'lower-latin': 'lower-latin',
-    'lower-roman': 'lower-roman',
-    'upper-alpha': 'upper-alpha',
-    'upper-latin': 'upper-latin',
-    'upper-roman': 'upper-roman'
+const orderedListOptions: object = {
+  'none (default decimal)': '',
+  decimal: 'decimal',
+  'decimal-leading-zero': 'decimal-leading-zero',
+  'lower-alpha': 'lower-alpha',
+  'lower-latin': 'lower-latin',
+  'lower-roman': 'lower-roman',
+  'upper-alpha': 'upper-alpha',
+  'upper-latin': 'upper-latin',
+  'upper-roman': 'upper-roman',
 };
 
 export const API = () => {
-  const orderedListStyle = select(
-    'Ordered List Style',
-    orderedListOptions,
-    undefined,
-    propertiesGroup
-  );
+  const orderedListStyle = select('Ordered List Style', orderedListOptions, undefined, propertiesGroup);
 
-  const orderedListChildStyle = select(
-    'Ordered List Style (Child)',
-    orderedListOptions,
-    undefined,
-    propertiesGroup
-  );
+  const orderedListChildStyle = select('Ordered List Style (Child)', orderedListOptions, undefined, propertiesGroup);
 
-  const unorderedListStyle = select(
-    'Unordered List Style',
-    unorderedListOptions,
-    undefined,
-    propertiesGroup
-  );
+  const unorderedListStyle = select('Unordered List Style', unorderedListOptions, undefined, propertiesGroup);
 
   const unorderedListChildStyle = select(
     'Unordered List Style (Child)',
