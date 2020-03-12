@@ -2,6 +2,7 @@ import '!style-loader!css-loader!./../../../dist/clr-core/module.reset.min.css';
 import '!style-loader!css-loader!./../../../dist/clr-core/module.tokens.min.css';
 import '!style-loader!css-loader!./../../../dist/clr-core/module.layout.min.css';
 import '!style-loader!css-loader!./../../../dist/clr-core/module.typography.min.css';
+import '!style-loader!css-loader!./../../../dist/clr-core/module.list.min.css';
 import '!style-loader!css-loader!./../../../node_modules/@clr/city/css/bundles/default.min.css';
 import '!style-loader!css-loader!./public/demo.css';
 import { setCustomElements, addDecorator, addParameters } from '@storybook/web-components';

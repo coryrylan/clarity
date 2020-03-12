@@ -95,14 +95,15 @@
     "core:build:tokens": "node src/clr-core/styles/tokens/tokens-build.js",
     "core:build:sass": "npm-run-all 'core:build:sass:modules' -p 'core:build:sass:components' -s 'core:build:sass:min'",
     "core:build:sass:min": "npm-run-all -p core:build:sass:min:*",
-    "core:build:sass:watch": "npm-run-all 'core:build:sass' -p 'core:build:sass:components -- -w' 'core:build:sass:modules -- --watch' 'core:build:sass:min:global -- --watch' 'core:build:sass:min:layout -- --watch' 'core:build:sass:min:reset -- --watch' 'core:build:sass:min:tokens -- --watch' 'core:build:sass:min:typography -- --watch'",
+    "core:build:sass:watch": "npm-run-all 'core:build:sass' -p 'core:build:sass:components -- -w' 'core:build:sass:modules -- --watch' 'core:build:sass:min:global -- --watch' 'core:build:sass:min:layout -- --watch' 'core:build:sass:min:reset -- --watch' 'core:build:sass:min:tokens -- --watch' 'core:build:sass:min:typography -- --watch' 'core:build:sass:min:list -- --watch'",
     "core:build:sass:modules": "sass --no-source-map  src/clr-core/styles:dist/clr-core",
     "core:build:sass:components": "sass-render --q --suffix '.css.ts' -t ./src/clr-core/sass-template.js './src/clr-core/**/*element.scss'",
     "core:build:sass:min:global": "csso -i ./dist/clr-core/global.css -o ./dist/clr-core/global.min.css --no-restructure",
     "core:build:sass:min:layout": "csso -i ./dist/clr-core/module.layout.css -o ./dist/clr-core/module.layout.min.css --no-restructure",
     "core:build:sass:min:reset": "csso -i ./dist/clr-core/module.reset.css -o ./dist/clr-core/module.reset.min.css --no-restructure",
     "core:build:sass:min:tokens": "csso -i ./dist/clr-core/module.tokens.css -o ./dist/clr-core/module.tokens.min.css --no-restructure",
-    "core:build:sass:min:typography": "csso -i ./dist/clr-core/module.typography.css -o ./dist/clr-core/module.typography.min.css --no-restructure"
+    "core:build:sass:min:typography": "csso -i ./dist/clr-core/module.typography.css -o ./dist/clr-core/module.typography.min.css --no-restructure",
+    "core:build:sass:min:list": "csso -i ./dist/clr-core/module.list.css -o ./dist/clr-core/module.list.min.css --no-restructure"
   },
   "dependencies": {
     "@angular/animations": "9.0.2",
