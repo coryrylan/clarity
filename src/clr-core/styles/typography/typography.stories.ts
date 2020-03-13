@@ -63,12 +63,12 @@ export const code = () => {
 export const weights = () => {
   return html`
     <cds-demo cds-layout="vertical gap-md">
-      <p cds-text="body-lt">The <em>200</em> quick brown foxes <em>lightly</em> jump over the lazy dog. (-lt)</p>  
-      <p cds-text="body-rg">The <em>400</em> quick brown foxes <em>regularly</em> jump over the lazy dog. (-rg)</p>  
-      <p cds-text="body-md">The <em>500</em> quick brown foxes <em>mediumly</em> jump over the lazy dog. (-md)</p>  
-      <p cds-text="body-sb">The <em>500</em> quick brown foxes <em>semi-boldly</em> jump over the lazy dog. (-sb)</p>  
-      <p cds-text="body-bd">The <em>600</em> quick brown foxes <em>boldly</em> jump over the lazy dog. (-bd)</p>  
-      <p cds-text="body-xb">The <em>600</em> quick brown foxes <em>extra-boldly</em> jump over the lazy dog. (-xb)</p>
+      <p cds-text="body light">The <em>200</em> quick brown foxes <em>lightly</em> jump over the lazy dog. (light)</p>  
+      <p cds-text="body regular">The <em>400</em> quick brown foxes <em>regularly</em> jump over the lazy dog. (regular)</p>  
+      <p cds-text="body medium">The <em>500</em> quick brown foxes <em>mediumly</em> jump over the lazy dog. (medium)</p>  
+      <p cds-text="body semibold">The <em>500</em> quick brown foxes <em>semi-boldly</em> jump over the lazy dog. (semibold)</p>  
+      <p cds-text="body bold">The <em>600</em> quick brown foxes <em>boldly</em> jump over the lazy dog. (bold)</p>
+      <p cds-text="body extrabold">The <em>600</em> quick brown foxes <em>extra-boldly</em> jump over the lazy dog. (extrabold)</p>
     </cds-demo>
   `;
 };
@@ -79,6 +79,18 @@ export const position = () => {
       <p cds-text="body left">Text Left (left)</p>
       <p cds-text="body right">Text Right (right)</p>
       <p cds-text="body center">Text Center (center)</p>
+      <p cds-text="body justify" style="width: 200px; background: lightgreen">Text Justify: (justify) – The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.</p>
+    </cds-demo>
+  `;
+};
+
+export const transforms = () => {
+  return html`
+    <cds-demo cds-layout="vertical gap-md align-items-stretch">
+      <p cds-text="body capitalize">text title case (capitalize)</p>
+      <p cds-text="body uppercase">Text uppercase (uppercase)</p>
+      <p cds-text="body lowercase">Text lowercase (lowercase)</p>
+      <p cds-text="body truncate">Text Truncation (truncate): The quick brown fox jumps over the lazy dog.</p>
     </cds-demo>
   `;
 };
@@ -122,7 +134,6 @@ export const disableLineHightRemover = () => {
     </style>
     <cds-demo cds-layout="vertical gap-md">
       <cds-card show-padding>
-        <p cds-text="disable-lhe">The quick brown fox jumps over the lazy dog. (default)</p>
         <p cds-text="body disable-lhe">The quick brown fox jumps over the lazy dog. (body)</p>
         <p cds-text="message disable-lhe">The quick brown fox jumps over the lazy dog. (message)</p>
         <p cds-text="secondary disable-lhe">The quick brown fox jumps over the lazy dog. (secondary)</p>
@@ -131,7 +142,6 @@ export const disableLineHightRemover = () => {
       </cds-card>
 
       <cds-card show-padding>
-        <p cds-text>The quick brown fox jumps over the lazy dog. (default)</p>
         <p cds-text="body">The quick brown fox jumps over the lazy dog. (body)</p>
         <p cds-text="message">The quick brown fox jumps over the lazy dog. (message)</p>
         <p cds-text="secondary">The quick brown fox jumps over the lazy dog. (secondary)</p>

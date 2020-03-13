@@ -391,37 +391,57 @@ html {
 
 // font-weight
 
-[cds-text~='xb'],
-[cds-text*='-xb'] {
+[cds-text~='extrabold'] {
   font-weight: $cds-token-typography-font-weight-extrabold !important;
 }
 
-[cds-text~='bd'],
-[cds-text*='-bd'] {
+[cds-text~='bold'] {
   font-weight: $cds-token-typography-font-weight-bold !important;
 }
 
-[cds-text~='sb'],
-[cds-text*='-sb'] {
+[cds-text~='semibold'] {
   font-weight: $cds-token-typography-font-weight-semibold !important;
 }
 
-[cds-text~='md'],
-[cds-text*='-md'] {
+[cds-text~='medium'] {
   font-weight: $cds-token-typography-font-weight-medium !important;
 }
 
-[cds-text~='rg'],
-[cds-text*='-rg'] {
+[cds-text~='regular'] {
   font-weight: $cds-token-typography-font-weight-regular !important;
 }
 
-[cds-text~='lt'],
-[cds-text*='-lt'] {
+[cds-text~='light'] {
   font-weight: $cds-token-typography-font-weight-light !important;
 }
 
+// transforms
+
+[cds-text~='capitalize'] {
+  text-transform: capitalize !important;
+}
+
+[cds-text~='uppercase'] {
+  text-transform: uppercase !important;
+}
+
+[cds-text~='lowercase'] {
+  text-transform: lowercase !important;
+}
+
+// truncation
+
+[cds-text~='truncate'] {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
 // alignment
+
+[cds-text~='justify'] {
+  text-align: justify !important;
+}
 
 [cds-text~='left'] {
   text-align: left !important;
