@@ -5,14 +5,11 @@
  */
 
 import {
-  assignSlotNames,
-  badgeSlot,
   baseStyles,
   CdsBaseButton,
   getElementWidth,
   iconSpinner,
   iconSpinnerCheck,
-  iconSlot,
   property,
 } from '@clr/core/internal';
 import { ClarityIcons } from '@clr/core/icon/icon.service.js';
@@ -32,27 +29,6 @@ export enum ClrLoadingState {
   LOADING = 'loading',
   SUCCESS = 'success',
   ERROR = 'error',
-}
-
-function buttonSlots(icon: boolean, badge: boolean) {
-  // nested span tags allow for line-height erasers on the innermost span and flex-based centering on the outermost span
-  const textSlot = html`<span class="button-content"
-    ><span><slot></slot></span
-  ></span>`;
-  const slotWithIcon = html`${iconSlot}${textSlot}`;
-  const slotWithBadge = html`${textSlot}${badgeSlot}`;
-  const slotWithContentAndBadge = html`${iconSlot}${textSlot}${badgeSlot}`;
-
-  switch (true) {
-    case icon === true && badge === true:
-      return html`${slotWithContentAndBadge}`;
-    case icon === true:
-      return html`${slotWithIcon}`;
-    case badge === true:
-      return html`${slotWithBadge}`;
-    default:
-      return html`${textSlot}`;
-  }
 }
 
 /**
@@ -141,7 +117,7 @@ export class CdsButton extends CdsBaseButton {
 
   connectedCallback() {
     super.connectedCallback();
-    assignSlotNames([this.icon, 'button-icon'], [this.badge, 'button-badge']);
+    // assignSlotNames([this.icon, 'button-icon'], [this.badge, 'button-badge']);
   }
 
   update(props: Map<string, any>) {
@@ -153,17 +129,17 @@ export class CdsButton extends CdsBaseButton {
 
   render() {
     const loadingState = this.loadingState;
-    const hasIcon = !!this.icon;
-    const hasBadge = !!this.badge;
 
-    return html`<div class="private-host" cds-layout="horizontal wrap:none">
-      ${loadingState === ClrLoadingState.SUCCESS ? html`${iconSpinnerCheck}` : ''}${loadingState ===
-      ClrLoadingState.ERROR
-        ? html`${iconSpinnerError}`
-        : ''}${loadingState === ClrLoadingState.LOADING ? html`${iconSpinner}` : ''}${loadingState ===
-      ClrLoadingState.DEFAULT
-        ? html`${buttonSlots(hasIcon, hasBadge)}`
-        : ''}${this.hiddenButtonTemplate}
+    return html`<div class="private-host">
+      <div cds-layout="horizontal gap:md wrap:none align:center">
+        ${loadingState === ClrLoadingState.SUCCESS ? html`${iconSpinnerCheck}` : ''}${loadingState ===
+        ClrLoadingState.ERROR
+          ? html`${iconSpinnerError}`
+          : ''}${loadingState === ClrLoadingState.LOADING ? html`${iconSpinner}` : ''}${loadingState ===
+        ClrLoadingState.DEFAULT
+          ? html`<slot></slot>`
+          : ''}${this.hiddenButtonTemplate}
+      </div>
     </div>`;
   }
 

@@ -107,25 +107,48 @@ export const iconWithText = () => {
 export const iconWithTextAndBadge = () => {
   return html`
     <div cds-layout="vertical gap:md">
-      <div cds-layout="horizontal gap:sm">
-        <cds-button><cds-icon shape="user"></cds-icon> click <cds-badge color="blue">10</cds-badge></cds-button>
-        <cds-button action="outline"
-          ><cds-icon shape="user"></cds-icon> click <cds-badge color="blue">10</cds-badge></cds-button
-        >
-        <cds-button action="flat"
-          ><cds-icon shape="user"></cds-icon> click <cds-badge color="blue">10</cds-badge></cds-button
-        >
+      <div cds-layout="horizontal gap:md">
+        <cds-placeholder>1</cds-placeholder>
+        <cds-placeholder>2</cds-placeholder>
+        <cds-placeholder>3</cds-placeholder>
       </div>
-      <div cds-layout="horizontal gap:sm">
-        <cds-button size="sm"
-          ><cds-icon shape="user"></cds-icon> click <cds-badge color="blue">10</cds-badge></cds-button
-        >
-        <cds-button size="sm" action="outline"
-          ><cds-icon shape="user"></cds-icon> click <cds-badge color="blue">10</cds-badge></cds-button
-        >
-        <cds-button size="sm" action="flat"
-          ><cds-icon shape="user"></cds-icon> click <cds-badge color="blue">10</cds-badge></cds-button
-        >
+
+      <h2>Works in Safari (hopefully text can be wrapped with spans automatically)</h2>
+      <div cds-layout="horizontal gap:xl">
+        <cds-button>
+          <cds-icon shape="user"></cds-icon>
+          <span>click</span>
+          <cds-badge color="blue">10</cds-badge>
+        </cds-button>
+        <cds-button action="outline">
+          <cds-icon shape="user"></cds-icon>
+          <span>click</span>
+          <cds-badge color="blue">10</cds-badge>
+        </cds-button>
+        <cds-button action="flat">
+          <cds-icon shape="user"></cds-icon>
+          <span>click</span>
+          <cds-badge color="blue">10</cds-badge>
+        </cds-button>
+      </div>
+
+      <h2>Breaks in Safari</h2>
+      <div cds-layout="horizontal gap:xl">
+        <cds-button>
+          <cds-icon shape="user"></cds-icon>
+          click
+          <cds-badge color="blue">10</cds-badge>
+        </cds-button>
+        <cds-button action="outline">
+          <cds-icon shape="user"></cds-icon>
+          click
+          <cds-badge color="blue">10</cds-badge>
+        </cds-button>
+        <cds-button action="flat">
+          <cds-icon shape="user"></cds-icon>
+          click
+          <cds-badge color="blue">10</cds-badge>
+        </cds-button>
       </div>
     </div>
   `;
