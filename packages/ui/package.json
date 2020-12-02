@@ -3,7 +3,7 @@
   "private": true,
   "version": "4.0.0",
   "scripts": {
-    "build": "npm-run-all build:css build:prefix build:optimize build:package build:update",
+    "build": "node ../../task-cache.js 'npm-run-all build:css build:prefix build:optimize build:package build:update'",
     "build:watch": "chokidar \"src/**/*.scss\" \"../angular/projects/clr-angular/src/**/*.scss\" -c \"yarn run build\"",
     "build:preinstall": "mkdir -p ../../dist/clr-ui/ && cp ./package.json ../../dist/clr-ui/",
     "build:update": "node ../../scripts/update-local-packages.js /packages/ui/dist/clr-ui/package.json",

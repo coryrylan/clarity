@@ -10,7 +10,7 @@ Clarity Core is a suite of Web Components for [Clarity Design System](https://cl
     npm install @clr/core --save
     ```
 
-2.  Import desired Web Component into your JavaScript or TypeScript
+2.  Import desired Web Component into your JavaScript or TypeScript.
 
     ```typescript
     import '@clr/core/modal/register.js';

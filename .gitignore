@@ -3,21 +3,20 @@
 # core related files
 *.element.css.ts
 *.global.css.ts
-packages/core/src/styles/tokens/generated
-packages/react/.cache
-packages/react/coverage
+generated
+.cache
+coverage
 .parcel-cache
 
 # compiled output
-/dist
-/packages/**/dist
-/tmp
-/out-tsc
+dist
+tmp
+out-tsc
 /.ng_build
 src/clr-angular/.ng_build
 src/clr-angular/.ng_pkg_build
 
-/reports
+reports
 
 # dependencies
 node_modules

@@ -15,15 +15,15 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "node ../../task-cache.js 'tsc'",
     "watch": "tsc -w",
-    "lint": "npm run lint:src && npm run lint:test",
+    "lint": "node ../../task-cache.js 'npm run lint:src && npm run lint:test'",
     "lint:src": "tslint --project ./tsconfig.json -c ./tslint.json 'src/**/*.ts'",
     "lint:test": "tslint -c ./tslint.json 'test/**/*.ts'",
     "lint:fix": "npm run lint:src:fix && npm run lint:test:fix",
     "lint:src:fix": "tslint --project ./tsconfig.json -c ./tslint.json 'src/**/*.ts' --fix",
     "lint:test:fix": "tslint -c ./tslint.json 'test/**/*.ts' --fix",
-    "test": "jest",
+    "test": "node ../../task-cache.js 'jest'",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --coverage false",
     "prepublishOnly": "npm run build && npm run lint && npm run test",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
