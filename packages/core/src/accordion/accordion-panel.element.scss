@@ -1,4 +1,4 @@
-// Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+// Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
@@ -8,7 +8,6 @@
 :host {
   --border-color: #{$cds-alias-object-border-color};
   --border-width: #{$cds-alias-object-border-width-100};
-  --transition-duration: 200ms;
 }
 
 .accordion-header-button {
@@ -20,8 +19,7 @@
 
 .accordion-content {
   height: 0;
-  transition: transform height var(--transition-duration);
-  transition-timing-function: cubic-bezier(0, 0.99, 0, 0.99);
+  transition: transform height #{$cds-alias-motion-duration-100} cubic-bezier(0, 0.99, 0, 0.99);
   overflow-y: hidden;
 }
 

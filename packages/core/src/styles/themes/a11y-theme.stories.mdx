@@ -1,0 +1,19 @@
+import '@cds/core/alert/register.js';
+import { Meta, Story, Preview, API } from '@storybook/addon-docs/blocks';
+import { html, LitElement } from 'lit-element';
+
+<Meta title="Themes/Accessibility" />
+
+# Advanced Accessibility Theme
+
+## Reduced Motion
+
+```javascript
+if (window.matchMedia('(prefers-reduced-motion: reduce)')).matches) {
+  body.setAttribute('cds-theme', 'reduced-motion');
+}
+```
+
+<Preview>
+  <Story id="stories-themes--reduced-motion" />
+</Preview>

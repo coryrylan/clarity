@@ -29,7 +29,7 @@ svg {
 
   .arcstroke {
     stroke: var(--fill-color);
-    transition: stroke-dashoffset 300ms ease-in-out;
+    transition: stroke-dashoffset #{$cds-alias-motion-duration-200} ease-in-out;
   }
 }
 
@@ -61,7 +61,7 @@ svg {
 }
 
 :host(:not([value])) .progress-wrapper {
-  animation: spin 0.8s cubic-bezier(0.17, 0.4, 0.8, 0.79) infinite;
+  animation: spin #{$cds-alias-motion-duration-300} cubic-bezier(0.17, 0.4, 0.8, 0.79) infinite;
 }
 
 :host([status='info']) {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -381,3 +381,37 @@ export function dynamicTheme() {
     </section>
   `;
 }
+
+export const reducedMotion = () => {
+  return html`
+    <section cds-layout="horizontal gap:xl">
+      <div cds-theme="reduced-motion" cds-layout="vertical gap:lg">
+        <h3 cds-text="section">Reduced Motion</h3>
+        <cds-progress-circle size="lg"></cds-progress-circle>
+        <cds-input layout="vertical" control-width="shrink">
+          <label>Input without motion</label>
+          <input type="text" />
+        </cds-input>
+
+        <cds-toggle>
+          <label>Toggle without motion</label>
+          <input type="checkbox" />
+        </cds-toggle>
+      </div>
+      <cds-divider orientation="vertical"></cds-divider>
+      <div cds-layout="vertical gap:lg">
+        <h3 cds-text="section">Default Animation</h3>
+        <cds-progress-circle size="lg"></cds-progress-circle>
+        <cds-input layout="vertical" control-width="shrink">
+          <label>Default Input</label>
+          <input type="text" />
+        </cds-input>
+
+        <cds-toggle>
+          <label>Default Toggle</label>
+          <input type="checkbox" />
+        </cds-toggle>
+      </div>
+    </section>
+  `;
+};

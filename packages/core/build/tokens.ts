@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2020 VMware, Inc. All Rights Reserved.
+ * Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
  * This software is released under MIT license.
  * The full license information can be found in LICENSE in the root directory of this project.
  */
@@ -464,6 +464,14 @@ const aliases = {
     container: {
       background: token(color.gray[0]),
       borderColor: token(color.construction[200]),
+    },
+  },
+  motion: {
+    duration: {
+      0: token('0'),
+      100: token('200ms'),
+      200: token('300ms'),
+      300: token('800ms'),
     },
   },
   status: {
