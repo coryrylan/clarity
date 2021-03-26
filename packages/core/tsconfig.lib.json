@@ -1,7 +1,6 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": ["@types/resize-observer-browser"],
     "strictNullChecks": true,
     "rootDir": "./src"
   },

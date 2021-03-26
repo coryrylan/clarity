@@ -21,6 +21,7 @@ import {
   syncProps,
   pxToRem,
   getElementUpdates,
+  layoutType,
 } from '@cds/core/internal';
 import { ClarityIcons } from '@cds/core/icon/icon.service.js';
 import { exclamationCircleIcon } from '@cds/core/icon/shapes/exclamation-circle.js';
@@ -160,23 +161,25 @@ export class CdsControl extends LitElement {
 
   render() {
     return html`
-      ${this.hiddenLabel ? html`<span cds-layout="display:screen-reader-only"><slot name="label"></slot></span>` : ''}
+      ${this.hiddenLabel
+        ? html`<span cds-layout=${layoutType('display:screen-reader-only')}><slot name="label"></slot></span>`
+        : ''}
       <div
-        cds-layout="${this.layout === 'vertical' ? 'vertical gap:sm' : 'horizontal gap:lg'} align:stretch"
+        cds-layout="${layoutType(this.layout === 'vertical' ? 'vertical gap:sm' : 'horizontal gap:lg')} align:stretch"
         class="private-host ${this.isRTL ? 'rtl' : ''}"
       >
         ${this.primaryLabelTemplate}
         <div
           cds-layout="
-          ${this.layout === 'compact' ? 'horizontal' : 'vertical'}
-          ${this.controlWidth === 'stretch' && !this.fixedControlWidth ? 'align:horizontal-stretch' : ''}
-          ${this.messages?.length ? 'gap:sm' : ''}"
+          ${layoutType(this.layout === 'compact' ? 'horizontal' : 'vertical')}
+          ${layoutType(this.controlWidth === 'stretch' && !this.fixedControlWidth ? 'align:horizontal-stretch' : '')}
+          ${layoutType(this.messages?.length ? 'gap:sm' : '')}"
         >
-          <div cds-layout="horizontal gap:sm wrap:none">
+          <div cds-layout=${layoutType('horizontal gap:sm wrap:none')}>
             <div
-              cds-layout="horizontal align:top wrap:none ${this.controlWidth === 'shrink' || this.fixedControlWidth
-                ? 'align:shrink'
-                : 'align:horizontal-stretch'}"
+              cds-layout="${layoutType('horizontal align:top wrap:none')} ${layoutType(
+                this.controlWidth === 'shrink' || this.fixedControlWidth ? 'align:shrink' : 'align:horizontal-stretch'
+              )}"
               class="input-container"
             >
               ${this.inputTemplate} ${this.prefixTemplate}
@@ -216,7 +219,7 @@ export class CdsControl extends LitElement {
       ${!this.hiddenLabel
         ? html` <cds-internal-control-label
             .disabled="${this.disabled}"
-            cds-layout="align:shrink align:top"
+            cds-layout=${layoutType('align:shrink align:top')}
             action="primary"
           >
             <slot name="label"></slot>
@@ -227,7 +230,7 @@ export class CdsControl extends LitElement {
 
   protected get messagesTemplate() {
     return html`
-      <div cds-layout="${this.layout === 'compact' ? 'align:shrink' : ''}" class="messages">
+      <div cds-layout="${layoutType(this.layout === 'compact' ? 'align:shrink' : '')}" class="messages">
         <slot name="message"></slot>
       </div>
     `;
@@ -235,8 +238,8 @@ export class CdsControl extends LitElement {
 
   private get prefixTemplate() {
     return html`
-      <div cds-layout="align:shrink align:vertical-center" class="prefix">
-        <div cds-layout="horizontal gap:xs">
+      <div cds-layout=${layoutType('align:shrink align:vertical-center')} class="prefix">
+        <div cds-layout=${layoutType('horizontal gap:xs')}>
           ${this.prefixDefaultTemplate}
           <slot name="prefix"></slot>
         </div>
@@ -246,8 +249,8 @@ export class CdsControl extends LitElement {
 
   private get suffixTemplate() {
     return html`
-      <div cds-layout="align:shrink align:vertical-center" class="suffix">
-        <div cds-layout="horizontal gap:xs">
+      <div cds-layout=${layoutType('align:shrink align:vertical-center')} class="suffix">
+        <div cds-layout=${layoutType('horizontal gap:xs')}>
           <slot name="suffix"></slot>
           ${this.suffixDefaultTemplate}
         </div>

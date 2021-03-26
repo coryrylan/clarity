@@ -33,6 +33,7 @@ export * from './utils/framework.js';
 export * from './i18n/utils.js';
 export * from './utils/identity.js';
 export * from './utils/keycodes.js';
+export * from './utils/layout.js';
 export * from './utils/lit-element.js';
 export * from './utils/metadata.js';
 export * from './utils/responsive.js';

@@ -11,7 +11,7 @@
     "outDir": "./dist/core",
     "declaration": true,
     "inlineSources": true,
-    "types": ["jasmine", "@types/resize-observer-browser"],
+    "types": ["jasmine"],
     "alwaysStrict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,

@@ -83,6 +83,7 @@ export const parameters = {
           'Using Icons',
           'Accessibility',
           'Unit Testing',
+          'Typed Layouts',
         ],
         'Internal API',
         'Stories',

@@ -1,0 +1,18 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Internal Documentation/Typed Layouts" />
+
+# Typed Layouts
+
+Internally there is a `cdsLayout` function which will provide type checking
+for any `cds-layout` attribute within a component template. Currently this is
+a internal only API but may be opened as a public supported API in the future.
+
+```typescript
+import { cdsLayout } from '@cds/core/internal';
+
+html`<div cds-layout=${cdsLayout('horizontal gap:md')}></div>`;
+
+// type error: Argument of type '"horizontal gapmd"' is not assignable to parameter of type '"Invalid layout option: gapmd"'
+html`<div cds-layout=${cdsLayout('horizontal gapmd')}></div>`;
+```

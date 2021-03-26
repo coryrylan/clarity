@@ -9,6 +9,7 @@ golden/
 **/web_modules/**
 packages/core/**/*.css.ts
 packages/core/custom-elements.json
+packages/core/src/internal/utils/layout.ts
 packages/core/src/styles/tokens/generated/**
 packages/core/dist/
 packages/react/coverage/
