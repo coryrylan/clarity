@@ -1,0 +1,16 @@
+.private-host {
+  min-height: var(--cds-global-space-11);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--cds-global-space-5);
+  border-top: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
+  color: var(--cds-global-typography-color-500);
+}
+
+::slotted(cds-action-button) {
+  --color: var(--cds-global-typography-color-500);
+}
+
+::slotted(cds-pagination) {
+  margin-left: auto;
+}

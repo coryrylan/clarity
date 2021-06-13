@@ -1,0 +1,85 @@
+[hidden] {
+  display: none !important;
+}
+
+:host {
+  --body-height: auto;
+  --grid-scroll-width: inital;
+  --scrollbar-background: var(--cds-alias-object-container-background);
+  --scrollbar-thumb-background: var(--cds-alias-object-border-color);
+  --grid-template-columns: 1fr 1fr 1fr 1fr;
+  contain: content;
+  width: 100%;
+}
+
+.private-host {
+  border: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
+  border-radius: var(--cds-alias-object-border-radius-100);
+  background: var(--cds-alias-object-container-background);
+  position: relative;
+}
+
+.grid {
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: var(--body-height, 100%);
+  scroll-padding: var(--row-height, var(--cds-global-space-11));
+}
+
+.column-row-group {
+  display: contents; // safari...
+}
+
+.column-row {
+  display: grid;
+  top: 0;
+  position: sticky;
+  z-index: 99;
+  grid-template-columns: var(--grid-template-columns);
+  box-shadow: 0 1px 0 var(--cds-alias-object-border-color);
+}
+
+.grid-body {
+  flex: 1 1 0%;
+  margin-top: 2px;
+}
+
+.footer {
+  background: var(--cds-alias-object-container-background);
+}
+
+::slotted(cds-grid-row:first-of-type) {
+  --internal-border-top: var(--cds-alias-object-border-width-100) solid transparent;
+}
+
+::-webkit-scrollbar {
+  width: var(--cds-global-space-5);
+  height: var(--cds-global-space-5);
+  background: var(--scrollbar-background);
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 11px var(--scrollbar-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-background);
+  border-radius: var(--cds-global-space-5);
+  border: var(--cds-global-space-2) solid var(--scrollbar-background);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,29 @@
+.private-host {
+  width: 100%;
+  /* height: 100%; */
+  min-height: 100px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  grid-column: 1 / -1;
+  color: var(--cds-global-typography-color-500);
+}
+
+td {
+  padding: var(--cds-global-space-5) var(--cds-global-space-6) var(--cds-global-space-5) var(--cds-global-space-6);
+}
+
+:host([draggable='false']) .private-host {
+  border-top: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
+  min-height: var(--cds-global-space-12);
+}
+
+:host([cds-draggable*='target']) .private-host::after {
+  width: 100%;
+  height: var(--cds-global-space-2);
+  background: var(--cds-alias-status-alt-tint);
+  content: '';
+  position: absolute;
+  top: 0;
+}

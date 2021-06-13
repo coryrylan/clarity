@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  outline: 0 !important;
+  position: sticky;
+}
+
+:host([tabindex='0']:focus) [part='cell'] {
+  outline-offset: -4px;
+  outline: 5px auto Highlight;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+
+[part='cell'] {
+  background: var(--background);
+  box-shadow: var(--border-top);
+  font-size: 14px;
+  text-align: left;
+  margin: 0;
+  display: flex;
+  gap: var(--cds-global-space-3);
+  padding: var(--cds-global-space-5) var(--cds-global-space-6) var(--cds-global-space-5) var(--cds-global-space-6);
+  min-height: var(--cds-global-space-11);
+  line-height: 1em;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--cds-global-typography-color-500);
+}
+
+::slotted([shape='drag-handle']) {
+  -webkit-user-drag: element !important;
+  user-select: none !important;
+  --cursor: move !important; /* need to expose from base element styles */
+}
+
+::slotted(cds-action-button) {
+  --color: var(--cds-global-typography-color-500);
+  --padding: 0;
+}

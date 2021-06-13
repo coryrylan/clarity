@@ -43,6 +43,7 @@ const config = {
       './src/divider',
       './src/file',
       './src/forms',
+      './src/grid',
       './src/icon',
       './src/input',
       './src/internal-components/close-button',

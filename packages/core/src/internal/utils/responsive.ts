@@ -43,19 +43,7 @@ export function elementVisible(element: HTMLElement, callbackFn: () => void) {
  * options and change the layout of the component until the components layout
  * condition is satisfied.
  */
-export function updateComponentLayout(component: ResponsiveComponent, layoutConfig: LayoutConfig, fn: () => void) {
-  return elementResize(component, () => {
-    if (component.responsive) {
-      calculateOptimalLayout(component, layoutConfig).then(updated => {
-        if (updated) {
-          fn();
-        }
-      });
-    }
-  });
-}
-
-function calculateOptimalLayout(component: ResponsiveComponent, layoutConfig: LayoutConfig): Promise<boolean> {
+export function calculateOptimalLayout(component: ResponsiveComponent, layoutConfig: LayoutConfig): Promise<boolean> {
   return component.updateComplete.then(() => {
     const currentLayout = component.layout;
     component.layout = layoutConfig.layouts[0];

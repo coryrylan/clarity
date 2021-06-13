@@ -1,0 +1,88 @@
+:host {
+  --width: initial;
+  top: 0;
+  z-index: 998;
+  position: sticky;
+}
+
+.line {
+  width: var(--cds-global-space-4);
+  height: var(--cds-global-space-7);
+  align-self: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-right: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
+}
+
+button.line {
+  cursor: ew-resize;
+  margin-left: 6px;
+}
+
+.line:focus {
+  outline: 0;
+  border-right: var(--cds-alias-object-border-width-200) solid var(--cds-alias-status-info);
+}
+
+.sort {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
+  color: var(--cds-global-typography-color-200);
+  width: var(--cds-global-space-8);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.ascending .up,
+.descending .down {
+  color: var(--cds-global-typography-color-500);
+}
+
+[part='column'] {
+  border: 0;
+  font-weight: 500;
+  line-height: 0;
+  color: var(--cds-global-typography-color-500);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  text-align: left;
+  line-height: 1em;
+  margin: 0;
+  display: flex;
+  gap: var(--cds-global-space-3);
+  padding: var(--cds-global-space-5) 0 var(--cds-global-space-5) var(--cds-global-space-6);
+  min-height: var(--cds-global-space-11);
+  align-items: center;
+  height: 100%;
+  background: var(--cds-alias-object-container-background);
+  position: sticky !important;
+}
+
+:host([position='fixed']),
+:host([position='sticky']) {
+  z-index: 999;
+}
+
+::slotted([cds-layout='align:right']) {
+  /* temp fix waiting on next release */
+  margin-left: auto;
+}
+
+::slotted(cds-action-button) {
+  --color: var(--cds-global-typography-color-500);
+  --padding: 0;
+}
+
+[cds-layout='horizontal fill'] {
+  display: flex;
+  width: 100%;
+}

@@ -1,0 +1,37 @@
+:host {
+  display: contents;
+}
+
+dialog {
+  background: var(--cds-alias-object-container-background);
+  z-index: 999;
+  border: 0;
+  box-shadow: var(--cds-alias-object-shadow-100);
+  color: var(--cds-global-typography-color-500);
+  padding: 0;
+  margin: 0;
+  display: block;
+  width: 66%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: auto;
+  position: absolute;
+  padding: var(--cds-global-space-9);
+}
+
+dialog::backdrop {
+  background: transparent;
+}
+
+cds-action-button {
+  position: absolute;
+  top: var(--cds-global-space-6);
+  right: var(--cds-global-space-6);
+  --color: var(--cds-global-typography-color-500);
+}
+
+.private-host {
+  position: relative;
+}

@@ -10,24 +10,58 @@
     />
     <link href="./index.css" rel="stylesheet" />
   </head>
-  <body cds-theme="dark" cds-text="body">
-    <section cds-layout="vertical gap:lg p:xl container:sm container:center">
-      <h1 cds-text="heading">Clarity Core Sandbox</h1>
+  <body cds-theme="" cds-text="body">
+    <section cds-layout="vertical gap:xl p:xl container:sm container:center">
+      <h1 cds-text="heading">Action Button</h1>
 
-      <p cds-text="body">
-        This is a sandbox enviroment that allows you to test your component locally. All imports will automatically be
-        mapped to the local <code cds-text="code">dist</code> output of the build.
-      </p>
+      <resize-demo></resize-demo>
 
-      <cds-alert status="warning">Do not commit sandbox changes to source control.</cds-alert>
+      <cds-input layout="compact">
+        <label>label</label>
+        <input placeholder="name" />
+        <cds-control-message>message text</cds-control-message>
+      </cds-input>
 
-      <cds-button status="primary">Hello There</cds-button>
+      <cds-radio-group layout="compact">
+        <label>radio group</label>
+        <cds-radio>
+          <label>radio 1</label>
+          <input type="radio" checked />
+        </cds-radio>
 
-      <cds-alert-group status="danger" hidden>
-        <cds-alert closable>
-          General Kenobi, you are a bold one...
-        </cds-alert>
-      </cds-alert-group>
+        <cds-radio>
+          <label>radio 2</label>
+          <input type="radio" />
+        </cds-radio>
+
+        <cds-radio>
+          <label>radio 3</label>
+          <input type="radio" />
+        </cds-radio>
+        <cds-control-message>message text</cds-control-message>
+      </cds-radio-group>
+
+      <div cds-layout="horizontal gap:xl">
+        <cds-action-button shape="bars" aria-label="main menu"></cds-action-button>
+        <cds-action-button shape="filter-grid" aria-label="filter grid column"></cds-action-button>
+        <cds-action-button shape="ellipsis-vertical" aria-label="open available row actions"></cds-action-button>
+        <cds-action-button shape="info-standard" aria-label="learn more"></cds-action-button>
+        <cds-action-button aria-label="main menu">
+          <cds-icon shape="bell" badge="warning"></cds-icon>
+        </cds-action-button>
+      </div>
+
+      <h2 cds-text="section">Touch Target</h2>
+
+      <div cds-layout="horizontal gap:xl">
+        <cds-action-button debug shape="bars" aria-label="main menu"></cds-action-button>
+        <cds-action-button debug shape="filter-grid" aria-label="filter grid column"></cds-action-button>
+        <cds-action-button debug shape="ellipsis-vertical" aria-label="open available row actions"></cds-action-button>
+        <cds-action-button debug shape="info-standard" aria-label="learn more"></cds-action-button>
+        <cds-action-button debug aria-label="main menu">
+          <cds-icon shape="bell" badge="warning"></cds-icon>
+        </cds-action-button>
+      </div>
     </section>
 
     <script type="module" src="./index.js"></script>

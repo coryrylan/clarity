@@ -17,11 +17,12 @@ import {
   event,
   EventEmitter,
   describeElementByElements,
-  updateComponentLayout,
   state,
   syncProps,
   pxToRem,
   getElementUpdates,
+  ResponsiveController,
+  calculateOptimalLayout,
 } from '@cds/core/internal';
 import { ClarityIcons } from '@cds/core/icon/icon.service.js';
 import { exclamationCircleIcon } from '@cds/core/icon/shapes/exclamation-circle.js';
@@ -165,6 +166,8 @@ export class CdsControl extends LitElement {
   @event() layoutChange: EventEmitter<ControlLayout>;
 
   protected observers: (MutationObserver | ResizeObserver)[] = [];
+
+  protected responsiveController = new ResponsiveController(this);
 
   static get styles() {
     return [baseStyles, styles];
@@ -342,10 +345,13 @@ export class CdsControl extends LitElement {
   private setupResponsive() {
     if (this.responsive && this.labelLayout === ControlLabelLayout.default && this.controlLabel) {
       const layoutConfig = { layouts: formLayouts, initialLayout: this.layout };
-      const observer = updateComponentLayout(this, layoutConfig, () =>
-        this.layoutChange.emit(this.layout, { bubbles: true })
-      );
-      this.observers.push(observer);
+      this.addEventListener('elementRectChange', () => {
+        calculateOptimalLayout(this, layoutConfig).then(updated => {
+          if (updated) {
+            this.layoutChange.emit(this.layout, { bubbles: true });
+          }
+        });
+      });
     }
   }
 
