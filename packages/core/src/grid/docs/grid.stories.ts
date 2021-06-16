@@ -14,7 +14,7 @@ import '@cds/core/select/register.js';
 import '@cds/core/radio/register.js';
 import '@cds/core/grid/register.js';
 
-import { getData, paginate, filter, sort, sortList } from '../utils/storybook.js';
+import { getData, paginate, filter, sortStrings, sortList, sortNumbers, setRandomValues } from '../utils/storybook.js';
 import { GridKeyNavigationController, KeyGrid } from '../utils/key-navigation.controller.js';
 import { DraggableListController } from '../utils/draggable-list.controller.js';
 
@@ -23,10 +23,81 @@ export default {
   component: 'cds-grid',
 };
 
+export function fixedRows() {
+  return html`
+    <cds-grid style="--body-height: 340px">
+      <cds-grid-column>Type</cds-grid-column>
+      <cds-grid-column>Description</cds-grid-column>
+      <cds-grid-column>Amount</cds-grid-column>
+      <cds-grid-column>Balance</cds-grid-column>
+      <cds-grid-row position="fixed">
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
 export function basic() {
   return html`
-    <button>start</button>
-    <cds-grid>
+    <cds-grid style="--body-height: 340px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -94,13 +165,12 @@ export function basic() {
       </cds-grid-row>
       <cds-grid-footer></cds-grid-footer>
     </cds-grid>
-    <button>end</button>
   `;
 }
 
 export function keyboard() {
   return html`
-    <cds-grid style="--body-height: 320px">
+    <cds-grid style="--body-height: 340px">
       <cds-grid-column width="150" resizable="false">Key</cds-grid-column>
       <cds-grid-column>Function</cds-grid-column>
       <cds-grid-row>
@@ -206,8 +276,518 @@ export function keyboard() {
   `;
 }
 
+export function darkTheme() {
+  return html`
+    <cds-grid cds-theme="dark" style="--body-height: 340px">
+      <cds-grid-column>Type</cds-grid-column>
+      <cds-grid-column>Description</cds-grid-column>
+      <cds-grid-column>Amount</cds-grid-column>
+      <cds-grid-column>Balance</cds-grid-column>
+
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
+export function sizing() {
+  return html`
+    <cds-grid style="--body-height: 340px">
+      <cds-grid-column width="100">Type</cds-grid-column>
+      <cds-grid-column>Description</cds-grid-column>
+      <cds-grid-column>Amount</cds-grid-column>
+      <cds-grid-column>Balance</cds-grid-column>
+
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
+export function rtl() {
+  class DemoRtl extends LitElement {
+    @state() private data = getData();
+    @state() private currentDetail: any = null;
+
+    render() {
+      return html`
+        <cds-grid dir="rtl" style="--body-height: 340px">
+          <cds-grid-column width="60"></cds-grid-column>
+          <cds-grid-column>Stock</cds-grid-column>
+          <cds-grid-column>Average</cds-grid-column>
+          <cds-grid-column>Current</cds-grid-column>
+          <cds-grid-column>About</cds-grid-column>
+          ${this.data.map(
+            entry => html`
+              <cds-grid-row>
+                <cds-grid-cell>
+                  <cds-action-button
+                    id="${entry.id}-detail-demo"
+                    aria-label="view ${entry.id} details"
+                    @click=${() => this.showDetail(entry.id)}
+                    style="margin-right: 8px"
+                  >
+                    <cds-icon shape="angle" direction="left"></cds-icon>
+                  </cds-action-button>
+                </cds-grid-cell>
+                <cds-grid-cell>${entry.id}</cds-grid-cell>
+                <cds-grid-cell>$${entry.average}</cds-grid-cell>
+                <cds-grid-cell>$${entry.value}</cds-grid-cell>
+                <cds-grid-cell>${entry.about}</cds-grid-cell>
+              </cds-grid-row>
+            `
+          )}
+          <cds-grid-footer></cds-grid-footer>
+          <cds-grid-detail
+            ?hidden=${!this.currentDetail}
+            anchor="${this.currentDetail?.id}-detail-demo"
+            @closeChange=${this.closeDetail}
+          >
+            <h2>${this.currentDetail?.id}</h2>
+            <p>Average: $${this.currentDetail?.average}</p>
+            <p>Current: $${this.currentDetail?.value}</p>
+            <p>About: ${this.currentDetail?.about}</p>
+          </cds-grid-detail>
+        </cds-grid>
+      `;
+    }
+
+    private showDetail(id: string) {
+      this.currentDetail = this.data.find(i => i.id === id);
+    }
+
+    private closeDetail() {
+      this.currentDetail = null;
+    }
+  }
+
+  registerElementSafely('demo-grid-rtl', DemoRtl);
+  return html`<demo-grid-rtl></demo-grid-rtl>`;
+}
+
+export function responsive() {
+  return html`
+    <cds-grid style="width: 400px">
+      <cds-grid-column position="fixed" width="80">Type</cds-grid-column>
+      <cds-grid-column width="200">Description</cds-grid-column>
+      <cds-grid-column width="200">Amount</cds-grid-column>
+      <cds-grid-column width="200">Balance</cds-grid-column>
+
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
+export function placeholder() {
+  return html`
+    <cds-grid style="--body-height: 340px">
+      <cds-grid-column>Type</cds-grid-column>
+      <cds-grid-column>Description</cds-grid-column>
+      <cds-grid-column>Amount</cds-grid-column>
+      <cds-grid-column>Balance</cds-grid-column>
+      <cds-grid-placeholder></cds-grid-placeholder>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
 export function kitchenSink() {
-  return html``;
+  const selectableData = getData().map(i => {
+    i.selected = false;
+    return i;
+  });
+
+  class DemoKitchenSink extends LitElement {
+    @state() private data = selectableData;
+    @state() private currentDetail: any = null;
+    @state() private filteredList: any[] = [];
+    @state() private sortType: 'none' | 'ascending' | 'descending' = 'none';
+    @state() private search = '';
+    @state() private currentPage = 0;
+    @state() private pageSize = 10;
+    @state() private pageCount = 1;
+    @state() private idFilterOpen = false;
+    @state() private allSelected = false;
+
+    render() {
+      return html`
+        <cds-grid style="--body-height: 340px">
+          <cds-grid-column resizable="false" width="34">
+            <cds-checkbox>
+              <label><span style="display: none">select all</span></label>
+              <input type="checkbox" .checked=${this.allSelected} @change=${e => this.selectAll(e)} />
+            </cds-checkbox>
+          </cds-grid-column>
+          <cds-grid-column resizable="false" width="44"></cds-grid-column>
+          <cds-grid-column .sort=${this.sortType} @sortChange=${e => (this.sortType = e.detail)}>
+            Stock
+            <cds-action-button
+              id="id-filter"
+              @click=${() => (this.idFilterOpen = true)}
+              aria-label="filter column"
+              cds-layout="align:right"
+            >
+              <cds-icon shape="filter"></cds-icon>
+            </cds-action-button>
+            <cds-dropdown
+              ?hidden=${!this.idFilterOpen}
+              @hiddenChange=${() => (this.idFilterOpen = false)}
+              anchor="#id-filter"
+            >
+              <cds-datalist>
+                <label cds-layout="display:screen-reader-only">search</label>
+                <input type="text" placeholder="Search" @input=${e => (this.search = e.target.value)} />
+                <datalist>
+                  ${this.data.map(entry => html`<option value="${entry.id}"></option>`)}
+                </datalist>
+              </cds-datalist>
+            </cds-dropdown>
+          </cds-grid-column>
+          <cds-grid-column>Average</cds-grid-column>
+          <cds-grid-column>Current</cds-grid-column>
+          <cds-grid-column width="350">About</cds-grid-column>
+          ${this.filteredList.map(
+            entry => html`
+              <cds-grid-row .select=${entry.selected}>
+                <cds-grid-cell>
+                  <cds-checkbox>
+                    <input
+                      type="checkbox"
+                      .checked=${this.allSelected}
+                      value=${entry.id}
+                      @click=${e => this.select(entry, e.target.checked)}
+                      aria-label="Select ${entry.id}"
+                    />
+                  </cds-checkbox>
+                </cds-grid-cell>
+                <cds-grid-cell>
+                  <cds-action-button
+                    id="${entry.id}-detail"
+                    aria-label="view ${entry.id} details"
+                    @click=${() => this.showDetail(entry.id)}
+                  >
+                    <cds-icon shape="angle" direction="right"></cds-icon>
+                  </cds-action-button>
+                </cds-grid-cell>
+                <cds-grid-cell>
+                  ${entry.id}
+                </cds-grid-cell>
+                <cds-grid-cell>$${entry.average}</cds-grid-cell>
+                <cds-grid-cell>$${entry.value}</cds-grid-cell>
+                <cds-grid-cell>${entry.about}</cds-grid-cell>
+              </cds-grid-row>
+            `
+          )}
+          <cds-grid-footer>
+            <cds-pagination>
+              <span style="margin-right: auto;">${this.data.filter(i => i.selected).length} selected</span>
+              <cds-select control-width="shrink">
+                <label cds-layout="display:screen-reader-only">per page</label>
+                <select @input=${e => (this.pageSize = e.target.value)} style="min-width: 46px">
+                  <option value="5">5</option>
+                  <option value="10" selected>10</option>
+                  <option value="15">15</option>
+                  <option value="25">25</option>
+                </select>
+              </cds-select>
+              <cds-pagination-button
+                ?disabled=${this.currentPage === 0}
+                action="first"
+                @click=${this.firstPage}
+              ></cds-pagination-button>
+              <cds-pagination-button
+                ?disabled=${this.currentPage === 0}
+                action="prev"
+                @click=${this.prevPage}
+              ></cds-pagination-button>
+              <input
+                type="number"
+                @input=${this.setPage}
+                .value=${this.currentPage + 1}
+                min="1"
+                max=${this.pageCount}
+                aria-label="page number"
+              />
+              / ${this.pageCount}
+              <cds-pagination-button
+                ?disabled=${this.currentPage === this.pageCount - 1}
+                action="next"
+                @click=${this.nextPage}
+              ></cds-pagination-button>
+              <cds-pagination-button
+                ?disabled=${this.currentPage === this.pageCount - 1}
+                action="last"
+                @click=${this.lastPage}
+              ></cds-pagination-button>
+            </cds-pagination>
+          </cds-grid-footer>
+          <cds-grid-detail
+            ?hidden=${!this.currentDetail}
+            anchor="${this.currentDetail?.id}-detail"
+            @closeChange=${this.closeDetail}
+          >
+            <h2>${this.currentDetail?.id}</h2>
+            <p>Average: $${this.currentDetail?.average}</p>
+            <p>Current: $${this.currentDetail?.value}</p>
+            <p>About: ${this.currentDetail?.about}</p>
+          </cds-grid-detail>
+        </cds-grid>
+      `;
+    }
+
+    private showDetail(id: string) {
+      this.currentDetail = this.data.find(i => i.id === id);
+    }
+
+    private closeDetail() {
+      this.currentDetail = null;
+    }
+
+    private select(entry: any, checked: boolean) {
+      this.data.find(i => i.id === entry.id).selected = checked;
+      this.allSelected = !this.data.find(i => !i.selected);
+      this.updateList();
+    }
+
+    private selectAll(e: any) {
+      this.allSelected = e.target.checked;
+      this.data.forEach(i => (i.selected = e.target.checked));
+      this.updateList();
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.updateList();
+      setInterval(() => (this.filteredList = setRandomValues(this.filteredList)), 1000);
+    }
+
+    updated(props: Map<string, any>) {
+      super.updated(props);
+      if (
+        (props.has('currentPage') && props.get('currentPage') !== this.currentPage) ||
+        (props.has('search') && props.get('search') !== this.search) ||
+        (props.has('sortType') && props.get('sortType') !== this.sortType) ||
+        (props.has('pageSize') && props.get('pageSize') !== this.pageSize)
+      ) {
+        this.updateList();
+      }
+
+      if (props.has('search') && props.get('search') !== this.search) {
+        this.firstPage();
+      }
+    }
+
+    private updateList() {
+      let list = sortStrings(filter([...this.data], 'id', this.search), 'id', this.sortType);
+      this.pageCount = Math.ceil(list.length / this.pageSize);
+      this.filteredList = paginate(list, this.pageSize)[this.currentPage] ?? [];
+    }
+
+    private setPage(event: any) {
+      this.currentPage = parseInt(event.target.value) - 1;
+    }
+
+    private nextPage() {
+      if (this.currentPage <= this.pageCount) {
+        this.currentPage++;
+      }
+    }
+
+    private prevPage() {
+      if (this.currentPage > 0) {
+        this.currentPage--;
+      }
+    }
+
+    private firstPage() {
+      this.currentPage = 0;
+    }
+
+    private lastPage() {
+      this.currentPage = Math.ceil(this.data.length / this.pageSize) - 1;
+    }
+  }
+
+  registerElementSafely('demo-grid-kitchen-sink', DemoKitchenSink);
+  return html`<demo-grid-kitchen-sink></demo-grid-kitchen-sink>`;
 }
 
 export function pagination() {
@@ -221,7 +801,7 @@ export function pagination() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
@@ -238,9 +818,12 @@ export function pagination() {
           )}
           <cds-grid-footer>
             <cds-pagination aria-label="pagination">
-              <cds-select control-width="shrink" responsive="false">
-                <label cds-layout="display:screen-reader-only">per page</label>
-                <select @input=${(e: any) => (this.pageSize = e.target.value)} style="width: 46px">
+              <cds-select>
+                <select
+                  @input=${(e: any) => (this.pageSize = e.target.value)}
+                  style="width: 46px"
+                  aria-label="per page"
+                >
                   <option value="5">5</option>
                   <option value="10" selected>10</option>
                   <option value="15">15</option>
@@ -349,6 +932,79 @@ export function pagination() {
   return html`<demo-grid-pagination></demo-grid-pagination>`;
 }
 
+export function columnResize() {
+  return html`
+    <cds-grid style="--body-height: 340px">
+      <cds-grid-column>Type</cds-grid-column>
+      <cds-grid-column>Description</cds-grid-column>
+      <cds-grid-column>Amount</cds-grid-column>
+      <cds-grid-column resizable="false">Balance</cds-grid-column>
+
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
 export function columnVisibility() {
   enum ColumnTypes {
     Stock = 1,
@@ -365,7 +1021,7 @@ export function columnVisibility() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column>Stock</cds-grid-column>
           ${this.checked(ColumnTypes.Average) ? html`<cds-grid-column>Average</cds-grid-column>` : ''}
           <cds-grid-column ?hidden=${!this.checked(ColumnTypes.Current)}>Current</cds-grid-column>
@@ -375,8 +1031,8 @@ export function columnVisibility() {
               <cds-grid-row>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 ${this.checked(ColumnTypes.Average) ? html`<cds-grid-cell>$${entry.average}</cds-grid-cell>` : ''}
-                <cds-grid-cell>$${entry.value}</cds-grid-cell>
-                <cds-grid-cell>${entry.about}</cds-grid-cell>
+                <cds-grid-cell ?hidden=${!this.checked(ColumnTypes.Current)}>$${entry.value}</cds-grid-cell>
+                <cds-grid-cell ?hidden=${!this.checked(ColumnTypes.About)}>${entry.about}</cds-grid-cell>
               </cds-grid-row>
             `
           )}
@@ -423,9 +1079,9 @@ export function columnVisibility() {
                   />
                 </cds-checkbox>
               </cds-checkbox-group>
-              <cds-button action="flat" @click=${this.selectAll} ?disabled=${this.checked(ColumnTypes.All)}
-                >Select All</cds-button
-              >
+              <cds-button action="flat" @click=${this.selectAll} ?disabled=${this.checked(ColumnTypes.All)}>
+                Select All
+              </cds-button>
             </cds-dropdown>
           </cds-grid-footer>
         </cds-grid>
@@ -433,22 +1089,18 @@ export function columnVisibility() {
     }
 
     private selectColumns() {
-      this.selectedColumns = Array.from(this.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'))
+      this.selectedColumns = Array.from(this.shadowRoot.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'))
         .filter(c => c.checked)
         .map(c => parseInt(c.value))
-        .reduce((p, n) => p + n, 0);
+        .reduce((p, n) => p + n, 1);
     }
 
     private selectAll() {
-      this.selectedColumns = this.checked(ColumnTypes.All) ? 0 : ColumnTypes.All;
+      this.selectedColumns = ColumnTypes.All;
     }
 
     private checked(value: ColumnTypes) {
       return value === (this.selectedColumns & value);
-    }
-
-    protected createRenderRoot() {
-      return this;
     }
   }
 
@@ -463,7 +1115,7 @@ export function detailView() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column width="44"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -511,10 +1163,6 @@ export function detailView() {
     private closeDetail() {
       this.currentDetail = null;
     }
-
-    protected createRenderRoot() {
-      return this;
-    }
   }
 
   registerElementSafely('demo-grid-detail-view', DemoDetailView);
@@ -536,8 +1184,7 @@ export function singleSelect() {
 
     render() {
       return html`
-        <button>start</button>
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column width="50"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -548,13 +1195,12 @@ export function singleSelect() {
               <cds-grid-row .select=${entry.selected}>
                 <cds-grid-cell>
                   <cds-radio>
-                    <label><span style="display: none">select ${entry.id}</span></label>
                     <input
                       type="radio"
                       name="grid-rows"
                       .checked=${entry.selected}
                       value=${entry.id}
-                      aria-label=""
+                      aria-label="select ${entry.id}"
                       @click=${(e: any) => this.select(entry, e.target.checked)}
                     />
                   </cds-radio>
@@ -572,7 +1218,6 @@ export function singleSelect() {
             Selected: ${this.selectedItem.id}
           </cds-grid-footer>
         </cds-grid>
-        <button>end</button>
       `;
     }
 
@@ -607,11 +1252,15 @@ export function multiSelect() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column width="50">
             <cds-checkbox>
-              <label><span style="display: none">select all</span></label>
-              <input type="checkbox" .checked=${this.allSelected} @change=${e => this.selectAll(e)} />
+              <input
+                type="checkbox"
+                .checked=${this.allSelected}
+                @change=${e => this.selectAll(e)}
+                aria-label="select all"
+              />
             </cds-checkbox>
           </cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
@@ -623,12 +1272,12 @@ export function multiSelect() {
               <cds-grid-row .select=${entry.selected}>
                 <cds-grid-cell>
                   <cds-checkbox>
-                    <label><span style="display: none">select ${entry.id}</span></label>
                     <input
                       type="checkbox"
                       .checked=${entry.selected}
                       value=${entry.id}
                       @click=${e => this.select(entry, e.target.checked)}
+                      aria-label="select ${entry.id}"
                     />
                   </cds-checkbox>
                 </cds-grid-cell>
@@ -679,7 +1328,7 @@ export function singleAction() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column width="42"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -752,16 +1401,23 @@ export function multiAction() {
 
   class DemoMultiAction extends LitElement {
     @state() private data = selectableData;
-    @state() private allSelected = false;
     @state() private openAction = false;
+    @state() private get allSelected() {
+      return !this.data.find(i => !i.selected);
+    }
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
-          <cds-grid-column width="50">
+        <cds-grid style="--body-height: 340px">
+          <cds-grid-column width="80">
             <cds-checkbox>
-              <label><span style="display: none">choose action for selected stocks</span></label>
-              <input type="checkbox" .checked=${this.allSelected} @change=${e => this.selectAll(e)} name="grid-rows" />
+              <input
+                type="checkbox"
+                .checked=${this.allSelected}
+                @change=${e => this.selectAll(e)}
+                name="grid-rows"
+                aria-label="choose action for selected stocks"
+              />
             </cds-checkbox>
             <cds-action-button
               shape="ellipsis-vertical"
@@ -789,12 +1445,12 @@ export function multiAction() {
               <cds-grid-row .select=${entry.selected}>
                 <cds-grid-cell>
                   <cds-checkbox>
-                    <label><span style="display: none">select all</span></label>
                     <input
                       type="checkbox"
                       .checked=${entry.selected}
                       value=${entry.id}
                       @click=${e => this.select(entry, e.target.checked)}
+                      aria-label="select ${entry.id}"
                     />
                   </cds-checkbox>
                 </cds-grid-cell>
@@ -813,12 +1469,11 @@ export function multiAction() {
     private select(entry: any, checked: boolean) {
       this.data.find(i => i.id === entry.id).selected = checked;
       this.data = [...this.data];
-      this.allSelected = !this.data.find(i => !i.selected);
     }
 
     private selectAll(e: any) {
-      this.allSelected = e.target.checked;
       this.data.forEach(i => (i.selected = e.target.checked));
+      this.data = [...this.data];
     }
 
     private action(name: string) {
@@ -849,7 +1504,7 @@ export function sortableRows() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column .sort=${this.sortType} @sortChange=${(e: any) => (this.sortType = e.detail)}>
             Stock
           </cds-grid-column>
@@ -871,11 +1526,6 @@ export function sortableRows() {
       `;
     }
 
-    connectedCallback() {
-      super.connectedCallback();
-      this.updateList();
-    }
-
     updated(props: Map<string, any>) {
       super.updated(props);
       if (props.has('sortType') && props.get('sortType') !== this.sortType) {
@@ -884,16 +1534,70 @@ export function sortableRows() {
     }
 
     private updateList() {
-      this.filteredList = sort([...this.data], 'id', this.sortType);
-    }
-
-    protected createRenderRoot() {
-      return this;
+      this.filteredList = sortStrings([...this.data], 'id', this.sortType);
     }
   }
 
   registerElementSafely('demo-grid-sortable-rows', DemoSortableRows);
   return html`<demo-grid-sortable-rows></demo-grid-sortable-rows>`;
+}
+
+export function multiSortableRows() {
+  class DemoMultiSortRows extends LitElement {
+    @state() private data = getData();
+    @state() private filteredList: any[] = [];
+    @state() private sortState: { [key: string]: 'none' | 'ascending' | 'descending' } = {
+      id: 'none',
+      average: 'none',
+    };
+
+    render() {
+      return html`
+        <cds-grid style="--body-height: 340px">
+          <cds-grid-column
+            .sort=${this.sortState.id}
+            @sortChange=${(e: any) => (this.sortState = { ...this.sortState, id: e.detail })}
+            >Stock</cds-grid-column
+          >
+          <cds-grid-column
+            .sort=${this.sortState.average}
+            @sortChange=${(e: any) => (this.sortState = { ...this.sortState, average: e.detail })}
+            >Average</cds-grid-column
+          >
+          <cds-grid-column>Current</cds-grid-column>
+          <cds-grid-column>About</cds-grid-column>
+          ${this.filteredList.map(
+            entry => html`
+              <cds-grid-row>
+                <cds-grid-cell>${entry.id}</cds-grid-cell>
+                <cds-grid-cell>$${entry.average}</cds-grid-cell>
+                <cds-grid-cell>$${entry.value}</cds-grid-cell>
+                <cds-grid-cell>${entry.about}</cds-grid-cell>
+              </cds-grid-row>
+            `
+          )}
+          <cds-grid-footer></cds-grid-footer>
+        </cds-grid>
+      `;
+    }
+
+    updated(props: Map<string, any>) {
+      super.updated(props);
+      if (props.has('sortState')) {
+        this.updateList();
+      }
+    }
+
+    private updateList() {
+      let list = [...this.data];
+      list = sortStrings(list, 'id', this.sortState.id);
+      list = sortNumbers(list, 'average', this.sortState.average);
+      this.filteredList = list;
+    }
+  }
+
+  registerElementSafely('demo-grid-multi-sort-rows', DemoMultiSortRows);
+  return html`<demo-grid-multi-sort-rows></demo-grid-multi-sort-rows>`;
 }
 
 export function rowFiltering() {
@@ -905,16 +1609,16 @@ export function rowFiltering() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column>
             Stock
             <cds-action-button
               id="id-filter-demo"
               @click=${() => (this.idFilterOpen = true)}
-              aria-label="filter column"
+              shape="filter"
+              aria-label="search available stocks"
               cds-layout="align:right"
             >
-              <cds-icon shape="filter"></cds-icon>
             </cds-action-button>
             <cds-dropdown
               ?hidden=${!this.idFilterOpen}
@@ -964,7 +1668,7 @@ export function rowFiltering() {
   return html`<demo-grid-row-filtering></demo-grid-row-filtering>`;
 }
 
-export function gridFiltering() {
+export function multiCellFiltering() {
   class DemoFiltering extends LitElement {
     @state() private data = getData();
     @state() private filteredList: any[] = [];
@@ -972,12 +1676,12 @@ export function gridFiltering() {
 
     render() {
       return html`
-        <section cds-layout="vertical gap:lg">
+        <section cds-layout="vertical gap:md">
           <cds-search control-width="shrink">
             <label>Search Grid</label>
             <input type="search" placeholder="Search" @input=${(e: any) => (this.search = e.target.value)} />
           </cds-search>
-          <cds-grid style="--body-height: 320px">
+          <cds-grid style="--body-height: 340px">
             <cds-grid-column>Stock</cds-grid-column>
             <cds-grid-column>Average</cds-grid-column>
             <cds-grid-column>Current</cds-grid-column>
@@ -1028,8 +1732,8 @@ export function fixedColumns() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
-          <cds-grid-column .position=${this.pinFirst ? 'fixed' : 'initial'}>
+        <cds-grid style="--body-height: 340px">
+          <cds-grid-column width="200" .position=${this.pinFirst ? 'fixed' : 'initial'}>
             Stock
             <cds-action-button
               @click=${() => (this.pinFirst = !this.pinFirst)}
@@ -1039,9 +1743,9 @@ export function fixedColumns() {
               <cds-icon shape="pin" ?solid=${this.pinFirst}></cds-icon>
             </cds-action-button>
           </cds-grid-column>
-          <cds-grid-column>Average</cds-grid-column>
-          <cds-grid-column>Current</cds-grid-column>
-          <cds-grid-column .position=${this.pinLast ? 'fixed' : 'initial'}>
+          <cds-grid-column width="400">Average</cds-grid-column>
+          <cds-grid-column width="400">Current</cds-grid-column>
+          <cds-grid-column width="200" .position=${this.pinLast ? 'fixed' : 'initial'}>
             About
             <cds-action-button
               @click=${() => (this.pinLast = !this.pinLast)}
@@ -1081,7 +1785,7 @@ export function stickyColumns() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column width="120">Stock</cds-grid-column>
           <cds-grid-column width="120" position="sticky">Average</cds-grid-column>
           <cds-grid-column width="500">Current</cds-grid-column>
@@ -1121,7 +1825,7 @@ export function editableCell() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 320px">
+        <cds-grid style="--body-height: 340px">
           <cds-grid-column>Account</cds-grid-column>
           <cds-grid-column>Outstanding</cds-grid-column>
           <cds-grid-column>About</cds-grid-column>
@@ -1132,21 +1836,21 @@ export function editableCell() {
                 <cds-grid-cell>
                   ${entry.selected
                     ? html` <cds-input>
-                        <label cds-layout="display:screen-reader-only">${entry.id} Outstanding Value</label>
                         <input
                           class="${entry.id}-input"
                           type="number"
                           .value=${entry.average}
                           @keyup=${(e: any) => this.updateEntry(e, entry)}
+                          aria-label="${entry.id} Outstanding Value"
                         />
-                        <cds-control-action action="prefix" readonly>$&nbsp;</cds-control-action>
+                        <cds-control-action action="prefix" readonly>$</cds-control-action>
                       </cds-input>`
                     : html`
                         <cds-action-button
                           class="${entry.id}-button"
                           @click=${() => this.editEntry(entry)}
                           aria-label="edit ${entry.id}"
-                          ><cds-icon shape="pencil" solid></cds-icon
+                          shape="pencil"
                         ></cds-action-button>
                         <span>$${entry.average}</span>
                       `}
@@ -1165,18 +1869,14 @@ export function editableCell() {
         entry.average = e.target.value;
         entry.selected = false;
         this.data = [...this.data];
-        setTimeout(() => this.querySelector<HTMLElement>(`.${entry.id}-button`).focus());
+        setTimeout(() => this.shadowRoot.querySelector<HTMLElement>(`.${entry.id}-button`).focus());
       }
     }
 
     private editEntry(entry: any) {
       entry.selected = true;
       this.data = [...this.data];
-      setTimeout(() => this.querySelector<HTMLElement>(`.${entry.id}-input`).focus());
-    }
-
-    protected createRenderRoot() {
-      return this;
+      setTimeout(() => this.shadowRoot.querySelector<HTMLElement>(`.${entry.id}-input`).focus());
     }
   }
 
@@ -1185,121 +1885,79 @@ export function editableCell() {
 }
 
 export function optionalFooter() {
-  class DemoOptionalFooter extends LitElement {
-    render() {
-      return html`
-        <cds-grid style="--body-height: 320px">
-          <cds-grid-column>Type</cds-grid-column>
-          <cds-grid-column>Description</cds-grid-column>
-          <cds-grid-column>Amount</cds-grid-column>
-          <cds-grid-column>Balance</cds-grid-column>
+  return html`
+    <cds-grid style="--body-height: 340px">
+      <cds-grid-column>Type</cds-grid-column>
+      <cds-grid-column>Description</cds-grid-column>
+      <cds-grid-column>Amount</cds-grid-column>
+      <cds-grid-column>Balance</cds-grid-column>
 
-          <cds-grid-row>
-            <cds-grid-cell>Deposit</cds-grid-cell>
-            <cds-grid-cell>Item</cds-grid-cell>
-            <cds-grid-cell>$1,000,000.00</cds-grid-cell>
-            <cds-grid-cell>$1,000,000.00</cds-grid-cell>
-          </cds-grid-row>
-          <cds-grid-row>
-            <cds-grid-cell>Credit</cds-grid-cell>
-            <cds-grid-cell>Billing</cds-grid-cell>
-            <cds-grid-cell>$250.00</cds-grid-cell>
-            <cds-grid-cell>$523,750.00</cds-grid-cell>
-          </cds-grid-row>
-          <cds-grid-row>
-            <cds-grid-cell>Debit</cds-grid-cell>
-            <cds-grid-cell>Renewal</cds-grid-cell>
-            <cds-grid-cell>$9.00</cds-grid-cell>
-            <cds-grid-cell>$163,262.00</cds-grid-cell>
-          </cds-grid-row>
-          <cds-grid-row>
-            <cds-grid-cell>Credit</cds-grid-cell>
-            <cds-grid-cell>Subscription</cds-grid-cell>
-            <cds-grid-cell>$53.00</cds-grid-cell>
-            <cds-grid-cell>$347,423.00</cds-grid-cell>
-          </cds-grid-row>
-          <cds-grid-row>
-            <cds-grid-cell>Deposit</cds-grid-cell>
-            <cds-grid-cell>Subscription</cds-grid-cell>
-            <cds-grid-cell>$1239.00</cds-grid-cell>
-            <cds-grid-cell>$564,772.00</cds-grid-cell>
-          </cds-grid-row>
-          <cds-grid-row>
-            <cds-grid-cell>Deposit</cds-grid-cell>
-            <cds-grid-cell>Service Fee</cds-grid-cell>
-            <cds-grid-cell>$49.00</cds-grid-cell>
-            <cds-grid-cell>$977,527.00</cds-grid-cell>
-          </cds-grid-row>
-          <cds-grid-row>
-            <cds-grid-cell>Debit</cds-grid-cell>
-            <cds-grid-cell>Account Transfer</cds-grid-cell>
-            <cds-grid-cell>$2300.00</cds-grid-cell>
-            <cds-grid-cell>$423,236.00</cds-grid-cell>
-          </cds-grid-row>
-          <cds-grid-row>
-            <cds-grid-cell>Credit</cds-grid-cell>
-            <cds-grid-cell>Payment</cds-grid-cell>
-            <cds-grid-cell>$9.00</cds-grid-cell>
-            <cds-grid-cell>$199,282.00</cds-grid-cell>
-          </cds-grid-row>
-          <cds-grid-row>
-            <cds-grid-cell>Debit</cds-grid-cell>
-            <cds-grid-cell>Unknown</cds-grid-cell>
-            <cds-grid-cell>$9.00</cds-grid-cell>
-            <cds-grid-cell>$929,741.00</cds-grid-cell>
-          </cds-grid-row>
-          <cds-grid-row>
-            <cds-grid-cell>Debit</cds-grid-cell>
-            <cds-grid-cell>Provider</cds-grid-cell>
-            <cds-grid-cell>$9203.00</cds-grid-cell>
-            <cds-grid-cell>$239,120.00</cds-grid-cell>
-          </cds-grid-row>
-        </cds-grid>
-      `;
-    }
-
-    protected createRenderRoot() {
-      return this;
-    }
-  }
-
-  registerElementSafely('demo-grid-optional-footer', DemoOptionalFooter);
-  return html`<demo-grid-optional-footer></demo-grid-optional-footer>`;
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+    </cds-grid>
+  `;
 }
 
 export function compact() {
-  class DemoGridCompact extends LitElement {
-    @state() private data = getData();
-
-    render() {
-      return html`
-        <cds-grid cds-theme="compact" style="--body-height: 320px">
-          <cds-grid-column>Stock</cds-grid-column>
-          <cds-grid-column>Average</cds-grid-column>
-          <cds-grid-column>Current</cds-grid-column>
-          <cds-grid-column>About</cds-grid-column>
-          ${this.data.map(
-            entry => html`
-              <cds-grid-row>
-                <cds-grid-cell>${entry.id}</cds-grid-cell>
-                <cds-grid-cell>$${entry.average}</cds-grid-cell>
-                <cds-grid-cell>$${entry.value}</cds-grid-cell>
-                <cds-grid-cell>...</cds-grid-cell>
-              </cds-grid-row>
-            `
-          )}
-          <cds-grid-footer></cds-grid-footer>
-        </cds-grid>
-      `;
-    }
-
-    protected createRenderRoot() {
-      return this;
-    }
-  }
-
-  registerElementSafely('demo-grid-compact', DemoGridCompact);
-  return html` <style>
+  return html`<style>
       [cds-theme*='compact'] {
         --cds-global-space-0: 0;
         --cds-global-space-1: 1px;
@@ -1317,7 +1975,74 @@ export function compact() {
         --cds-global-space-13: 54px;
       }
     </style>
-    <demo-grid-compact></demo-grid-compact>`;
+    <cds-grid cds-theme="compact" style="--body-height: 340px">
+      <cds-grid-column>Type</cds-grid-column>
+      <cds-grid-column>Description</cds-grid-column>
+      <cds-grid-column>Amount</cds-grid-column>
+      <cds-grid-column>Balance</cds-grid-column>
+
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>`;
 }
 
 export function performance() {
@@ -1369,7 +2094,7 @@ export function performance() {
         >
         <br />
         ${this.showParseAndRender
-          ? html` <cds-grid ?hidden=${this.hide} style="--body-height: 320px; --row-height: 36px">
+          ? html` <cds-grid ?hidden=${this.hide} style="--body-height: 340px; --row-height: 36px">
               <cds-grid-column>Stock</cds-grid-column>
               <cds-grid-column>Average</cds-grid-column>
               <cds-grid-column>Current</cds-grid-column>
@@ -1452,11 +2177,6 @@ export function draggableListController() {
       `;
     }
 
-    // connectedCallback() {
-    //   super.connectedCallback();
-    //   this.addEventListener('draggableChange', e => this.sortList(e));
-    // }
-
     private sortList(e: any) {
       this.data = sortList(e.detail.target, e.detail.from, this.data);
       e.preventDefault();
@@ -1473,7 +2193,7 @@ export function draggableRows() {
 
     render() {
       return html`
-        <cds-grid @draggableChange=${this.sortList} style="--body-height: 320px">
+        <cds-grid @draggableChange=${this.sortList} style="--body-height: 340px">
           <cds-grid-column width="45"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -1524,7 +2244,7 @@ export function swappableRows() {
 
     render() {
       return html`
-        <cds-grid @draggableChange=${this.sortOne} style="--body-height: 320px">
+        <cds-grid @draggableChange=${this.sortOne} style="--body-height: 340px">
           <cds-grid-column width="45"></cds-grid-column>
           <cds-grid-column>id</cds-grid-column>
           <cds-grid-column>description</cds-grid-column>
@@ -1533,7 +2253,11 @@ export function swappableRows() {
             entry => html`
               <cds-grid-row id=${entry.id} draggable="true">
                 <cds-grid-cell>
-                  <cds-action-button shape="drag-handle" aria-label="sort ${entry.id} row"></cds-action-button>
+                  <cds-action-button
+                    cds-draggable="handle"
+                    shape="drag-handle"
+                    aria-label="sort ${entry.id} row"
+                  ></cds-action-button>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>...</cds-grid-cell>
@@ -1559,7 +2283,11 @@ export function swappableRows() {
             entry => html`
               <cds-grid-row id=${entry.id} draggable="true">
                 <cds-grid-cell>
-                  <cds-action-button shape="drag-handle" aria-label="sort ${entry.id} row"></cds-action-button>
+                  <cds-action-button
+                    cds-draggable="handle"
+                    shape="drag-handle"
+                    aria-label="sort ${entry.id} row"
+                  ></cds-action-button>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>...</cds-grid-cell>
@@ -1636,10 +2364,6 @@ export function noScroll() {
           <cds-grid-footer></cds-grid-footer>
         </cds-grid>
       `;
-    }
-
-    protected createRenderRoot() {
-      return this;
     }
   }
 

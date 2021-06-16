@@ -50,7 +50,8 @@ export function getTabableItems(el: HTMLElement) {
     'object',
     'embed',
     '*[tabindex]',
-    '*[contenteditable=true], [role=button]:not([disabled])',
+    '*[contenteditable=true]',
+    '[role=button]:not([disabled])',
   ].join(',');
   return Array.from(el.querySelectorAll(tabableSelector)) as HTMLElement[];
 }

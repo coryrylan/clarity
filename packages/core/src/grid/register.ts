@@ -54,5 +54,12 @@ registerElementSafely('cds-dropdown', CdsDropdown);
 declare global {
   interface HTMLElementTagNameMap {
     'cds-grid': CdsGrid;
+    'cds-grid-row': CdsGridRow;
+    'cds-grid-cell': CdsGridCell;
+    'cds-grid-column': CdsGridColumn;
+    'cds-grid-detail': CdsGridDetail;
+    'cds-grid-footer': CdsGridFooter;
+    'cds-grid-placeholder': CdsGridPlaceholder;
+    'cds-dropdown': CdsDropdown;
   }
 }

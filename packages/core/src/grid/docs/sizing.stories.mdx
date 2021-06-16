@@ -1,0 +1,50 @@
+import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/blocks.js';
+
+<Meta title="Data Grid (Preview)/Sizing" />
+
+# Grid Sizing
+
+<cds-alert-group status="warning" cds-layout="m-b:lg">
+  <cds-alert>
+    This component or utility is offered as a preview. This means we are currently working on it and seeking feedback.
+    Please be aware that this component or utility may have breaking changes before we finish working on it.
+  </cds-alert>
+</cds-alert-group>
+
+The Data Grid has a few options for controlling size adjustments. The `--body-height` property
+allows control of the height of the grid. By default, the grid will expand to the number of
+provided rows.
+
+The `cds-grid-column` provides a `width` attribute/property to set a starting width
+of a given column. By default, the Grid column width will be evenly distributed to
+the number of given columns.
+
+<Story id="stories-grid--sizing" />
+
+```html
+<cds-grid style="--body-height: 350px">
+  <cds-grid-column width="100">Type</cds-grid-column>
+  <cds-grid-column>Description</cds-grid-column>
+  <cds-grid-column>Amount</cds-grid-column>
+  <cds-grid-column>Balance</cds-grid-column>
+  <cds-grid-row>
+    <cds-grid-cell>Deposit</cds-grid-cell>
+    <cds-grid-cell>Item</cds-grid-cell>
+    <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+    <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+  </cds-grid-row>
+  <cds-grid-footer></cds-grid-footer>
+</cds-grid>
+```
+
+## Optional Footer
+
+<Preview>
+  <Story id="stories-grid--optional-footer" />
+</Preview>
+
+## No Scroll
+
+<Preview withSource="none">
+  <Story id="stories-grid--no-scroll" />
+</Preview>

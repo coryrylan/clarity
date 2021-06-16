@@ -5,6 +5,9 @@
   padding: 0 var(--cds-global-space-5);
   border-top: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
   color: var(--cds-global-typography-color-500);
+  min-height: calc(var(--cds-global-space-12) - var(--cds-global-space-3));
+  background: var(--cds-alias-object-container-background-tint);
+  font-size: 14px;
 }
 
 ::slotted(cds-action-button) {

@@ -85,6 +85,7 @@ export const parameters = {
           'Toggle',
           'Date (Internal)',
         ],
+        'Data Grid (Preview)',
         'Components (Preview)',
         ['Circular Progress', 'Divider', 'Pagination'],
         'Utilities (Preview)',

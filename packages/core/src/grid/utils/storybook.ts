@@ -1,5 +1,3 @@
-import { html } from 'lit';
-
 export const getData = () => {
   (window as any)._sideEffectTest = '';
   const data: any[] = [
@@ -32,13 +30,25 @@ export function filter(list: any[], key: string, term: string) {
   return [...list].filter(i => i[key].toLocaleLowerCase().includes(term.toLocaleLowerCase()));
 }
 
-export function sort(list: any[], key: string, sortType: 'none' | 'ascending' | 'descending') {
+export function sortStrings(list: any[], key: string, sortType: 'none' | 'ascending' | 'descending') {
   if (sortType === 'ascending') {
     return list.sort((a, b) => a[key].localeCompare(b[key]));
   }
 
   if (sortType === 'descending') {
     return list.sort((a, b) => a[key].localeCompare(b[key])).reverse();
+  }
+
+  return list;
+}
+
+export function sortNumbers(list: any[], key: string, sortType: 'none' | 'ascending' | 'descending') {
+  if (sortType === 'ascending') {
+    return list.sort((a, b) => a[key] - b[key]);
+  }
+
+  if (sortType === 'descending') {
+    return list.sort((a, b) => b[key] - a[key]);
   }
 
   return list;
@@ -77,20 +87,3 @@ export function sortList(target: { id: any }, src: { id: any }, list: { id: any 
   targetIndex === -1 ? data.push(srcItem) : data.splice(targetIndex, 0, srcItem);
   return data;
 }
-
-export const columnIcon = html`<svg
-  aria-hidden="true"
-  version="1.1"
-  width="36"
-  height="36"
-  viewBox="0 0 36 36"
-  preserveAspectRatio="xMidYMid meet"
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
->
-  <path
-    class="clr-i-outline clr-i-outline-path-1"
-    d="M31,5H5A2,2,0,0,0,3,7V29a2,2,0,0,0,2,2H31a2,2,0,0,0,2-2V7A2,2,0,0,0,31,5ZM13,29H5V7h8Zm10,0H15V7h8Z"
-  ></path>
-  <rect x="0" y="0" width="36" height="36" fill-opacity="0" />
-</svg>`;

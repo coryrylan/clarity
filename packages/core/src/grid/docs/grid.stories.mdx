@@ -1,8 +1,15 @@
 import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/blocks.js';
 
-<Meta title="Components/Grid" />
+<Meta title="Data Grid (Preview)/Basic" />
 
-# Grid
+# Data Grid
+
+<cds-alert-group status="warning" cds-layout="m-b:lg">
+  <cds-alert>
+    This component or utility is offered as a preview. This means we are currently working on it and seeking feedback.
+    Please be aware that this component or utility may have breaking changes before we finish working on it.
+  </cds-alert>
+</cds-alert-group>
 
 ## Installation
 
@@ -12,142 +19,58 @@ import '@cds/core/grid/register.js';
 
 ## Usage
 
+The Core Data Grid functions much like an HTML Table Element. The Grid is stateless only rendering what HTML is provided.
+Interactions are not managed by the Data Grid but rather the host application. This provides significantly more flexibility
+for how the state is managed for your Data Grid.
+
 ```html
-<cds-grid> </cds-grid>
+<cds-grid>
+  <cds-grid-column>Type</cds-grid-column>
+  <cds-grid-column>Description</cds-grid-column>
+  <cds-grid-column>Amount</cds-grid-column>
+  <cds-grid-column>Balance</cds-grid-column>
+  <cds-grid-row>
+    <cds-grid-cell>Deposit</cds-grid-cell>
+    <cds-grid-cell>Item</cds-grid-cell>
+    <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+    <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+  </cds-grid-row>
+  <cds-grid-row>
+    <cds-grid-cell>Credit</cds-grid-cell>
+    <cds-grid-cell>Billing</cds-grid-cell>
+    <cds-grid-cell>$250.00</cds-grid-cell>
+    <cds-grid-cell>$523,750.00</cds-grid-cell>
+  </cds-grid-row>
+  <cds-grid-footer></cds-grid-footer>
+</cds-grid>
 ```
 
 ## Basic
 
-<Preview>
-  <Story id="stories-grid--basic" />
-</Preview>
+<Story id="stories-grid--basic" />
 
 ## Keyboard
 
-<Preview>
-  <Story id="stories-grid--keyboard" />
-</Preview>
+<Story id="stories-grid--keyboard" />
 
-## Pagination
+## Kitchen Sink
 
-<Preview>
-  <Story id="stories-grid--pagination" />
-</Preview>
-
-## Column Visibility
-
-<Preview>
-  <Story id="stories-grid--column-visibility" />
-</Preview>
-
-## Detail View
-
-<Preview>
-  <Story id="stories-grid--detail-view" />
-</Preview>
-
-## Detail View
-
-<Preview>
-  <Story id="stories-grid--detail-view" />
-</Preview>
-
-## Single Select
-
-<Preview>
-  <Story id="stories-grid--single-select" />
-</Preview>
-
-## Multi Select
-
-<Preview>
-  <Story id="stories-grid--multi-select" />
-</Preview>
-
-## Single Action
-
-<Preview>
-  <Story id="stories-grid--single-action" />
-</Preview>
-
-## Multi Action
-
-<Preview>
-  <Story id="stories-grid--multi-action" />
-</Preview>
-
-## Sortable Rows
-
-<Preview>
-  <Story id="stories-grid--sortable-rows" />
-</Preview>
-
-## Row Filtering
-
-<Preview>
-  <Story id="stories-grid--row-filtering" />
-</Preview>
-
-## Grid Filtering
-
-<Preview>
-  <Story id="stories-grid--grid-filtering" />
-</Preview>
-
-## Fixed Columns
-
-<Preview>
-  <Story id="stories-grid--fixed-columns" />
-</Preview>
-
-## Sticky Columns
-
-<Preview>
-  <Story id="stories-grid--sticky-columns" />
-</Preview>
-
-## Editable Cell
-
-<Preview>
-  <Story id="stories-grid--editable-cell" />
-</Preview>
-
-## Optional Footer
-
-<Preview>
-  <Story id="stories-grid--optional-footer" />
-</Preview>
-
-## Compact
-
-<Preview>
-  <Story id="stories-grid--compact" />
-</Preview>
-
-## Performance
-
-<Preview>
-  <Story id="stories-grid--performance" />
-</Preview>
-
-## Draggable Rows
-
-<Preview>
-  <Story id="stories-grid--draggable-rows" />
-</Preview>
-
-## Swappable Rows
-
-<Preview>
-  <Story id="stories-grid--swappable-rows" />
-</Preview>
-
-## No Scroll
-
-<Preview>
-  <Story id="stories-grid--no-scroll" />
-</Preview>
+<Story id="stories-grid--kitchen-sink" />
 
 ## API
 
+### cds-grid
+
 <Props of={'cds-grid'} />
+
+### cds-grid-column
+
+<Props of={'cds-grid-column'} />
+
+### cds-grid-row
+
+<Props of={'cds-grid-row'} />
+
+### cds-grid-cell
+
+<Props of={'cds-grid-cell'} />

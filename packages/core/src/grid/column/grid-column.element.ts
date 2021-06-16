@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { baseStyles, property } from '@cds/core/internal';
+import { baseStyles, property, state } from '@cds/core/internal';
 import { classMap } from 'lit/directives/class-map.js';
 import styles from './grid-column.element.scss';
 
@@ -14,7 +14,11 @@ export class CdsGridColumn extends LitElement {
     return [baseStyles, styles];
   }
 
-  @property({ type: String }) sort?: 'none' | 'ascending' | 'descending' | null = null;
+  @property({ type: String, reflect: true, attribute: 'aria-sort' }) sort?:
+    | 'none'
+    | 'ascending'
+    | 'descending'
+    | null = null;
 
   @property({ type: Boolean }) hidden: boolean = false;
 
@@ -22,27 +26,18 @@ export class CdsGridColumn extends LitElement {
 
   @property({ type: Boolean }) resizable = true;
 
-  @property({ type: String, attribute: 'slot', reflect: true }) slot = 'columns';
-
-  @property({
-    type: Number,
-    reflect: true,
-    attribute: 'aria-colindex',
-    converter: {
-      toAttribute: (value: number) => value + 1,
-      fromAttribute: (value: string) => parseInt(value) - 1,
-    },
-  })
-  col: number = null;
-
   @property({ type: String }) width: string | null = null;
+
+  @state({ type: String, attribute: 'slot', reflect: true }) slot = 'columns';
+
+  @state({ type: Number, reflect: true, attribute: 'aria-colindex' }) col: number = null;
 
   private globalStyle = supportsAdoptingStyleSheets ? new CSSStyleSheet() : null;
 
   render() {
     return html`
       <div part="column">
-        <div cds-layout="horizontal fill">
+        <div cds-layout="horizontal fill gap:md">
           <slot></slot>
         </div>
 
@@ -122,7 +117,8 @@ export class CdsGridColumn extends LitElement {
       case 'none':
         sort = 'ascending';
     }
-    this.dispatchEvent(new CustomEvent('sortChange', { detail: sort }));
+
+    this.dispatchEvent(new CustomEvent('sortChange', { detail: sort, bubbles: true }));
   }
 
   private listenForMouseResize() {
@@ -160,7 +156,6 @@ export class CdsGridColumn extends LitElement {
 
   private listenForKeyboardResize() {
     this.shadowRoot.querySelector('#line').addEventListener('keydown', (e: any) => {
-      this.scrollIntoView(false);
       if (e.code === 'ArrowLeft') {
         e.preventDefault();
         this.resize(-10);
@@ -184,8 +179,8 @@ export class CdsGridColumn extends LitElement {
     const side = offsetLeft < gridPosition.width / 2 ? 'left' : 'right';
 
     (this.globalStyle as any).replaceSync(`
-      [__id='${(this.parentElement as any)._id}'] cds-grid-column:nth-child(${this.col + 1}),
-      [__id='${(this.parentElement as any)._id}'] cds-grid-cell:nth-child(${this.col + 1}) {
+      [__id='${(this.parentElement as any)._id}'] cds-grid-column:nth-child(${this.col}),
+      [__id='${(this.parentElement as any)._id}'] cds-grid-cell:nth-child(${this.col}) {
         ${
           side === 'left'
             ? `left: ${this.position === 'fixed' ? `${position.left - gridPosition.left - 1}px` : 'initial'};`
@@ -204,7 +199,7 @@ export class CdsGridColumn extends LitElement {
       ${
         this.position !== 'initial'
           ? `
-      [__id='${(this.parentElement as any)._id}'] cds-grid-cell:nth-child(${this.col + 1}) {
+      [__id='${(this.parentElement as any)._id}'] cds-grid-cell:nth-child(${this.col}) {
         border-${
           side === 'left' ? 'right' : 'left'
         }: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);

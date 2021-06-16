@@ -1,0 +1,45 @@
+import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/blocks.js';
+
+<Meta title="Data Grid (Preview)/Fixed Columns" />
+
+# Grid Fixed Columns
+
+<cds-alert-group status="danger" cds-layout="m-b:lg">
+  <cds-alert>
+    This feature or component is <strong>experimental</strong> and has no defined support policy. Experimental features
+    are subject to change at any time and are not stable.
+  </cds-alert>
+</cds-alert-group>
+
+Columns can be fixed in place. This will prevent the column from scrolling when the grid has horizontal scrolling.
+To place a column in a fixed position, set the column with a `position="fixed"` attribute. You can enable user toggling
+of the position by using a `cds-action-button` to set the position state of a given column.
+
+<cds-alert status="warning">Only the first and last columns can be placed in the fixed position.</cds-alert>
+
+<Story id="stories-grid--fixed-columns" />
+
+```html
+<cds-grid>
+  <cds-grid-column position="fixed">
+    Stock
+    <cds-action-button aria-label="pin stock column">
+      <cds-icon shape="pin" solid></cds-icon>
+    </cds-action-button>
+  </cds-grid-column>
+  <cds-grid-column>Average</cds-grid-column>
+  <cds-grid-column>Current</cds-grid-column>
+  <cds-grid-column position="initial">
+    About
+    <cds-action-button aria-label="pin about column">
+      <cds-icon shape="pin"></cds-icon>
+    </cds-action-button>
+  </cds-grid-column>
+  <cds-grid-row>
+    <cds-grid-cell>APPL</cds-grid-cell>
+    <cds-grid-cell>$1000</cds-grid-cell>
+    <cds-grid-cell>$0</cds-grid-cell>
+    <cds-grid-cell>...</cds-grid-cell>
+  </cds-grid-row>
+</cds-grid>
+```

@@ -8,7 +8,10 @@
   --scrollbar-background: var(--cds-alias-object-container-background);
   --scrollbar-thumb-background: var(--cds-alias-object-border-color);
   --grid-template-columns: 1fr 1fr 1fr 1fr;
-  contain: content;
+  --column-height: calc(var(--cds-global-space-12) - var(--cds-global-space-3));
+  --row-height: calc(var(--cds-global-space-12) - var(--cds-global-space-3));
+  --row-content-visibility: auto;
+  --scroll-padding-top: var(--row-height);
   width: 100%;
 }
 
@@ -25,7 +28,16 @@
   display: flex;
   flex-direction: column;
   height: var(--body-height, 100%);
-  scroll-padding: var(--row-height, var(--cds-global-space-11));
+  scroll-padding-top: var(--scroll-padding-top);
+  background: var(--cds-alias-object-container-background-tint); // for scroll overflow on columns
+}
+
+.grid-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+  margin-top: 2px;
+  background: var(--cds-alias-object-container-background);
 }
 
 .column-row-group {
@@ -38,29 +50,26 @@
   position: sticky;
   z-index: 99;
   grid-template-columns: var(--grid-template-columns);
+  background: var(--cds-alias-object-container-background-tint);
   box-shadow: 0 1px 0 var(--cds-alias-object-border-color);
-}
-
-.grid-body {
-  flex: 1 1 0%;
-  margin-top: 2px;
 }
 
 .footer {
   background: var(--cds-alias-object-container-background);
 }
 
-::slotted(cds-grid-row:first-of-type) {
-  --internal-border-top: var(--cds-alias-object-border-width-100) solid transparent;
+::slotted(cds-grid-row:not([cds-draggable='target']):first-of-type) {
+  --border-top: var(--cds-alias-object-border-width-100) solid transparent;
 }
 
 ::-webkit-scrollbar {
   width: var(--cds-global-space-5);
   height: var(--cds-global-space-5);
-  background: var(--scrollbar-background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-track {
+  margin-top: 44px;
   box-shadow: inset 0 0 11px var(--scrollbar-background);
 }
 

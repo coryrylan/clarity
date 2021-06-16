@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { baseStyles, property } from '@cds/core/internal';
+import { baseStyles, property, state } from '@cds/core/internal';
 
 import { CdsGridCell } from '../cell/grid-cell.element.js';
 import styles from './grid-row.element.scss';
@@ -11,19 +11,15 @@ export class CdsGridRow extends LitElement {
 
   @property({ type: Boolean, reflect: true }) select = false;
 
-  @property({
-    type: Number,
-    reflect: true,
-    attribute: 'aria-rowindex',
-    converter: {
-      toAttribute: (value: number) => value + 1,
-      fromAttribute: (value: string) => parseInt(value) - 1,
-    },
-  })
-  row: number = null;
+  @property({ type: String }) position: 'fixed' = null;
 
+  @state({ type: Number, reflect: true, attribute: 'aria-rowindex' }) row: number = null;
+
+  @state({ type: String, reflect: true, attribute: 'role' }) protected role = 'row';
+
+  // causes the list to be empty on re-render
+  // @queryAssignedNodes('', true, 'cds-grid-cell') cells: NodeListOf<CdsGridCell>
   get cells(): NodeListOf<CdsGridCell> {
-    // Using @queryAssignedNodes causes the list to be empty on re-render
     return this.querySelectorAll('cds-grid-cell');
   }
 
@@ -35,12 +31,14 @@ export class CdsGridRow extends LitElement {
     `;
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.setAttribute('role', 'row');
+  updated(props: Map<string, any>) {
+    super.updated(props);
+    if (props.has('position') && this.position !== props.get('position')) {
+      this.parentElement.style.setProperty('--scroll-padding-top', 'calc(var(--row-height) * 2)');
+    }
   }
 
   private updateCells() {
-    this.cells.forEach((c, i) => (c.col = i));
+    this.cells.forEach((c, i) => (c.colIndex = i + 1));
   }
 }

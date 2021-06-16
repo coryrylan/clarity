@@ -85,13 +85,17 @@ export class GridKeyNavigationController {
     let x = Array.from(currentRow.children).indexOf(currentCell);
     let y = Array.from(this.host.rows).indexOf(currentRow);
 
+    const dir = this.host.dir;
+    const inlineStart = dir === 'rtl' ? 'ArrowRight' : 'ArrowLeft';
+    const inlineEnd = dir === 'rtl' ? 'ArrowLeft' : 'ArrowRight';
+
     if (e.code === 'ArrowUp' && y !== 0) {
       y = y - 1;
     } else if (e.code === 'ArrowDown' && y < numOfRows) {
       y = y + 1;
-    } else if (e.code === 'ArrowLeft' && x !== 0) {
+    } else if (e.code === inlineStart && x !== 0) {
       x = x - 1;
-    } else if (e.code === 'ArrowRight' && x < numOfColumns) {
+    } else if (e.code === inlineEnd && x < numOfColumns) {
       x = x + 1;
     } else if (e.code === 'End') {
       x = numOfColumns;

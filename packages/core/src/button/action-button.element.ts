@@ -14,11 +14,23 @@ export class CdsActionButton extends CdsBaseButton {
           --height: 16px;
           --target-width: 44px;
           --target-height: 44px;
+          outline: 0 !important;
         }
 
         :host(:hover),
         :host(:focus) {
           --color: var(--cds-global-typography-color-700);
+        }
+
+        :host(:focus) .private-host::after {
+          outline: Highlight solid var(--cds-global-space-2);
+          outline-offset: -4px;
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 0) {
+          :host(:focus) .private-host::after {
+            outline-color: -webkit-focus-ring-color;
+          }
         }
 
         :host(:active) {
