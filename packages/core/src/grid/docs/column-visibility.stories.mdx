@@ -11,8 +11,8 @@ import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/
   </cds-alert>
 </cds-alert-group>
 
-To show or hide columns, toggle the visibility of the column and corresponding cells with the `hidden` attribute.
-For optimal performance, conditionally render the column and cell elements.
+To show or hide columns conditionally render the column and cell elements. Conditionally rendering
+the DOM is required to ensure the best a11y experience and that the column sizing will be correct.
 
 <Story id="stories-grid--column-visibility" />
 
@@ -21,18 +21,18 @@ For optimal performance, conditionally render the column and cell elements.
   <cds-grid-column>Stock</cds-grid-column>
   <cds-grid-column>Average</cds-grid-column>
   <cds-grid-column>Current</cds-grid-column>
-  <cds-grid-column hidden>About</cds-grid-column>
+  <!-- (removed) <cds-grid-column>About</cds-grid-column> -->
   <cds-grid-row>
     <cds-grid-cell>APPL</cds-grid-cell>
     <cds-grid-cell>$100</cds-grid-cell>
     <cds-grid-cell>$0.00</cds-grid-cell>
-    <cds-grid-cell hidden>...</cds-grid-cell>
+    <!-- (removed) <cds-grid-cell>...</cds-grid-cell> -->
   </cds-grid-row>
   <cds-grid-row>
     <cds-grid-cell>MSFT</cds-grid-cell>
     <cds-grid-cell>$500</cds-grid-cell>
     <cds-grid-cell>$0.00</cds-grid-cell>
-    <cds-grid-cell hidden>Lorem ipsum dolor sit amet</cds-grid-cell>
+    <!-- (removed) <cds-grid-cell>Lorem ipsum dolor sit amet</cds-grid-cell> -->
   </cds-grid-row>
   <cds-grid-footer>
     <cds-action-button id="toggle-columns" shape="view-columns" aria-label="filter column"></cds-action-button>
@@ -40,11 +40,11 @@ For optimal performance, conditionally render the column and cell elements.
       <cds-checkbox-group layout="vertical">
         <cds-checkbox>
           <label>Average</label>
-          <input type="checkbox" />
+          <input type="checkbox" checked />
         </cds-checkbox>
         <cds-checkbox>
           <label>Current</label>
-          <input type="checkbox" />
+          <input type="checkbox" checked />
         </cds-checkbox>
         <cds-checkbox>
           <label>About</label>

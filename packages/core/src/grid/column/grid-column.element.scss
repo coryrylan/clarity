@@ -6,44 +6,33 @@
   position: sticky;
 }
 
-.line {
-  width: var(--cds-global-space-4);
-  height: var(--cds-global-space-7);
-  align-self: center;
-  padding: 0;
-  border: 0;
-  background: none;
-  border-right: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
+::slotted(cds-action-button),
+#line,
+.sort {
+  // --target-width: 36px;
 }
 
-button.line {
-  cursor: ew-resize;
-  margin-left: 6px;
+#line {
+  --color: var(--cds-alias-status-disabled);
+  // --outline-offset: -12px;
+  width: 20px;
 }
 
-.line:focus {
-  outline: 0;
-  border-right: var(--cds-alias-object-border-width-200) solid var(--cds-alias-status-info);
+#line:not([disabled]) {
+  --cursor: ew-resize;
 }
 
 .sort {
-  display: flex;
-  flex-direction: column;
-  font-size: 10px;
-  align-self: stretch;
-  align-items: center;
-  justify-content: center;
   color: var(--cds-alias-status-disabled);
-  width: var(--cds-global-space-8);
-  padding: 0;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
 }
 
-.ascending .up,
-.descending .down {
-  color: var(--cds-global-typography-color-500);
+.ascending [direction='up'],
+.descending [direction='down'] {
+  --color: var(--cds-global-typography-color-500);
+}
+
+::slotted(cds-action-button) {
+  --color: var(--cds-global-typography-color-500);
 }
 
 [part='column'] {
@@ -53,14 +42,14 @@ button.line {
   line-height: 0;
   color: var(--cds-global-typography-color-500);
   white-space: nowrap;
-  overflow: hidden;
+  overflow: visible;
   text-overflow: ellipsis;
   font-size: 14px;
   text-align: left;
   line-height: 1em;
   margin: 0;
   display: flex;
-  gap: var(--cds-global-space-3);
+  gap: 12px;
   padding-inline: var(--cds-global-space-6) 0; // logical properties for rtl
   padding-block: var(--cds-global-space-5) var(--cds-global-space-5);
   align-items: center;
@@ -78,14 +67,4 @@ button.line {
 ::slotted([cds-layout='align:right']) {
   /* temp fix waiting on next release */
   margin-inline-start: auto;
-}
-
-::slotted(cds-action-button) {
-  --color: var(--cds-global-typography-color-500);
-  --padding: 0;
-}
-
-[cds-layout='horizontal fill'] {
-  display: flex;
-  width: 100%;
 }

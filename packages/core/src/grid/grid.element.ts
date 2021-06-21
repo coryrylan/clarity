@@ -3,7 +3,6 @@ import { queryAssignedNodes } from 'lit/decorators/query-assigned-nodes.js';
 import { eventOptions } from 'lit/decorators/event-options.js';
 import { query } from 'lit/decorators/query.js';
 import { baseStyles, createId, state } from '@cds/core/internal';
-
 import { CdsGridRow } from './row/grid-row.element.js';
 import { CdsGridCell } from './cell/grid-cell.element.js';
 import { CdsGridColumn } from './column/grid-column.element.js';
@@ -16,6 +15,12 @@ export class CdsGrid extends LitElement implements KeyGrid {
     return [baseStyles, styles];
   }
 
+  @state({ type: String, reflect: true }) _id = createId();
+
+  @state({ type: String, reflect: true, attribute: 'role' }) role = 'grid';
+
+  @state({ type: Number, reflect: true, attribute: 'aria-rowcount' }) rowCount = 0;
+
   /** @private */
   @queryAssignedNodes('columns', true, 'cds-grid-column') columns: NodeListOf<CdsGridColumn>;
 
@@ -24,11 +29,6 @@ export class CdsGrid extends LitElement implements KeyGrid {
 
   /** @private */
   @query('.grid-body') grid: HTMLElement;
-
-  /** @private */
-  @state({ type: String, reflect: true }) _id = createId();
-
-  @state({ type: Number, reflect: true, attribute: 'aria-rowcount' }) rowCount = 0;
 
   /** @private */
   get cells(): CdsGridCell[] {
@@ -44,17 +44,20 @@ export class CdsGrid extends LitElement implements KeyGrid {
   render() {
     return html`
       <div class="private-host">
-        <div class="grid" @scroll=${this.setRowVisibility}>
+        <div class="grid">
           <div role="rowgroup" class="column-row-group">
             <div
               role="row"
               class="column-row"
-              @mousedown=${{ handleEvent: () => this.initializeColumnWidths(), once: true }}
+              @mousedown=${this.initializeColumnWidths}
+              @keydown=${this.initializeColumnWidths}
             >
               <slot name="columns" @slotchange=${this.calculateGridColumns}></slot>
             </div>
           </div>
-          <div class="grid-body" role="rowgroup"><slot></slot><slot name="placeholder"></slot></div>
+          <div class="grid-body" role="rowgroup">
+            <slot @slotchange=${this.updateRows}></slot><slot name="placeholder"></slot>
+          </div>
         </div>
         <div class="footer">
           <slot name="footer"></slot>
@@ -64,59 +67,23 @@ export class CdsGrid extends LitElement implements KeyGrid {
     `;
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.setAttribute('role', 'grid');
-  }
-
-  firstUpdated(props: Map<string, any>) {
-    super.firstUpdated(props);
-    this.listenForRowUpdates();
-    this.listenColumnSort();
-    this.listenForColumnHiddenChange();
-    // this.addEventListener('positionChange', (e: any) => this.initializeColumnWidths());
+  private updateRows() {
+    this.rowCount = this.rows.length;
+    this.rows.forEach((r, i) => (r.row = i + 1));
+    this.columns.forEach((c, i) => (c.col = i + 1));
+    this.gridKeyNavigationController.initializeKeyGrid();
   }
 
   @eventOptions({ once: true })
-  private setRowVisibility() {
-    // rows default to 'auto' for initial render, on scroll eager render to prevent overflow cliping
-    this.style.setProperty('--row-content-visibility', 'visible');
-  }
-
-  private listenForRowUpdates() {
-    this.shadowRoot.addEventListener('slotchange', (e: any) => {
-      if (e.target.name === '') {
-        this.rowCount = this.rows.length;
-        this.rows.forEach((r, i) => (r.row = i));
-        this.columns.forEach((c, i) => (c.col = i + 1));
-        this.gridKeyNavigationController.initializeKeyGrid();
-      }
-    });
-  }
-
-  private listenForColumnHiddenChange() {
-    this.addEventListener('hiddenChange', (e: any) => {
-      if (e.target.tagName.toLowerCase() === 'cds-grid-column') {
-        this.calculateGridColumns();
-      }
-    });
-  }
-
-  private listenColumnSort() {
-    this.addEventListener('sortChange', (e: any) => {
-      if (e.target.tagName.toLowerCase() === 'cds-grid-column') {
-        this.gridKeyNavigationController.initializeKeyGrid();
-      }
-    });
-  }
-
   private initializeColumnWidths() {
+    this.style.setProperty('--row-content-visibility', 'visible'); // rows default to 'auto' for initial render, on scroll eager render to prevent cliping
+
     Array.from(this.columns)
       .filter(column => !column.width && !column.hidden)
       .map(column => [column, parseInt(getComputedStyle(column).width)])
-      .forEach(([column, width]: any) => {
-        this.style.setProperty(`--col-${column.col}-width`, column.width ? `${column.width}px` : `${width}px`);
-      });
+      .forEach(([column, width]: any) =>
+        this.style.setProperty(`--col-${column.col}-width`, column.width ? `${column.width}px` : `${width}px`)
+      );
   }
 
   private calculateGridColumns() {

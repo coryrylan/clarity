@@ -19,6 +19,7 @@ import { dragHandleIcon } from '@cds/core/icon/shapes/drag-handle.js';
 import { viewColumnsIcon } from '@cds/core/icon/shapes/view-columns.js';
 import { timesIcon } from '@cds/core/icon/shapes/times.js';
 import { pinIcon } from '@cds/core/icon/shapes/pin.js';
+import { minusIcon } from '@cds/core/icon/shapes/minus.js';
 
 import { CdsGrid } from './grid.element.js';
 import { CdsGridRow } from './row/grid-row.element.js';
@@ -39,7 +40,8 @@ ClarityIcons.addIcons(
   dragHandleIcon,
   viewColumnsIcon,
   timesIcon,
-  pinIcon
+  pinIcon,
+  minusIcon
 );
 
 registerElementSafely('cds-grid', CdsGrid);

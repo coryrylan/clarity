@@ -95,6 +95,9 @@ export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
             '@cds/core/icon/shapes/filter-grid.js': '/dist/core/icon/shapes/filter-grid.js',
             '@cds/core/icon/shapes/ellipsis-vertical.js': '/dist/core/icon/shapes/ellipsis-vertical.js',
             '@cds/core/icon/shapes/bell.js': '/dist/core/icon/shapes/bell.js',
+            '@cds/core/icon/shapes/exclamation-triangle.js': '/dist/core/icon/shapes/exclamation-triangle.js',
+            '@cds/core/icon/shapes/disconnect.js': '/dist/core/icon/shapes/disconnect.js',
+            '@cds/core/icon/shapes/ban.js': '/dist/core/icon/shapes/ban.js',
 
             '@cds/core/accordion': '/dist/core/accordion/index.js',
             '@cds/core/accordion/register.js': '/dist/core/accordion/register.js',

@@ -322,3 +322,7 @@ iframe[resizable] {
 .animation-demo:not(:hover) {
   --duration: 0 !important;
 }
+
+cds-action-button {
+  --debug-background: blue;
+}

@@ -7,16 +7,24 @@
 import { html, LitElement, css } from 'lit';
 import { query } from 'lit/decorators/query.js';
 import { queryAll } from 'lit/decorators/query-all.js';
+import pipe from 'ramda/es/pipe.js';
 import { baseStyles, registerElementSafely, state } from '@cds/core/internal';
 import '@cds/core/pagination/register.js';
 import '@cds/core/checkbox/register.js';
 import '@cds/core/select/register.js';
 import '@cds/core/radio/register.js';
 import '@cds/core/grid/register.js';
+import { ClarityIcons } from '@cds/core/icon/icon.service.js';
+import { checkCircleIcon } from '@cds/core/icon/shapes/check-circle.js';
+import { exclamationTriangleIcon } from '@cds/core/icon/shapes/exclamation-triangle.js';
+import { exclamationCircleIcon } from '@cds/core/icon/shapes/exclamation-circle.js';
+import { disconnectIcon } from '@cds/core/icon/shapes/disconnect.js';
 
-import { getData, paginate, filter, sortStrings, sortList, sortNumbers, setRandomValues } from '../utils/storybook.js';
+import { getData, paginate, filter, sortStrings, sortList, sortNumbers, getVMData, TestVM, StatusDisplayType, StatusIconType, getVMOrderPreference } from '../utils/storybook.js';
 import { GridKeyNavigationController, KeyGrid } from '../utils/key-navigation.controller.js';
 import { DraggableListController } from '../utils/draggable-list.controller.js';
+
+ClarityIcons.addIcons(checkCircleIcon, exclamationTriangleIcon, exclamationCircleIcon, disconnectIcon);
 
 export default {
   title: 'Stories/Grid',
@@ -25,7 +33,7 @@ export default {
 
 export function fixedRows() {
   return html`
-    <cds-grid style="--body-height: 340px">
+    <cds-grid style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -97,7 +105,7 @@ export function fixedRows() {
 
 export function basic() {
   return html`
-    <cds-grid style="--body-height: 340px">
+    <cds-grid style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -170,7 +178,7 @@ export function basic() {
 
 export function keyboard() {
   return html`
-    <cds-grid style="--body-height: 340px">
+    <cds-grid style="--body-height: 360px">
       <cds-grid-column width="150" resizable="false">Key</cds-grid-column>
       <cds-grid-column>Function</cds-grid-column>
       <cds-grid-row>
@@ -278,7 +286,7 @@ export function keyboard() {
 
 export function darkTheme() {
   return html`
-    <cds-grid cds-theme="dark" style="--body-height: 340px">
+    <cds-grid cds-theme="dark" style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -351,7 +359,7 @@ export function darkTheme() {
 
 export function sizing() {
   return html`
-    <cds-grid style="--body-height: 340px">
+    <cds-grid style="--body-height: 360px">
       <cds-grid-column width="100">Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -429,7 +437,7 @@ export function rtl() {
 
     render() {
       return html`
-        <cds-grid dir="rtl" style="--body-height: 340px">
+        <cds-grid dir="rtl" style="--body-height: 360px">
           <cds-grid-column width="60"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -558,7 +566,7 @@ export function responsive() {
 
 export function placeholder() {
   return html`
-    <cds-grid style="--body-height: 340px">
+    <cds-grid style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -570,219 +578,270 @@ export function placeholder() {
 }
 
 export function kitchenSink() {
-  const selectableData = getData().map(i => {
-    i.selected = false;
-    return i;
-  });
+  enum ColumnTypes {
+    Host = 1,
+    Status = 2,
+    CPU = 4,
+    Memory = 8,
+    All = ColumnTypes.Host | ColumnTypes.Status | ColumnTypes.CPU | ColumnTypes.Memory,
+  }
+
+  interface GridState {
+    data: TestVM[];
+    orderPreference: string[];
+    currentDetail: string;
+    sortType: 'none' | 'ascending' | 'descending',
+    search: string,
+    page: number,
+    pageSize: number,
+    idFilterDropdownVisible: boolean,
+    columnsDropdownVisible: boolean,
+    selectedColumns: ColumnTypes
+  }
+
+  const initialState: GridState = {
+    data: getVMData(),
+    orderPreference: getVMOrderPreference(),
+    selectedColumns: ColumnTypes.All,
+    currentDetail: null,
+    sortType: 'none',
+    pageSize: 10,
+    search: '',
+    page: 0,
+    idFilterDropdownVisible: false,
+    columnsDropdownVisible: false,
+  };
 
   class DemoKitchenSink extends LitElement {
-    @state() private data = selectableData;
-    @state() private currentDetail: any = null;
-    @state() private filteredList: any[] = [];
-    @state() private sortType: 'none' | 'ascending' | 'descending' = 'none';
-    @state() private search = '';
-    @state() private currentPage = 0;
-    @state() private pageSize = 10;
-    @state() private pageCount = 1;
-    @state() private idFilterOpen = false;
-    @state() private allSelected = false;
+    @state() private state: GridState = initialState;
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
-          <cds-grid-column resizable="false" width="34">
+        <cds-grid @draggableChange=${this.reorderList} style="--body-height: 360px">
+          <cds-grid-column resizable="false" width="90">
             <cds-checkbox>
-              <label><span style="display: none">select all</span></label>
-              <input type="checkbox" .checked=${this.allSelected} @change=${e => this.selectAll(e)} />
+              <input type="checkbox" .checked=${!this.state.data.find(i => !i.selected)} @change=${(e: any) => this.selectAll(e)} aria-label="select all" />
             </cds-checkbox>
           </cds-grid-column>
-          <cds-grid-column resizable="false" width="44"></cds-grid-column>
-          <cds-grid-column .sort=${this.sortType} @sortChange=${e => (this.sortType = e.detail)}>
-            Stock
-            <cds-action-button
-              id="id-filter"
-              @click=${() => (this.idFilterOpen = true)}
-              aria-label="filter column"
-              cds-layout="align:right"
-            >
-              <cds-icon shape="filter"></cds-icon>
-            </cds-action-button>
-            <cds-dropdown
-              ?hidden=${!this.idFilterOpen}
-              @hiddenChange=${() => (this.idFilterOpen = false)}
-              anchor="#id-filter"
-            >
+          <cds-grid-column width="280" .sort=${this.state.sortType} @sortChange=${(e: any) => this.setSortType(e.detail)}>
+            Host
+            <cds-action-button id="id-filter" @click=${() => (this.state = { ...this.state, idFilterDropdownVisible: true })} aria-label="column filter options" shape="filter"></cds-action-button>
+            <cds-dropdown ?hidden=${!this.state.idFilterDropdownVisible} @hiddenChange=${() => (this.state = { ...this.state, idFilterDropdownVisible: false })} anchor="#id-filter">
               <cds-datalist>
-                <label cds-layout="display:screen-reader-only">search</label>
-                <input type="text" placeholder="Search" @input=${e => (this.search = e.target.value)} />
-                <datalist>
-                  ${this.data.map(entry => html`<option value="${entry.id}"></option>`)}
-                </datalist>
+                <input type="text" placeholder="Search" aria-label="search rows" @input=${(e: any) => this.search(e.target.value)} />
+                <datalist>${this.state.data.map(entry => html`<option value="${entry.id}"></option>`)}</datalist>
               </cds-datalist>
             </cds-dropdown>
           </cds-grid-column>
-          <cds-grid-column>Average</cds-grid-column>
-          <cds-grid-column>Current</cds-grid-column>
-          <cds-grid-column width="350">About</cds-grid-column>
-          ${this.filteredList.map(
-            entry => html`
-              <cds-grid-row .select=${entry.selected}>
-                <cds-grid-cell>
-                  <cds-checkbox>
-                    <input
-                      type="checkbox"
-                      .checked=${this.allSelected}
-                      value=${entry.id}
-                      @click=${e => this.select(entry, e.target.checked)}
-                      aria-label="Select ${entry.id}"
-                    />
-                  </cds-checkbox>
-                </cds-grid-cell>
-                <cds-grid-cell>
-                  <cds-action-button
-                    id="${entry.id}-detail"
-                    aria-label="view ${entry.id} details"
-                    @click=${() => this.showDetail(entry.id)}
-                  >
-                    <cds-icon shape="angle" direction="right"></cds-icon>
-                  </cds-action-button>
-                </cds-grid-cell>
-                <cds-grid-cell>
-                  ${entry.id}
-                </cds-grid-cell>
-                <cds-grid-cell>$${entry.average}</cds-grid-cell>
-                <cds-grid-cell>$${entry.value}</cds-grid-cell>
-                <cds-grid-cell>${entry.about}</cds-grid-cell>
-              </cds-grid-row>
-            `
-          )}
+          ${this.columnVisible(ColumnTypes.Status) ? html`<cds-grid-column>Status</cds-grid-column>`: ''}
+          ${this.columnVisible(ColumnTypes.CPU) ? html`<cds-grid-column>CPU</cds-grid-column>`: ''}
+          ${this.columnVisible(ColumnTypes.Memory) ? html`<cds-grid-column>Memory</cds-grid-column>` : ''}
+
+          ${this.currentPage.map(entry => html`
+          <cds-grid-row .select=${entry.selected} id=${entry.id} .draggable=${this.state.sortType === 'none'}>
+            <cds-grid-cell>
+              <cds-checkbox cds-draggable="handle">
+                <input type="checkbox" .checked=${entry.selected} value=${entry.id} @click=${(e: any) => this.select(entry, e.target.checked)} aria-label="Select ${entry.id}" />
+              </cds-checkbox>
+              <cds-action-button id="${entry.id}-detail" aria-label="view ${entry.id} details" @click=${() => this.showDetail(entry.id)}>
+                <cds-icon shape="angle" direction="right"></cds-icon>
+              </cds-action-button>
+            </cds-grid-cell>
+            <cds-grid-cell>
+              ${entry.id}
+            </cds-grid-cell>
+            ${this.columnVisible(ColumnTypes.Status) ? html`
+              <cds-grid-cell>
+                <cds-tag status=${StatusDisplayType[entry.status]} readonly><cds-icon shape=${StatusIconType[entry.status]} inner-offset=${entry.status === 'deactivated' ? 0 : 3 }></cds-icon> ${entry.status}</cds-tag>
+              </cds-grid-cell>` : ''}
+            ${this.columnVisible(ColumnTypes.CPU) ? html`
+              <cds-grid-cell> 
+                <p cds-text="body">${entry.cpu}%</p>
+              </cds-grid-cell>` : ''}
+            ${this.columnVisible(ColumnTypes.Memory) ? html`<cds-grid-cell>${entry.memory}%</cds-grid-cell>` : ''}
+          </cds-grid-row>`)}
+
+          <cds-grid-placeholder draggable="false">&nbsp;</cds-grid-placeholder>
           <cds-grid-footer>
+            <cds-action-button id="toggle-columns" @click=${() => (this.state = { ...this.state, columnsDropdownVisible: true })} aria-label="filter column" shape="view-columns"></cds-action-button>
+            <cds-dropdown ?hidden=${!this.state.columnsDropdownVisible} @hiddenChange=${() => (this.state = { ...this.state, columnsDropdownVisible: false })} anchor="#toggle-columns" position="top">
+              <cds-checkbox-group layout="vertical">
+                <cds-checkbox>
+                  <label>Status</label>
+                  <input type="checkbox" value="${ColumnTypes.Status}" @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.Status)} />
+                </cds-checkbox>
+                <cds-checkbox>
+                  <label>CPU</label>
+                  <input type="checkbox" value="${ColumnTypes.CPU}" @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.CPU)} />
+                </cds-checkbox>
+                <cds-checkbox>
+                  <label>Memory</label>
+                  <input type="checkbox" value="${ColumnTypes.Memory}" @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.Memory)} />
+                </cds-checkbox>
+              </cds-checkbox-group>
+              <cds-button action="flat" @click=${() => (this.state = { ...this.state, selectedColumns: ColumnTypes.All })} ?disabled=${this.columnVisible(ColumnTypes.All)}>Select All</cds-button>
+            </cds-dropdown>
+
             <cds-pagination>
-              <span style="margin-right: auto;">${this.data.filter(i => i.selected).length} selected</span>
+              <span style="margin-right: auto;">${this.state.data.filter(i => i.selected).length} selected</span>
               <cds-select control-width="shrink">
-                <label cds-layout="display:screen-reader-only">per page</label>
-                <select @input=${e => (this.pageSize = e.target.value)} style="min-width: 46px">
+                <select .value=${this.state.pageSize} @input=${this.setPageSize} aria-label="per page">
                   <option value="5">5</option>
-                  <option value="10" selected>10</option>
+                  <option value="10">10</option>
                   <option value="15">15</option>
                   <option value="25">25</option>
                 </select>
               </cds-select>
-              <cds-pagination-button
-                ?disabled=${this.currentPage === 0}
-                action="first"
-                @click=${this.firstPage}
-              ></cds-pagination-button>
-              <cds-pagination-button
-                ?disabled=${this.currentPage === 0}
-                action="prev"
-                @click=${this.prevPage}
-              ></cds-pagination-button>
-              <input
-                type="number"
-                @input=${this.setPage}
-                .value=${this.currentPage + 1}
-                min="1"
-                max=${this.pageCount}
-                aria-label="page number"
-              />
-              / ${this.pageCount}
-              <cds-pagination-button
-                ?disabled=${this.currentPage === this.pageCount - 1}
-                action="next"
-                @click=${this.nextPage}
-              ></cds-pagination-button>
-              <cds-pagination-button
-                ?disabled=${this.currentPage === this.pageCount - 1}
-                action="last"
-                @click=${this.lastPage}
-              ></cds-pagination-button>
+              <cds-pagination-button ?disabled=${this.state.page === 0} action="first" @click=${this.firstPage} aria-label="go to first"></cds-pagination-button>
+              <cds-pagination-button ?disabled=${this.state.page === 0} action="prev" @click=${this.prevPage} aria-label="go to previous"></cds-pagination-button>
+              <cds-input cds-pagination-number>
+                <input type="number" value="1" aria-label="current page" @input=${this.setPage} value=${this.state.page + 1} min="1" max=${this.pageCount} />
+                <cds-control-message>/ ${this.pageCount}</cds-control-message>
+              </cds-input>
+              <cds-pagination-button ?disabled=${this.state.page === this.pageCount - 1} action="next" @click=${this.nextPage} aria-label="go to next"></cds-pagination-button>
+              <cds-pagination-button ?disabled=${this.state.page === this.pageCount - 1} action="last" @click=${this.lastPage} aria-label="go to last"></cds-pagination-button>
             </cds-pagination>
           </cds-grid-footer>
-          <cds-grid-detail
-            ?hidden=${!this.currentDetail}
-            anchor="${this.currentDetail?.id}-detail"
-            @closeChange=${this.closeDetail}
-          >
-            <h2>${this.currentDetail?.id}</h2>
-            <p>Average: $${this.currentDetail?.average}</p>
-            <p>Current: $${this.currentDetail?.value}</p>
-            <p>About: ${this.currentDetail?.about}</p>
+
+          <cds-grid-detail ?hidden=${!this.currentDetail} anchor="${this.currentDetail?.id}-detail" @closeChange=${this.closeDetail}>
+            <section cds-layout="vertical gap:xxl">
+              <div cds-layout="horizontal gap:md">
+                <h2 cds-text="heading">${this.currentDetail?.id}</h2>
+                <cds-tag status=${StatusDisplayType[this.currentDetail?.status]} readonly>
+                  <cds-icon shape=${StatusIconType[this.currentDetail?.status]} size=${this.currentDetail?.status === 'deactivated' ? 15 : 16 } inner-offset=${this.currentDetail?.status === 'deactivated' ? 0 : 3 }></cds-icon>
+                  ${this.currentDetail?.status}
+                </cds-tag>
+              </div>
+              <div cds-layout="grid cols:6">
+                <div cds-layout="vertical gap:md align:center">
+                  <cds-progress-circle size="xxl" status=${StatusDisplayType[this.currentDetail?.status]} value=${this.currentDetail?.cpu}></cds-progress-circle>
+                  <p cds-text="subsection">CPU: ${this.currentDetail?.cpu}%</p>
+                </div>
+                <div cds-layout="vertical gap:md align:center">
+                  <cds-progress-circle size="xxl" status=${StatusDisplayType[this.currentDetail?.status]} value=${this.currentDetail?.memory}></cds-progress-circle>
+                  <p cds-text="subsection">Memory: ${this.currentDetail?.memory}%</p>
+                </div>
+              </div>
+            </section>
           </cds-grid-detail>
         </cds-grid>
+        <br />
+        <section cds-layout="vertical gap:lg">
+          <cds-button action="outline" @click=${this.resetState}>clear local storage</cds-button>
+          <pre>${JSON.stringify({ ...this.state, data: this.state.data.map(i => i.id).join(','), orderPreference: this.state.orderPreference.join(',') }, null, 2)}</pre>
+        </section>
       `;
-    }
-
-    private showDetail(id: string) {
-      this.currentDetail = this.data.find(i => i.id === id);
-    }
-
-    private closeDetail() {
-      this.currentDetail = null;
-    }
-
-    private select(entry: any, checked: boolean) {
-      this.data.find(i => i.id === entry.id).selected = checked;
-      this.allSelected = !this.data.find(i => !i.selected);
-      this.updateList();
-    }
-
-    private selectAll(e: any) {
-      this.allSelected = e.target.checked;
-      this.data.forEach(i => (i.selected = e.target.checked));
-      this.updateList();
     }
 
     connectedCallback() {
       super.connectedCallback();
-      this.updateList();
-      setInterval(() => (this.filteredList = setRandomValues(this.filteredList)), 1000);
+      this.state = JSON.parse(localStorage.getItem('CORE_KITCHEN_SINK_DEMO')) ?? this.state;
     }
 
     updated(props: Map<string, any>) {
       super.updated(props);
-      if (
-        (props.has('currentPage') && props.get('currentPage') !== this.currentPage) ||
-        (props.has('search') && props.get('search') !== this.search) ||
-        (props.has('sortType') && props.get('sortType') !== this.sortType) ||
-        (props.has('pageSize') && props.get('pageSize') !== this.pageSize)
-      ) {
-        this.updateList();
-      }
-
-      if (props.has('search') && props.get('search') !== this.search) {
-        this.firstPage();
-      }
+      localStorage.setItem('CORE_KITCHEN_SINK_DEMO', JSON.stringify({ ...this.state, idFilterDropdownVisible: false, columnsDropdownVisible: false }));
     }
 
-    private updateList() {
-      let list = sortStrings(filter([...this.data], 'id', this.search), 'id', this.sortType);
-      this.pageCount = Math.ceil(list.length / this.pageSize);
-      this.filteredList = paginate(list, this.pageSize)[this.currentPage] ?? [];
+    private get currentDetail() {
+      return this.state.data.find(i => i.id === this.state.currentDetail);
+    }
+
+    private get pageCount() {
+      return Math.ceil(this.state.data.length / this.state.pageSize);
+    }
+
+    private get currentPage() {
+      return paginate<TestVM>(this.sortedData, this.state.pageSize)[this.state.page] ?? []
+    }
+
+    private get sortedData() {
+      return pipe(
+        (d: TestVM[]) => d.sort((a, b) => this.state.orderPreference.indexOf(a.id) > this.state.orderPreference.indexOf(b.id) ? 1 : -1),
+        d => filter<TestVM>(d, 'id', this.state.search),
+        d => sortStrings<TestVM>(d, 'id', this.state.sortType)
+      )([...this.state.data]);
+    }
+
+    private setSortType(sortType: 'none' | 'ascending' | 'descending') {
+      this.state = { ...this.state, sortType };
+    }
+
+    private search(value: string) {
+      this.state = { ...this.state, search: value, page: 0 };
+    }
+
+    private showDetail(id: string) {
+      this.state = { ...this.state, currentDetail: this.state.data.find(i => i.id === id).id };
+    }
+
+    private closeDetail() {
+      this.state = { ...this.state, currentDetail: null };
+    }
+
+    private select(entry: any, checked: boolean) {
+      this.state.data.find(i => i.id === entry.id).selected = checked;
+      this.state = { ...this.state };
+    }
+
+    private selectAll(e: any) {
+      this.state.data.forEach(i => (i.selected = e.target.checked));
+      this.state = { ...this.state };
+    }
+
+    private resetState() {
+      localStorage.removeItem('CORE_KITCHEN_SINK_DEMO');
+      this.state = initialState;
+    }
+
+    private selectColumns() {
+      this.state = {
+        ...this.state,
+        selectedColumns: Array.from(this.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'))
+          .filter(c => c.checked)
+          .map(c => parseInt(c.value))
+          .reduce((p, n) => p + n, 1)
+      };
+    }
+
+    private columnVisible(value: any) {
+      return parseInt(value) === (this.state.selectedColumns & parseInt(value));
+    }
+
+    private reorderList(e: any) {
+      this.state = { ...this.state, orderPreference: sortList<TestVM>(e.detail.target, e.detail.from, this.state.orderPreference) };
+    }
+
+    private setPageSize(event: any) {
+      this.state = { ...this.state, pageSize: parseInt(event.target.value) };
     }
 
     private setPage(event: any) {
-      this.currentPage = parseInt(event.target.value) - 1;
+      this.state = { ...this.state, page: parseInt(event.target.value) - 1 };
     }
 
     private nextPage() {
-      if (this.currentPage <= this.pageCount) {
-        this.currentPage++;
+      if (this.state.page <= this.pageCount) {
+        this.state = { ...this.state, page: this.state.page + 1 };
       }
     }
 
     private prevPage() {
-      if (this.currentPage > 0) {
-        this.currentPage--;
+      if (this.state.page > 0) {
+        this.state = { ...this.state, page: this.state.page - 1 };
       }
     }
 
     private firstPage() {
-      this.currentPage = 0;
+      this.state = { ...this.state, page: 0 };
     }
 
     private lastPage() {
-      this.currentPage = Math.ceil(this.data.length / this.pageSize) - 1;
+      this.state = { ...this.state, page: Math.ceil(this.state.data.length / this.state.pageSize) - 1 };
+    }
+
+    protected createRenderRoot() {
+      return this;
     }
   }
 
@@ -801,7 +860,7 @@ export function pagination() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
@@ -934,7 +993,7 @@ export function pagination() {
 
 export function columnResize() {
   return html`
-    <cds-grid style="--body-height: 340px">
+    <cds-grid style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -1021,18 +1080,18 @@ export function columnVisibility() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column>Stock</cds-grid-column>
           ${this.checked(ColumnTypes.Average) ? html`<cds-grid-column>Average</cds-grid-column>` : ''}
-          <cds-grid-column ?hidden=${!this.checked(ColumnTypes.Current)}>Current</cds-grid-column>
-          <cds-grid-column ?hidden=${!this.checked(ColumnTypes.About)}>About</cds-grid-column>
+          ${this.checked(ColumnTypes.Current) ? html`<cds-grid-column>Current</cds-grid-column>` : ''}
+          ${this.checked(ColumnTypes.About) ? html`<cds-grid-column>About</cds-grid-column>` : ''}
           ${this.data.map(
             entry => html`
               <cds-grid-row>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 ${this.checked(ColumnTypes.Average) ? html`<cds-grid-cell>$${entry.average}</cds-grid-cell>` : ''}
-                <cds-grid-cell ?hidden=${!this.checked(ColumnTypes.Current)}>$${entry.value}</cds-grid-cell>
-                <cds-grid-cell ?hidden=${!this.checked(ColumnTypes.About)}>${entry.about}</cds-grid-cell>
+                ${this.checked(ColumnTypes.Current) ? html`<cds-grid-cell>$${entry.value}</cds-grid-cell>` : ''}
+                ${this.checked(ColumnTypes.About) ? html`<cds-grid-cell>${entry.about}</cds-grid-cell>` : ''}
               </cds-grid-row>
             `
           )}
@@ -1041,8 +1100,8 @@ export function columnVisibility() {
               id="toggle-columns"
               @click=${() => (this.toggleColumns = true)}
               aria-label="filter column"
+              shape="view-columns"
             >
-              <cds-icon shape="view-columns"></cds-icon>
             </cds-action-button>
             <cds-dropdown
               ?hidden=${!this.toggleColumns}
@@ -1115,7 +1174,7 @@ export function detailView() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column width="44"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -1184,7 +1243,7 @@ export function singleSelect() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column width="50"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -1252,7 +1311,7 @@ export function multiSelect() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column width="50">
             <cds-checkbox>
               <input
@@ -1328,7 +1387,7 @@ export function singleAction() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column width="42"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -1408,8 +1467,8 @@ export function multiAction() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
-          <cds-grid-column width="80">
+        <cds-grid style="--body-height: 360px">
+          <cds-grid-column width="100">
             <cds-checkbox>
               <input
                 type="checkbox"
@@ -1504,7 +1563,7 @@ export function sortableRows() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column .sort=${this.sortType} @sortChange=${(e: any) => (this.sortType = e.detail)}>
             Stock
           </cds-grid-column>
@@ -1553,7 +1612,7 @@ export function multiSortableRows() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column
             .sort=${this.sortState.id}
             @sortChange=${(e: any) => (this.sortState = { ...this.sortState, id: e.detail })}
@@ -1609,7 +1668,7 @@ export function rowFiltering() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column>
             Stock
             <cds-action-button
@@ -1681,7 +1740,7 @@ export function multiCellFiltering() {
             <label>Search Grid</label>
             <input type="search" placeholder="Search" @input=${(e: any) => (this.search = e.target.value)} />
           </cds-search>
-          <cds-grid style="--body-height: 340px">
+          <cds-grid style="--body-height: 360px">
             <cds-grid-column>Stock</cds-grid-column>
             <cds-grid-column>Average</cds-grid-column>
             <cds-grid-column>Current</cds-grid-column>
@@ -1732,7 +1791,7 @@ export function fixedColumns() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column width="200" .position=${this.pinFirst ? 'fixed' : 'initial'}>
             Stock
             <cds-action-button
@@ -1785,7 +1844,7 @@ export function stickyColumns() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column width="120">Stock</cds-grid-column>
           <cds-grid-column width="120" position="sticky">Average</cds-grid-column>
           <cds-grid-column width="500">Current</cds-grid-column>
@@ -1825,7 +1884,7 @@ export function editableCell() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 340px">
+        <cds-grid style="--body-height: 360px">
           <cds-grid-column>Account</cds-grid-column>
           <cds-grid-column>Outstanding</cds-grid-column>
           <cds-grid-column>About</cds-grid-column>
@@ -1886,7 +1945,7 @@ export function editableCell() {
 
 export function optionalFooter() {
   return html`
-    <cds-grid style="--body-height: 340px">
+    <cds-grid style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -1975,7 +2034,7 @@ export function compact() {
         --cds-global-space-13: 54px;
       }
     </style>
-    <cds-grid cds-theme="compact" style="--body-height: 340px">
+    <cds-grid cds-theme="compact" style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -2094,13 +2153,13 @@ export function performance() {
         >
         <br />
         ${this.showParseAndRender
-          ? html` <cds-grid ?hidden=${this.hide} style="--body-height: 340px; --row-height: 36px">
+          ? html` <cds-grid ?hidden=${this.hide} style="--body-height: 360px; --row-height: 36px">
               <cds-grid-column>Stock</cds-grid-column>
               <cds-grid-column>Average</cds-grid-column>
               <cds-grid-column>Current</cds-grid-column>
               <cds-grid-column>About</cds-grid-column>
               ${data.map(
-                entry => html`
+                entry => html`  
                   <cds-grid-row>
                     <cds-grid-cell>${entry.id}</cds-grid-cell>
                     <cds-grid-cell>$${entry.average}</cds-grid-cell>
@@ -2193,7 +2252,7 @@ export function draggableRows() {
 
     render() {
       return html`
-        <cds-grid @draggableChange=${this.sortList} style="--body-height: 340px">
+        <cds-grid @draggableChange=${this.sortList} style="--body-height: 360px">
           <cds-grid-column width="45"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -2244,7 +2303,7 @@ export function swappableRows() {
 
     render() {
       return html`
-        <cds-grid @draggableChange=${this.sortOne} style="--body-height: 340px">
+        <cds-grid @draggableChange=${this.sortOne} style="--body-height: 360px">
           <cds-grid-column width="45"></cds-grid-column>
           <cds-grid-column>id</cds-grid-column>
           <cds-grid-column>description</cds-grid-column>

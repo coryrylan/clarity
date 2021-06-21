@@ -14,6 +14,8 @@ export class CdsActionButton extends CdsBaseButton {
           --height: 16px;
           --target-width: 44px;
           --target-height: 44px;
+          --cursor: pointer;
+          --outline-offset: -4px;
           outline: 0 !important;
         }
 
@@ -22,9 +24,21 @@ export class CdsActionButton extends CdsBaseButton {
           --color: var(--cds-global-typography-color-700);
         }
 
+        :host([disabled]) {
+          --cursor: default;
+        }
+
+        :host([disabled]:active) {
+          pointer-events: none !important;
+        }
+
+        :host([disabled]) .private-host::after {
+          outline: 0 !important;
+        }
+
         :host(:focus) .private-host::after {
           outline: Highlight solid var(--cds-global-space-2);
-          outline-offset: -4px;
+          outline-offset: var(--outline-offset);
         }
 
         @media (-webkit-min-device-pixel-ratio: 0) {
@@ -43,8 +57,9 @@ export class CdsActionButton extends CdsBaseButton {
           align-items: center;
           justify-content: center;
           position: relative;
-          width: var(--width);
-          height: var(--height);
+          min-width: var(--width);
+          min-height: var(--height);
+          cursor: var(--cursor);
         }
 
         .private-host::after {
@@ -61,9 +76,10 @@ export class CdsActionButton extends CdsBaseButton {
           min-height: var(--height);
         }
 
-        :host([debug]) .private-host::after {
-          background: hsl(0deg 100% 50% / 20%);
-          z-index: -1;
+        .private-host::after {
+          /* :host([debug]) */
+          /* background: hsl(0deg 100% 50% / 20%); */
+          /* z-index: -1; */
         }
 
         /* some shapes need adjustment to compensate the svg whitespace */

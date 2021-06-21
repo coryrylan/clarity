@@ -28,6 +28,8 @@ export class CdsGridColumn extends LitElement {
 
   @property({ type: String }) width: string | null = null;
 
+  @state({ type: String, reflect: true, attribute: 'role' }) protected role = 'columnheader';
+
   @state({ type: String, attribute: 'slot', reflect: true }) slot = 'columns';
 
   @state({ type: Number, reflect: true, attribute: 'aria-colindex' }) col: number = null;
@@ -43,7 +45,7 @@ export class CdsGridColumn extends LitElement {
 
         ${this.sort
           ? html`
-              <button
+              <cds-action-button
                 aria-label="sort column"
                 @click=${this.sortClick}
                 class=${classMap({
@@ -52,21 +54,18 @@ export class CdsGridColumn extends LitElement {
                   descending: this.sort === 'descending',
                 })}
               >
-                <span class="up">&#9650;</span>
-                <span class="down">&#9660;</span>
-              </button>
+                <div cds-layout="vertical align:center">
+                  <cds-icon shape="angle" direction="up" inner-offset="2" size="14"></cds-icon>
+                  <cds-icon shape="angle" direction="down" inner-offset="2" size="14"></cds-icon>
+                </div>
+              </cds-action-button>
             `
           : ''}
-        ${this.resizable
-          ? html`<button type="button" id="line" class="line" aria-label="resize column"></button>`
-          : html`<div class="line"></div>`}
+        <cds-action-button ?disabled=${!this.resizable} id="line" aria-label="resize column">
+          <cds-icon shape="minus" direction="right" size="28" inner-offset="6"></cds-icon>
+        </cds-action-button>
       </div>
     `;
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.setAttribute('role', 'columnheader');
   }
 
   firstUpdated(props: Map<string, any>) {
@@ -85,10 +84,6 @@ export class CdsGridColumn extends LitElement {
   updated(props: Map<string, any>) {
     super.updated(props);
 
-    if (props.has('hidden') && this.hidden !== null) {
-      this.dispatchEvent(new CustomEvent('hiddenChange', { bubbles: true }));
-    }
-
     if (
       (this.col !== null && this.position !== null && props.get('position')) ||
       (this.col !== null && this.position !== 'initial')
@@ -97,7 +92,6 @@ export class CdsGridColumn extends LitElement {
     }
 
     if (props.has('width') && this.width !== props.get('width') && this.width !== null && this.col !== null) {
-      // this.dispatchEvent(new CustomEvent('positionChange', { bubbles: true }));
       (this.parentElement as HTMLElement).style.setProperty(
         `--col-${this.col}-width`,
         this.width ? `${this.width}px` : `${Math.max(100, parseInt(getComputedStyle(this).width)) + this.width}px`
@@ -146,10 +140,7 @@ export class CdsGridColumn extends LitElement {
       requestAnimationFrame(() => {
         const dx = m_pos - e.x;
         m_pos = e.x;
-        host.parentElement.style.setProperty(
-          `--col-${host.col}-width`,
-          parseInt(getComputedStyle(host).width) - dx + 'px'
-        );
+        host.resize(parseInt(getComputedStyle(host).width) - dx);
       });
     }
   }
@@ -158,18 +149,20 @@ export class CdsGridColumn extends LitElement {
     this.shadowRoot.querySelector('#line').addEventListener('keydown', (e: any) => {
       if (e.code === 'ArrowLeft') {
         e.preventDefault();
-        this.resize(-10);
+        this.resize(parseInt(getComputedStyle(this).width) - 10);
       }
 
       if (e.code === 'ArrowRight') {
         e.preventDefault();
-        this.resize(10); // offset negative margin
+        this.resize(parseInt(getComputedStyle(this).width) + 10);
       }
     });
   }
 
-  private resize(size: number) {
-    this.width = `${parseInt(getComputedStyle(this).width) + size}`;
+  private resize(width: number) {
+    this.width = `${width}`;
+    this.parentElement.style.setProperty(`--col-${this.col}-width`, `${this.width}px`);
+    this.dispatchEvent(new CustomEvent('widthChange', { detail: this.width, bubbles: true }));
   }
 
   private calculateColumnPositionStyles() {

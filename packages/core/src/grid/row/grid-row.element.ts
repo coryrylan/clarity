@@ -17,8 +17,6 @@ export class CdsGridRow extends LitElement {
 
   @state({ type: String, reflect: true, attribute: 'role' }) protected role = 'row';
 
-  // causes the list to be empty on re-render
-  // @queryAssignedNodes('', true, 'cds-grid-cell') cells: NodeListOf<CdsGridCell>
   get cells(): NodeListOf<CdsGridCell> {
     return this.querySelectorAll('cds-grid-cell');
   }
@@ -33,7 +31,7 @@ export class CdsGridRow extends LitElement {
 
   updated(props: Map<string, any>) {
     super.updated(props);
-    if (props.has('position') && this.position !== props.get('position')) {
+    if (props.has('position') && this.position !== props.get('position') && this.position === 'fixed') {
       this.parentElement.style.setProperty('--scroll-padding-top', 'calc(var(--row-height) * 2)');
     }
   }
