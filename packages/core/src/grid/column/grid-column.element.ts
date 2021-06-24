@@ -24,7 +24,7 @@ export class CdsGridColumn extends LitElement {
 
   @property({ type: String }) position: 'initial' | 'sticky' | 'fixed' = 'initial';
 
-  @property({ type: Boolean }) resizable = true;
+  @property({ type: Boolean }) resizable = false;
 
   @property({ type: String }) width: string | null = null;
 
@@ -160,9 +160,12 @@ export class CdsGridColumn extends LitElement {
   }
 
   private resize(width: number) {
-    this.width = `${width}`;
-    this.parentElement.style.setProperty(`--col-${this.col}-width`, `${this.width}px`);
-    this.dispatchEvent(new CustomEvent('widthChange', { detail: this.width, bubbles: true }));
+    console.log(width);
+    if (this.resizable) {
+      this.width = `${width}`;
+      this.parentElement.style.setProperty(`--col-${this.col}-width`, `${this.width}px`);
+      this.dispatchEvent(new CustomEvent('widthChange', { detail: this.width, bubbles: true }));
+    }
   }
 
   private calculateColumnPositionStyles() {

@@ -35,3 +35,7 @@ cds-action-button {
 .private-host {
   position: relative;
 }
+
+dialog[tabindex='0'] {
+  outline: 0;
+}

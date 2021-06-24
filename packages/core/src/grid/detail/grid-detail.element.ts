@@ -21,7 +21,7 @@ export class CdsGridDetail extends LitElement {
 
   render() {
     return html`
-      <dialog>
+      <dialog tabindex="0">
         <slot></slot>
         <!-- cds-internal-close-button has a severe re-calc performance bug -->
         <cds-action-button @click=${this.close} aria-label="close row details">
@@ -60,9 +60,7 @@ export class CdsGridDetail extends LitElement {
         if (focusableItem) {
           focusableItem.focus();
         } else {
-          const firstElement = this.querySelector<HTMLElement>('*');
-          firstElement.setAttribute('tabindex', '0');
-          firstElement.focus();
+          this.dialog.focus();
         }
       }
     }

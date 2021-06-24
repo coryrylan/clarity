@@ -618,12 +618,13 @@ export function kitchenSink() {
     render() {
       return html`
         <cds-grid @draggableChange=${this.reorderList} style="--body-height: 360px">
-          <cds-grid-column resizable="false" width="90">
+          <cds-grid-column width="44">
             <cds-checkbox>
               <input type="checkbox" .checked=${!this.state.data.find(i => !i.selected)} @change=${(e: any) => this.selectAll(e)} aria-label="select all" />
             </cds-checkbox>
           </cds-grid-column>
-          <cds-grid-column width="280" .sort=${this.state.sortType} @sortChange=${(e: any) => this.setSortType(e.detail)}>
+          <cds-grid-column width="55"></cds-grid-column>
+          <cds-grid-column resizable width="280" .sort=${this.state.sortType} @sortChange=${(e: any) => this.setSortType(e.detail)}>
             Host
             <cds-action-button id="id-filter" @click=${() => (this.state = { ...this.state, idFilterDropdownVisible: true })} aria-label="column filter options" shape="filter"></cds-action-button>
             <cds-dropdown ?hidden=${!this.state.idFilterDropdownVisible} @hiddenChange=${() => (this.state = { ...this.state, idFilterDropdownVisible: false })} anchor="#id-filter">
@@ -633,9 +634,9 @@ export function kitchenSink() {
               </cds-datalist>
             </cds-dropdown>
           </cds-grid-column>
-          ${this.columnVisible(ColumnTypes.Status) ? html`<cds-grid-column>Status</cds-grid-column>`: ''}
-          ${this.columnVisible(ColumnTypes.CPU) ? html`<cds-grid-column>CPU</cds-grid-column>`: ''}
-          ${this.columnVisible(ColumnTypes.Memory) ? html`<cds-grid-column>Memory</cds-grid-column>` : ''}
+          ${this.columnVisible(ColumnTypes.Status) ? html`<cds-grid-column resizable>Status</cds-grid-column>`: ''}
+          ${this.columnVisible(ColumnTypes.CPU) ? html`<cds-grid-column resizable>CPU</cds-grid-column>`: ''}
+          ${this.columnVisible(ColumnTypes.Memory) ? html`<cds-grid-column resizable>Memory</cds-grid-column>` : ''}
 
           ${this.currentPage.map(entry => html`
           <cds-grid-row .select=${entry.selected} id=${entry.id} .draggable=${this.state.sortType === 'none'}>
@@ -643,6 +644,8 @@ export function kitchenSink() {
               <cds-checkbox cds-draggable="handle">
                 <input type="checkbox" .checked=${entry.selected} value=${entry.id} @click=${(e: any) => this.select(entry, e.target.checked)} aria-label="Select ${entry.id}" />
               </cds-checkbox>
+            </cds-grid-cell>
+            <cds-grid-cell>
               <cds-action-button id="${entry.id}-detail" aria-label="view ${entry.id} details" @click=${() => this.showDetail(entry.id)}>
                 <cds-icon shape="angle" direction="right"></cds-icon>
               </cds-action-button>
@@ -994,10 +997,10 @@ export function pagination() {
 export function columnResize() {
   return html`
     <cds-grid style="--body-height: 360px">
-      <cds-grid-column>Type</cds-grid-column>
-      <cds-grid-column>Description</cds-grid-column>
-      <cds-grid-column>Amount</cds-grid-column>
-      <cds-grid-column resizable="false">Balance</cds-grid-column>
+      <cds-grid-column resizable>Type</cds-grid-column>
+      <cds-grid-column resizable>Description</cds-grid-column>
+      <cds-grid-column resizable>Amount</cds-grid-column>
+      <cds-grid-column>Balance</cds-grid-column>
 
       <cds-grid-row>
         <cds-grid-cell>Deposit</cds-grid-cell>
@@ -1388,7 +1391,7 @@ export function singleAction() {
     render() {
       return html`
         <cds-grid style="--body-height: 360px">
-          <cds-grid-column width="42"></cds-grid-column>
+          <cds-grid-column width="50"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
@@ -1908,7 +1911,7 @@ export function editableCell() {
                         <cds-action-button
                           class="${entry.id}-button"
                           @click=${() => this.editEntry(entry)}
-                          aria-label="edit ${entry.id}"
+                          aria-label="edit ${entry.id} outstanding value $${entry.average}"
                           shape="pencil"
                         ></cds-action-button>
                         <span>$${entry.average}</span>

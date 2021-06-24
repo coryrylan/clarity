@@ -1,6 +1,10 @@
 import { css, html } from 'lit';
 import { property } from 'lit/decorators/property.js';
 import { CdsBaseButton, baseStyles } from '@cds/core/internal';
+
+/**
+ * @element cds-action-button
+ */
 export class CdsActionButton extends CdsBaseButton {
   @property({ type: String }) shape: string;
 

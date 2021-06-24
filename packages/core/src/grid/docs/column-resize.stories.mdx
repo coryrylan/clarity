@@ -11,8 +11,7 @@ import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/
   </cds-alert>
 </cds-alert-group>
 
-Grid Columns by default provide a resize handle to enable a user to resize the column width.
-Column resizing can be disabled by setting the `resizable` property to false.
+Grid Columns provide a resize option to enable a user to resize the column width.
 
 <cds-alert status="info">To resize a column with a keyboard, focus the resize handle and use the left and right arrows to adjust the column.</cds-alert>
 
@@ -20,10 +19,10 @@ Column resizing can be disabled by setting the `resizable` property to false.
 
 ```html
 <cds-grid>
-  <cds-grid-column>Type</cds-grid-column>
-  <cds-grid-column>Description</cds-grid-column>
-  <cds-grid-column>Amount</cds-grid-column>
-  <cds-grid-column resizable="false">Balance</cds-grid-column>
+  <cds-grid-column resizable>Type</cds-grid-column>
+  <cds-grid-column resizable>Description</cds-grid-column>
+  <cds-grid-column resizable>Amount</cds-grid-column>
+  <cds-grid-column>Balance</cds-grid-column>
 
   <cds-grid-row>
     <cds-grid-cell>Deposit</cds-grid-cell>
