@@ -20,7 +20,7 @@ import { exclamationTriangleIcon } from '@cds/core/icon/shapes/exclamation-trian
 import { exclamationCircleIcon } from '@cds/core/icon/shapes/exclamation-circle.js';
 import { disconnectIcon } from '@cds/core/icon/shapes/disconnect.js';
 
-import { getData, paginate, filter, sortStrings, sortList, sortNumbers, getVMData, TestVM, StatusDisplayType, StatusIconType, getVMOrderPreference } from '../utils/storybook.js';
+import { getData, paginate, filter, sortStrings, sortList, sortNumbers, getVMData, TestVM, StatusDisplayType, StatusIconType, getVMOrderPreference } from './storybook.js';
 import { GridKeyNavigationController, KeyGrid } from '../utils/key-navigation.controller.js';
 import { DraggableListController } from '../utils/draggable-list.controller.js';
 
@@ -179,7 +179,7 @@ export function basic() {
 export function keyboard() {
   return html`
     <cds-grid style="--body-height: 360px">
-      <cds-grid-column width="150" resizable="false">Key</cds-grid-column>
+      <cds-grid-column width="150">Key</cds-grid-column>
       <cds-grid-column>Function</cds-grid-column>
       <cds-grid-row>
         <cds-grid-cell>Right Arrow</cds-grid-cell>
@@ -618,7 +618,7 @@ export function kitchenSink() {
     render() {
       return html`
         <cds-grid @draggableChange=${this.reorderList} style="--body-height: 360px">
-          <cds-grid-column width="44">
+          <cds-grid-column width="40">
             <cds-checkbox>
               <input type="checkbox" .checked=${!this.state.data.find(i => !i.selected)} @change=${(e: any) => this.selectAll(e)} aria-label="select all" />
             </cds-checkbox>
@@ -663,7 +663,6 @@ export function kitchenSink() {
               </cds-grid-cell>` : ''}
             ${this.columnVisible(ColumnTypes.Memory) ? html`<cds-grid-cell>${entry.memory}%</cds-grid-cell>` : ''}
           </cds-grid-row>`)}
-
           <cds-grid-placeholder draggable="false">&nbsp;</cds-grid-placeholder>
           <cds-grid-footer>
             <cds-action-button id="toggle-columns" @click=${() => (this.state = { ...this.state, columnsDropdownVisible: true })} aria-label="filter column" shape="view-columns"></cds-action-button>
@@ -671,15 +670,15 @@ export function kitchenSink() {
               <cds-checkbox-group layout="vertical">
                 <cds-checkbox>
                   <label>Status</label>
-                  <input type="checkbox" value="${ColumnTypes.Status}" @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.Status)} />
+                  <input type="checkbox" value=${ColumnTypes.Status} @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.Status)} />
                 </cds-checkbox>
                 <cds-checkbox>
                   <label>CPU</label>
-                  <input type="checkbox" value="${ColumnTypes.CPU}" @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.CPU)} />
+                  <input type="checkbox" value=${ColumnTypes.CPU} @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.CPU)} />
                 </cds-checkbox>
                 <cds-checkbox>
                   <label>Memory</label>
-                  <input type="checkbox" value="${ColumnTypes.Memory}" @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.Memory)} />
+                  <input type="checkbox" value=${ColumnTypes.Memory} @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.Memory)} />
                 </cds-checkbox>
               </cds-checkbox-group>
               <cds-button action="flat" @click=${() => (this.state = { ...this.state, selectedColumns: ColumnTypes.All })} ?disabled=${this.columnVisible(ColumnTypes.All)}>Select All</cds-button>
@@ -812,7 +811,7 @@ export function kitchenSink() {
     }
 
     private reorderList(e: any) {
-      this.state = { ...this.state, orderPreference: sortList<TestVM>(e.detail.target, e.detail.from, this.state.orderPreference) };
+      this.state = { ...this.state, orderPreference: sortList<TestVM>(e.detail.target, e.detail.from, this.state.orderPreference.map(id => ({ id }))).map(i => i.id) };
     }
 
     private setPageSize(event: any) {
@@ -1795,7 +1794,7 @@ export function fixedColumns() {
     render() {
       return html`
         <cds-grid style="--body-height: 360px">
-          <cds-grid-column width="200" .position=${this.pinFirst ? 'fixed' : 'initial'}>
+          <cds-grid-column width="200" resizable .position=${this.pinFirst ? 'fixed' : 'initial'}>
             Stock
             <cds-action-button
               @click=${() => (this.pinFirst = !this.pinFirst)}
@@ -1805,9 +1804,9 @@ export function fixedColumns() {
               <cds-icon shape="pin" ?solid=${this.pinFirst}></cds-icon>
             </cds-action-button>
           </cds-grid-column>
-          <cds-grid-column width="400">Average</cds-grid-column>
-          <cds-grid-column width="400">Current</cds-grid-column>
-          <cds-grid-column width="200" .position=${this.pinLast ? 'fixed' : 'initial'}>
+          <cds-grid-column width="400" resizable>Average</cds-grid-column>
+          <cds-grid-column width="400" resizable>Current</cds-grid-column>
+          <cds-grid-column width="200" resizable .position=${this.pinLast ? 'fixed' : 'initial'}>
             About
             <cds-action-button
               @click=${() => (this.pinLast = !this.pinLast)}

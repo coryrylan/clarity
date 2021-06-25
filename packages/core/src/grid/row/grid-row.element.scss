@@ -1,9 +1,15 @@
+// Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+@import './../../styles/tokens/generated/index';
+
 :host {
-  --border-top: inset 0 2px 0 -1px var(--cds-alias-object-border-color);
-  --border-bottom: 0 2px 2px -1px var(--cds-alias-object-border-color);
-  --background: var(--cds-alias-object-container-background);
+  --border-top: inset 0 2px 0 -1px #{$cds-alias-object-border-color};
+  --border-bottom: 0 2px 2px -1px #{$cds-alias-object-border-color};
+  --background: #{$cds-alias-object-container-background};
   --height: var(--row-height);
-  content-visibility: var(--row-content-visibility, visibile);
+  content-visibility: var(--row-content-visibility, visible);
   contain-intrinsic-size: 1px var(--height);
 }
 
@@ -34,7 +40,7 @@
 
 [part='row']:hover,
 :host([select]) {
-  --background: var(--cds-alias-object-interaction-background-hover);
+  --background: #{$cds-alias-object-interaction-background-hover};
 }
 
 :host([draggable='true']) {
@@ -43,5 +49,5 @@
 }
 
 :host([cds-draggable*='target']) {
-  --border-top: inset 0 3px 0 -1px var(--cds-alias-status-alt-tint);
+  --border-top: inset 0 3px 0 -1px #{$cds-alias-status-alt-tint};
 }

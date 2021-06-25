@@ -122,10 +122,10 @@ export function setRandomValues(valueList: { value: any }[]) {
   ];
 }
 
-export function sortList<T>(target: T & { id: any }, src: T & { id: any }, list: string[]) {
+export function sortList<T>(target: T & { id: any }, src: T & { id: any }, list: { id: any }[]) {
   const data = [...list];
-  const srcIndex = data.findIndex(i => i === src.id);
-  let targetIndex = data.findIndex(i => i === target.id);
+  const srcIndex = data.findIndex(i => i.id === src.id);
+  let targetIndex = data.findIndex(i => i.id === target.id);
   targetIndex = targetIndex > srcIndex ? targetIndex - 1 : targetIndex;
 
   const srcItem = data.splice(srcIndex, 1)[0];

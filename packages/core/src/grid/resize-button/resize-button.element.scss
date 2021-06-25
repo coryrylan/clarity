@@ -1,0 +1,31 @@
+// Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+@import './../../styles/tokens/generated/index';
+
+cds-action-button {
+  --color: #{$cds-alias-status-disabled};
+  --cursor: ew-resize;
+  width: 20px;
+}
+
+cds-action-button {
+  &[disabled],
+  &[readonly] {
+    --cursor: initial;
+  }
+}
+
+:host {
+  position: relative;
+}
+
+:host([_active]) .line {
+  width: 1px;
+  height: 2000px;
+  background: #{$cds-alias-status-alt-tint};
+  position: absolute;
+  top: 36px;
+  left: 10px;
+}

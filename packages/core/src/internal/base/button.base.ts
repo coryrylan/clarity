@@ -92,6 +92,7 @@ export class CdsBaseButton extends LitElement {
       this.removeEventListener('keyup', this.emulateKeyBoardEventBehavior);
     } else {
       this.addEventListener('keyup', this.emulateActiveMouseUp);
+      this.addEventListener('blur', this.emulateActiveMouseUp);
       this.addEventListener('keydown', this.emulateActiveMouseDown);
       this.addEventListener('mouseup', this.emulateActiveMouseUp);
       this.addEventListener('mousedown', this.emulateActiveMouseDown);

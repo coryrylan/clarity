@@ -9,9 +9,7 @@ export class CdsGridCell extends LitElement {
 
   @state({ type: String, reflect: true, attribute: 'role' }) protected role = 'gridcell';
 
-  static get styles() {
-    return [baseStyles, styles];
-  }
+  static styles = [baseStyles, styles];
 
   render() {
     return html`

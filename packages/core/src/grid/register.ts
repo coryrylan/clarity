@@ -28,6 +28,8 @@ import { CdsGridColumn } from './column/grid-column.element.js';
 import { CdsGridDetail } from './detail/grid-detail.element.js';
 import { CdsGridFooter } from './footer/grid-footer.element.js';
 import { CdsGridPlaceholder } from './placeholder/grid-placeholder.element.js';
+import { CdsGridInternalSortButton } from './sort-button/sort-button.element.js';
+import { CdsGridInternalResizeButton } from './resize-button/resize-button.element.js';
 import { CdsDropdown } from './utils/dropdown.element.js';
 
 ClarityIcons.addIcons(
@@ -51,6 +53,8 @@ registerElementSafely('cds-grid-column', CdsGridColumn);
 registerElementSafely('cds-grid-detail', CdsGridDetail);
 registerElementSafely('cds-grid-footer', CdsGridFooter);
 registerElementSafely('cds-grid-placeholder', CdsGridPlaceholder);
+registerElementSafely('cds-grid-internal-sort-button', CdsGridInternalSortButton);
+registerElementSafely('cds-grid-internal-resize-button', CdsGridInternalResizeButton);
 registerElementSafely('cds-dropdown', CdsDropdown);
 
 declare global {
@@ -62,6 +66,8 @@ declare global {
     'cds-grid-detail': CdsGridDetail;
     'cds-grid-footer': CdsGridFooter;
     'cds-grid-placeholder': CdsGridPlaceholder;
+    'cds-grid-internal-sort-button': CdsGridInternalSortButton;
+    'cds-grid-internal-resize-button': CdsGridInternalResizeButton;
     'cds-dropdown': CdsDropdown;
   }
 }

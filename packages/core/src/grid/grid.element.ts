@@ -11,15 +11,11 @@ import { GridKeyNavigationController, KeyGrid } from './utils/key-navigation.con
 import styles from './grid.element.scss';
 
 export class CdsGrid extends LitElement implements KeyGrid {
-  static get styles() {
-    return [baseStyles, styles];
-  }
+  @state({ type: String, reflect: true }) protected _id = createId();
 
-  @state({ type: String, reflect: true }) _id = createId();
+  @state({ type: Number, reflect: true, attribute: 'aria-rowcount' }) protected rowCount = 0;
 
-  @state({ type: String, reflect: true, attribute: 'role' }) role = 'grid';
-
-  @state({ type: Number, reflect: true, attribute: 'aria-rowcount' }) rowCount = 0;
+  @state({ type: String, reflect: true, attribute: 'role' }) protected role = 'grid';
 
   /** @private */
   @queryAssignedNodes('columns', true, 'cds-grid-column') columns: NodeListOf<CdsGridColumn>;
@@ -29,6 +25,12 @@ export class CdsGrid extends LitElement implements KeyGrid {
 
   /** @private */
   @query('.grid-body') grid: HTMLElement;
+  
+  protected gridKeyNavigationController = new GridKeyNavigationController(this);
+  
+  protected draggableListController = new DraggableListController(this);
+  
+  static styles = [baseStyles, styles];
 
   /** @private */
   get cells(): CdsGridCell[] {
@@ -37,21 +39,12 @@ export class CdsGrid extends LitElement implements KeyGrid {
       .flat();
   }
 
-  protected gridKeyNavigationController = new GridKeyNavigationController(this);
-
-  protected draggableListController = new DraggableListController(this);
-
   render() {
     return html`
       <div class="private-host">
-        <div class="grid">
+        <div class="grid" @scroll=${this.setContentVisibitity}>
           <div role="rowgroup" class="column-row-group">
-            <div
-              role="row"
-              class="column-row"
-              @mousedown=${this.initializeColumnWidths}
-              @keydown=${this.initializeColumnWidths}
-            >
+            <div role="row" class="column-row" @mousedown=${this.initializeColumnWidths} @keydown=${this.initializeColumnWidths}>
               <slot name="columns" @slotchange=${this.calculateGridColumns}></slot>
             </div>
           </div>
@@ -75,9 +68,12 @@ export class CdsGrid extends LitElement implements KeyGrid {
   }
 
   @eventOptions({ once: true })
-  private initializeColumnWidths() {
+  private setContentVisibitity() {
     this.style.setProperty('--row-content-visibility', 'visible'); // rows default to 'auto' for initial render, on scroll eager render to prevent cliping
+  }
 
+  @eventOptions({ once: true })
+  private initializeColumnWidths() {
     Array.from(this.columns)
       .filter(column => !column.width && !column.hidden)
       .map(column => [column, parseInt(getComputedStyle(column).width)])

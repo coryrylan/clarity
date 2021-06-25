@@ -5,10 +5,6 @@ import { CdsGridCell } from '../cell/grid-cell.element.js';
 import styles from './grid-row.element.scss';
 
 export class CdsGridRow extends LitElement {
-  static get styles() {
-    return [baseStyles, styles];
-  }
-
   @property({ type: Boolean, reflect: true }) select = false;
 
   @property({ type: String }) position: 'fixed' = null;
@@ -16,6 +12,8 @@ export class CdsGridRow extends LitElement {
   @state({ type: Number, reflect: true, attribute: 'aria-rowindex' }) row: number = null;
 
   @state({ type: String, reflect: true, attribute: 'role' }) protected role = 'row';
+
+  static styles = [baseStyles, styles];
 
   get cells(): NodeListOf<CdsGridCell> {
     return this.querySelectorAll('cds-grid-cell');

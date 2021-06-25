@@ -1,13 +1,19 @@
+// Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+@import './../../styles/tokens/generated/index';
+
 :host {
   display: contents;
 }
 
 dialog {
-  background: var(--cds-alias-object-container-background);
+  background: $cds-alias-object-container-background;
   z-index: 999;
   border: 0;
-  box-shadow: var(--cds-alias-object-shadow-100);
-  color: var(--cds-global-typography-color-500);
+  box-shadow: $cds-alias-object-shadow-100;
+  color: $cds-global-typography-color-500;
   padding: 0;
   margin: 0;
   display: block;
@@ -18,7 +24,7 @@ dialog {
   inset-inline-start: auto;
   inset-inline-end: 0;
   position: absolute;
-  padding: var(--cds-global-space-9);
+  padding: $cds-global-space-9;
 }
 
 dialog::backdrop {
@@ -27,9 +33,9 @@ dialog::backdrop {
 
 cds-action-button {
   position: absolute;
-  top: var(--cds-global-space-6);
-  inset-inline-end: var(--cds-global-space-6);
-  --color: var(--cds-global-typography-color-500);
+  top: $cds-global-space-6;
+  inset-inline-end: $cds-global-space-6;
+  --color: #{$cds-global-typography-color-500};
 }
 
 .private-host {

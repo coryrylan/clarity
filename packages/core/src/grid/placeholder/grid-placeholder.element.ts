@@ -1,13 +1,11 @@
 import { LitElement, html } from 'lit';
-import { baseStyles, property } from '@cds/core/internal';
+import { baseStyles, state } from '@cds/core/internal';
 import styles from './grid-placeholder.element.scss';
 
 export class CdsGridPlaceholder extends LitElement {
-  static get styles() {
-    return [baseStyles, styles];
-  }
-
-  @property({ type: String, reflect: true }) slot = 'placeholder';
+  @state({ type: String, reflect: true, attribute: 'slot' }) slot = 'placeholder';
+  
+  static styles = [baseStyles, styles];
 
   render() {
     return html`

@@ -1,4 +1,11 @@
+// Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+@import './../../styles/tokens/generated/index';
+
 :host {
+  content-visibility: var(--row-content-visibility, visible);
   flex: 1;
 }
 
@@ -11,7 +18,7 @@
   justify-content: center;
   position: relative;
   grid-column: 1 / -1;
-  color: var(--cds-global-typography-color-500);
+  color: $cds-global-typography-color-500;
 }
 
 cds-icon {
@@ -19,18 +26,18 @@ cds-icon {
 }
 
 td {
-  padding: var(--cds-global-space-5) var(--cds-global-space-6) var(--cds-global-space-5) var(--cds-global-space-6);
+  padding: $cds-global-space-5 $cds-global-space-6 $cds-global-space-5 $cds-global-space-6;
 }
 
 :host([draggable='false']) .private-host {
-  border-top: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
-  min-height: var(--cds-global-space-12);
+  border-top: $cds-alias-object-border-width-100 solid $cds-alias-object-border-color;
+  min-height: $cds-global-space-12;
 }
 
 :host([cds-draggable*='target']) .private-host::after {
   width: 100%;
-  height: var(--cds-global-space-2);
-  background: var(--cds-alias-status-alt-tint);
+  height: $cds-global-space-2;
+  background: $cds-alias-status-alt-tint;
   content: '';
   position: absolute;
   top: 0;

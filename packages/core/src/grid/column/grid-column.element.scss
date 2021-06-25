@@ -1,3 +1,9 @@
+// Copyright (c) 2016-2021 VMware, Inc. All Rights Reserved.
+// This software is released under MIT license.
+// The full license information can be found in LICENSE in the root directory of this project.
+
+@import './../../styles/tokens/generated/index';
+
 :host {
   --width: initial;
   --height: var(--column-height);
@@ -6,33 +12,8 @@
   position: sticky;
 }
 
-::slotted(cds-action-button),
-#line,
-.sort {
-  // --target-width: 36px;
-}
-
-#line {
-  --color: var(--cds-alias-status-disabled);
-  // --outline-offset: -12px;
-  width: 20px;
-}
-
-#line:not([disabled]) {
-  --cursor: ew-resize;
-}
-
-.sort {
-  color: var(--cds-alias-status-disabled);
-}
-
-.ascending [direction='up'],
-.descending [direction='down'] {
-  --color: var(--cds-global-typography-color-500);
-}
-
 ::slotted(cds-action-button) {
-  --color: var(--cds-global-typography-color-500);
+  --color: #{$cds-global-typography-color-500};
 }
 
 [part='column'] {
@@ -40,7 +21,7 @@
   border: 0;
   font-weight: 500;
   line-height: 0;
-  color: var(--cds-global-typography-color-500);
+  color: $cds-global-typography-color-500;
   white-space: nowrap;
   overflow: visible;
   text-overflow: ellipsis;
@@ -50,13 +31,13 @@
   margin: 0;
   display: flex;
   gap: 12px;
-  padding-inline: var(--cds-global-space-6) 0; // logical properties for rtl
-  padding-block: var(--cds-global-space-5) var(--cds-global-space-5);
+  padding-inline: $cds-global-space-6 0; // logical properties for rtl
+  padding-block: $cds-global-space-5 $cds-global-space-5;
   align-items: center;
   height: 100%;
   position: sticky !important;
-  background: var(--cds-alias-object-container-background-tint);
-  box-shadow: 0 1px 0 var(--cds-alias-object-border-color);
+  background: $cds-alias-object-container-background-tint;
+  box-shadow: 0 1px 0 $cds-alias-object-border-color;
 }
 
 :host([position='fixed']),
@@ -65,6 +46,5 @@
 }
 
 ::slotted([cds-layout='align:right']) {
-  /* temp fix waiting on next release */
   margin-inline-start: auto;
 }
