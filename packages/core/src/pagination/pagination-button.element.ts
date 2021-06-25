@@ -4,17 +4,9 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import {
-  baseStyles,
-  CdsBaseButton,
-  LogService,
-  notProductionEnvironment,
-  property,
-  querySlot,
-} from '@cds/core/internal';
-import { html } from 'lit';
-import { query } from 'lit/decorators/query.js';
-import styles from './pagination-button.element.scss';
+import { assignSlotNames, property } from '@cds/core/internal';
+import { state } from 'lit/decorators/state.js';
+import { CdsControlAction } from '@cds/core/control-action';
 
 export enum CdsPaginationButtonAction {
   First = 'first',
@@ -54,64 +46,51 @@ export enum CdsPaginationButtonAction {
  * @cssprop --min-width
  */
 
-export class CdsPaginationButton extends CdsBaseButton {
+export class CdsPaginationButton extends CdsControlAction {
   /**
    * @type {first | prev | next | last}
    * Sets the action from a predefined list of actions
    */
   @property({ type: String, reflect: true }) action: CdsPaginationButtonAction;
 
+  @state() direction: 'up' | 'right' | 'down' | 'left';
+
+  get cdsIcon() {
+    return this.shadowRoot.querySelector('cds-icon');
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this.type = 'button';
   }
 
-  @querySlot('cds-icon', { assign: 'cds-icon-slot' }) cdsIcon: HTMLElement;
+  updated(props: Map<string, any>) {
+    super.updated(props);
 
-  @query('cds-icon') private cdsIconDefault: HTMLElement;
+    assignSlotNames([this, false]);
 
-  private get customContent() {
-    return !this.action && !this.cdsIconDefault;
-  }
+    switch (this.action) {
+      case CdsPaginationButtonAction.Next:
+        this.shape = 'angle';
+        this.direction = 'right';
+        break;
+      case CdsPaginationButtonAction.Last:
+        this.shape = 'step-forward-2';
+        this.direction = 'up';
+        break;
+      case CdsPaginationButtonAction.Previous:
+        this.shape = 'angle';
+        this.direction = 'left';
+        break;
+      case CdsPaginationButtonAction.First:
+        this.shape = 'step-forward-2';
+        this.direction = 'down';
+        break;
+      default:
+    }
 
-  render() {
-    return html`
-      <div class="private-host" cds-layout="horizontal align:center ${this.customContent ? 'p-x:sm' : ''}">
-        <slot name="cds-icon-slot">
-          ${this.action === CdsPaginationButtonAction.Next
-            ? html`<cds-icon shape="angle" direction="right"></cds-icon>`
-            : ''}
-          ${this.action === CdsPaginationButtonAction.Last
-            ? html`<cds-icon shape="step-forward-2" direction="up"></cds-icon>`
-            : ''}
-          ${this.action === CdsPaginationButtonAction.Previous
-            ? html`<cds-icon shape="angle" direction="left"></cds-icon>`
-            : ''}
-          ${this.action === CdsPaginationButtonAction.First
-            ? html`<cds-icon shape="step-forward-2" direction="down"></cds-icon>`
-            : ''}
-        </slot>
-        <slot></slot>
-      </div>
-    `;
-  }
-
-  static get styles() {
-    return [baseStyles, styles];
-  }
-
-  firstUpdated(props: Map<string, any>) {
-    super.firstUpdated(props);
-    this.validateAriaLabel();
-  }
-
-  private validateAriaLabel() {
-    if (
-      notProductionEnvironment() &&
-      (this.cdsIcon || this.cdsIconDefault) &&
-      !this.getAttribute('aria-label')?.length
-    ) {
-      LogService.warn('An aria-label is missing', this);
+    if (this.cdsIcon) {
+      this.cdsIcon.direction = this.direction;
     }
   }
 }

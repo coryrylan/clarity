@@ -4,11 +4,11 @@ import { baseStyles, property } from '@cds/core/internal';
 import { getTabableItems } from '../utils/utils.js';
 import styles from './grid-detail.element.scss';
 
-export class CdsGridDetail extends LitElement {  
+export class CdsGridDetail extends LitElement {
   @property({ type: String, reflect: true }) slot = 'detail';
-  
+
   @property({ type: Boolean }) hidden = false;
-  
+
   @property({ type: String }) anchor = '';
 
   static styles = [baseStyles, styles];
@@ -21,9 +21,7 @@ export class CdsGridDetail extends LitElement {
     return html`
       <dialog tabindex="0">
         <slot></slot>
-        <cds-action-button @click=${this.close} aria-label="close row details">
-          <cds-icon shape="times"></cds-icon>
-        </cds-action-button>
+        <cds-control-action shape="times" @click=${this.close} aria-label="close row details"></cds-control-action>
       </dialog>
     `;
   }

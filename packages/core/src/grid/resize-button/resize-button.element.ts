@@ -7,20 +7,20 @@ export class CdsGridInternalResizeButton extends LitElement {
   @property({ type: Boolean }) resizable = false;
 
   @event() resizeChange: EventEmitter<number>;
-  
+
   @state({ type: Boolean, reflect: true }) protected active = false;
-  
-  @query('cds-action-button', true) private button: HTMLButtonElement;
+
+  @query('cds-control-action', true) private button: HTMLButtonElement;
 
   static styles = [baseStyles, styles];
 
   render() {
     return html`
-    <cds-action-button ?readonly=${!this.resizable} aria-label="resize column" @blur=${() => this.active = false}>
-      <cds-icon shape="minus" direction="right" size="28" inner-offset="6"></cds-icon>
-    </cds-action-button>
-    <div class="line"></div>
-  `;
+      <cds-control-action ?readonly=${!this.resizable} aria-label="resize column" @blur=${() => (this.active = false)}>
+        <div class="handle"></div>
+      </cds-control-action>
+      <div class="line"></div>
+    `;
   }
 
   firstUpdated(props: Map<string, any>) {
@@ -65,7 +65,6 @@ export class CdsGridInternalResizeButton extends LitElement {
 
   private listenForKeyboardResize() {
     this.button.addEventListener('keydown', (e: any) => {
-      
       if (e.code === 'ArrowLeft') {
         this.active = true;
         e.preventDefault();

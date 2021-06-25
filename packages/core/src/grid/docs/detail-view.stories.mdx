@@ -13,7 +13,7 @@ import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/
 
 The `cds-grid-detail` component provides a modal-like overlay to display additional details to a particular row entry.
 A `cds-grid-detail` can be visually toggled with `hidden`. To show the `cds-grid-detail` toggle its visibility using
-`cds-action-button` in a given grid row.
+`cds-control-action` in a given grid row.
 
 <Story id="stories-grid--detail-view" />
 
@@ -26,9 +26,9 @@ A `cds-grid-detail` can be visually toggled with `hidden`. To show the `cds-grid
   <cds-grid-column>About</cds-grid-column>
   <cds-grid-row>
     <cds-grid-cell>
-      <cds-action-button id="current-detail-demo" aria-label="view appl details">
+      <cds-control-action id="current-detail-demo" aria-label="view appl details">
         <cds-icon shape="angle" direction="right"></cds-icon>
-      </cds-action-button>
+      </cds-control-action>
     </cds-grid-cell>
     <cds-grid-cell>APPL</cds-grid-cell>
     <cds-grid-cell>$1000</cds-grid-cell>

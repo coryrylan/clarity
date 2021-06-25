@@ -26,13 +26,21 @@ export class CdsGridColumn extends LitElement {
   render() {
     return html`
       <div part="column">
-        <div cds-layout="horizontal fill gap:md">
+        <div cds-layout="horizontal fill gap:md align:vertical-center">
           <slot></slot>
         </div>
-        ${this.sort ? html`<slot name="sort-button">
-          <cds-grid-internal-sort-button .sort=${this.sort} @sortChange=${(e: any) => this.sortChange.emit(e.detail)}></cds-grid-internal-sort-button>
-        </slot>` : ''}
-        <cds-grid-internal-resize-button .resizable=${this.resizable} @resizeChange=${(e: any) => this.resize(e.detail)}></cds-grid-internal-resize-button>
+        ${this.sort
+          ? html`<slot name="sort-button">
+              <cds-grid-internal-sort-button
+                .sort=${this.sort}
+                @sortChange=${(e: any) => this.sortChange.emit(e.detail)}
+              ></cds-grid-internal-sort-button>
+            </slot>`
+          : ''}
+        <cds-grid-internal-resize-button
+          .resizable=${this.resizable}
+          @resizeChange=${(e: any) => this.resize(e.detail)}
+        ></cds-grid-internal-resize-button>
       </div>
     `;
   }
@@ -86,11 +94,16 @@ export class CdsGridColumn extends LitElement {
       }
       
       /* todo: violet when active/focused */
-      ${this.position !== 'initial' ? `
+      ${
+        this.position !== 'initial'
+          ? `
         [__id='${(this.parentElement as any)._id}'] cds-grid-cell:nth-child(${this.col}) {
-          --border-${side === 'left' ? 'right' : 'left'}: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
+          --border-${
+            side === 'left' ? 'right' : 'left'
+          }: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
           z-index: 98;
-        }` : ''
+        }`
+          : ''
       }
     `);
   }

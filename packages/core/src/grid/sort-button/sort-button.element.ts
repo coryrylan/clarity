@@ -9,12 +9,12 @@ export class CdsGridInternalSortButton extends LitElement {
 
   render() {
     return html`
-      <cds-action-button aria-label="sort column" @click=${this.sortClick}>
+      <cds-control-action aria-label="sort column" @click=${this.sortClick}>
         <div cds-layout="vertical align:center">
           <cds-icon shape="angle" direction="up" inner-offset="2" size="14"></cds-icon>
           <cds-icon shape="angle" direction="down" inner-offset="2" size="14"></cds-icon>
         </div>
-      </cds-action-button>
+      </cds-control-action>
     `;
   }
 

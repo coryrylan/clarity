@@ -16,10 +16,6 @@
   font-size: 14px;
 }
 
-::slotted(cds-action-button) {
-  --color: var(--cds-global-typography-color-500);
-}
-
 ::slotted(cds-pagination) {
   margin-left: auto;
 }

@@ -56,6 +56,7 @@
   position: sticky;
   z-index: 99;
   grid-template-columns: var(--grid-template-columns);
+  padding-inline: $cds-global-space-6 $cds-global-space-1;
   background: $cds-alias-object-container-background-tint;
   box-shadow: 0 1px 0 $cds-alias-object-border-color;
 }

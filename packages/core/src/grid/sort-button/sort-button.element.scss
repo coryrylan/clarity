@@ -4,8 +4,12 @@
 
 @import './../../styles/tokens/generated/index';
 
-cds-action-button {
-  color: $cds-alias-status-disabled;
+:host {
+  line-height: 0;
+}
+
+cds-control-action {
+  --color: #{$cds-alias-object-interaction-color-disabled};
 }
 
 :host([sort='ascending']) [direction='up'],

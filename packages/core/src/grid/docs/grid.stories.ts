@@ -32,7 +32,7 @@ export default {
 };
 
 export function fixedRows() {
-  return html`
+  return html`    
     <cds-grid style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
@@ -105,6 +105,81 @@ export function fixedRows() {
 
 export function basic() {
   return html`
+    <div cds-layout="vertical gap:lg m-b:xl">
+      <div cds-layout="horizontal gap:md">
+        <cds-button>solid</cds-button>
+        <cds-button action="outline">outline</cds-button>
+        <cds-button action="flat">flat</cds-button>
+        <cds-button action="flat-inline">flat-inline</cds-button>
+      </div>
+      
+      <div cds-layout="horizontal gap:md">
+        <cds-icon-button aria-label="demo"><cds-icon shape="user"></cds-icon></cds-icon-button>
+        <cds-icon-button aria-label="demo" action="outline"><cds-icon shape="user"></cds-icon></cds-icon-button>
+      </div>
+
+      <cds-inline-button>Click Here</cds-inline-button>
+      
+      <cds-control-action aria-label="column filter options" shape="filter"></cds-control-action>
+
+      <cds-control-action aria-label="column filter options" shape="filter"></cds-control-action>
+
+      <cds-control-action aria-label="select user">
+        <cds-icon shape="user"></cds-icon>
+      </cds-control-action>
+      
+      <cds-control-action readonly>
+        <cds-icon shape="user"></cds-icon>
+      </cds-control-action>
+
+      <cds-control-action readonly>$</cds-control-action>
+
+      <cds-password control-width="shrink">
+        <label>password</label>
+        <input type="password" value="123456" />
+      </cds-password>
+
+      <cds-form-group layout="vertical">
+        <cds-input>
+          <label>suffix</label>
+          <input aria-label="url input with .com suffix" />
+          <cds-control-action action="suffix" readonly>.com</cds-control-action>
+        </cds-input>
+
+        <cds-input>
+          <label>prefix</label>
+          <input aria-label="url input with https:// prefix" />
+          <cds-control-action action="prefix" readonly>https://</cds-control-action>
+        </cds-input>
+
+        <cds-input>
+          <label>prefix + suffix</label>
+          <input aria-label="url input with https:// prefix and .com suffix" />
+          <cds-control-action action="prefix" readonly>https://</cds-control-action>
+          <cds-control-action action="suffix" readonly>.com</cds-control-action>
+        </cds-input>
+
+        <cds-search>
+          <label>search</label>
+          <input type="search" />
+          <cds-control-message>message text</cds-control-message>
+        </cds-search>
+
+        <cds-time control-width="shrink">
+          <label>time</label>
+          <input type="time" min="09:00" max="18:00" value="11:00" />
+          <cds-control-message>message text</cds-control-message>
+        </cds-time>
+
+        <cds-password>
+          <label>additional actions to existing input types</label>
+          <cds-control-action shape="info-circle" action="label" aria-label="get more details" onclick="alert('!')"></cds-control-action>
+          <input type="password" value="123456" />
+          <cds-control-action shape="times" action="suffix" aria-label="clear password input" onclick="alert('!')"></cds-control-action>
+        </cds-password>
+      </cds-form-group>
+    </div>
+
     <cds-grid style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
@@ -447,14 +522,14 @@ export function rtl() {
             entry => html`
               <cds-grid-row>
                 <cds-grid-cell>
-                  <cds-action-button
+                  <cds-control-action
                     id="${entry.id}-detail-demo"
                     aria-label="view ${entry.id} details"
                     @click=${() => this.showDetail(entry.id)}
                     style="margin-right: 8px"
                   >
                     <cds-icon shape="angle" direction="left"></cds-icon>
-                  </cds-action-button>
+                  </cds-control-action>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>$${entry.average}</cds-grid-cell>
@@ -624,9 +699,9 @@ export function kitchenSink() {
             </cds-checkbox>
           </cds-grid-column>
           <cds-grid-column width="55"></cds-grid-column>
-          <cds-grid-column resizable width="280" .sort=${this.state.sortType} @sortChange=${(e: any) => this.setSortType(e.detail)}>
+          <cds-grid-column resizable width="260">
             Host
-            <cds-action-button id="id-filter" @click=${() => (this.state = { ...this.state, idFilterDropdownVisible: true })} aria-label="column filter options" shape="filter"></cds-action-button>
+            <cds-control-action id="id-filter" @click=${() => (this.state = { ...this.state, idFilterDropdownVisible: true })} aria-label="column filter options" shape="filter"></cds-control-action>
             <cds-dropdown ?hidden=${!this.state.idFilterDropdownVisible} @hiddenChange=${() => (this.state = { ...this.state, idFilterDropdownVisible: false })} anchor="#id-filter">
               <cds-datalist>
                 <input type="text" placeholder="Search" aria-label="search rows" @input=${(e: any) => this.search(e.target.value)} />
@@ -634,7 +709,7 @@ export function kitchenSink() {
               </cds-datalist>
             </cds-dropdown>
           </cds-grid-column>
-          ${this.columnVisible(ColumnTypes.Status) ? html`<cds-grid-column resizable>Status</cds-grid-column>`: ''}
+          ${this.columnVisible(ColumnTypes.Status) ? html`<cds-grid-column resizable .sort=${this.state.sortType} @sortChange=${(e: any) => this.setSortType(e.detail)}>Status</cds-grid-column>`: ''}
           ${this.columnVisible(ColumnTypes.CPU) ? html`<cds-grid-column resizable>CPU</cds-grid-column>`: ''}
           ${this.columnVisible(ColumnTypes.Memory) ? html`<cds-grid-column resizable>Memory</cds-grid-column>` : ''}
 
@@ -646,9 +721,9 @@ export function kitchenSink() {
               </cds-checkbox>
             </cds-grid-cell>
             <cds-grid-cell>
-              <cds-action-button id="${entry.id}-detail" aria-label="view ${entry.id} details" @click=${() => this.showDetail(entry.id)}>
+              <cds-control-action id="${entry.id}-detail" aria-label="view ${entry.id} details" @click=${() => this.showDetail(entry.id)}>
                 <cds-icon shape="angle" direction="right"></cds-icon>
-              </cds-action-button>
+              </cds-control-action>
             </cds-grid-cell>
             <cds-grid-cell>
               ${entry.id}
@@ -665,7 +740,7 @@ export function kitchenSink() {
           </cds-grid-row>`)}
           <cds-grid-placeholder draggable="false">&nbsp;</cds-grid-placeholder>
           <cds-grid-footer>
-            <cds-action-button id="toggle-columns" @click=${() => (this.state = { ...this.state, columnsDropdownVisible: true })} aria-label="filter column" shape="view-columns"></cds-action-button>
+            <cds-control-action id="toggle-columns" @click=${() => (this.state = { ...this.state, columnsDropdownVisible: true })} aria-label="filter column" shape="view-columns"></cds-control-action>
             <cds-dropdown ?hidden=${!this.state.columnsDropdownVisible} @hiddenChange=${() => (this.state = { ...this.state, columnsDropdownVisible: false })} anchor="#toggle-columns" position="top">
               <cds-checkbox-group layout="vertical">
                 <cds-checkbox>
@@ -761,7 +836,7 @@ export function kitchenSink() {
       return pipe(
         (d: TestVM[]) => d.sort((a, b) => this.state.orderPreference.indexOf(a.id) > this.state.orderPreference.indexOf(b.id) ? 1 : -1),
         d => filter<TestVM>(d, 'id', this.state.search),
-        d => sortStrings<TestVM>(d, 'id', this.state.sortType)
+        d => sortStrings<TestVM>(d, 'status', this.state.sortType)
       )([...this.state.data]);
     }
 
@@ -1098,13 +1173,13 @@ export function columnVisibility() {
             `
           )}
           <cds-grid-footer>
-            <cds-action-button
+            <cds-control-action
               id="toggle-columns"
               @click=${() => (this.toggleColumns = true)}
               aria-label="filter column"
               shape="view-columns"
             >
-            </cds-action-button>
+            </cds-control-action>
             <cds-dropdown
               ?hidden=${!this.toggleColumns}
               @hiddenChange=${() => (this.toggleColumns = false)}
@@ -1186,14 +1261,14 @@ export function detailView() {
             entry => html`
               <cds-grid-row>
                 <cds-grid-cell>
-                  <cds-action-button
+                  <cds-control-action
                     id="${entry.id}-detail-demo"
                     aria-label="view ${entry.id} details"
                     @click=${() => this.showDetail(entry.id)}
                     style="margin-right: 8px"
                   >
                     <cds-icon shape="angle" direction="right"></cds-icon>
-                  </cds-action-button>
+                  </cds-control-action>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>$${entry.average}</cds-grid-cell>
@@ -1399,12 +1474,12 @@ export function singleAction() {
             entry => html`
               <cds-grid-row .select=${entry.selected}>
                 <cds-grid-cell action>
-                  <cds-action-button
+                  <cds-control-action
                     shape="ellipsis-vertical"
                     id="${entry.id}-action"
                     @click=${() => this.select(entry)}
                     aria-label="choose available stock options"
-                  ></cds-action-button>
+                  ></cds-control-action>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>$${entry.average}</cds-grid-cell>
@@ -1480,12 +1555,12 @@ export function multiAction() {
                 aria-label="choose action for selected stocks"
               />
             </cds-checkbox>
-            <cds-action-button
+            <cds-control-action
               shape="ellipsis-vertical"
               id="multi-action"
               @click=${() => (this.openAction = true)}
               aria-label="filter column"
-            ></cds-action-button>
+            ></cds-control-action>
             <cds-dropdown
               ?hidden=${!this.openAction}
               anchor="#multi-action"
@@ -1673,14 +1748,14 @@ export function rowFiltering() {
         <cds-grid style="--body-height: 360px">
           <cds-grid-column>
             Stock
-            <cds-action-button
+            <cds-control-action
               id="id-filter-demo"
               @click=${() => (this.idFilterOpen = true)}
               shape="filter"
               aria-label="search available stocks"
               cds-layout="align:right"
             >
-            </cds-action-button>
+            </cds-control-action>
             <cds-dropdown
               ?hidden=${!this.idFilterOpen}
               @hiddenChange=${() => (this.idFilterOpen = false)}
@@ -1796,25 +1871,25 @@ export function fixedColumns() {
         <cds-grid style="--body-height: 360px">
           <cds-grid-column width="200" resizable .position=${this.pinFirst ? 'fixed' : 'initial'}>
             Stock
-            <cds-action-button
+            <cds-control-action
               @click=${() => (this.pinFirst = !this.pinFirst)}
               aria-label="pin column"
               cds-layout="align:right"
             >
               <cds-icon shape="pin" ?solid=${this.pinFirst}></cds-icon>
-            </cds-action-button>
+            </cds-control-action>
           </cds-grid-column>
           <cds-grid-column width="400" resizable>Average</cds-grid-column>
           <cds-grid-column width="400" resizable>Current</cds-grid-column>
           <cds-grid-column width="200" resizable .position=${this.pinLast ? 'fixed' : 'initial'}>
             About
-            <cds-action-button
+            <cds-control-action
               @click=${() => (this.pinLast = !this.pinLast)}
               aria-label="pin column"
               cds-layout="align:right"
             >
               <cds-icon shape="pin" ?solid=${this.pinLast}></cds-icon>
-            </cds-action-button>
+            </cds-control-action>
           </cds-grid-column>
           ${this.data.map(
             entry => html`
@@ -1907,12 +1982,12 @@ export function editableCell() {
                         <cds-control-action action="prefix" readonly>$</cds-control-action>
                       </cds-input>`
                     : html`
-                        <cds-action-button
+                        <cds-control-action
                           class="${entry.id}-button"
                           @click=${() => this.editEntry(entry)}
                           aria-label="edit ${entry.id} outstanding value $${entry.average}"
                           shape="pencil"
-                        ></cds-action-button>
+                        ></cds-control-action>
                         <span>$${entry.average}</span>
                       `}
                 </cds-grid-cell>
@@ -2224,11 +2299,11 @@ export function draggableListController() {
           ${this.data.map(
             entry => html`
               <li draggable="true" id=${entry.id} cds-layout="horizontal gap:md align:vertical-center">
-                <cds-action-button
+                <cds-control-action
                   cds-draggable="handle"
                   shape="drag-handle"
                   aria-label="sort ${entry.id} row"
-                ></cds-action-button>
+                ></cds-control-action>
                 <p>${entry.id}</p>
               </li>
             `
@@ -2265,11 +2340,11 @@ export function draggableRows() {
             entry => html`
               <cds-grid-row draggable="true" id=${entry.id}>
                 <cds-grid-cell>
-                  <cds-action-button
+                  <cds-control-action
                     cds-draggable="handle"
                     shape="drag-handle"
                     aria-label="sort ${entry.id} row"
-                  ></cds-action-button>
+                  ></cds-control-action>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>$${entry.average}</cds-grid-cell>
@@ -2314,11 +2389,11 @@ export function swappableRows() {
             entry => html`
               <cds-grid-row id=${entry.id} draggable="true">
                 <cds-grid-cell>
-                  <cds-action-button
+                  <cds-control-action
                     cds-draggable="handle"
                     shape="drag-handle"
                     aria-label="sort ${entry.id} row"
-                  ></cds-action-button>
+                  ></cds-control-action>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>...</cds-grid-cell>
@@ -2344,11 +2419,11 @@ export function swappableRows() {
             entry => html`
               <cds-grid-row id=${entry.id} draggable="true">
                 <cds-grid-cell>
-                  <cds-action-button
+                  <cds-control-action
                     cds-draggable="handle"
                     shape="drag-handle"
                     aria-label="sort ${entry.id} row"
-                  ></cds-action-button>
+                  ></cds-control-action>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>...</cds-grid-cell>

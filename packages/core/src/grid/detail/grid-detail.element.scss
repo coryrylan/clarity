@@ -31,11 +31,10 @@ dialog::backdrop {
   background: transparent;
 }
 
-cds-action-button {
+cds-control-action {
   position: absolute;
   top: $cds-global-space-6;
   inset-inline-end: $cds-global-space-6;
-  --color: #{$cds-global-typography-color-500};
 }
 
 .private-host {
