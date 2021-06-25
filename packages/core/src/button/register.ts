@@ -10,18 +10,15 @@ import { registerElementSafely } from '@cds/core/internal';
 import { CdsButton } from './button.element.js';
 import { CdsIconButton } from './icon-button.element.js';
 import { CdsInlineButton } from './inline-button.element.js';
-import { CdsActionButton } from './action-button.element.js';
 
 registerElementSafely('cds-button', CdsButton);
 registerElementSafely('cds-icon-button', CdsIconButton);
 registerElementSafely('cds-inline-button', CdsInlineButton);
-registerElementSafely('cds-action-button', CdsActionButton);
 
 declare global {
   interface HTMLElementTagNameMap {
     'cds-button': CdsButton;
     'cds-icon-button': CdsIconButton;
     'cds-inline-button': CdsInlineButton;
-    'cds-action-button': CdsActionButton;
   }
 }

@@ -24,6 +24,7 @@ import {
   ResponsiveController,
   calculateOptimalLayout,
 } from '@cds/core/internal';
+import { CdsControlAction } from '@cds/core/control-action';
 import { ClarityIcons } from '@cds/core/icon/icon.service.js';
 import { exclamationCircleIcon } from '@cds/core/icon/shapes/exclamation-circle.js';
 import { checkCircleIcon } from '@cds/core/icon/shapes/check-circle.js';
@@ -42,7 +43,6 @@ import {
   getCurrentMessageStatus,
 } from '../utils/index.js';
 import { CdsInternalControlLabel } from '../control-label/control-label.element.js';
-import { CdsControlAction } from '../control-action/control-action.element.js';
 
 export const enum ControlLabelLayout {
   default = 'default',
@@ -249,7 +249,7 @@ export class CdsControl extends LitElement {
   private get prefixTemplate() {
     return html`
       <div cds-layout="align:shrink align:vertical-center" class="prefix">
-        <div cds-layout="horizontal gap:xs">
+        <div cds-layout="horizontal gap:md">
           ${this.prefixDefaultTemplate}
           <slot name="prefix"></slot>
         </div>
@@ -260,7 +260,7 @@ export class CdsControl extends LitElement {
   private get suffixTemplate() {
     return html`
       <div cds-layout="align:shrink align:vertical-center" class="suffix">
-        <div cds-layout="horizontal gap:xs">
+        <div cds-layout="horizontal gap:md">
           <slot name="suffix"></slot>
           ${this.suffixDefaultTemplate}
         </div>

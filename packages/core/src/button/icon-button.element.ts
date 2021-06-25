@@ -4,9 +4,8 @@
  * The full license information can be found in LICENSE in the root directory of this project.
  */
 
-import { baseStyles, property } from '@cds/core/internal';
+import { property } from '@cds/core/internal';
 import { html } from 'lit';
-import baseButtonStyles from './base-button.element.scss';
 import styles from './icon-button.element.scss';
 import { CdsButton, ClrLoadingState, iconCheck, iconSpinner } from './button.element.js';
 
@@ -54,5 +53,7 @@ export class CdsIconButton extends CdsButton {
     `;
   }
 
-  static styles = [baseStyles, baseButtonStyles, styles];
+  static get styles() {
+    return [...super.styles, styles];
+  }
 }

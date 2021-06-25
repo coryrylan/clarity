@@ -38,6 +38,10 @@ cds-icon[shape='times'] {
   cursor: pointer;
 }
 
+:host([readonly]) {
+  pointer-events: none;
+}
+
 :host(:not([readonly])) {
   &:host([_active]),
   &:host(:hover),

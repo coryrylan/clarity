@@ -38,6 +38,7 @@ const config = {
       './src/button',
       './src/card',
       './src/checkbox',
+      './src/control-action',
       './src/datalist',
       './src/date',
       './src/divider',

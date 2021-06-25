@@ -10,7 +10,6 @@ import { errorStandardIcon } from '@cds/core/icon/shapes/error-standard.js';
 import { checkIcon } from '@cds/core/icon/shapes/check.js';
 import { html } from 'lit';
 import { query } from 'lit/decorators/query.js';
-import baseButtonStyles from './base-button.element.scss';
 import styles from './button.element.scss';
 
 export const iconSpinner = (size: string) => {
@@ -140,7 +139,7 @@ export class CdsButton extends CdsBaseButton {
     </div>`;
   }
 
-  static styles = [baseStyles, baseButtonStyles, styles];
+  static styles = [baseStyles, styles];
 
   private updateLoadingState() {
     switch (this.loadingState) {
