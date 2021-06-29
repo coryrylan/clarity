@@ -33,7 +33,12 @@ export function action() {
 }
 
 export function actionResize() {
-  return html`<cds-action-resize aria-label="resize column"></cds-action-resize>`;
+  return html`
+    <div cds-layout="horizontal gap:xl">
+      <cds-action-resize direction="cross" aria-label="resize column"></cds-action-resize>
+      <cds-action-resize direction="main" aria-label="resize column"></cds-action-resize>
+    </div>
+  `;
 }
 
 export function actionSort() {

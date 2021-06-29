@@ -32,20 +32,20 @@ export class DraggableListController {
   async hostConnected() {
     await this.host.updateComplete;
 
-    if (this.items) {
-      this.addDragEventListeners();
-      this.addKeyboardEventListeners();
+    // if (this.items) {
+    this.addDragEventListeners();
+    this.addKeyboardEventListeners();
 
-      this.observer = new MutationObserver(mutations => {
-        for (let mutation of mutations) {
-          if (mutation.type === 'childList') {
-            this.addDragEventListeners();
-          }
+    this.observer = new MutationObserver(mutations => {
+      for (let mutation of mutations) {
+        if (mutation.type === 'childList') {
+          this.addDragEventListeners();
         }
-      });
+      }
+    });
 
-      this.observer.observe(this.host, { childList: true });
-    }
+    this.observer.observe(this.host, { childList: true });
+    // }
   }
 
   hostDisconnected() {

@@ -54,6 +54,11 @@ dialog[tabindex='0'] {
   border-bottom: 1px solid #ccc;
   transform: rotate(45deg);
   position: absolute;
-  left: -11px;
+  inset-inline-start: -11px;
   top: var(--caret-top);
+}
+
+:host([dir='rtl']) .caret {
+  // todo: RTL service
+  transform: rotate(-135deg);
 }

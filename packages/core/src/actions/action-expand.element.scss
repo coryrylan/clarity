@@ -3,3 +3,15 @@
 // The full license information can be found in LICENSE in the root directory of this project.
 
 @import './../styles/tokens/generated/index';
+
+:host {
+  --animation-duration: #{$cds-global-animation-duration-secondary};
+}
+
+cds-icon {
+  transition: transform var(--animation-duration);
+}
+
+:host([direction='cross']) cds-icon {
+  transition: none;
+}

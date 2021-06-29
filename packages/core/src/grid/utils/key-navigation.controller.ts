@@ -23,8 +23,6 @@ export class GridKeyNavigationController {
   async hostConnected() {
     await this.host.updateComplete;
 
-    this.initializeKeyGrid();
-
     this.host.grid.addEventListener('click', (e: any) => {
       if (Array.from(this.host.cells).find(c => c === e.target)) {
         this.setActiveCell(e, e.target);

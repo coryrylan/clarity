@@ -5,7 +5,7 @@
  */
 
 import { html } from 'lit';
-import { i18n, I18nService, state, event, EventEmitter } from '@cds/core/internal';
+import { i18n, I18nService, state, event, EventEmitter, property } from '@cds/core/internal';
 import { CdsAction } from './action.element.js';
 import styles from './action-resize.element.scss';
 
@@ -24,6 +24,8 @@ import styles from './action-resize.element.scss';
  * @slot - For projecting text content or cds-icon
  */
 export class CdsActionResize extends CdsAction {
+  @property({ type: String }) direction: 'main' | 'cross' = 'cross';
+
   @event() resizeChange: EventEmitter<number>;
 
   @state({ type: Boolean, reflect: true }) protected keyActive = false;

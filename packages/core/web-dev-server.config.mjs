@@ -99,6 +99,7 @@ export default /** @type {import('@web/dev-server').DevServerConfig} */ ({
             '@cds/core/icon/shapes/exclamation-triangle.js': '/dist/core/icon/shapes/exclamation-triangle.js',
             '@cds/core/icon/shapes/disconnect.js': '/dist/core/icon/shapes/disconnect.js',
             '@cds/core/icon/shapes/ban.js': '/dist/core/icon/shapes/ban.js',
+            '@cds/core/icon/shapes/view-columns.js': '/dist/core/icon/shapes/view-columns.js',
 
             '@cds/core/actions': '/dist/core/actions/index.js',
             '@cds/core/actions/register.js': '/dist/core/actions/register.js',

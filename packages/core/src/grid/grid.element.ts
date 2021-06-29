@@ -8,6 +8,7 @@ import { CdsGridCell } from './cell/grid-cell.element.js';
 import { CdsGridColumn } from './column/grid-column.element.js';
 import { DraggableListController } from './utils/draggable-list.controller.js';
 import { GridKeyNavigationController, KeyGrid } from './utils/key-navigation.controller.js';
+import { ColumnGroupSizeController } from './utils/column-group-size.controller.js';
 import styles from './grid.element.scss';
 
 export class CdsGrid extends LitElement implements KeyGrid {
@@ -32,6 +33,8 @@ export class CdsGrid extends LitElement implements KeyGrid {
 
   protected draggableListController = new DraggableListController(this, { axis: 'main' });
 
+  protected columnGroupSizeController = new ColumnGroupSizeController(this);
+
   static styles = [baseStyles, styles];
 
   /** @private */
@@ -52,7 +55,10 @@ export class CdsGrid extends LitElement implements KeyGrid {
               @mousedown=${this.initializeColumnWidths}
               @keydown=${this.initializeColumnWidths}
             >
-              <slot name="columns" @slotchange=${this.calculateGridColumns}></slot>
+              <slot
+                name="columns"
+                @slotchange=${() => this.columnGroupSizeController.calculateGridColumnWidths()}
+              ></slot>
             </div>
           </div>
           <div class="grid-body" role="rowgroup">
@@ -67,10 +73,11 @@ export class CdsGrid extends LitElement implements KeyGrid {
     `;
   }
 
-  private updateRows() {
+  private async updateRows() {
     this.rowCount = this.rows.length;
     this.rows.forEach((r, i) => (r.row = i + 1));
     this.columns.forEach((c, i) => (c.col = i + 1));
+    await this.updateComplete;
     this.gridKeyNavigationController.initializeKeyGrid();
   }
 
@@ -81,26 +88,6 @@ export class CdsGrid extends LitElement implements KeyGrid {
 
   @eventOptions({ once: true })
   private initializeColumnWidths() {
-    if (this.columnLayout === 'fixed') {
-      Array.from(this.columns)
-        .filter(column => !column.width && !column.hidden)
-        .map(column => [column, parseInt(getComputedStyle(column).width)])
-        .forEach(([column, width]: any) =>
-          this.style.setProperty(`--col-${column.col}-width`, column.width ? `${column.width}px` : `${width}px`)
-        );
-    }
-  }
-
-  private calculateGridColumns() {
-    const colWidths = Array.from(this.columns)
-      .filter(c => !c.hidden)
-      .reduce((p, c) => {
-        if (this.columnLayout === 'flex') {
-          return `${p} ${`minmax(min-content, var(--col-${c.col}-width, ${c.width ? `${c.width}px` : '1fr'}))`}`;
-        } else {
-          return `${p} ${`var(--col-${c.col}-width, ${c.width ? `${c.width}px` : '1fr'})`}`; // TODO: needs min width set, min-content works but restricts width
-        }
-      }, '');
-    this.style.setProperty('--grid-template-columns', colWidths);
+    this.columnGroupSizeController.initializeColumnWidths();
   }
 }

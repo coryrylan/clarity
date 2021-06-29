@@ -5,9 +5,7 @@ import styles from './grid-cell.element.scss';
 export class CdsGridCell extends LitElement {
   @property({ type: Boolean, reflect: true }) active = false;
 
-  @state({ type: Number, reflect: true, attribute: 'aria-colindex' }) colIndex: number = null;
-
-  @state({ type: String, reflect: true, attribute: 'role' }) protected role = 'gridcell';
+  @state({ type: Number }) colIndex: number = null;
 
   static styles = [baseStyles, styles];
 
@@ -17,5 +15,18 @@ export class CdsGridCell extends LitElement {
         <slot></slot>
       </div>
     `;
+  }
+
+  firstUpdated(props: Map<string, any>) {
+    super.firstUpdated(props);
+    this.setAttribute('role', 'gridcell');
+  }
+
+  updated(props: Map<string, any>) {
+    super.updated(props);
+
+    if (props.has('colIndex') && props.get('colIndex') !== this.colIndex) {
+      this.setAttribute('aria-colindex', `${this.colIndex}`);
+    }
   }
 }

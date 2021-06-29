@@ -20,12 +20,13 @@ import { filterIcon } from '@cds/core/icon/shapes/filter.js';
 import { exclamationTriangleIcon } from '@cds/core/icon/shapes/exclamation-triangle.js';
 import { exclamationCircleIcon } from '@cds/core/icon/shapes/exclamation-circle.js';
 import { disconnectIcon } from '@cds/core/icon/shapes/disconnect.js';
+import { viewColumnsIcon } from '@cds/core/icon/shapes/view-columns.js';
 
 import { getData, paginate, filter, sortStrings, sortList, sortNumbers, getVMData, TestVM, StatusDisplayType, StatusIconType, getVMOrderPreference } from './storybook.js';
 import { GridKeyNavigationController, KeyGrid } from '../utils/key-navigation.controller.js';
 import { DraggableListController } from '../utils/draggable-list.controller.js';
 
-ClarityIcons.addIcons(checkCircleIcon, exclamationTriangleIcon, exclamationCircleIcon, disconnectIcon, filterIcon);
+ClarityIcons.addIcons(checkCircleIcon, exclamationTriangleIcon, exclamationCircleIcon, disconnectIcon, filterIcon, viewColumnsIcon);
 
 export default {
   title: 'Stories/Grid',
@@ -603,11 +604,7 @@ export function rtl() {
             `
           )}
           <cds-grid-footer></cds-grid-footer>
-          <cds-grid-detail
-            ?hidden=${!this.currentDetail}
-            anchor="${this.currentDetail?.id}-detail-demo"
-            @closeChange=${this.closeDetail}
-          >
+          <cds-grid-detail ?hidden=${!this.currentDetail} anchor="${this.currentDetail?.id}-detail-demo" @closeChange=${this.closeDetail} dir="rtl">
             <h2>${this.currentDetail?.id}</h2>
             <p>Average: $${this.currentDetail?.average}</p>
             <p>Current: $${this.currentDetail?.value}</p>
@@ -1226,57 +1223,29 @@ export function columnVisibility() {
           ${this.checked(ColumnTypes.Average) ? html`<cds-grid-column>Average</cds-grid-column>` : ''}
           ${this.checked(ColumnTypes.Current) ? html`<cds-grid-column>Current</cds-grid-column>` : ''}
           ${this.checked(ColumnTypes.About) ? html`<cds-grid-column>About</cds-grid-column>` : ''}
-          ${this.data.map(
-            entry => html`
-              <cds-grid-row>
-                <cds-grid-cell>${entry.id}</cds-grid-cell>
-                ${this.checked(ColumnTypes.Average) ? html`<cds-grid-cell>$${entry.average}</cds-grid-cell>` : ''}
-                ${this.checked(ColumnTypes.Current) ? html`<cds-grid-cell>$${entry.value}</cds-grid-cell>` : ''}
-                ${this.checked(ColumnTypes.About) ? html`<cds-grid-cell>${entry.about}</cds-grid-cell>` : ''}
-              </cds-grid-row>
-            `
-          )}
+          ${this.data.map(entry => html`
+            <cds-grid-row>
+              <cds-grid-cell>${entry.id}</cds-grid-cell>
+              ${this.checked(ColumnTypes.Average) ? html`<cds-grid-cell>$${entry.average}</cds-grid-cell>` : ''}
+              ${this.checked(ColumnTypes.Current) ? html`<cds-grid-cell>$${entry.value}</cds-grid-cell>` : ''}
+              ${this.checked(ColumnTypes.About) ? html`<cds-grid-cell>${entry.about}</cds-grid-cell>` : ''}
+            </cds-grid-row>
+          `)}
           <cds-grid-footer>
-            <cds-action
-              id="toggle-columns"
-              @click=${() => (this.toggleColumns = true)}
-              aria-label="filter column"
-              shape="view-columns"
-            >
-            </cds-action>
-            <cds-dropdown
-              ?hidden=${!this.toggleColumns}
-              @hiddenChange=${() => (this.toggleColumns = false)}
-              anchor="#toggle-columns"
-              position="top"
-            >
+            <cds-action id="toggle-columns" @click=${() => (this.toggleColumns = true)} aria-label="filter column" shape="view-columns"></cds-action>
+            <cds-dropdown ?hidden=${!this.toggleColumns} @hiddenChange=${() => (this.toggleColumns = false)} anchor="#toggle-columns" position="top">
               <cds-checkbox-group layout="vertical">
                 <cds-checkbox>
                   <label>Average</label>
-                  <input
-                    type="checkbox"
-                    value="${ColumnTypes.Average}"
-                    @click=${this.selectColumns}
-                    .checked=${this.checked(ColumnTypes.Average)}
-                  />
+                  <input type="checkbox" value=${ColumnTypes.Average} @click=${this.selectColumns} .checked=${this.checked(ColumnTypes.Average)} />
                 </cds-checkbox>
                 <cds-checkbox>
                   <label>Current</label>
-                  <input
-                    type="checkbox"
-                    value="${ColumnTypes.Current}"
-                    @click=${this.selectColumns}
-                    .checked=${this.checked(ColumnTypes.Current)}
-                  />
+                  <input type="checkbox" value=${ColumnTypes.Current} @click=${this.selectColumns} .checked=${this.checked(ColumnTypes.Current)} />
                 </cds-checkbox>
                 <cds-checkbox>
                   <label>About</label>
-                  <input
-                    type="checkbox"
-                    value="${ColumnTypes.About}"
-                    @click=${this.selectColumns}
-                    .checked=${this.checked(ColumnTypes.About)}
-                  />
+                  <input type="checkbox" value=${ColumnTypes.About} @click=${this.selectColumns} .checked=${this.checked(ColumnTypes.About)} />
                 </cds-checkbox>
               </cds-checkbox-group>
               <cds-button action="flat" @click=${this.selectAll} ?disabled=${this.checked(ColumnTypes.All)}>
@@ -2455,8 +2424,9 @@ export function swappableRows() {
           <cds-grid-footer>List Two: ${this.listTwo.map((j, i) => html`${j.id} `)}</cds-grid-footer>
         </cds-grid>
         <cds-dropdown ?hidden=${!this.selectedEntryId} anchor="#selected-${this.selectedEntryId}-action" @hiddenChange=${() => (this.selectedEntryId = null) as any}>
-          <cds-button @click=${this.appendToOtherGrid} block action="flat" size="sm">Append to other Grid</cds-button>
+          <cds-button @click=${this.appendToOtherGrid} block action="flat" size="sm">Move to <span>${this.listOne.find(i => i.id === this.selectedEntryId) ? 'Staging' : 'Production'}</span></cds-button>
         </cds-dropdown>
+        
       `;
     }
 
@@ -2476,7 +2446,6 @@ export function swappableRows() {
       this.listTwo = [...this.listTwo];
       this.selectedEntryId = null;
       setTimeout(() => (this.shadowRoot.querySelector(`#selected-${item.id}-action`) as any).focus(), 0);
-      // todo: have key mapper re-addjust start focus when dropped event occurs
     }
 
     private sortOne(e: any) {
