@@ -18,6 +18,7 @@
   --row-height: calc(#{$cds-global-space-12} - #{$cds-global-space-3});
   --row-content-visibility: auto;
   --scroll-padding-top: var(--row-height);
+  --body-overflow: auto;
   width: 100%;
 }
 
@@ -29,11 +30,11 @@
 }
 
 .grid {
-  overflow: auto;
+  overflow: var(--body-overflow);
+  height: var(--body-height, 100%);
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: var(--body-height, 100%);
   scroll-padding-top: var(--scroll-padding-top);
   background: $cds-alias-object-container-background-tint; // for scroll overflow on columns
 }
@@ -56,7 +57,8 @@
   position: sticky;
   z-index: 99;
   grid-template-columns: var(--grid-template-columns);
-  padding-inline: $cds-global-space-6 $cds-global-space-1;
+  // padding-inline: $cds-global-space-6 $cds-global-space-1;
+  // padding-inline: $cds-global-space-6 $cds-global-space-6;
   background: $cds-alias-object-container-background-tint;
   box-shadow: 0 1px 0 $cds-alias-object-border-color;
 }

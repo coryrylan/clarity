@@ -13,7 +13,7 @@ import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/
 
 Columns can be fixed in place. This will prevent the column from scrolling when the grid has horizontal scrolling.
 To place a column in a fixed position, set the column with a `position="fixed"` attribute. You can enable user toggling
-of the position by using a `cds-control-action` to set the position state of a given column.
+of the position by using a `cds-action` to set the position state of a given column.
 
 <cds-alert status="warning">Only the first and last columns can be placed in the fixed position.</cds-alert>
 
@@ -23,17 +23,17 @@ of the position by using a `cds-control-action` to set the position state of a g
 <cds-grid>
   <cds-grid-column position="fixed">
     Stock
-    <cds-control-action aria-label="pin stock column">
+    <cds-action aria-label="pin stock column">
       <cds-icon shape="pin" solid></cds-icon>
-    </cds-control-action>
+    </cds-action>
   </cds-grid-column>
   <cds-grid-column>Average</cds-grid-column>
   <cds-grid-column>Current</cds-grid-column>
   <cds-grid-column position="initial">
     About
-    <cds-control-action aria-label="pin about column">
+    <cds-action aria-label="pin about column">
       <cds-icon shape="pin"></cds-icon>
-    </cds-control-action>
+    </cds-action>
   </cds-grid-column>
   <cds-grid-row>
     <cds-grid-cell>APPL</cds-grid-cell>

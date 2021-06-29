@@ -11,7 +11,7 @@ import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/
   </cds-alert>
 </cds-alert-group>
 
-To use row filtering leverage the `cds-search` or `cds-datalist` components. With `cds-control-action`
+To use row filtering leverage the `cds-search` or `cds-datalist` components. With `cds-action`
 toggle a filter dopdown to filter a particular column. Using the search input events
 filter against your list based on the applied column.
 
@@ -21,7 +21,7 @@ filter against your list based on the applied column.
 <cds-grid>
   <cds-grid-column>
     Stock
-    <cds-control-action id="id-filter-demo" shape="filter" aria-label="search available stocks"></cds-control-action>
+    <cds-action id="id-filter-demo" shape="filter" aria-label="search available stocks"></cds-action>
     <cds-search hidden anchor="#id-filter-demo">
       <cds-search>
         <input type="search" aria-label="search" placeholder="Search" />

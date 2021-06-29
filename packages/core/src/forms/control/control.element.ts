@@ -24,7 +24,7 @@ import {
   ResponsiveController,
   calculateOptimalLayout,
 } from '@cds/core/internal';
-import { CdsControlAction } from '@cds/core/control-action';
+import { CdsControlAction } from '../control-action/control-action.element.js';
 import { ClarityIcons } from '@cds/core/icon/icon.service.js';
 import { exclamationCircleIcon } from '@cds/core/icon/shapes/exclamation-circle.js';
 import { checkCircleIcon } from '@cds/core/icon/shapes/check-circle.js';

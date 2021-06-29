@@ -2,13 +2,14 @@
 // This software is released under MIT license.
 // The full license information can be found in LICENSE in the root directory of this project.
 
-@import './../../styles/tokens/generated/index';
+@import './../styles/tokens/generated/index';
 
 :host {
   line-height: 0;
 }
 
-cds-control-action {
+[direction='up'],
+[direction='down'] {
   --color: #{$cds-alias-object-interaction-color-disabled};
 }
 

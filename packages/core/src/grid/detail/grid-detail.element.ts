@@ -13,6 +13,10 @@ export class CdsGridDetail extends LitElement {
 
   static styles = [baseStyles, styles];
 
+  private get anchorElement() {
+    return (this.getRootNode() as HTMLElement).querySelector<HTMLElement>(`#${this.anchor}`);
+  }
+
   private get dialog() {
     return this.shadowRoot.querySelector('dialog');
   }
@@ -20,8 +24,9 @@ export class CdsGridDetail extends LitElement {
   render() {
     return html`
       <dialog tabindex="0">
+        <div class="caret"></div>
         <slot></slot>
-        <cds-control-action shape="times" @click=${this.close} aria-label="close row details"></cds-control-action>
+        <cds-action shape="times" @click=${this.close} aria-label="close row details"></cds-action>
       </dialog>
     `;
   }
@@ -43,7 +48,7 @@ export class CdsGridDetail extends LitElement {
     });
   }
 
-  updated(props: Map<string, any>) {
+  async updated(props: Map<string, any>) {
     super.updated(props);
 
     if (props.has('hidden') && props.get('hidden') !== undefined && props.get('hidden') !== this.hidden) {
@@ -59,6 +64,15 @@ export class CdsGridDetail extends LitElement {
         }
       }
     }
+
+    if (props.has('anchor')) {
+      await this.updateComplete;
+      this.style.setProperty(
+        '--caret-top',
+        `${this.anchorElement?.getBoundingClientRect()?.top - this.dialog.getBoundingClientRect().top}px`
+      );
+      this.parentElement.style.setProperty('--body-overflow', this.hidden ? 'auto' : 'hidden');
+    }
   }
 
   disconnectedCallback() {
@@ -68,6 +82,7 @@ export class CdsGridDetail extends LitElement {
 
   private close() {
     this.dispatchEvent(new CustomEvent('closeChange'));
-    (this.getRootNode() as HTMLElement).querySelector<HTMLElement>(`#${this.anchor}`)?.focus();
+    this.anchorElement?.focus();
+    this.parentElement.style.setProperty('--body-overflow', 'auto');
   }
 }

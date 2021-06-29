@@ -7,6 +7,12 @@
 export interface I18nStrings {
   [key: string]: { [key: string]: string | undefined };
 
+  actions: {
+    sort: string;
+    expand: string;
+    close: string;
+    resize: string;
+  };
   alert: {
     closeButtonAriaLabel: string;
     loading: string;
@@ -36,6 +42,12 @@ export interface I18nStrings {
 }
 
 export const componentStringsDefault = {
+  actions: {
+    sort: 'Sort',
+    expand: 'Expand',
+    close: 'Close',
+    resize: 'Resize',
+  },
   alert: {
     closeButtonAriaLabel: 'Close',
     loading: 'Loading',

@@ -6,7 +6,7 @@
 
 import { assignSlotNames, property } from '@cds/core/internal';
 import { state } from 'lit/decorators/state.js';
-import { CdsControlAction } from '@cds/core/control-action';
+import { CdsAction } from '@cds/core/actions';
 
 export enum CdsPaginationButtonAction {
   First = 'first',
@@ -46,7 +46,7 @@ export enum CdsPaginationButtonAction {
  * @cssprop --min-width
  */
 
-export class CdsPaginationButton extends CdsControlAction {
+export class CdsPaginationButton extends CdsAction {
   /**
    * @type {first | prev | next | last}
    * Sets the action from a predefined list of actions

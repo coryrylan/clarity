@@ -12,7 +12,7 @@ import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/
 </cds-alert-group>
 
 Grid Columns can render a sort button component by setting the `sort` attribute/property.
-The Column will emit a `sortChange` event when the user interacts with the Sort button.
+The Action Sort will emit a `sortChange` event when the user interacts with the Sort button.
 The supported sort types are `none`, `ascending` and `descending`. Using the `sortChange`
 event you can re-sort rows within the application.
 
@@ -20,7 +20,10 @@ event you can re-sort rows within the application.
 
 ```html
 <cds-grid>
-  <cds-grid-column sort="none">Stock</cds-grid-column>
+  <cds-grid-column>
+    Stock
+    <cds-action-sort sort="accending" aria-label="sort stock"></cds-action-sort>
+  </cds-grid-column>
   <cds-grid-column>Average</cds-grid-column>
   <cds-grid-column>Current</cds-grid-column>
   <cds-grid-column>About</cds-grid-column>

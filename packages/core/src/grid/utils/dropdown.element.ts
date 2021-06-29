@@ -124,7 +124,7 @@ export class CdsDropdown extends LitElement {
     if (props.has('hidden') && props.get('hidden') !== undefined && props.get('hidden') !== this.hidden) {
       if (this.hidden) {
         this.dialog.close();
-        this._anchorRef.focus();
+        this._anchorRef?.focus();
       } else {
         this.open();
       }

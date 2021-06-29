@@ -11,9 +11,9 @@ import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/
   </cds-alert>
 </cds-alert-group>
 
-Editable cells can be created by leveraging the `cds-input` form component. Using `cds-control-action`
+Editable cells can be created by leveraging the `cds-input` form component. Using `cds-action`
 toggle the visibility of the `cds-input` to enable the user to edit the input. Once the `enter` key is pressed
-re-focus back to the `cds-control-action`.
+re-focus back to the `cds-action`.
 
 <Story id="stories-grid--editable-cell" />
 
@@ -29,7 +29,7 @@ re-focus back to the `cds-control-action`.
         <input id="appl-input" type="number" value="1000" aria-label="appl Outstanding Value" />
         <cds-control-action action="prefix" readonly>$</cds-control-action>
       </cds-input>
-      <cds-control-action id="appl-button" shape="pencil" aria-label="edit appl"></cds-control-action>
+      <cds-action id="appl-button" shape="pencil" aria-label="edit appl"></cds-action>
       <span>$1000</span>
     </cds-grid-cell>
     <cds-grid-cell>...</cds-grid-cell>

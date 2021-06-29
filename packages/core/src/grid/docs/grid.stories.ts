@@ -16,6 +16,7 @@ import '@cds/core/radio/register.js';
 import '@cds/core/grid/register.js';
 import { ClarityIcons } from '@cds/core/icon/icon.service.js';
 import { checkCircleIcon } from '@cds/core/icon/shapes/check-circle.js';
+import { filterIcon } from '@cds/core/icon/shapes/filter.js';
 import { exclamationTriangleIcon } from '@cds/core/icon/shapes/exclamation-triangle.js';
 import { exclamationCircleIcon } from '@cds/core/icon/shapes/exclamation-circle.js';
 import { disconnectIcon } from '@cds/core/icon/shapes/disconnect.js';
@@ -24,7 +25,7 @@ import { getData, paginate, filter, sortStrings, sortList, sortNumbers, getVMDat
 import { GridKeyNavigationController, KeyGrid } from '../utils/key-navigation.controller.js';
 import { DraggableListController } from '../utils/draggable-list.controller.js';
 
-ClarityIcons.addIcons(checkCircleIcon, exclamationTriangleIcon, exclamationCircleIcon, disconnectIcon);
+ClarityIcons.addIcons(checkCircleIcon, exclamationTriangleIcon, exclamationCircleIcon, disconnectIcon, filterIcon);
 
 export default {
   title: 'Stories/Grid',
@@ -105,81 +106,6 @@ export function fixedRows() {
 
 export function basic() {
   return html`
-    <div cds-layout="vertical gap:lg m-b:xl">
-      <div cds-layout="horizontal gap:md">
-        <cds-button>solid</cds-button>
-        <cds-button action="outline">outline</cds-button>
-        <cds-button action="flat">flat</cds-button>
-        <cds-button action="flat-inline">flat-inline</cds-button>
-      </div>
-      
-      <div cds-layout="horizontal gap:md">
-        <cds-icon-button aria-label="demo"><cds-icon shape="user"></cds-icon></cds-icon-button>
-        <cds-icon-button aria-label="demo" action="outline"><cds-icon shape="user"></cds-icon></cds-icon-button>
-      </div>
-
-      <cds-inline-button>Click Here</cds-inline-button>
-      
-      <cds-control-action aria-label="column filter options" shape="filter"></cds-control-action>
-
-      <cds-control-action aria-label="column filter options" shape="filter"></cds-control-action>
-
-      <cds-control-action aria-label="select user">
-        <cds-icon shape="user"></cds-icon>
-      </cds-control-action>
-      
-      <cds-control-action readonly>
-        <cds-icon shape="user"></cds-icon>
-      </cds-control-action>
-
-      <cds-control-action readonly>$</cds-control-action>
-
-      <cds-password control-width="shrink">
-        <label>password</label>
-        <input type="password" value="123456" />
-      </cds-password>
-
-      <cds-form-group layout="vertical">
-        <cds-input>
-          <label>suffix</label>
-          <input aria-label="url input with .com suffix" />
-          <cds-control-action action="suffix" readonly>.com</cds-control-action>
-        </cds-input>
-
-        <cds-input>
-          <label>prefix</label>
-          <input aria-label="url input with https:// prefix" />
-          <cds-control-action action="prefix" readonly>https://</cds-control-action>
-        </cds-input>
-
-        <cds-input>
-          <label>prefix + suffix</label>
-          <input aria-label="url input with https:// prefix and .com suffix" />
-          <cds-control-action action="prefix" readonly>https://</cds-control-action>
-          <cds-control-action action="suffix" readonly>.com</cds-control-action>
-        </cds-input>
-
-        <cds-search>
-          <label>search</label>
-          <input type="search" />
-          <cds-control-message>message text</cds-control-message>
-        </cds-search>
-
-        <cds-time control-width="shrink">
-          <label>time</label>
-          <input type="time" min="09:00" max="18:00" value="11:00" />
-          <cds-control-message>message text</cds-control-message>
-        </cds-time>
-
-        <cds-password>
-          <label>additional actions to existing input types</label>
-          <cds-control-action shape="info-circle" action="label" aria-label="get more details" onclick="alert('!')"></cds-control-action>
-          <input type="password" value="123456" />
-          <cds-control-action shape="times" action="suffix" aria-label="clear password input" onclick="alert('!')"></cds-control-action>
-        </cds-password>
-      </cds-form-group>
-    </div>
-
     <cds-grid style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
@@ -432,7 +358,152 @@ export function darkTheme() {
   `;
 }
 
-export function sizing() {
+export function staticColumnWidth() {
+  return html`
+    <cds-grid style="--body-height: 360px">
+      <cds-grid-column resizable>Type</cds-grid-column>
+      <cds-grid-column resizable>Description</cds-grid-column>
+      <cds-grid-column resizable>Amount</cds-grid-column>
+      <cds-grid-column resizable>Balance</cds-grid-column>
+
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item kh kasd alksdfjh kashjdf kalsjdf lkajsdfl</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
+export function columnFlexWidth() {
+  return html`
+    <cds-grid column-layout="flex" style="--body-height: 360px">
+      <cds-grid-column resizable>Type</cds-grid-column>
+      <cds-grid-column resizable>Description</cds-grid-column>
+      <cds-grid-column resizable>Amount</cds-grid-column>
+      <cds-grid-column resizable>Balance</cds-grid-column>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item kh kasd alksdfjh kashjdf kalsjdf lkajsdfl</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
+export function fixedColumnWidth() {
   return html`
     <cds-grid style="--body-height: 360px">
       <cds-grid-column width="100">Type</cds-grid-column>
@@ -522,14 +593,7 @@ export function rtl() {
             entry => html`
               <cds-grid-row>
                 <cds-grid-cell>
-                  <cds-control-action
-                    id="${entry.id}-detail-demo"
-                    aria-label="view ${entry.id} details"
-                    @click=${() => this.showDetail(entry.id)}
-                    style="margin-right: 8px"
-                  >
-                    <cds-icon shape="angle" direction="left"></cds-icon>
-                  </cds-control-action>
+                  <cds-action-expand .expanded=${this.currentDetail?.id === entry.id} id="${entry.id}-detail-demo" @click=${() => this.showDetail(entry.id)}></cds-action-expand>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>$${entry.average}</cds-grid-cell>
@@ -554,7 +618,7 @@ export function rtl() {
     }
 
     private showDetail(id: string) {
-      this.currentDetail = this.data.find(i => i.id === id);
+      this.currentDetail = id !== this.currentDetail?.id ? this.data.find(i => i.id === id) : null;
     }
 
     private closeDetail() {
@@ -701,18 +765,21 @@ export function kitchenSink() {
           <cds-grid-column width="55"></cds-grid-column>
           <cds-grid-column resizable width="260">
             Host
-            <cds-control-action id="id-filter" @click=${() => (this.state = { ...this.state, idFilterDropdownVisible: true })} aria-label="column filter options" shape="filter"></cds-control-action>
+            <cds-action id="id-filter" @click=${() => (this.state = { ...this.state, idFilterDropdownVisible: true })} aria-label="column filter options" shape="filter"></cds-action>
             <cds-dropdown ?hidden=${!this.state.idFilterDropdownVisible} @hiddenChange=${() => (this.state = { ...this.state, idFilterDropdownVisible: false })} anchor="#id-filter">
               <cds-datalist>
-                <input type="text" placeholder="Search" aria-label="search rows" @input=${(e: any) => this.search(e.target.value)} />
+                <input type="text" placeholder="Search" aria-label="search rows" .value=${this.state.search} @input=${(e: any) => this.search(e.target.value)} />
                 <datalist>${this.state.data.map(entry => html`<option value="${entry.id}"></option>`)}</datalist>
               </cds-datalist>
             </cds-dropdown>
           </cds-grid-column>
-          ${this.columnVisible(ColumnTypes.Status) ? html`<cds-grid-column resizable .sort=${this.state.sortType} @sortChange=${(e: any) => this.setSortType(e.detail)}>Status</cds-grid-column>`: ''}
+          ${this.columnVisible(ColumnTypes.Status) ? html`
+          <cds-grid-column resizable>
+            Status
+            <cds-action-sort .sort=${this.state.sortType} @sortChange=${(e: any) => this.setSortType(e.detail)}></cds-action-sort>
+          </cds-grid-column>`: ''}
           ${this.columnVisible(ColumnTypes.CPU) ? html`<cds-grid-column resizable>CPU</cds-grid-column>`: ''}
           ${this.columnVisible(ColumnTypes.Memory) ? html`<cds-grid-column resizable>Memory</cds-grid-column>` : ''}
-
           ${this.currentPage.map(entry => html`
           <cds-grid-row .select=${entry.selected} id=${entry.id} .draggable=${this.state.sortType === 'none'}>
             <cds-grid-cell>
@@ -721,9 +788,7 @@ export function kitchenSink() {
               </cds-checkbox>
             </cds-grid-cell>
             <cds-grid-cell>
-              <cds-control-action id="${entry.id}-detail" aria-label="view ${entry.id} details" @click=${() => this.showDetail(entry.id)}>
-                <cds-icon shape="angle" direction="right"></cds-icon>
-              </cds-control-action>
+              <cds-action-expand .expanded=${this.currentDetail?.id === entry.id} id="${entry.id}-detail" @click=${() => this.showDetail(entry.id)}></cds-action-expand>
             </cds-grid-cell>
             <cds-grid-cell>
               ${entry.id}
@@ -740,7 +805,7 @@ export function kitchenSink() {
           </cds-grid-row>`)}
           <cds-grid-placeholder draggable="false">&nbsp;</cds-grid-placeholder>
           <cds-grid-footer>
-            <cds-control-action id="toggle-columns" @click=${() => (this.state = { ...this.state, columnsDropdownVisible: true })} aria-label="filter column" shape="view-columns"></cds-control-action>
+            <cds-action id="toggle-columns" @click=${() => (this.state = { ...this.state, columnsDropdownVisible: true })} aria-label="filter column" shape="view-columns"></cds-action>
             <cds-dropdown ?hidden=${!this.state.columnsDropdownVisible} @hiddenChange=${() => (this.state = { ...this.state, columnsDropdownVisible: false })} anchor="#toggle-columns" position="top">
               <cds-checkbox-group layout="vertical">
                 <cds-checkbox>
@@ -756,9 +821,9 @@ export function kitchenSink() {
                   <input type="checkbox" value=${ColumnTypes.Memory} @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.Memory)} />
                 </cds-checkbox>
               </cds-checkbox-group>
+              ${this.state.selectedColumns}
               <cds-button action="flat" @click=${() => (this.state = { ...this.state, selectedColumns: ColumnTypes.All })} ?disabled=${this.columnVisible(ColumnTypes.All)}>Select All</cds-button>
             </cds-dropdown>
-
             <cds-pagination>
               <span style="margin-right: auto;">${this.state.data.filter(i => i.selected).length} selected</span>
               <cds-select control-width="shrink">
@@ -779,7 +844,6 @@ export function kitchenSink() {
               <cds-pagination-button ?disabled=${this.state.page === this.pageCount - 1} action="last" @click=${this.lastPage} aria-label="go to last"></cds-pagination-button>
             </cds-pagination>
           </cds-grid-footer>
-
           <cds-grid-detail ?hidden=${!this.currentDetail} anchor="${this.currentDetail?.id}-detail" @closeChange=${this.closeDetail}>
             <section cds-layout="vertical gap:xxl">
               <div cds-layout="horizontal gap:md">
@@ -849,7 +913,7 @@ export function kitchenSink() {
     }
 
     private showDetail(id: string) {
-      this.state = { ...this.state, currentDetail: this.state.data.find(i => i.id === id).id };
+      this.state = { ...this.state, currentDetail: id !== this.state.currentDetail ? this.state.data.find(i => i.id === id).id : null };
     }
 
     private closeDetail() {
@@ -874,7 +938,7 @@ export function kitchenSink() {
     private selectColumns() {
       this.state = {
         ...this.state,
-        selectedColumns: Array.from(this.querySelectorAll<HTMLInputElement>('input[type="checkbox"]'))
+        selectedColumns: Array.from(this.querySelectorAll<HTMLInputElement>('cds-checkbox-group input[type="checkbox"]'))
           .filter(c => c.checked)
           .map(c => parseInt(c.value))
           .reduce((p, n) => p + n, 1)
@@ -954,7 +1018,7 @@ export function pagination() {
           )}
           <cds-grid-footer>
             <cds-pagination aria-label="pagination">
-              <cds-select>
+              <cds-select control-width="shrink">
                 <select
                   @input=${(e: any) => (this.pageSize = e.target.value)}
                   style="width: 46px"
@@ -1173,13 +1237,13 @@ export function columnVisibility() {
             `
           )}
           <cds-grid-footer>
-            <cds-control-action
+            <cds-action
               id="toggle-columns"
               @click=${() => (this.toggleColumns = true)}
               aria-label="filter column"
               shape="view-columns"
             >
-            </cds-control-action>
+            </cds-action>
             <cds-dropdown
               ?hidden=${!this.toggleColumns}
               @hiddenChange=${() => (this.toggleColumns = false)}
@@ -1252,7 +1316,7 @@ export function detailView() {
     render() {
       return html`
         <cds-grid style="--body-height: 360px">
-          <cds-grid-column width="44"></cds-grid-column>
+          <cds-grid-column width="50"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
@@ -1261,14 +1325,7 @@ export function detailView() {
             entry => html`
               <cds-grid-row>
                 <cds-grid-cell>
-                  <cds-control-action
-                    id="${entry.id}-detail-demo"
-                    aria-label="view ${entry.id} details"
-                    @click=${() => this.showDetail(entry.id)}
-                    style="margin-right: 8px"
-                  >
-                    <cds-icon shape="angle" direction="right"></cds-icon>
-                  </cds-control-action>
+                  <cds-action-expand .expanded=${this.currentDetail?.id === entry.id} id="${entry.id}-detail-demo" @click=${() => this.showDetail(entry.id)}></cds-action-expand>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>$${entry.average}</cds-grid-cell>
@@ -1282,6 +1339,7 @@ export function detailView() {
             ?hidden=${!this.currentDetail}
             anchor="${this.currentDetail?.id}-detail-demo"
             @closeChange=${this.closeDetail}
+            style="--width: 75%"
           >
             <h2>${this.currentDetail?.id}</h2>
             <p>Average: $${this.currentDetail?.average}</p>
@@ -1293,7 +1351,7 @@ export function detailView() {
     }
 
     private showDetail(id: string) {
-      this.currentDetail = this.data.find(i => i.id === id);
+      this.currentDetail = id !== this.currentDetail?.id ? this.data.find(i => i.id === id) : null;
     }
 
     private closeDetail() {
@@ -1474,12 +1532,11 @@ export function singleAction() {
             entry => html`
               <cds-grid-row .select=${entry.selected}>
                 <cds-grid-cell action>
-                  <cds-control-action
-                    shape="ellipsis-vertical"
+                  <cds-action
                     id="${entry.id}-action"
                     @click=${() => this.select(entry)}
                     aria-label="choose available stock options"
-                  ></cds-control-action>
+                  ></cds-action>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>$${entry.average}</cds-grid-cell>
@@ -1493,7 +1550,7 @@ export function singleAction() {
         <cds-dropdown
           ?hidden=${!this.selectedEntry}
           anchor="#${this.selectedEntryId}-action"
-          @hiddenChange=${() => (this.selectedEntry = null)}
+          @hiddenChange=${() => (this.selectedEntry = null) as any}
         >
           <cds-button @click=${() => this.buy(this.selectedEntry)} block action="flat" size="sm"
             >Buy ${this.selectedEntry?.id}</cds-button
@@ -1555,12 +1612,11 @@ export function multiAction() {
                 aria-label="choose action for selected stocks"
               />
             </cds-checkbox>
-            <cds-control-action
-              shape="ellipsis-vertical"
+            <cds-action
               id="multi-action"
               @click=${() => (this.openAction = true)}
               aria-label="filter column"
-            ></cds-control-action>
+            ></cds-action>
             <cds-dropdown
               ?hidden=${!this.openAction}
               anchor="#multi-action"
@@ -1641,8 +1697,9 @@ export function sortableRows() {
     render() {
       return html`
         <cds-grid style="--body-height: 360px">
-          <cds-grid-column .sort=${this.sortType} @sortChange=${(e: any) => (this.sortType = e.detail)}>
+          <cds-grid-column>
             Stock
+            <cds-action-sort .sort=${this.sortType} @sortChange=${(e: any) => (this.sortType = e.detail)}></cds-action-sort>
           </cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
@@ -1690,16 +1747,14 @@ export function multiSortableRows() {
     render() {
       return html`
         <cds-grid style="--body-height: 360px">
-          <cds-grid-column
-            .sort=${this.sortState.id}
-            @sortChange=${(e: any) => (this.sortState = { ...this.sortState, id: e.detail })}
-            >Stock</cds-grid-column
-          >
-          <cds-grid-column
-            .sort=${this.sortState.average}
-            @sortChange=${(e: any) => (this.sortState = { ...this.sortState, average: e.detail })}
-            >Average</cds-grid-column
-          >
+          <cds-grid-column>
+            Stock
+            <cds-action-sort .sort=${this.sortState.id} @sortChange=${(e: any) => (this.sortState = { ...this.sortState, id: e.detail })}></cds-action-sort>
+          </cds-grid-column>
+          <cds-grid-column>
+            Average
+            <cds-action-sort .sort=${this.sortState.average} @sortChange=${(e: any) => (this.sortState = { ...this.sortState, average: e.detail })}></cds-action-sort>
+          </cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
           <cds-grid-column>About</cds-grid-column>
           ${this.filteredList.map(
@@ -1748,14 +1803,7 @@ export function rowFiltering() {
         <cds-grid style="--body-height: 360px">
           <cds-grid-column>
             Stock
-            <cds-control-action
-              id="id-filter-demo"
-              @click=${() => (this.idFilterOpen = true)}
-              shape="filter"
-              aria-label="search available stocks"
-              cds-layout="align:right"
-            >
-            </cds-control-action>
+            <cds-action id="id-filter-demo" @click=${() => (this.idFilterOpen = true)} shape="filter" aria-label="search available stocks"></cds-action>
             <cds-dropdown
               ?hidden=${!this.idFilterOpen}
               @hiddenChange=${() => (this.idFilterOpen = false)}
@@ -1871,25 +1919,17 @@ export function fixedColumns() {
         <cds-grid style="--body-height: 360px">
           <cds-grid-column width="200" resizable .position=${this.pinFirst ? 'fixed' : 'initial'}>
             Stock
-            <cds-control-action
-              @click=${() => (this.pinFirst = !this.pinFirst)}
-              aria-label="pin column"
-              cds-layout="align:right"
-            >
+            <cds-action @click=${() => (this.pinFirst = !this.pinFirst)} aria-label="pin column">
               <cds-icon shape="pin" ?solid=${this.pinFirst}></cds-icon>
-            </cds-control-action>
+            </cds-action>
           </cds-grid-column>
           <cds-grid-column width="400" resizable>Average</cds-grid-column>
           <cds-grid-column width="400" resizable>Current</cds-grid-column>
           <cds-grid-column width="200" resizable .position=${this.pinLast ? 'fixed' : 'initial'}>
             About
-            <cds-control-action
-              @click=${() => (this.pinLast = !this.pinLast)}
-              aria-label="pin column"
-              cds-layout="align:right"
-            >
+            <cds-action @click=${() => (this.pinLast = !this.pinLast)} aria-label="pin column">
               <cds-icon shape="pin" ?solid=${this.pinLast}></cds-icon>
-            </cds-control-action>
+            </cds-action>
           </cds-grid-column>
           ${this.data.map(
             entry => html`
@@ -1982,12 +2022,12 @@ export function editableCell() {
                         <cds-control-action action="prefix" readonly>$</cds-control-action>
                       </cds-input>`
                     : html`
-                        <cds-control-action
+                        <cds-action
                           class="${entry.id}-button"
                           @click=${() => this.editEntry(entry)}
                           aria-label="edit ${entry.id} outstanding value $${entry.average}"
                           shape="pencil"
-                        ></cds-control-action>
+                        ></cds-action>
                         <span>$${entry.average}</span>
                       `}
                 </cds-grid-cell>
@@ -2230,7 +2270,7 @@ export function performance() {
         >
         <br />
         ${this.showParseAndRender
-          ? html` <cds-grid ?hidden=${this.hide} style="--body-height: 360px; --row-height: 36px">
+          ? html` <cds-grid ?hidden=${this.hide} style="--body-height: 360px; --row-height: 44px">
               <cds-grid-column>Stock</cds-grid-column>
               <cds-grid-column>Average</cds-grid-column>
               <cds-grid-column>Current</cds-grid-column>
@@ -2264,52 +2304,48 @@ export function draggableListController() {
       return [
         baseStyles,
         css`
-          ol {
-            list-style: none;
-            margin: 0;
-            padding: 0;
+          section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
           }
 
-          li {
-            margin: 0;
-            padding: 12px;
-            background: #fff;
-            box-shadow: 0 -1px 0 var(--cds-alias-object-border-color);
+          cds-card {
+            min-height: 120px;
           }
 
-          li[cds-draggable='target'] {
-            box-shadow: 0 -2px 0 var(--cds-alias-status-alt-tint);
+          [cds-draggable='target'] {
+            box-shadow: -4px 0 0 0 var(--cds-alias-status-alt-tint);
           }
 
-          li[draggable='false'] {
-            background: none;
-            height: 100px;
+          [draggable='false'] {
+            width: 100%;
+            height: 100%;
+            display: block;
           }
         `,
       ];
     }
 
-    @state() private data = getData().slice(0, 5);
+    @state() private data = getData().slice(0, 11);
 
     protected draggableListController = new DraggableListController(this, { shadowRoot: true });
 
     render() {
       return html`
-        <ol @draggableChange=${this.sortList}>
+        <section @draggableChange=${this.sortList}>
           ${this.data.map(
             entry => html`
-              <li draggable="true" id=${entry.id} cds-layout="horizontal gap:md align:vertical-center">
-                <cds-control-action
-                  cds-draggable="handle"
-                  shape="drag-handle"
-                  aria-label="sort ${entry.id} row"
-                ></cds-control-action>
-                <p>${entry.id}</p>
-              </li>
+              <cds-card draggable="true" id=${entry.id}>
+                <div cds-layout="horizontal">
+                  <p>${entry.id}</p>
+                  <cds-action-handle aria-label="sort ${entry.id} row" cds-layout="align:right"></cds-action-handle>
+                </div>
+              </cds-card>
             `
           )}
-          <li draggable="false"></li>
-        </ol>
+          <div draggable="false"></div>
+        </section>
       `;
     }
 
@@ -2330,7 +2366,7 @@ export function draggableRows() {
     render() {
       return html`
         <cds-grid @draggableChange=${this.sortList} style="--body-height: 360px">
-          <cds-grid-column width="45"></cds-grid-column>
+          <cds-grid-column width="60"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
@@ -2340,11 +2376,7 @@ export function draggableRows() {
             entry => html`
               <cds-grid-row draggable="true" id=${entry.id}>
                 <cds-grid-cell>
-                  <cds-control-action
-                    cds-draggable="handle"
-                    shape="drag-handle"
-                    aria-label="sort ${entry.id} row"
-                  ></cds-control-action>
+                  <cds-action-handle aria-label="sort ${entry.id} row"></cds-action-handle>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
                 <cds-grid-cell>$${entry.average}</cds-grid-cell>
@@ -2374,70 +2406,77 @@ export function draggableRows() {
 
 export function swappableRows() {
   class DemoSwappableRows extends LitElement {
-    @state() private listOne = [{ id: '1' }, { id: '2' }, { id: '3' }];
+    @state() private listOne = getVMData().slice(0, 3);
 
-    @state() private listTwo = [{ id: '4' }, { id: '5' }, { id: '6' }];
+    @state() private listTwo = getVMData().slice(4, 7);
+
+    @state() private selectedEntryId: string;
 
     render() {
       return html`
         <cds-grid @draggableChange=${this.sortOne} style="--body-height: 360px">
-          <cds-grid-column width="45"></cds-grid-column>
-          <cds-grid-column>id</cds-grid-column>
-          <cds-grid-column>description</cds-grid-column>
+          <cds-grid-column width="60"></cds-grid-column>
+          <cds-grid-column>Production Host</cds-grid-column>
+          <cds-grid-column>Status</cds-grid-column>
 
           ${this.listOne.map(
             entry => html`
               <cds-grid-row id=${entry.id} draggable="true">
                 <cds-grid-cell>
-                  <cds-control-action
-                    cds-draggable="handle"
-                    shape="drag-handle"
-                    aria-label="sort ${entry.id} row"
-                  ></cds-control-action>
+                  <cds-action-handle aria-label="sort ${entry.id} row" id="selected-${entry.id}-action" @click=${() => this.selectedEntryId = entry.id}></cds-action-handle>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
-                <cds-grid-cell>...</cds-grid-cell>
+                <cds-grid-cell>${entry.status}</cds-grid-cell>
               </cds-grid-row>
             `
           )}
-          <cds-grid-placeholder draggable="false">
-            Move a row to the second grid.
-          </cds-grid-placeholder>
-          <cds-grid-footer>
-            List One: ${this.listOne.map(i => html`${i.id} `)}
-          </cds-grid-footer>
+          <cds-grid-placeholder draggable="false">Production Environment</cds-grid-placeholder>
+          <cds-grid-footer>List One: ${this.listOne.map(i => html`${i.id} `)}</cds-grid-footer>
         </cds-grid>
 
-        <br /><br />
+        <br />
 
-        <cds-grid @draggableChange=${this.sortTwo}>
-          <cds-grid-column width="50"></cds-grid-column>
-          <cds-grid-column>id</cds-grid-column>
-          <cds-grid-column>description</cds-grid-column>
-
+        <cds-grid @draggableChange=${this.sortTwo} style="--body-height: 360px">
+          <cds-grid-column width="60"></cds-grid-column>
+          <cds-grid-column>Staging Host</cds-grid-column>
+          <cds-grid-column>Status</cds-grid-column>
           ${this.listTwo.map(
             entry => html`
               <cds-grid-row id=${entry.id} draggable="true">
                 <cds-grid-cell>
-                  <cds-control-action
-                    cds-draggable="handle"
-                    shape="drag-handle"
-                    aria-label="sort ${entry.id} row"
-                  ></cds-control-action>
+                  <cds-action-handle aria-label="sort ${entry.id} row" id="selected-${entry.id}-action" @click=${() => this.selectedEntryId = entry.id}></cds-action-handle>
                 </cds-grid-cell>
                 <cds-grid-cell>${entry.id}</cds-grid-cell>
-                <cds-grid-cell>...</cds-grid-cell>
+                <cds-grid-cell>${entry.status}</cds-grid-cell>
               </cds-grid-row>
             `
           )}
-          <cds-grid-placeholder draggable="false">
-            Move a row to the first grid.
-          </cds-grid-placeholder>
-          <cds-grid-footer>
-            List Two: ${this.listTwo.map((j, i) => html`${j.id} `)}
-          </cds-grid-footer>
+          <cds-grid-placeholder draggable="false">Staging Environment</cds-grid-placeholder>
+          <cds-grid-footer>List Two: ${this.listTwo.map((j, i) => html`${j.id} `)}</cds-grid-footer>
         </cds-grid>
+        <cds-dropdown ?hidden=${!this.selectedEntryId} anchor="#selected-${this.selectedEntryId}-action" @hiddenChange=${() => (this.selectedEntryId = null) as any}>
+          <cds-button @click=${this.appendToOtherGrid} block action="flat" size="sm">Append to other Grid</cds-button>
+        </cds-dropdown>
       `;
+    }
+
+    private appendToOtherGrid() {
+      let item = this.listOne.find(i => i.id === this.selectedEntryId);
+
+      if (item) {
+        this.listOne.splice(this.listOne.indexOf(item), 1);
+        this.listTwo.push(item);
+      } else {
+        item = this.listTwo.find(i => i.id === this.selectedEntryId);
+        this.listTwo.splice(this.listTwo.indexOf(item), 1);
+        this.listOne.push(item);
+      }
+
+      this.listOne = [...this.listOne];
+      this.listTwo = [...this.listTwo];
+      this.selectedEntryId = null;
+      setTimeout(() => (this.shadowRoot.querySelector(`#selected-${item.id}-action`) as any).focus(), 0);
+      // todo: have key mapper re-addjust start focus when dropped event occurs
     }
 
     private sortOne(e: any) {
@@ -2465,10 +2504,6 @@ export function swappableRows() {
       const targetIndex = targetList.indexOf(targetList.find(i => i.id === detail.target.id));
       targetIndex === -1 ? targetList.push(item) : targetList.splice(targetIndex, 0, item);
       return { targetList: [...targetList], fromList: [...fromList] };
-    }
-
-    protected createRenderRoot() {
-      return this;
     }
   }
 

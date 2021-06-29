@@ -3,8 +3,6 @@ import { baseStyles, EventEmitter, property, state, supportsAdoptingStyleSheets,
 import styles from './grid-column.element.scss';
 
 export class CdsGridColumn extends LitElement {
-  @property({ type: String, reflect: true, attribute: 'aria-sort' }) sort?: 'none' | 'ascending' | 'descending';
-
   @property({ type: String }) position: 'initial' | 'sticky' | 'fixed' = 'initial';
 
   @property({ type: Boolean }) resizable = false;
@@ -26,21 +24,14 @@ export class CdsGridColumn extends LitElement {
   render() {
     return html`
       <div part="column">
-        <div cds-layout="horizontal fill gap:md align:vertical-center">
+        <div cds-layout="horizontal fill gap:md align:vertical-center wrap:none">
           <slot></slot>
         </div>
-        ${this.sort
-          ? html`<slot name="sort-button">
-              <cds-grid-internal-sort-button
-                .sort=${this.sort}
-                @sortChange=${(e: any) => this.sortChange.emit(e.detail)}
-              ></cds-grid-internal-sort-button>
-            </slot>`
-          : ''}
-        <cds-grid-internal-resize-button
-          .resizable=${this.resizable}
+        <cds-action-resize
+          .readonly=${!this.resizable}
           @resizeChange=${(e: any) => this.resize(e.detail)}
-        ></cds-grid-internal-resize-button>
+        ></cds-action-resize>
+        <div class="line"></div>
       </div>
     `;
   }
@@ -72,9 +63,9 @@ export class CdsGridColumn extends LitElement {
   }
 
   private resize(width: number) {
-    this.width = `${width}`;
-    this.parentElement.style.setProperty(`--col-${this.col}-width`, `${this.width}px`);
-    this.dispatchEvent(new CustomEvent('widthChange', { detail: this.width, bubbles: true }));
+    const updatedWidth = parseInt(getComputedStyle(this).width) + width;
+    this.parentElement.style.setProperty(`--col-${this.col}-width`, `${updatedWidth}px`);
+    this.dispatchEvent(new CustomEvent('widthChange', { detail: updatedWidth, bubbles: true }));
   }
 
   private calculateColumnPositionStyles() {
@@ -92,8 +83,7 @@ export class CdsGridColumn extends LitElement {
         ${this.position === 'sticky' ? `left: 0px;` : ''}
         ${side === 'right' ? `right: ${right};` : ''}
       }
-      
-      /* todo: violet when active/focused */
+
       ${
         this.position !== 'initial'
           ? `

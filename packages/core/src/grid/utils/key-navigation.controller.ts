@@ -1,10 +1,12 @@
 import { ReactiveControllerHost } from 'lit';
 import { getTabableItems } from './utils.js';
 
+export type CdsKeyItem = HTMLElement;
+
 /** Cells must be direct children of row */
 export type KeyGrid = HTMLElement & {
-  rows: NodeListOf<HTMLElement> | HTMLElement[];
-  cells: NodeListOf<HTMLElement> | HTMLElement[];
+  rows: NodeListOf<CdsKeyItem> | CdsKeyItem[];
+  cells: NodeListOf<CdsKeyItem> | CdsKeyItem[];
   grid: HTMLElement;
 };
 
@@ -45,28 +47,22 @@ export class GridKeyNavigationController {
         this.setActiveCell(e, activeItem);
         e.preventDefault();
       }
-
-      // need logic to scroll into view entire cell
-      // if (e.target.hasAttribute('[cds-key]') && e.code === 'Tab') {
-      //   this.host.shadowRoot.querySelector('[cds-key-item=active]').scrollIntoView();
-      // }
     });
   }
 
   initializeKeyGrid() {
     this.host.cells.forEach((i: HTMLElement) => i.setAttribute('tabindex', '-1'));
     const firstCell = this.host.cells[0];
-    firstCell?.setAttribute('cds-key-item', 'active');
     firstCell?.setAttribute('tabindex', '0');
   }
 
-  private setActiveCell(e: any, activeCell: HTMLElement) {
-    this.host.cells.forEach(i => {
-      i.setAttribute('tabindex', '-1');
-      i.removeAttribute('cds-key-item');
-    });
+  private setActiveCell(e: any, activeCell: CdsKeyItem) {
+    const prior = Array.from(this.host.cells).find(c => c.getAttribute('tabindex') === '0');
 
-    activeCell.setAttribute('cds-key-item', 'active');
+    if (prior) {
+      prior.setAttribute('tabindex', '-1');
+    }
+
     activeCell.setAttribute('tabindex', '0');
 
     const items = getTabableItems(activeCell);
@@ -77,7 +73,7 @@ export class GridKeyNavigationController {
   }
 
   private getNextItemCoordinate(e: any) {
-    const currentCell = Array.from(this.host.cells).find(i => i.getAttribute('cds-key-item') === 'active');
+    const currentCell = Array.from(this.host.cells).find(i => i.getAttribute('tabindex') === '0');
     const currentRow = Array.from(this.host.rows).find(r => r.contains(currentCell));
     const numOfRows = this.host.rows.length - 1;
     const numOfColumns = currentRow.children.length - 1;

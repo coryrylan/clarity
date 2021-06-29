@@ -31,6 +31,7 @@ const config = {
   entryPoints: {
     modules: ['./src', './src/internal', './src/test'],
     components: [
+      './src/actions',
       './src/accordion',
       './src/alert',
       './src/badge',
@@ -38,7 +39,6 @@ const config = {
       './src/button',
       './src/card',
       './src/checkbox',
-      './src/control-action',
       './src/datalist',
       './src/date',
       './src/divider',

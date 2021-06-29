@@ -32,8 +32,14 @@ document.querySelector('#average').addEventListener('sortChange', e => sortByNum
 
 ```html
 <cds-grid>
-  <cds-grid-column sort="none" id="stock">Stock</cds-grid-column>
-  <cds-grid-column sort="ascending" id="average">Average</cds-grid-column>
+  <cds-grid-column>
+    Stock
+    <cds-action-sort sort="decending" aria-label="sort stock"></cds-action-sort>
+  </cds-grid-column>
+  <cds-grid-column>
+    Average
+    <cds-action-sort sort="accending" aria-label="sort average"></cds-action-sort>
+  </cds-grid-column>
   <cds-grid-column>Current</cds-grid-column>
   <cds-grid-column>About</cds-grid-column>
   <cds-grid-row>

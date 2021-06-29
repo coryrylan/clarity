@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { queryAssignedNodes } from 'lit/decorators/query-assigned-nodes.js';
 import { eventOptions } from 'lit/decorators/event-options.js';
 import { query } from 'lit/decorators/query.js';
-import { baseStyles, createId, state } from '@cds/core/internal';
+import { baseStyles, createId, state, property } from '@cds/core/internal';
 import { CdsGridRow } from './row/grid-row.element.js';
 import { CdsGridCell } from './cell/grid-cell.element.js';
 import { CdsGridColumn } from './column/grid-column.element.js';
@@ -11,6 +11,8 @@ import { GridKeyNavigationController, KeyGrid } from './utils/key-navigation.con
 import styles from './grid.element.scss';
 
 export class CdsGrid extends LitElement implements KeyGrid {
+  @property({ type: String }) columnLayout: 'fixed' | 'flex' = 'fixed';
+
   @state({ type: String, reflect: true }) protected _id = createId();
 
   @state({ type: Number, reflect: true, attribute: 'aria-rowcount' }) protected rowCount = 0;
@@ -25,11 +27,11 @@ export class CdsGrid extends LitElement implements KeyGrid {
 
   /** @private */
   @query('.grid-body') grid: HTMLElement;
-  
+
   protected gridKeyNavigationController = new GridKeyNavigationController(this);
-  
-  protected draggableListController = new DraggableListController(this);
-  
+
+  protected draggableListController = new DraggableListController(this, { axis: 'main' });
+
   static styles = [baseStyles, styles];
 
   /** @private */
@@ -44,7 +46,12 @@ export class CdsGrid extends LitElement implements KeyGrid {
       <div class="private-host">
         <div class="grid" @scroll=${this.setContentVisibitity}>
           <div role="rowgroup" class="column-row-group">
-            <div role="row" class="column-row" @mousedown=${this.initializeColumnWidths} @keydown=${this.initializeColumnWidths}>
+            <div
+              role="row"
+              class="column-row"
+              @mousedown=${this.initializeColumnWidths}
+              @keydown=${this.initializeColumnWidths}
+            >
               <slot name="columns" @slotchange=${this.calculateGridColumns}></slot>
             </div>
           </div>
@@ -74,18 +81,26 @@ export class CdsGrid extends LitElement implements KeyGrid {
 
   @eventOptions({ once: true })
   private initializeColumnWidths() {
-    Array.from(this.columns)
-      .filter(column => !column.width && !column.hidden)
-      .map(column => [column, parseInt(getComputedStyle(column).width)])
-      .forEach(([column, width]: any) =>
-        this.style.setProperty(`--col-${column.col}-width`, column.width ? `${column.width}px` : `${width}px`)
-      );
+    if (this.columnLayout === 'fixed') {
+      Array.from(this.columns)
+        .filter(column => !column.width && !column.hidden)
+        .map(column => [column, parseInt(getComputedStyle(column).width)])
+        .forEach(([column, width]: any) =>
+          this.style.setProperty(`--col-${column.col}-width`, column.width ? `${column.width}px` : `${width}px`)
+        );
+    }
   }
 
   private calculateGridColumns() {
     const colWidths = Array.from(this.columns)
       .filter(c => !c.hidden)
-      .reduce((p, c) => `${p} ${`var(--col-${c.col}-width, ${c.width ? `${c.width}px` : '1fr'})`}`, '');
+      .reduce((p, c) => {
+        if (this.columnLayout === 'flex') {
+          return `${p} ${`minmax(min-content, var(--col-${c.col}-width, ${c.width ? `${c.width}px` : '1fr'}))`}`;
+        } else {
+          return `${p} ${`var(--col-${c.col}-width, ${c.width ? `${c.width}px` : '1fr'})`}`; // TODO: needs min width set, min-content works but restricts width
+        }
+      }, '');
     this.style.setProperty('--grid-template-columns', colWidths);
   }
 }

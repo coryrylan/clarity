@@ -11,8 +11,8 @@ import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/
   </cds-alert>
 </cds-alert-group>
 
-Single Actions can be applied to `cds-grid-row` by leveraging the `cds-control-action`.
-The `cds-control-action` can open a context dropdown per row to allow the user to
+Single Actions can be applied to `cds-grid-row` by leveraging the `cds-action`.
+The `cds-action` can open a context dropdown per row to allow the user to
 trigger an action specific to that row.
 
 <Story id="stories-grid--single-action" />
@@ -29,11 +29,7 @@ Reuse the same action menu for all rows to prevent unnecessary DOM work.</cds-al
   <cds-grid-column>About</cds-grid-column>
   <cds-grid-row>
     <cds-grid-cell>
-      <cds-control-action
-        shape="ellipsis-vertical"
-        id="appl-action"
-        aria-label="choose available stock options"
-      ></cds-control-action>
+      <cds-action id="appl-action" aria-label="choose available stock options"></cds-action>
     </cds-grid-cell>
     <cds-grid-cell>APPL</cds-grid-cell>
     <cds-grid-cell>$1000</cds-grid-cell>
