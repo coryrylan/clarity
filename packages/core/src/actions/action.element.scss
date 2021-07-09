@@ -7,10 +7,10 @@
 :host {
   --width: 18px;
   --height: 18px;
-  --target-width: 36px;
-  --target-height: 36px;
+  --target-width: 44px;
+  --target-height: 44px;
   --cursor: pointer;
-  --outline-offset: 0;
+  --outline-offset: -3px;
   --color: #{$cds-global-typography-color-300};
   --font-size: #{$cds-global-typography-font-size-3};
   --background: transparent;

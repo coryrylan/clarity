@@ -1,13 +1,16 @@
 import { LitElement, html } from 'lit';
-import { baseStyles, property, state } from '@cds/core/internal';
+import { baseStyles, state } from '@cds/core/internal';
 import styles from './grid-cell.element.scss';
+import { GridCellA11yController } from './grid-cell-a11y.controller.js';
 
 export class CdsGridCell extends LitElement {
-  @property({ type: Boolean, reflect: true }) active = false;
+  // @property({ type: Boolean, reflect: true }) active = false;
 
   @state({ type: Number }) colIndex: number = null;
 
   static styles = [baseStyles, styles];
+
+  protected gridCellA11yController = new GridCellA11yController(this);
 
   render() {
     return html`
@@ -15,18 +18,5 @@ export class CdsGridCell extends LitElement {
         <slot></slot>
       </div>
     `;
-  }
-
-  firstUpdated(props: Map<string, any>) {
-    super.firstUpdated(props);
-    this.setAttribute('role', 'gridcell');
-  }
-
-  updated(props: Map<string, any>) {
-    super.updated(props);
-
-    if (props.has('colIndex') && props.get('colIndex') !== this.colIndex) {
-      this.setAttribute('aria-colindex', `${this.colIndex}`);
-    }
   }
 }

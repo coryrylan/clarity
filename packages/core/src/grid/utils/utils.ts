@@ -1,12 +1,8 @@
-export function getId() {
-  return `_${Math.random().toString(36).substr(2, 9)}`;
-}
-
 export function getNextCellCoordinate(e: any, gridContent: any) {
   const currentCell = gridContent.querySelector('cds-grid-cell[active]');
   const numOfRows = gridContent.querySelectorAll('cds-grid-row').length - 1;
   const numOfColumns = gridContent.querySelectorAll('cds-grid-column').length - 1;
-  let x = currentCell.col;
+  let x = currentCell.colIndex;
   let y = currentCell.row;
 
   if (e.code === 'ArrowUp' && y !== 0) {

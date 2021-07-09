@@ -6,11 +6,11 @@ export type DraggableItem = HTMLElement & { cdsDraggableItem?: 'item' | 'dropzon
 
 export class DraggableListController {
   private get items() {
-    return Array.from(this.hostRoot.querySelectorAll<DraggableItem>('[draggable=true]'));
+    return Array.from(this.hostRoot.querySelectorAll<DraggableItem>(`${this.config.itemScope}[draggable=true]`));
   }
 
   private get dropZones() {
-    return Array.from(this.hostRoot.querySelectorAll<DraggableItem>('[draggable=false]'));
+    return Array.from(this.hostRoot.querySelectorAll<DraggableItem>(`${this.config.zoneScope}[draggable=false]`));
   }
 
   private get hostRoot() {
@@ -23,7 +23,7 @@ export class DraggableListController {
 
   constructor(
     host: ReactiveControllerHost,
-    private config: { shadowRoot?: boolean; axis?: 'both' | 'cross' | 'main' } = { shadowRoot: false, axis: 'both' }
+    private config: { shadowRoot?: boolean; axis?: 'both' | 'cross' | 'main', itemScope?: string, zoneScope?: string } = { shadowRoot: false, axis: 'both' }
   ) {
     this.host = host as any;
     host.addController(this as any);
@@ -31,8 +31,6 @@ export class DraggableListController {
 
   async hostConnected() {
     await this.host.updateComplete;
-
-    // if (this.items) {
     this.addDragEventListeners();
     this.addKeyboardEventListeners();
 
@@ -45,7 +43,6 @@ export class DraggableListController {
     });
 
     this.observer.observe(this.host, { childList: true });
-    // }
   }
 
   hostDisconnected() {
@@ -57,13 +54,12 @@ export class DraggableListController {
       const handle: HTMLElement = e.path.find(
         (el: any) => el.hasAttribute && el.getAttribute('cds-draggable') === 'handle'
       );
-      if (handle && this.getControlKey(e)) {
+      if (handle && (handle.closest('[draggable]').tagName === this.items[0]?.tagName) && this.getControlKey(e)) {
         e.preventDefault();
         const items = [...this.items, ...this.dropZones];
         const from = handle.closest('[draggable]');
         const fromIndex = items.findIndex(i => i === from);
-        const targetIndex =
-          this.getControlKey(e) === 'ArrowUp' ? Math.max(0, fromIndex - 1) : Math.min(items.length - 1, fromIndex + 2);
+        const targetIndex = this.getControlKey(e) === 'ArrowUp' ? Math.max(0, fromIndex - 1) : Math.min(items.length - 1, fromIndex + 1);
         const target = items[targetIndex];
         handle.dispatchEvent(
           new CustomEvent('draggableChange', { detail: { from, target, type: 'keydown' }, bubbles: true })
@@ -72,7 +68,7 @@ export class DraggableListController {
         if (this.getControlKey(e) === 'ArrowUp') {
           target.querySelector<HTMLElement>('[cds-draggable=handle]')?.focus();
         } else {
-          items[targetIndex - 1].querySelector<HTMLElement>('[cds-draggable=handle]')?.focus();
+          items[targetIndex].querySelector<HTMLElement>('[cds-draggable=handle]')?.focus();
         }
       }
     });
@@ -82,8 +78,8 @@ export class DraggableListController {
     const keys: any = {
       ArrowUp: 'ArrowUp',
       ArrowDown: 'ArrowDown',
-      ArrowLeft: this.config.axis !== 'main' ? 'ArrowUp' : null,
-      ArrowRight: this.config.axis !== 'main' ? 'ArrowDown' : null,
+      ArrowLeft: 'ArrowUp', // this.config.axis !== 'main' ? 'ArrowUp' : null,
+      ArrowRight: 'ArrowDown' // this.config.axis !== 'main' ? 'ArrowDown' : null,
     };
 
     return e.ctrlKey || e.metaKey ? keys[e.code] : null;

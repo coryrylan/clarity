@@ -24,8 +24,10 @@ export class GridKeyNavigationController {
     await this.host.updateComplete;
 
     this.host.grid.addEventListener('click', (e: any) => {
-      if (Array.from(this.host.cells).find(c => c === e.target)) {
-        this.setActiveCell(e, e.target);
+      const tagName = this.host.cells[0].tagName.toLocaleLowerCase();
+      const activeCell = Array.from(this.host.cells).find(c => (c === e.target.closest(tagName)) ?? (c === e.target));
+      if (activeCell) {
+        this.setActiveCell(e, activeCell);
       }
     });
 

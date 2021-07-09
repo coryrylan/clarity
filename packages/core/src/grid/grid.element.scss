@@ -51,7 +51,7 @@
   display: contents; // safari...
 }
 
-.column-row {
+[role='row'] {
   display: grid;
   top: 0;
   position: sticky;

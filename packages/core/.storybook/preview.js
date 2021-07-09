@@ -111,6 +111,7 @@ export const parameters = {
           'Compact',
           'Draggable Rows',
           'Swappable Rows',
+          'Draggable Columns',
           'Sticky Columns',
           'Fixed Columns',
           'Fixed Rows',

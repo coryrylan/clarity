@@ -8,7 +8,7 @@ import { CdsGridCell } from './cell/grid-cell.element.js';
 import { CdsGridColumn } from './column/grid-column.element.js';
 import { DraggableListController } from './utils/draggable-list.controller.js';
 import { GridKeyNavigationController, KeyGrid } from './utils/key-navigation.controller.js';
-import { ColumnGroupSizeController } from './utils/column-group-size.controller.js';
+import { GridColumnGroupSizeController } from './utils/grid-column-group-size.controller.js';
 import styles from './grid.element.scss';
 
 export class CdsGrid extends LitElement implements KeyGrid {
@@ -30,10 +30,12 @@ export class CdsGrid extends LitElement implements KeyGrid {
   @query('.grid-body') grid: HTMLElement;
 
   protected gridKeyNavigationController = new GridKeyNavigationController(this);
+  
+  protected gridColumnGroupSizeController = new GridColumnGroupSizeController(this);
 
-  protected draggableListController = new DraggableListController(this, { axis: 'main' });
+  protected draggableColumnController = new DraggableListController(this, { axis: 'main', itemScope: 'cds-grid-column', zoneScope: 'cds-grid-column' });
 
-  protected columnGroupSizeController = new ColumnGroupSizeController(this);
+  protected draggableListController = new DraggableListController(this, { axis: 'cross', itemScope: 'cds-grid-row', zoneScope: 'cds-grid-placeholder' });
 
   static styles = [baseStyles, styles];
 
@@ -49,16 +51,8 @@ export class CdsGrid extends LitElement implements KeyGrid {
       <div class="private-host">
         <div class="grid" @scroll=${this.setContentVisibitity}>
           <div role="rowgroup" class="column-row-group">
-            <div
-              role="row"
-              class="column-row"
-              @mousedown=${this.initializeColumnWidths}
-              @keydown=${this.initializeColumnWidths}
-            >
-              <slot
-                name="columns"
-                @slotchange=${() => this.columnGroupSizeController.calculateGridColumnWidths()}
-              ></slot>
+            <div role="row" @mousedown=${this.initializeColumnWidths} @keydown=${this.initializeColumnWidths}>
+              <slot name="columns" @slotchange=${this.calculateColWidths}></slot>
             </div>
           </div>
           <div class="grid-body" role="rowgroup">
@@ -76,7 +70,7 @@ export class CdsGrid extends LitElement implements KeyGrid {
   private async updateRows() {
     this.rowCount = this.rows.length;
     this.rows.forEach((r, i) => (r.row = i + 1));
-    this.columns.forEach((c, i) => (c.col = i + 1));
+    this.columns.forEach((c, i) => (c.colIndex = i + 1));
     await this.updateComplete;
     this.gridKeyNavigationController.initializeKeyGrid();
   }
@@ -88,6 +82,10 @@ export class CdsGrid extends LitElement implements KeyGrid {
 
   @eventOptions({ once: true })
   private initializeColumnWidths() {
-    this.columnGroupSizeController.initializeColumnWidths();
+    this.gridColumnGroupSizeController.initializeColumnWidths();
+  }
+
+  private calculateColWidths() {
+    this.gridColumnGroupSizeController.calculateGridColumnWidths();
   }
 }

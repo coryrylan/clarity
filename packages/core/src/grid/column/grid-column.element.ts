@@ -1,7 +1,8 @@
 import { LitElement, html } from 'lit';
-import { baseStyles, property, state } from '@cds/core/internal';
+import { baseStyles, property, propUpdated, state } from '@cds/core/internal';
 import styles from './grid-column.element.scss';
-import { ColumnSizeController } from './column-size.controller.js';
+import { GridColumnSizeController } from './grid-column-size.controller.js';
+import { GridColumnA11yController } from './grid-column-a11y.controller.js';
 
 export class CdsGridColumn extends LitElement {
   @property({ type: String }) position: 'initial' | 'sticky' | 'fixed' = 'initial';
@@ -10,13 +11,13 @@ export class CdsGridColumn extends LitElement {
 
   @property({ type: String }) width?: string;
 
-  @state({ type: String, reflect: true, attribute: 'role' }) protected role = 'columnheader';
+  @state({ type: Number }) colIndex: number = null;
 
   @state({ type: String, attribute: 'slot', reflect: true }) slot = 'columns';
 
-  @state({ type: Number, reflect: true, attribute: 'aria-colindex' }) col: number = null;
+  protected gridColumnSizeController = new GridColumnSizeController(this);
 
-  protected columnSizeController = new ColumnSizeController(this);
+  protected gridColumnA11yController = new GridColumnA11yController(this);
 
   static styles = [baseStyles, styles];
 
@@ -26,9 +27,7 @@ export class CdsGridColumn extends LitElement {
         <div cds-layout="horizontal fill gap:md align:vertical-center wrap:none">
           <slot></slot>
         </div>
-        <cds-action-resize
-          .readonly=${!this.resizable}
-          @resizeChange=${(e: any) => this.columnSizeController.resize(e.detail)}
+        <cds-action-resize .readonly=${!this.resizable} @resizeChange=${this.resize}
         ></cds-action-resize>
         <div class="line"></div>
       </div>
@@ -39,14 +38,18 @@ export class CdsGridColumn extends LitElement {
     super.updated(props);
 
     if (
-      (this.col !== null && this.position !== null && props.get('position')) ||
-      (this.col !== null && this.position !== 'initial')
+      (this.colIndex !== null && this.position !== null && props.get('position')) ||
+      (this.colIndex !== null && this.position !== 'initial')
     ) {
-      this.columnSizeController.calculateColumnPositionStyles();
+      this.gridColumnSizeController.calculateColumnPositionStyles();
     }
 
-    if (props.has('width') && this.width !== props.get('width') && this.width && this.col !== null) {
-      this.columnSizeController.setWidth();
+    if (propUpdated(this, props, 'width') && this.width && this.colIndex !== null) {
+      this.gridColumnSizeController.setWidth();
     }
+  }
+
+  private resize(e: any) {
+    this.gridColumnSizeController.resize(e.detail);
   }
 }

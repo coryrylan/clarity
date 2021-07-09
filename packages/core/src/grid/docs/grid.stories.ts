@@ -33,81 +33,9 @@ export default {
   component: 'cds-grid',
 };
 
-export function fixedRows() {
-  return html`    
-    <cds-grid style="--body-height: 360px">
-      <cds-grid-column>Type</cds-grid-column>
-      <cds-grid-column>Description</cds-grid-column>
-      <cds-grid-column>Amount</cds-grid-column>
-      <cds-grid-column>Balance</cds-grid-column>
-      <cds-grid-row position="fixed">
-        <cds-grid-cell>Deposit</cds-grid-cell>
-        <cds-grid-cell>Item</cds-grid-cell>
-        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
-        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-row>
-        <cds-grid-cell>Credit</cds-grid-cell>
-        <cds-grid-cell>Billing</cds-grid-cell>
-        <cds-grid-cell>$250.00</cds-grid-cell>
-        <cds-grid-cell>$523,750.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-row>
-        <cds-grid-cell>Debit</cds-grid-cell>
-        <cds-grid-cell>Renewal</cds-grid-cell>
-        <cds-grid-cell>$9.00</cds-grid-cell>
-        <cds-grid-cell>$163,262.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-row>
-        <cds-grid-cell>Credit</cds-grid-cell>
-        <cds-grid-cell>Subscription</cds-grid-cell>
-        <cds-grid-cell>$53.00</cds-grid-cell>
-        <cds-grid-cell>$347,423.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-row>
-        <cds-grid-cell>Deposit</cds-grid-cell>
-        <cds-grid-cell>Subscription</cds-grid-cell>
-        <cds-grid-cell>$1239.00</cds-grid-cell>
-        <cds-grid-cell>$564,772.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-row>
-        <cds-grid-cell>Deposit</cds-grid-cell>
-        <cds-grid-cell>Service Fee</cds-grid-cell>
-        <cds-grid-cell>$49.00</cds-grid-cell>
-        <cds-grid-cell>$977,527.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-row>
-        <cds-grid-cell>Debit</cds-grid-cell>
-        <cds-grid-cell>Account Transfer</cds-grid-cell>
-        <cds-grid-cell>$2300.00</cds-grid-cell>
-        <cds-grid-cell>$423,236.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-row>
-        <cds-grid-cell>Credit</cds-grid-cell>
-        <cds-grid-cell>Payment</cds-grid-cell>
-        <cds-grid-cell>$9.00</cds-grid-cell>
-        <cds-grid-cell>$199,282.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-row>
-        <cds-grid-cell>Debit</cds-grid-cell>
-        <cds-grid-cell>Unknown</cds-grid-cell>
-        <cds-grid-cell>$9.00</cds-grid-cell>
-        <cds-grid-cell>$929,741.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-row>
-        <cds-grid-cell>Debit</cds-grid-cell>
-        <cds-grid-cell>Provider</cds-grid-cell>
-        <cds-grid-cell>$9203.00</cds-grid-cell>
-        <cds-grid-cell>$239,120.00</cds-grid-cell>
-      </cds-grid-row>
-      <cds-grid-footer></cds-grid-footer>
-    </cds-grid>
-  `;
-}
-
 export function basic() {
   return html`
-    <cds-grid style="--body-height: 360px">
+    <cds-grid aria-label="basic datagrid demo" style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -180,7 +108,7 @@ export function basic() {
 
 export function keyboard() {
   return html`
-    <cds-grid style="--body-height: 360px">
+    <cds-grid aria-label="keyboard navigation datagrid demo" style="--body-height: 360px">
       <cds-grid-column width="150">Key</cds-grid-column>
       <cds-grid-column>Function</cds-grid-column>
       <cds-grid-row>
@@ -288,7 +216,7 @@ export function keyboard() {
 
 export function darkTheme() {
   return html`
-    <cds-grid cds-theme="dark" style="--body-height: 360px">
+    <cds-grid aria-label="dark theme datagrid demo" cds-theme="dark" style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -361,7 +289,7 @@ export function darkTheme() {
 
 export function staticColumnWidth() {
   return html`
-    <cds-grid style="--body-height: 360px">
+    <cds-grid aria-label="static column width datagrid demo" style="--body-height: 360px">
       <cds-grid-column resizable>Type</cds-grid-column>
       <cds-grid-column resizable>Description</cds-grid-column>
       <cds-grid-column resizable>Amount</cds-grid-column>
@@ -432,9 +360,9 @@ export function staticColumnWidth() {
   `;
 }
 
-export function columnFlexWidth() {
+export function flexColumnWidth() {
   return html`
-    <cds-grid column-layout="flex" style="--body-height: 360px">
+    <cds-grid aria-label="flex column width datagrid demo" column-layout="flex" style="--body-height: 360px">
       <cds-grid-column resizable>Type</cds-grid-column>
       <cds-grid-column resizable>Description</cds-grid-column>
       <cds-grid-column resizable>Amount</cds-grid-column>
@@ -506,7 +434,7 @@ export function columnFlexWidth() {
 
 export function fixedColumnWidth() {
   return html`
-    <cds-grid style="--body-height: 360px">
+    <cds-grid aria-label="fixed column width datagrid demo" style="--body-height: 360px">
       <cds-grid-column width="100">Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -584,7 +512,7 @@ export function rtl() {
 
     render() {
       return html`
-        <cds-grid dir="rtl" style="--body-height: 360px">
+        <cds-grid aria-label="rtl datagrid demo" dir="rtl" style="--body-height: 360px">
           <cds-grid-column width="60"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -629,7 +557,7 @@ export function rtl() {
 
 export function responsive() {
   return html`
-    <cds-grid style="width: 400px">
+    <cds-grid aria-label="responsive datagrid demo" style="width: 400px">
       <cds-grid-column position="fixed" width="80">Type</cds-grid-column>
       <cds-grid-column width="200">Description</cds-grid-column>
       <cds-grid-column width="200">Amount</cds-grid-column>
@@ -702,7 +630,7 @@ export function responsive() {
 
 export function placeholder() {
   return html`
-    <cds-grid style="--body-height: 360px">
+    <cds-grid aria-label="placeholder datagrid demo" style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -753,7 +681,7 @@ export function kitchenSink() {
 
     render() {
       return html`
-        <cds-grid @draggableChange=${this.reorderList} style="--body-height: 360px">
+        <cds-grid aria-label="Active VM Management" @draggableChange=${this.reorderList} style="--body-height: 360px">
           <cds-grid-column width="40">
             <cds-checkbox>
               <input type="checkbox" .checked=${!this.state.data.find(i => !i.selected)} @change=${(e: any) => this.selectAll(e)} aria-label="select all" />
@@ -818,7 +746,6 @@ export function kitchenSink() {
                   <input type="checkbox" value=${ColumnTypes.Memory} @click=${this.selectColumns} .checked=${this.columnVisible(ColumnTypes.Memory)} />
                 </cds-checkbox>
               </cds-checkbox-group>
-              ${this.state.selectedColumns}
               <cds-button action="flat" @click=${() => (this.state = { ...this.state, selectedColumns: ColumnTypes.All })} ?disabled=${this.columnVisible(ColumnTypes.All)}>Select All</cds-button>
             </cds-dropdown>
             <cds-pagination>
@@ -998,7 +925,7 @@ export function pagination() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="pagination datagrid demo" style="--body-height: 360px">
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
@@ -1131,7 +1058,7 @@ export function pagination() {
 
 export function columnResize() {
   return html`
-    <cds-grid style="--body-height: 360px">
+    <cds-grid aria-label="column resize datagrid demo" style="--body-height: 360px">
       <cds-grid-column resizable>Type</cds-grid-column>
       <cds-grid-column resizable>Description</cds-grid-column>
       <cds-grid-column resizable>Amount</cds-grid-column>
@@ -1218,7 +1145,7 @@ export function columnVisibility() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="column visibility datagrid demo" style="--body-height: 360px">
           <cds-grid-column>Stock</cds-grid-column>
           ${this.checked(ColumnTypes.Average) ? html`<cds-grid-column>Average</cds-grid-column>` : ''}
           ${this.checked(ColumnTypes.Current) ? html`<cds-grid-column>Current</cds-grid-column>` : ''}
@@ -1284,7 +1211,7 @@ export function detailView() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="detail view datagrid demo" style="--body-height: 360px">
           <cds-grid-column width="50"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -1347,7 +1274,7 @@ export function singleSelect() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="single select datagrid demo" style="--body-height: 360px">
           <cds-grid-column width="50"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -1415,7 +1342,7 @@ export function multiSelect() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="multi select datagrid demo" style="--body-height: 360px">
           <cds-grid-column width="50">
             <cds-checkbox>
               <input
@@ -1491,7 +1418,7 @@ export function singleAction() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="single action datagrid demo" style="--body-height: 360px">
           <cds-grid-column width="50"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -1570,7 +1497,7 @@ export function multiAction() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="multi action datagrid demo" style="--body-height: 360px">
           <cds-grid-column width="100">
             <cds-checkbox>
               <input
@@ -1665,7 +1592,7 @@ export function sortableRows() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="sortable datagrid demo" style="--body-height: 360px">
           <cds-grid-column>
             Stock
             <cds-action-sort .sort=${this.sortType} @sortChange=${(e: any) => (this.sortType = e.detail)}></cds-action-sort>
@@ -1715,7 +1642,7 @@ export function multiSortableRows() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="multi sortable datagrid demo" style="--body-height: 360px">
           <cds-grid-column>
             Stock
             <cds-action-sort .sort=${this.sortState.id} @sortChange=${(e: any) => (this.sortState = { ...this.sortState, id: e.detail })}></cds-action-sort>
@@ -1769,7 +1696,7 @@ export function rowFiltering() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="row filtering datagrid demo" style="--body-height: 360px">
           <cds-grid-column>
             Stock
             <cds-action id="id-filter-demo" @click=${() => (this.idFilterOpen = true)} shape="filter" aria-label="search available stocks"></cds-action>
@@ -1834,7 +1761,7 @@ export function multiCellFiltering() {
             <label>Search Grid</label>
             <input type="search" placeholder="Search" @input=${(e: any) => (this.search = e.target.value)} />
           </cds-search>
-          <cds-grid style="--body-height: 360px">
+          <cds-grid aria-label="multi cell filtering datagrid demo" style="--body-height: 360px">
             <cds-grid-column>Stock</cds-grid-column>
             <cds-grid-column>Average</cds-grid-column>
             <cds-grid-column>Current</cds-grid-column>
@@ -1885,7 +1812,7 @@ export function fixedColumns() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="fixed columns datagrid demo" style="--body-height: 360px">
           <cds-grid-column width="200" resizable .position=${this.pinFirst ? 'fixed' : 'initial'}>
             Stock
             <cds-action @click=${() => (this.pinFirst = !this.pinFirst)} aria-label="pin column">
@@ -1930,7 +1857,7 @@ export function stickyColumns() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="sticky columns datagrid demo" style="--body-height: 360px">
           <cds-grid-column width="120">Stock</cds-grid-column>
           <cds-grid-column width="120" position="sticky">Average</cds-grid-column>
           <cds-grid-column width="500">Current</cds-grid-column>
@@ -1970,7 +1897,7 @@ export function editableCell() {
 
     render() {
       return html`
-        <cds-grid style="--body-height: 360px">
+        <cds-grid aria-label="editable cell datagrid demo" style="--body-height: 360px">
           <cds-grid-column>Account</cds-grid-column>
           <cds-grid-column>Outstanding</cds-grid-column>
           <cds-grid-column>About</cds-grid-column>
@@ -2031,7 +1958,7 @@ export function editableCell() {
 
 export function optionalFooter() {
   return html`
-    <cds-grid style="--body-height: 360px">
+    <cds-grid aria-label="optional footer datagrid demo" style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -2120,7 +2047,7 @@ export function compact() {
         --cds-global-space-13: 54px;
       }
     </style>
-    <cds-grid cds-theme="compact" style="--body-height: 360px">
+    <cds-grid aria-label="compact datagrid demo" cds-theme="compact" style="--body-height: 360px">
       <cds-grid-column>Type</cds-grid-column>
       <cds-grid-column>Description</cds-grid-column>
       <cds-grid-column>Amount</cds-grid-column>
@@ -2191,20 +2118,11 @@ export function compact() {
 }
 
 export function performance() {
-  let data: any[] = [];
-
-  for (let i = 0; i < 50; i++) {
-    data.push(
-      ...getData().map(e => {
-        e.id = `${e.id}${i === 0 ? '' : `-${i}`}`;
-        return e;
-      })
-    );
-  }
-
   class DemoPerformance extends LitElement {
     @state() private showParseAndRender = false;
     @state() private hide = false;
+    @state() private data: any[] = [];
+    @state() private numberOfRows = 1000;
 
     static get styles() {
       return [
@@ -2221,111 +2139,72 @@ export function performance() {
 
     render() {
       return html`
-        <cds-button
-          action="outline"
-          size="sm"
-          @click=${() => {
-            this.showParseAndRender = !this.showParseAndRender;
-            this.hide = !this.showParseAndRender;
-          }}
-          >Render Large Grid</cds-button
-        >
-        <cds-button
-          action="outline"
-          size="sm"
-          ?hidden=${!this.showParseAndRender}
-          @click=${() => (this.hide = !this.hide)}
-          >hidden</cds-button
-        >
-        <br />
-        ${this.showParseAndRender
-          ? html` <cds-grid ?hidden=${this.hide} style="--body-height: 360px; --row-height: 44px">
-              <cds-grid-column>Stock</cds-grid-column>
-              <cds-grid-column>Average</cds-grid-column>
-              <cds-grid-column>Current</cds-grid-column>
-              <cds-grid-column>About</cds-grid-column>
-              ${data.map(
-                entry => html`  
-                  <cds-grid-row>
-                    <cds-grid-cell>${entry.id}</cds-grid-cell>
-                    <cds-grid-cell>$${entry.average}</cds-grid-cell>
-                    <cds-grid-cell>$${entry.value}</cds-grid-cell>
-                    <cds-grid-cell><div class="small-cell">${entry.about}</div></cds-grid-cell>
-                  </cds-grid-row>
-                `
-              )}
-              <cds-grid-footer>
-                <p style="margin: 0; line-height: 0">${data.length} Rows ${data.length * 4} Cells</p>
-              </cds-grid-footer>
-            </cds-grid>`
-          : ''}
-      `;
+        <section cds-layout="vertical gap:lg">
+          <cds-input control-width="shrink">
+            <label>Number of Rows</label>
+            <input type="number" min="20" .value=${`${this.numberOfRows}`} @input=${(e: any) => this.setRows(parseInt(e.target.value))} />
+          </cds-input>
+          <br />
+          <cds-button action="outline" @click=${this.toggleGrid}>Render Large Grid</cds-button>
+          <cds-button action="outline" @click=${this.toggleVisibility}>css visibility</cds-button>
+          <br /><br />
+          ${this.showParseAndRender ? html`
+          <cds-grid aria-label="performance datagrid demo" ?hidden=${this.hide} style="--body-height: 360px; --row-height: 44px">
+            <cds-grid-column>Stock</cds-grid-column>
+            <cds-grid-column>Average</cds-grid-column>
+            <cds-grid-column>Current</cds-grid-column>
+            <cds-grid-column>About</cds-grid-column>
+            ${this.data.map(entry => html`  
+              <cds-grid-row>
+                <cds-grid-cell>${entry.id}</cds-grid-cell>
+                <cds-grid-cell>$${entry.average}</cds-grid-cell>
+                <cds-grid-cell>$${entry.value}</cds-grid-cell>
+                <cds-grid-cell><div class="small-cell">${entry.about}</div></cds-grid-cell>
+              </cds-grid-row>
+            `)}
+            <cds-grid-footer>
+              <p style="margin: 0; line-height: 0">${this.data.length} Rows ${this.data.length * 4} Cells</p>
+            </cds-grid-footer>
+          </cds-grid>` : ''}
+        </section>`;
+    }
+
+    connectedCallback() {
+      super.connectedCallback();
+      this.setRows(1000);
+    }
+
+    private toggleGrid() {
+      this.showParseAndRender = !this.showParseAndRender;
+      this.hide = !this.showParseAndRender;
+    }
+
+    private toggleVisibility() {
+      if (this.showParseAndRender) {
+        this.hide = !this.hide;
+      }
+    }
+
+    private setRows(numberOfRows: number) {
+      this.showParseAndRender = false;
+      this.numberOfRows = numberOfRows;
+      let data: any[] = [];
+
+      for (let i = 0; i < (this.numberOfRows / 20); i++) {
+        data.push(
+          ...getData().map(e => {
+            e.id = `${e.id}${i === 0 ? '' : `-${i}`}`;
+            return e;
+          })
+        );
+      }
+
+      this.data = data;
     }
   }
 
   registerElementSafely('demo-grid-performance', DemoPerformance);
   return html`<demo-grid-performance></demo-grid-performance>`;
-}
-
-export function draggableListController() {
-  class DemoDraggableListController extends LitElement {
-    static get styles() {
-      return [
-        baseStyles,
-        css`
-          section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-          }
-
-          cds-card {
-            min-height: 120px;
-          }
-
-          [cds-draggable='target'] {
-            box-shadow: -4px 0 0 0 var(--cds-alias-status-alt-tint);
-          }
-
-          [draggable='false'] {
-            width: 100%;
-            height: 100%;
-            display: block;
-          }
-        `,
-      ];
-    }
-
-    @state() private data = getData().slice(0, 11);
-
-    protected draggableListController = new DraggableListController(this, { shadowRoot: true });
-
-    render() {
-      return html`
-        <section @draggableChange=${this.sortList}>
-          ${this.data.map(
-            entry => html`
-              <cds-card draggable="true" id=${entry.id}>
-                <div cds-layout="horizontal">
-                  <p>${entry.id}</p>
-                  <cds-action-handle aria-label="sort ${entry.id} row" cds-layout="align:right"></cds-action-handle>
-                </div>
-              </cds-card>
-            `
-          )}
-          <div draggable="false"></div>
-        </section>
-      `;
-    }
-
-    private sortList(e: any) {
-      this.data = sortList(e.detail.target, e.detail.from, this.data);
-      e.preventDefault();
-    }
-  }
-
-  registerElementSafely('demo-draggable-list-controller', DemoDraggableListController);
-  return html`<demo-draggable-list-controller></demo-draggable-list-controller>`;
 }
 
 export function draggableRows() {
@@ -2334,7 +2213,7 @@ export function draggableRows() {
 
     render() {
       return html`
-        <cds-grid @draggableChange=${this.sortList} style="--body-height: 360px">
+        <cds-grid aria-label="draggable rows datagrid demo" @draggableChange=${this.sortList} style="--body-height: 360px">
           <cds-grid-column width="60"></cds-grid-column>
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -2383,7 +2262,7 @@ export function swappableRows() {
 
     render() {
       return html`
-        <cds-grid @draggableChange=${this.sortOne} style="--body-height: 360px">
+        <cds-grid aria-label="production VMs" @draggableChange=${this.sortOne} style="--body-height: 360px">
           <cds-grid-column width="60"></cds-grid-column>
           <cds-grid-column>Production Host</cds-grid-column>
           <cds-grid-column>Status</cds-grid-column>
@@ -2405,7 +2284,7 @@ export function swappableRows() {
 
         <br />
 
-        <cds-grid @draggableChange=${this.sortTwo} style="--body-height: 360px">
+        <cds-grid aria-label="staging VMs" @draggableChange=${this.sortTwo} style="--body-height: 360px">
           <cds-grid-column width="60"></cds-grid-column>
           <cds-grid-column>Staging Host</cds-grid-column>
           <cds-grid-column>Status</cds-grid-column>
@@ -2486,7 +2365,7 @@ export function noScroll() {
 
     render() {
       return html`
-        <cds-grid>
+        <cds-grid aria-label="no scroll datagrid demo">
           <cds-grid-column>Stock</cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
@@ -2511,7 +2390,176 @@ export function noScroll() {
   return html`<demo-grid-no-scroll></demo-grid-no-scroll>`;
 }
 
-export function gridKeyNavigation() {
+export function fixedRows() {
+  return html`    
+    <cds-grid aria-label="fixed row datagrid demo" style="--body-height: 360px">
+      <cds-grid-column>Type</cds-grid-column>
+      <cds-grid-column>Description</cds-grid-column>
+      <cds-grid-column>Amount</cds-grid-column>
+      <cds-grid-column>Balance</cds-grid-column>
+      <cds-grid-row position="fixed">
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell>$523,750.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$163,262.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell>$347,423.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell>$564,772.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell>$977,527.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell>$423,236.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$199,282.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell>$239,120.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
+export function draggableColumns() {
+  class DemoDraggableColumns extends LitElement {
+    @state() private data = getData();
+
+    @state() private columns = ['id', 'average', 'value', 'about'];
+
+    render() {
+      return html`
+        <cds-grid aria-label="draggable columns datagrid demo" @draggableChange=${this.sortColumns} style="--body-height: 360px">
+          ${this.columns.map(c => html`
+            <cds-grid-column draggable="true">
+              ${c} <cds-action-handle aria-label="sort ${c} column"></cds-action-handle>
+            </cds-grid-column>`)}
+          ${this.data.map(entry => html`
+            <cds-grid-row id=${entry.id}>
+              ${this.columns.map(c => html`<cds-grid-cell>${entry[c]}</cds-grid-cell>`)}
+            </cds-grid-row>`)}
+          <cds-grid-footer></cds-grid-footer>
+        </cds-grid>
+      `;
+    }
+
+    private sortColumns(e: any) {
+      const targetIndex = parseInt(e.detail.target.getAttribute('aria-colindex')) - 1;
+      const fromIndex = parseInt(e.detail.from.getAttribute('aria-colindex')) - 1;
+      const items = [...this.columns];
+      const item = items.splice(fromIndex, 1)[0];
+      items.splice(targetIndex, 0, item);
+      this.columns = [...items];
+    }
+  }
+
+  registerElementSafely('demo-grid-draggable-columns', DemoDraggableColumns);
+  return html`<demo-grid-draggable-columns></demo-grid-draggable-columns>`;
+}
+
+export function draggableListController() {
+  class DemoDraggableListController extends LitElement {
+    static get styles() {
+      return [
+        baseStyles,
+        css`
+          section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+          }
+
+          cds-card {
+            min-height: 120px;
+          }
+
+          [cds-draggable='target'] {
+            box-shadow: -4px 0 0 0 var(--cds-alias-status-alt-tint);
+          }
+
+          [draggable='false'] {
+            width: 100%;
+            height: 100%;
+            display: block;
+          }
+        `,
+      ];
+    }
+
+    @state() private data = getData().slice(0, 11);
+
+    protected draggableListController = new DraggableListController(this, { shadowRoot: true });
+
+    render() {
+      return html`
+        <section @draggableChange=${this.sortList}>
+          ${this.data.map(
+            entry => html`
+              <cds-card draggable="true" id=${entry.id}>
+                <div cds-layout="horizontal">
+                  <p>${entry.id}</p>
+                  <cds-action-handle aria-label="sort ${entry.id} row" cds-layout="align:right"></cds-action-handle>
+                </div>
+              </cds-card>
+            `
+          )}
+          <div draggable="false"></div>
+        </section>
+      `;
+    }
+
+    private sortList(e: any) {
+      this.data = sortList(e.detail.target, e.detail.from, this.data);
+      e.preventDefault();
+    }
+  }
+
+  registerElementSafely('demo-draggable-list-controller', DemoDraggableListController);
+  return html`<demo-draggable-list-controller></demo-draggable-list-controller>`;
+}
+
+export function gridKeyNavigationController() {
   class DemoGridKeyNavigation extends LitElement implements KeyGrid {
     protected gridKeyNavigationController = new GridKeyNavigationController(this);
 

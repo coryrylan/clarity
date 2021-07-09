@@ -1,20 +1,20 @@
 import { supportsAdoptingStyleSheets } from '@cds/core/internal';
 import { ReactiveControllerHost } from 'lit';
 
-export type Column = HTMLElement & {
-  col: number;
+export type GridColumnSize = ReactiveControllerHost & HTMLElement & {
+  colIndex: number;
   position: 'initial' | 'sticky' | 'fixed';
   width?: string;
 };
 
-export class ColumnSizeController {
+export class GridColumnSizeController {
   private globalStyle = supportsAdoptingStyleSheets() ? new CSSStyleSheet() : null;
 
   get hostGrid() {
     return this.host.parentElement as HTMLElement & { _id: string };
   }
 
-  constructor(private host: ReactiveControllerHost & Column) {
+  constructor(private host: GridColumnSize) {
     if (this.globalStyle) {
       (document as any).adoptedStyleSheets = [...(document as any).adoptedStyleSheets, this.globalStyle];
     }
@@ -22,7 +22,7 @@ export class ColumnSizeController {
 
   setWidth() {
     this.hostGrid.style.setProperty(
-      `--col-${this.host.col}-width`,
+      `--col-${this.host.colIndex}-width`,
       this.host.width
         ? `${this.host.width}px`
         : `${Math.max(100, parseInt(getComputedStyle(this.host).width)) + this.host.width}px`
@@ -31,7 +31,7 @@ export class ColumnSizeController {
 
   resize(width: number) {
     const updatedWidth = parseInt(getComputedStyle(this.host).width) + width;
-    this.hostGrid.style.setProperty(`--col-${this.host.col}-width`, `${updatedWidth}px`);
+    this.hostGrid.style.setProperty(`--col-${this.host.colIndex}-width`, `${updatedWidth}px`);
     this.host.dispatchEvent(new CustomEvent('widthChange', { detail: updatedWidth, bubbles: true }));
   }
 
@@ -44,8 +44,8 @@ export class ColumnSizeController {
     const right = this.host.position === 'fixed' ? `${position.right - position.left - position.width}px` : 'initial';
 
     (this.globalStyle as any).replaceSync(`
-      [__id='${this.hostGrid._id}'] cds-grid-column:nth-child(${this.host.col}),
-      [__id='${this.hostGrid._id}'] cds-grid-cell:nth-child(${this.host.col}) {
+      [__id='${this.hostGrid._id}'] cds-grid-column:nth-child(${this.host.colIndex}),
+      [__id='${this.hostGrid._id}'] cds-grid-cell:nth-child(${this.host.colIndex}) {
         ${side === 'left' ? `left: ${left};` : ''}
         ${this.host.position === 'sticky' ? `left: 0px;` : ''}
         ${side === 'right' ? `right: ${right};` : ''}
@@ -54,7 +54,7 @@ export class ColumnSizeController {
       ${
         this.host.position !== 'initial'
           ? `
-        [__id='${this.hostGrid._id}'] cds-grid-cell:nth-child(${this.host.col}) {
+        [__id='${this.hostGrid._id}'] cds-grid-cell:nth-child(${this.host.colIndex}) {
           --border-${
             side === 'left' ? 'right' : 'left'
           }: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);

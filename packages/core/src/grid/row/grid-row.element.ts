@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit';
-import { baseStyles, property, state } from '@cds/core/internal';
+import { baseStyles, property, propUpdated, state } from '@cds/core/internal';
 
+import { GridRowA11yController } from './grid-row-a11y.controller.js';
 import { CdsGridCell } from '../cell/grid-cell.element.js';
 import styles from './grid-row.element.scss';
 
@@ -10,6 +11,8 @@ export class CdsGridRow extends LitElement {
   @property({ type: String }) position: 'fixed' = null;
 
   @state({ type: Number }) row: number = null;
+
+  protected gridRowA11yController = new GridRowA11yController(this);
 
   static styles = [baseStyles, styles];
 
@@ -27,19 +30,10 @@ export class CdsGridRow extends LitElement {
     `;
   }
 
-  firstUpdated(props: Map<string, any>) {
-    super.firstUpdated(props);
-    this.setAttribute('role', 'row');
-  }
-
   updated(props: Map<string, any>) {
     super.updated(props);
-    if (props.has('position') && this.position !== props.get('position') && this.position === 'fixed') {
+    if (propUpdated(this, props, 'position') && this.position === 'fixed') {
       this.parentElement.style.setProperty('--scroll-padding-top', 'calc(var(--row-height) * 2)');
-    }
-
-    if (props.has('row') && props.get('row') !== this.row) {
-      this.setAttribute('aria-rowindex', `${this.row}`);
     }
   }
 
