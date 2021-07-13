@@ -1,11 +1,9 @@
 import { LitElement, html } from 'lit';
 import { baseStyles, state } from '@cds/core/internal';
-import styles from './grid-cell.element.scss';
 import { GridCellA11yController } from './grid-cell-a11y.controller.js';
+import styles from './grid-cell.element.scss';
 
 export class CdsGridCell extends LitElement {
-  // @property({ type: Boolean, reflect: true }) active = false;
-
   @state({ type: Number }) colIndex: number = null;
 
   static styles = [baseStyles, styles];
@@ -19,4 +17,9 @@ export class CdsGridCell extends LitElement {
       </div>
     `;
   }
+
+  // async performUpdate() {
+  //   await new Promise((resolve: any) => setTimeout(() => resolve()));
+  //   return super.performUpdate();
+  // }
 }

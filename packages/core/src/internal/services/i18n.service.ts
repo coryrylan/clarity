@@ -39,6 +39,9 @@ export interface I18nStrings {
     showButtonAriaLabel: string;
     hideButtonAriaLabel: string;
   };
+  grid: {
+    resizeColumn: string;
+  }
 }
 
 export const componentStringsDefault = {
@@ -74,6 +77,9 @@ export const componentStringsDefault = {
     showButtonAriaLabel: 'Show password',
     hideButtonAriaLabel: 'Hide password',
   },
+  grid: {
+    resizeColumn: 'Resize Column'
+  }
 };
 
 /**

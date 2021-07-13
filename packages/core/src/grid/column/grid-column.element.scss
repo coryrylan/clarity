@@ -10,10 +10,10 @@
   top: 0;
   z-index: 998;
   position: sticky;
+  min-width: fit-content;
 }
 
 [part='column'] {
-  min-width: fit-content;
   min-height: var(--height);
   border: 0;
   font-weight: 500;

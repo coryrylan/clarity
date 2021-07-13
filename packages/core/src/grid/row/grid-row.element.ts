@@ -1,18 +1,20 @@
 import { LitElement, html } from 'lit';
-import { baseStyles, property, propUpdated, state } from '@cds/core/internal';
-
+import { baseStyles, property, state } from '@cds/core/internal';
 import { GridRowA11yController } from './grid-row-a11y.controller.js';
 import { CdsGridCell } from '../cell/grid-cell.element.js';
 import styles from './grid-row.element.scss';
+import { GridRowPositionController } from './grid-row-position.controller.js';
 
 export class CdsGridRow extends LitElement {
   @property({ type: Boolean }) select = false;
 
-  @property({ type: String }) position: 'fixed' = null;
+  @property({ type: String }) position: 'fixed' | '' = null;
 
-  @state({ type: Number }) row: number = null;
+  @state({ type: Number }) rowIndex: number = null;
 
   protected gridRowA11yController = new GridRowA11yController(this);
+
+  protected gridRowPositionController = new GridRowPositionController(this);
 
   static styles = [baseStyles, styles];
 
@@ -28,13 +30,6 @@ export class CdsGridRow extends LitElement {
         <slot></slot>
       </div>
     `;
-  }
-
-  updated(props: Map<string, any>) {
-    super.updated(props);
-    if (propUpdated(this, props, 'position') && this.position === 'fixed') {
-      this.parentElement.style.setProperty('--scroll-padding-top', 'calc(var(--row-height) * 2)');
-    }
   }
 
   private async updateCells() {

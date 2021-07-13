@@ -2149,7 +2149,7 @@ export function performance() {
           <cds-button action="outline" @click=${this.toggleVisibility}>css visibility</cds-button>
           <br /><br />
           ${this.showParseAndRender ? html`
-          <cds-grid aria-label="performance datagrid demo" ?hidden=${this.hide} style="--body-height: 360px; --row-height: 44px">
+          <cds-grid aria-label="performance datagrid demo" ?hidden=${this.hide} style="--body-height: 360px; --row-height: 44px; max-width: 800px">
             <cds-grid-column>Stock</cds-grid-column>
             <cds-grid-column>Average</cds-grid-column>
             <cds-grid-column>Current</cds-grid-column>
@@ -2219,20 +2219,16 @@ export function draggableRows() {
           <cds-grid-column>Average</cds-grid-column>
           <cds-grid-column>Current</cds-grid-column>
           <cds-grid-column>About</cds-grid-column>
-
-          ${this.data.map(
-            entry => html`
-              <cds-grid-row draggable="true" id=${entry.id}>
-                <cds-grid-cell>
-                  <cds-action-handle aria-label="sort ${entry.id} row"></cds-action-handle>
-                </cds-grid-cell>
-                <cds-grid-cell>${entry.id}</cds-grid-cell>
-                <cds-grid-cell>$${entry.average}</cds-grid-cell>
-                <cds-grid-cell>$${entry.value}</cds-grid-cell>
-                <cds-grid-cell>${entry.about}</cds-grid-cell>
-              </cds-grid-row>
-            `
-          )}
+          ${this.data.map(entry => html`
+          <cds-grid-row draggable="true" id=${entry.id}>
+            <cds-grid-cell>
+              <cds-action-handle aria-label="sort ${entry.id} row"></cds-action-handle>
+            </cds-grid-cell>
+            <cds-grid-cell>${entry.id}</cds-grid-cell>
+            <cds-grid-cell>$${entry.average}</cds-grid-cell>
+            <cds-grid-cell>$${entry.value}</cds-grid-cell>
+            <cds-grid-cell>${entry.about}</cds-grid-cell>
+          </cds-grid-row>`)}
           <cds-grid-placeholder draggable="false"></cds-grid-placeholder>
           <cds-grid-footer></cds-grid-footer>
         </cds-grid>

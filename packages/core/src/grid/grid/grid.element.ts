@@ -3,22 +3,21 @@ import { queryAssignedNodes } from 'lit/decorators/query-assigned-nodes.js';
 import { eventOptions } from 'lit/decorators/event-options.js';
 import { query } from 'lit/decorators/query.js';
 import { baseStyles, createId, state, property } from '@cds/core/internal';
-import { CdsGridRow } from './row/grid-row.element.js';
-import { CdsGridCell } from './cell/grid-cell.element.js';
-import { CdsGridColumn } from './column/grid-column.element.js';
-import { DraggableListController } from './utils/draggable-list.controller.js';
-import { GridKeyNavigationController, KeyGrid } from './utils/key-navigation.controller.js';
-import { GridColumnGroupSizeController } from './utils/grid-column-group-size.controller.js';
+import { CdsGridRow } from '../row/grid-row.element.js';
+import { CdsGridCell } from '../cell/grid-cell.element.js';
+import { CdsGridColumn } from '../column/grid-column.element.js';
+import { DraggableListController } from '../utils/draggable-list.controller.js';
+import { GridKeyNavigationController, KeyGrid } from '../utils/key-navigation.controller.js';
+import { GridColumnGroupSizeController } from './grid-column-group-size.controller.js';
 import styles from './grid.element.scss';
+import { GridA11yController } from './grid-a11y.controller.js';
 
 export class CdsGrid extends LitElement implements KeyGrid {
   @property({ type: String }) columnLayout: 'fixed' | 'flex' = 'fixed';
 
   @state({ type: String, reflect: true }) protected _id = createId();
 
-  @state({ type: Number, reflect: true, attribute: 'aria-rowcount' }) protected rowCount = 0;
-
-  @state({ type: String, reflect: true, attribute: 'role' }) protected role = 'grid';
+  @state({ type: Number }) rowCount = 0;
 
   /** @private */
   @queryAssignedNodes('columns', true, 'cds-grid-column') columns: NodeListOf<CdsGridColumn>;
@@ -29,6 +28,8 @@ export class CdsGrid extends LitElement implements KeyGrid {
   /** @private */
   @query('.grid-body') grid: HTMLElement;
 
+  protected gridA11yController = new GridA11yController(this);
+  
   protected gridKeyNavigationController = new GridKeyNavigationController(this);
   
   protected gridColumnGroupSizeController = new GridColumnGroupSizeController(this);
@@ -69,7 +70,7 @@ export class CdsGrid extends LitElement implements KeyGrid {
 
   private async updateRows() {
     this.rowCount = this.rows.length;
-    this.rows.forEach((r, i) => (r.row = i + 1));
+    this.rows.forEach((r, i) => (r.rowIndex = i + 1));
     this.columns.forEach((c, i) => (c.colIndex = i + 1));
     await this.updateComplete;
     this.gridKeyNavigationController.initializeKeyGrid();

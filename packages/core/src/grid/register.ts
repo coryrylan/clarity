@@ -19,7 +19,7 @@ import { timesIcon } from '@cds/core/icon/shapes/times.js';
 import { pinIcon } from '@cds/core/icon/shapes/pin.js';
 import { minusIcon } from '@cds/core/icon/shapes/minus.js';
 
-import { CdsGrid } from './grid.element.js';
+import { CdsGrid } from './grid/grid.element.js';
 import { CdsGridRow } from './row/grid-row.element.js';
 import { CdsGridCell } from './cell/grid-cell.element.js';
 import { CdsGridColumn } from './column/grid-column.element.js';

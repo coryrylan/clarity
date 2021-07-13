@@ -4,4 +4,4 @@ export * from './detail/grid-detail.element.js';
 export * from './footer/grid-footer.element.js';
 export * from './placeholder/grid-placeholder.element.js';
 export * from './row/grid-row.element.js';
-export * from './grid.element.js';
+export * from './grid/grid.element.js';

@@ -17,16 +17,13 @@ export class DraggableListController {
     return this.config.shadowRoot ? this.host.shadowRoot : this.host;
   }
 
-  protected host: ReactiveControllerHost & HTMLElement;
-
   private observer: MutationObserver;
 
   constructor(
-    host: ReactiveControllerHost,
+    private host: ReactiveControllerHost & HTMLElement,
     private config: { shadowRoot?: boolean; axis?: 'both' | 'cross' | 'main', itemScope?: string, zoneScope?: string } = { shadowRoot: false, axis: 'both' }
   ) {
-    this.host = host as any;
-    host.addController(this as any);
+    host.addController(this);
   }
 
   async hostConnected() {

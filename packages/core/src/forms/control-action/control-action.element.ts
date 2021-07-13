@@ -33,5 +33,9 @@ export class CdsControlAction extends CdsAction {
     if (props.has('action')) {
       assignSlotNames([this, this.action ?? false]);
     }
+
+    if (props.has('readonly')) {
+      this.readonly && !this.hasAttribute('aria-label') ? this.setAttribute('aria-hidden', 'true') : this.removeAttribute('aria-hidden');
+    }
   }
 }

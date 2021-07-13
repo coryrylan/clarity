@@ -9,7 +9,7 @@ export class CdsGridPlaceholder extends LitElement {
 
   render() {
     return html`
-      <div class="private-host" tabindex="0">
+      <div part="placeholder">
         <slot>
           <cds-icon shape="filter" size="xl"></cds-icon>
         </slot>

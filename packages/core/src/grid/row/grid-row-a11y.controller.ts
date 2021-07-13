@@ -1,6 +1,6 @@
 import { ReactiveControllerHost } from 'lit';
 
-export type GridRowA11y = ReactiveControllerHost & HTMLElement & { row: number };
+export type GridRowA11y = ReactiveControllerHost & HTMLElement & { rowIndex: number };
 
 export class GridRowA11yController {
   private firstUpdated = false;
@@ -17,6 +17,6 @@ export class GridRowA11yController {
       this.host.setAttribute('role', 'row');
     }
 
-    this.host.setAttribute('aria-rowindex', `${this.host.row}`);
+    this.host.setAttribute('aria-rowindex', `${this.host.rowIndex}`); // set as attr instead of reflecting the property for performance (delay till after first update)
   }
 }

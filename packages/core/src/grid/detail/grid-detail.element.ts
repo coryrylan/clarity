@@ -1,7 +1,6 @@
 import { LitElement, html } from 'lit';
 import '@cds/core/internal-components/close-button/register.js';
-import { baseStyles, property } from '@cds/core/internal';
-import { getTabableItems } from '../utils/utils.js';
+import { baseStyles, property, getTabableItems } from '@cds/core/internal';
 import styles from './grid-detail.element.scss';
 
 export class CdsGridDetail extends LitElement {

@@ -7,7 +7,9 @@ export type GridColumnGroupSize = ReactiveControllerHost & HTMLElement & {
 };
 
 export class GridColumnGroupSizeController {
-  constructor(private host: GridColumnGroupSize) {}
+  constructor(private host: GridColumnGroupSize) {
+    host.addController(this as any);
+  }
 
   initializeColumnWidths() {
     if (this.host.columnLayout === 'fixed') {
@@ -27,7 +29,7 @@ export class GridColumnGroupSizeController {
         if (this.host.columnLayout === 'flex') {
           return `${p} ${`minmax(min-content, var(--col-${c.colIndex}-width, ${c.width ? `${c.width}px` : '1fr'}))`}`;
         } else {
-          return `${p} ${`var(--col-${c.colIndex}-width, ${c.width ? `${c.width}px` : '1fr'})`}`; // TODO: needs min width set, min-content works but restricts width
+          return `${p} ${`var(--col-${c.colIndex}-width, ${c.width ? `${c.width}px` : '1fr'})`}`;
         }
       }, '');
     this.host.style.setProperty('--grid-template-columns', colWidths);

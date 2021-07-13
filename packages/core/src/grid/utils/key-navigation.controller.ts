@@ -1,10 +1,10 @@
 import { ReactiveControllerHost } from 'lit';
-import { getTabableItems } from './utils.js';
+import { getTabableItems } from '@cds/core/internal';
 
 export type CdsKeyItem = HTMLElement;
 
 /** Cells must be direct children of row */
-export type KeyGrid = HTMLElement & {
+export type KeyGrid = ReactiveControllerHost & HTMLElement & {
   rows: NodeListOf<CdsKeyItem> | CdsKeyItem[];
   cells: NodeListOf<CdsKeyItem> | CdsKeyItem[];
   grid: HTMLElement;
@@ -13,10 +13,7 @@ export type KeyGrid = HTMLElement & {
 export class GridKeyNavigationController {
   elementRect = {} as DOMRectReadOnly;
 
-  protected host: ReactiveControllerHost & KeyGrid;
-
-  constructor(host: ReactiveControllerHost) {
-    this.host = host as any;
+  constructor(private host: KeyGrid) {
     host.addController(this);
   }
 
