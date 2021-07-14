@@ -17,21 +17,18 @@ export class GridColumnGroupSizeController {
         .filter(column => !column.width && !column.hidden)
         .map(column => [column, parseInt(getComputedStyle(column).width)])
         .forEach(([column, width]: any) =>
-          this.host.style.setProperty(`--col-${column.colIndex}-width`, column.width ? `${column.width}px` : `${width}px`)
+          this.host.style.setProperty(`--ch${column.colIndex}`, column.width ? `${column.width}px` : `${width}px`)
         );
     }
   }
 
-  calculateGridColumnWidths() {
-    const colWidths = Array.from(this.host.columns)
-      .filter(c => !c.hidden)
-      .reduce((p, c) => {
-        if (this.host.columnLayout === 'flex') {
-          return `${p} ${`minmax(min-content, var(--col-${c.colIndex}-width, ${c.width ? `${c.width}px` : '1fr'}))`}`;
-        } else {
-          return `${p} ${`var(--col-${c.colIndex}-width, ${c.width ? `${c.width}px` : '1fr'})`}`;
-        }
-      }, '');
-    this.host.style.setProperty('--grid-template-columns', colWidths);
+  createColumnGrids() {
+    const columns = Array.from(this.host.columns).filter(c => !c.hidden);
+
+    const colWidths = columns.reduce((p, c) => `${p} ${`var(--ch${c.colIndex}, ${c.width ? `${c.width}px` : '1fr'})`}`, '');
+    this.host.style.setProperty('--ch-grid', colWidths);
+
+    const rowColWidths = columns.reduce((p, c) => `${p} ${`var(--c${c.colIndex}, ${c.width ? `${c.width}px` : '1fr'})`}`, '');
+    this.host.style.setProperty('--c-grid', rowColWidths);
   }
 }

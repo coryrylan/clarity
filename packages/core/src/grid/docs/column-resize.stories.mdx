@@ -1,8 +1,8 @@
 import { Meta, Props, Story, Preview } from '@web/storybook-prebuilt/addon-docs/blocks.js';
 
-<Meta title="Data Grid (Preview)/Column Sizing" />
+<Meta title="Data Grid (Preview)/Column Resize" />
 
-# Grid Column Sizing
+# Grid Column Resize
 
 <cds-alert-group status="warning" cds-layout="m-b:lg">
   <cds-alert>
@@ -49,27 +49,3 @@ respect the exact size and overflow scroll to fit the larger columns.
 Flex Width Columns are enabled by setting the `column-layout="flex"` option on `cds-grid`.
 This will treat each column as a flex child and adjust the width to best possible fit without
 scroll. This option is ideal for smaller datasets with fewer columns.
-
-## Fixed Column Width
-
-The `cds-grid-column` provides a `width` attribute/property to set a starting width
-of a given column. By default, the Grid column width will be evenly distributed to
-the number of given columns.
-
-<Story id="stories-grid--fixed-column-width" />
-
-```html
-<cds-grid style="--body-height: 350px">
-  <cds-grid-column width="100">Type</cds-grid-column>
-  <cds-grid-column>Description</cds-grid-column>
-  <cds-grid-column>Amount</cds-grid-column>
-  <cds-grid-column>Balance</cds-grid-column>
-  <cds-grid-row>
-    <cds-grid-cell>Deposit</cds-grid-cell>
-    <cds-grid-cell>Item</cds-grid-cell>
-    <cds-grid-cell>$1,000,000.00</cds-grid-cell>
-    <cds-grid-cell>$1,000,000.00</cds-grid-cell>
-  </cds-grid-row>
-  <cds-grid-footer></cds-grid-footer>
-</cds-grid>
-```

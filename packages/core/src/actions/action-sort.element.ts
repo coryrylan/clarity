@@ -5,7 +5,7 @@
  */
 
 import { html } from 'lit';
-import { i18n, I18nService, property } from '@cds/core/internal';
+import { EventEmitter, i18n, I18nService, property, event } from '@cds/core/internal';
 import { CdsAction } from './action.element.js';
 import styles from './action-sort.element.scss';
 
@@ -21,12 +21,13 @@ import styles from './action-sort.element.scss';
  * ```
  * @internal
  * @element cds-action-sort
- * @slot - For projecting text content or cds-icon
  */
 export class CdsActionSort extends CdsAction {
   @property({ type: String, reflect: true }) sort: 'none' | 'ascending' | 'descending' = 'none';
 
   @i18n() i18n = I18nService.keys.actions;
+
+  @event() sortChange: EventEmitter<'none' | 'ascending' | 'descending'>;
 
   static get styles() {
     return [super.styles, styles];
@@ -47,6 +48,7 @@ export class CdsActionSort extends CdsAction {
     super.connectedCallback();
     this.addEventListener('click', () => this.sortClick());
     this.ariaLabel = this.i18n.sort;
+    this.sortChange.emit(this.sort, { bubbles: true });
   }
 
   private sortClick() {
@@ -62,6 +64,6 @@ export class CdsActionSort extends CdsAction {
         sort = 'ascending';
     }
 
-    this.dispatchEvent(new CustomEvent('sortChange', { detail: sort, bubbles: true }));
+    this.sortChange.emit(sort, { bubbles: true });
   }
 }

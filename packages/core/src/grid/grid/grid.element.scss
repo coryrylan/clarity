@@ -43,6 +43,7 @@
   display: flex;
   flex-direction: column;
   flex: 1 1 0%;
+  min-width: fit-content;
   margin-top: 2px;
   background: $cds-alias-object-container-background;
 }
@@ -56,7 +57,8 @@
   top: 0;
   position: sticky;
   z-index: 99;
-  grid-template-columns: var(--grid-template-columns);
+  min-width: fit-content;
+  grid-template-columns: var(--ch-grid);
   // padding-inline: $cds-global-space-6 $cds-global-space-1;
   // padding-inline: $cds-global-space-6 $cds-global-space-6;
   background: $cds-alias-object-container-background-tint;

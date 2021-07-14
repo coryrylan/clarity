@@ -4,13 +4,20 @@ let dragSrcEl: HTMLElement | null = null;
 
 export type DraggableItem = HTMLElement & { cdsDraggableItem?: 'item' | 'dropzone' };
 
+export interface DraggableListControllerConfig {
+  shadowRoot?: boolean;
+  axis?: 'both' | 'cross' | 'main',
+  item?: string,
+  dropZone?: string
+}
+
 export class DraggableListController {
   private get items() {
-    return Array.from(this.hostRoot.querySelectorAll<DraggableItem>(`${this.config.itemScope}[draggable=true]`));
+    return Array.from(this.hostRoot.querySelectorAll<DraggableItem>(`${this.config.item}[draggable=true]`));
   }
 
   private get dropZones() {
-    return Array.from(this.hostRoot.querySelectorAll<DraggableItem>(`${this.config.zoneScope}[draggable=false]`));
+    return Array.from(this.hostRoot.querySelectorAll<DraggableItem>(`${this.config.dropZone}[draggable=false]`));
   }
 
   private get hostRoot() {
@@ -19,10 +26,10 @@ export class DraggableListController {
 
   private observer: MutationObserver;
 
-  constructor(
-    private host: ReactiveControllerHost & HTMLElement,
-    private config: { shadowRoot?: boolean; axis?: 'both' | 'cross' | 'main', itemScope?: string, zoneScope?: string } = { shadowRoot: false, axis: 'both' }
-  ) {
+  private config: DraggableListControllerConfig;
+
+  constructor(private host: ReactiveControllerHost & HTMLElement, config: DraggableListControllerConfig) {
+    this.config = { shadowRoot: false, axis: 'both', item: '', dropZone: '', ...config };
     host.addController(this);
   }
 

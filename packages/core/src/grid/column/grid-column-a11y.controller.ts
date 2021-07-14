@@ -9,6 +9,10 @@ export class GridColumnA11yController {
     host.addController(this);
   }
 
+  hostConnected() {
+    this.host.addEventListener('sortChange', (e: any) => this.host.setAttribute('aria-sort', e.detail));
+  }
+
   async hostUpdated() {
     await this.host.updateComplete;
 

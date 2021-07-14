@@ -98,7 +98,8 @@ export const parameters = {
           'Multi Sortable Rows',
           'Row Filtering',
           'Multi Cell Filtering',
-          'Column Sizing',
+          'Column Width',
+          'Column Resize',
           'Column Visibility',
           'Detail View',
           'Pagination',
@@ -146,9 +147,10 @@ export const globalTypes = {
   theme: {
     name: 'Themes',
     description: 'Available built in Clarity themes',
-    defaultValue: window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : window.localStorage.getItem('cds-color-theme'),
+    defaultValue: '',
+    // defaultValue: window.matchMedia('(prefers-color-scheme: dark)').matches
+    //   ? 'dark'
+    //   : window.localStorage.getItem('cds-color-theme'),
     toolbar: {
       items: [
         { value: '', title: 'Light Theme' },
@@ -188,12 +190,12 @@ const themeDecorator = (story, { globals }) => {
 
   window.localStorage.setItem('cds-theme', themes);
 
-  window.addEventListener('storage', () => {
-    const updatedTheme = window.localStorage.getItem('cds-theme');
-    if (updatedTheme) {
-      window.document.body.setAttribute('cds-theme', `${updatedTheme}`);
-    }
-  });
+  // window.addEventListener('storage', () => {
+  //   const updatedTheme = window.localStorage.getItem('cds-theme');
+  //   if (updatedTheme) {
+  //     window.document.body.setAttribute('cds-theme', `${updatedTheme}`);
+  //   }
+  // });
 
   return story();
 };

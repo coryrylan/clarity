@@ -37,6 +37,7 @@ describe('grid-row-position.controller', () => {
     await componentIsStable(component);
     expect(component.style.getPropertyValue('--scroll-padding-top')).toBe('calc(var(--row-height) * 2)');
 
+    component.style.setProperty('--scroll-padding-top', '20px');
     component.position = '';
     await componentIsStable(component);
     expect(component.style.getPropertyValue('--scroll-padding-top')).toBe('');

@@ -4,7 +4,7 @@ import { GridCellA11yController } from './grid-cell-a11y.controller.js';
 import styles from './grid-cell.element.scss';
 
 export class CdsGridCell extends LitElement {
-  @state({ type: Number }) colIndex: number = null;
+  @state({ type: Number }) colIndex: number;
 
   static styles = [baseStyles, styles];
 
@@ -17,9 +17,4 @@ export class CdsGridCell extends LitElement {
       </div>
     `;
   }
-
-  // async performUpdate() {
-  //   await new Promise((resolve: any) => setTimeout(() => resolve()));
-  //   return super.performUpdate();
-  // }
 }

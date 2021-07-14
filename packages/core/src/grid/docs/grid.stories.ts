@@ -10,7 +10,9 @@ import { queryAll } from 'lit/decorators/query-all.js';
 import pipe from 'ramda/es/pipe.js';
 import { baseStyles, registerElementSafely, state } from '@cds/core/internal';
 import '@cds/core/pagination/register.js';
+import '@cds/core/datalist/register.js';
 import '@cds/core/checkbox/register.js';
+import '@cds/core/search/register.js';
 import '@cds/core/select/register.js';
 import '@cds/core/radio/register.js';
 import '@cds/core/grid/register.js';
@@ -32,6 +34,170 @@ export default {
   title: 'Stories/Grid',
   component: 'cds-grid',
 };
+
+export function all() {
+  return html`
+    <style>
+      .grid-all-demo > div > *:nth-child(2) {
+        width: 100%;
+      }
+    </style>
+    <section class="grid-all-demo" cds-layout="grid cols@lg:6 cols@xl:4 gap:lg">
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Basic</h2>
+        ${basic()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Keyboard</h2>
+        ${keyboard()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Static Column Width</h2>
+        ${staticColumnWidth()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Flex Column Width</h2>
+        ${flexColumnWidth()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Fixed Column Width</h2>
+        ${fixedColumnWidth()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Placeholder</h2>
+        ${placeholder()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Pagination</h2>
+        ${pagination()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Column Resize</h2>
+        ${columnResize()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Column Visibility</h2>
+        ${columnVisibility()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Detail View</h2>
+        ${detailView()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Single Select</h2>
+        ${singleSelect()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Multi Select</h2>
+        ${multiSelect()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Single Action</h2>
+        ${singleAction()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Multi Action</h2>
+        ${multiAction()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Sortable Rows</h2>
+        ${sortableRows()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Multi Sortable Rows</h2>
+        ${multiSortableRows()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Row Filtering</h2>
+        ${rowFiltering()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Multi Cell Filtering</h2>
+        ${multiCellFiltering()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Fixed Columns</h2>
+        ${fixedColumns()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Dynamic Fixed Columns</h2>
+        ${dynamicFixedColumns()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Multi Fixed Columns</h2>
+        ${multiFixedColumns()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Sticky Columns</h2>
+        ${stickyColumns()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Editable Cell</h2>
+        ${editableCell()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">RTL Support</h2>
+        ${rtl()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Optional Footer</h2>
+        ${optionalFooter()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Compact</h2>
+        ${compact()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Draggable Rows</h2>
+        ${draggableRows()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Swappable Rows</h2>
+        ${swappableRows()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Draggable Columns</h2>
+        ${draggableColumns()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Fixed Rows</h2>
+        ${fixedRows()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Draggable Columns</h2>
+        ${draggableColumns()}
+      </div>
+      <div cds-layout="vertical gap:lg" style="min-height: 650px">
+        <h2 cds-text="section">Performance</h2>
+        ${performance()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Kitchen Sink</h2>
+        ${kitchenSink()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Responsive</h2>
+        ${responsive()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Dark Theme</h2>
+        ${darkTheme()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">No Scroll</h2>
+        ${noScroll()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Draggable List Controller</h2>
+        ${draggableListController()}
+      </div>
+      <div cds-layout="vertical gap:lg">
+        <h2 cds-text="section">Grid Key Navigation Controller</h2>
+        ${gridKeyNavigationController()}
+      </div>
+    </section>
+  `;
+}
 
 export function basic() {
   return html`
@@ -370,8 +536,8 @@ export function flexColumnWidth() {
       <cds-grid-row>
         <cds-grid-cell>Deposit</cds-grid-cell>
         <cds-grid-cell>Item kh kasd alksdfjh kashjdf kalsjdf lkajsdfl</cds-grid-cell>
-        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
-        <cds-grid-cell>$1,000,000.00</cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$1,000,000.00</p></cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$1,000,000.00</p></cds-grid-cell>
       </cds-grid-row>
       <cds-grid-row>
         <cds-grid-cell>Credit</cds-grid-cell>
@@ -505,6 +671,79 @@ export function fixedColumnWidth() {
   `;
 }
 
+export function columnOverflow() {
+  return html`
+    <cds-grid aria-label="fixed column width datagrid demo" style="--body-height: 360px">
+      <cds-grid-column>Type</cds-grid-column>
+      <cds-grid-column>Description</cds-grid-column>
+      <cds-grid-column>Amount</cds-grid-column>
+      <cds-grid-column width="100">Balance</cds-grid-column>
+
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Item</cds-grid-cell>
+        <cds-grid-cell></cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$1,000,000.00</p></cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Billing</cds-grid-cell>
+        <cds-grid-cell>$250.00</cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$523,750.00</p></cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Renewal</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$163,262.00</p></cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$53.00</cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$347,423.00</p></cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Subscription</cds-grid-cell>
+        <cds-grid-cell>$1239.00</cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$564,772.00</p></cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Deposit</cds-grid-cell>
+        <cds-grid-cell>Service Fee</cds-grid-cell>
+        <cds-grid-cell>$49.00</cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$977,527.00</p></cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Account Transfer</cds-grid-cell>
+        <cds-grid-cell>$2300.00</cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$423,236.00</p></cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Credit</cds-grid-cell>
+        <cds-grid-cell>Payment</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$199,282.00</p></cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Unknown</cds-grid-cell>
+        <cds-grid-cell>$9.00</cds-grid-cell>
+        <cds-grid-cell>$929,741.00</cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-row>
+        <cds-grid-cell>Debit</cds-grid-cell>
+        <cds-grid-cell>Provider</cds-grid-cell>
+        <cds-grid-cell>$9203.00</cds-grid-cell>
+        <cds-grid-cell><p cds-text="truncate">$239,120.00</p></cds-grid-cell>
+      </cds-grid-row>
+      <cds-grid-footer></cds-grid-footer>
+    </cds-grid>
+  `;
+}
+
 export function rtl() {
   class DemoRtl extends LitElement {
     @state() private data = getData();
@@ -557,7 +796,7 @@ export function rtl() {
 
 export function responsive() {
   return html`
-    <cds-grid aria-label="responsive datagrid demo" style="width: 400px">
+    <cds-grid aria-label="responsive datagrid demo" style="width: 400px; --body-height: 360px">
       <cds-grid-column position="fixed" width="80">Type</cds-grid-column>
       <cds-grid-column width="200">Description</cds-grid-column>
       <cds-grid-column width="200">Amount</cds-grid-column>
@@ -682,20 +921,19 @@ export function kitchenSink() {
     render() {
       return html`
         <cds-grid aria-label="Active VM Management" @draggableChange=${this.reorderList} style="--body-height: 360px">
-          <cds-grid-column width="40">
+          <cds-grid-column width="44" resizable="hidden">
             <cds-checkbox>
               <input type="checkbox" .checked=${!this.state.data.find(i => !i.selected)} @change=${(e: any) => this.selectAll(e)} aria-label="select all" />
             </cds-checkbox>
           </cds-grid-column>
-          <cds-grid-column width="55"></cds-grid-column>
+          <cds-grid-column width="50"></cds-grid-column>
           <cds-grid-column resizable width="260">
             Host
             <cds-action id="id-filter" @click=${() => (this.state = { ...this.state, idFilterDropdownVisible: true })} aria-label="column filter options" shape="filter"></cds-action>
             <cds-dropdown ?hidden=${!this.state.idFilterDropdownVisible} @hiddenChange=${() => (this.state = { ...this.state, idFilterDropdownVisible: false })} anchor="#id-filter">
-              <cds-datalist>
+              <cds-input>
                 <input type="text" placeholder="Search" aria-label="search rows" .value=${this.state.search} @input=${(e: any) => this.search(e.target.value)} />
-                <datalist>${this.state.data.map(entry => html`<option value="${entry.id}"></option>`)}</datalist>
-              </cds-datalist>
+              </cds-input>
             </cds-dropdown>
           </cds-grid-column>
           ${this.columnVisible(ColumnTypes.Status) ? html`
@@ -793,7 +1031,7 @@ export function kitchenSink() {
         <br />
         <section cds-layout="vertical gap:lg">
           <cds-button action="outline" @click=${this.resetState}>clear local storage</cds-button>
-          <pre>${JSON.stringify({ ...this.state, data: this.state.data.map(i => i.id).join(','), orderPreference: this.state.orderPreference.join(',') }, null, 2)}</pre>
+          <pre style="width: 100%; overflow: auto;">${JSON.stringify({ ...this.state, data: this.state.data.map(i => i.id).join(','), orderPreference: this.state.orderPreference.join(',') }, null, 2)}</pre>
         </section>
       `;
     }
@@ -1705,17 +1943,14 @@ export function rowFiltering() {
               @hiddenChange=${() => (this.idFilterOpen = false)}
               anchor="#id-filter-demo"
             >
-              <cds-datalist>
+              <cds-input>
                 <input
-                  type="search"
+                  type="text"
                   aria-label="search"
                   placeholder="Search"
                   @input=${(e: any) => (this.search = e.target.value)}
                 />
-                <datalist>
-                  ${this.data.map(entry => html`<option value="${entry.id}"></option>`)}
-                </datalist>
-              </cds-datalist>
+              </cds-input>
             </cds-dropdown>
           </cds-grid-column>
           <cds-grid-column>Average</cds-grid-column>
@@ -1805,7 +2040,44 @@ export function multiCellFiltering() {
 }
 
 export function fixedColumns() {
-  class DemoColFixed extends LitElement {
+  class DemoFixedColumns extends LitElement {
+    @state() private data = getData();
+
+    render() {
+      return html`
+        <cds-grid aria-label="fixed columns datagrid demo" style="--body-height: 360px">
+          <cds-grid-column width="150" position="fixed">Stock</cds-grid-column>
+          <cds-grid-column width="350">Average</cds-grid-column>
+          <cds-grid-column width="500">Current</cds-grid-column>
+          <cds-grid-column width="150" position="fixed">
+            About
+          </cds-grid-column>
+          ${this.data.map(
+            entry => html`
+              <cds-grid-row>
+                <cds-grid-cell>${entry.id}</cds-grid-cell>
+                <cds-grid-cell>$${entry.average}</cds-grid-cell>
+                <cds-grid-cell>$${entry.value}</cds-grid-cell>
+                <cds-grid-cell>${entry.about}</cds-grid-cell>
+              </cds-grid-row>
+            `
+          )}
+          <cds-grid-footer></cds-grid-footer>
+        </cds-grid>
+      `;
+    }
+
+    protected createRenderRoot() {
+      return this;
+    }
+  }
+
+  registerElementSafely('demo-grid-fixed-cols', DemoFixedColumns);
+  return html`<demo-grid-fixed-cols></demo-grid-fixed-cols>`;
+}
+
+export function dynamicFixedColumns() {
+  class DemoDyanmicFixedColumns extends LitElement {
     @state() private data = getData();
     @state() private pinFirst = true;
     @state() private pinLast = true;
@@ -1820,7 +2092,7 @@ export function fixedColumns() {
             </cds-action>
           </cds-grid-column>
           <cds-grid-column width="400" resizable>Average</cds-grid-column>
-          <cds-grid-column width="400" resizable>Current</cds-grid-column>
+          <cds-grid-column width="1000" resizable>Current</cds-grid-column>
           <cds-grid-column width="200" resizable .position=${this.pinLast ? 'fixed' : 'initial'}>
             About
             <cds-action @click=${() => (this.pinLast = !this.pinLast)} aria-label="pin column">
@@ -1847,8 +2119,47 @@ export function fixedColumns() {
     }
   }
 
-  registerElementSafely('demo-grid-col-fixed', DemoColFixed);
-  return html`<demo-grid-col-fixed></demo-grid-col-fixed>`;
+  registerElementSafely('demo-dynamic-fixed-columns', DemoDyanmicFixedColumns);
+  return html`<demo-dynamic-fixed-columns></demo-dynamic-fixed-columns>`;
+}
+
+export function multiFixedColumns() {
+  class DemoMultiFixedColumns extends LitElement {
+    @state() private data = getData();
+
+    render() {
+      return html`
+        <cds-grid aria-label="fixed columns datagrid demo" style="--body-height: 360px">
+          <cds-grid-column width="150" position="fixed">Stock</cds-grid-column>
+          <cds-grid-column width="150" position="fixed">Average</cds-grid-column>
+          <cds-grid-column width="500">Current</cds-grid-column>
+          <cds-grid-column width="500">Current</cds-grid-column>
+          <cds-grid-column width="150" position="fixed">
+            About
+          </cds-grid-column>
+          ${this.data.map(
+            entry => html`
+              <cds-grid-row>
+                <cds-grid-cell>${entry.id}</cds-grid-cell>
+                <cds-grid-cell>$${entry.average}</cds-grid-cell>
+                <cds-grid-cell>$${entry.value}</cds-grid-cell>
+                <cds-grid-cell>$${entry.value}</cds-grid-cell>
+                <cds-grid-cell>${entry.about}</cds-grid-cell>
+              </cds-grid-row>
+            `
+          )}
+          <cds-grid-footer></cds-grid-footer>
+        </cds-grid>
+      `;
+    }
+
+    protected createRenderRoot() {
+      return this;
+    }
+  }
+
+  registerElementSafely('demo-grid-multi-fixed-cols', DemoMultiFixedColumns);
+  return html`<demo-grid-multi-fixed-cols></demo-grid-multi-fixed-cols>`;
 }
 
 export function stickyColumns() {
@@ -1858,10 +2169,10 @@ export function stickyColumns() {
     render() {
       return html`
         <cds-grid aria-label="sticky columns datagrid demo" style="--body-height: 360px">
-          <cds-grid-column width="120">Stock</cds-grid-column>
-          <cds-grid-column width="120" position="sticky">Average</cds-grid-column>
-          <cds-grid-column width="500">Current</cds-grid-column>
-          <cds-grid-column width="500">About</cds-grid-column>
+          <cds-grid-column width="200">Stock</cds-grid-column>
+          <cds-grid-column width="200" position="sticky">Average</cds-grid-column>
+          <cds-grid-column width="1000">Current</cds-grid-column>
+          <cds-grid-column width="1000">About</cds-grid-column>
           ${this.data.map(
             entry => html`
               <cds-grid-row>
@@ -2149,7 +2460,7 @@ export function performance() {
           <cds-button action="outline" @click=${this.toggleVisibility}>css visibility</cds-button>
           <br /><br />
           ${this.showParseAndRender ? html`
-          <cds-grid aria-label="performance datagrid demo" ?hidden=${this.hide} style="--body-height: 360px; --row-height: 44px; max-width: 800px">
+          <cds-grid aria-label="performance datagrid demo" ?hidden=${this.hide} style="--body-height: 360px; max-width: 800px">
             <cds-grid-column>Stock</cds-grid-column>
             <cds-grid-column>Average</cds-grid-column>
             <cds-grid-column>Current</cds-grid-column>
@@ -2510,6 +2821,10 @@ export function draggableListController() {
             min-height: 120px;
           }
 
+          cds-card p {
+            padding-top: 4px;
+          }
+
           [cds-draggable='target'] {
             box-shadow: -4px 0 0 0 var(--cds-alias-status-alt-tint);
           }
@@ -2534,7 +2849,7 @@ export function draggableListController() {
             entry => html`
               <cds-card draggable="true" id=${entry.id}>
                 <div cds-layout="horizontal">
-                  <p>${entry.id}</p>
+                  <p cds-text="subsection">${entry.id}</p>
                   <cds-action-handle aria-label="sort ${entry.id} row" cds-layout="align:right"></cds-action-handle>
                 </div>
               </cds-card>
@@ -2602,7 +2917,7 @@ export function gridKeyNavigationController() {
     @state() private code = '';
 
     render() {
-      return html`???
+      return html`
         <div cds-layout="vertical gap:md">
           <p cds-text="body">Selected: ${this.selected}</p>
           <p cds-text="body">Active: ${this.active}</p>

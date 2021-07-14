@@ -13,11 +13,15 @@ export interface LayoutConfig {
   initialLayout: string;
 }
 
-export function elementResize(element: HTMLElement, callbackFn: () => void) {
+export function elementResize(element: HTMLElement, callbackFn: () => void, async = true) {
   const observer = new ResizeObserver(() => {
     // We wrap the callback in requestAnimationFrame to
     // avoid the error of "ResizeObserver loop limit exceeded".
-    window.requestAnimationFrame(() => callbackFn());
+    if (async) {
+      window.requestAnimationFrame(() => callbackFn());
+    } else {
+      callbackFn();
+    }
   });
   observer.observe(element);
   (observer as any).__testTrigger = callbackFn; // hook to trigger resize event as ResizeObserver does not run in headless chrome.

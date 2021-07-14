@@ -22,32 +22,30 @@ export class GridColumnPositionController {
   }
 
   calculateColumnPositionStyles() {
-    const position = this.host.getBoundingClientRect();
     const gridPosition = this.hostGrid.getBoundingClientRect();
-    const offsetLeft = this.host.offsetLeft;
-    const side = offsetLeft < gridPosition.width / 2 ? 'left' : 'right';
+    const side =  this.host.offsetLeft < gridPosition.width / 2 ? 'left' : 'right';
+    (this.globalStyle as any).replaceSync(`${this.getPositionStyle(side, gridPosition)}\n${this.borderStyle(side)}`);
+  }
+
+  private getPositionStyle(side: 'left' | 'right', gridPosition: DOMRect) {
+    const position = this.host.getBoundingClientRect();
     const left = this.host.position === 'fixed' ? `${position.left - gridPosition.left - 1}px` : 'initial';
     const right = this.host.position === 'fixed' ? `${position.right - position.left - position.width}px` : 'initial';
 
-    (this.globalStyle as any).replaceSync(`
-      [__id='${this.hostGrid._id}'] cds-grid-column:nth-child(${this.host.colIndex}),
-      [__id='${this.hostGrid._id}'] cds-grid-cell:nth-child(${this.host.colIndex}) {
-        ${side === 'left' ? `left: ${left};` : ''}
-        ${this.host.position === 'sticky' ? `left: 0px;` : ''}
-        ${side === 'right' ? `right: ${right};` : ''}
-      }
+    return `
+    [__id='${this.hostGrid._id}'] cds-grid-column:nth-child(${this.host.colIndex}),
+    [__id='${this.hostGrid._id}'] cds-grid-cell:nth-child(${this.host.colIndex}) {
+      ${side === 'left' ? `left: ${left};` : ''}
+      ${side === 'right' ? `right: ${right};` : ''}
+      ${this.host.position === 'sticky' ? `left: 0px;` : ''}
+    }`;
+  }
 
-      ${
-        this.host.position !== 'initial'
-          ? `
-        [__id='${this.hostGrid._id}'] cds-grid-cell:nth-child(${this.host.colIndex}) {
-          --border-${
-            side === 'left' ? 'right' : 'left'
-          }: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
-          z-index: 98;
-        }`
-          : ''
-      }
-    `);
+  private borderStyle(side: 'left' | 'right') {
+    return this.host.position !== 'initial' ? `
+      [__id='${this.hostGrid._id}'] cds-grid-cell:nth-child(${this.host.colIndex}) {
+        --border-${side === 'left' ? 'right' : 'left'}: var(--cds-alias-object-border-width-100) solid var(--cds-alias-object-border-color);
+        z-index: 98;
+      }` : '';
   }
 }

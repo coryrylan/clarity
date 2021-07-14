@@ -11,7 +11,7 @@
     "storybook:start": "wds -c ./web-dev-server.storybook.mjs",
     "storybook:build": "build-storybook --config-dir .storybook --output-dir ../../dist/website/storybook/core",
     "lint:fix": "eslint --fix \"./**/*.ts\" && stylelint --fix \"./**/*.scss\"",
-    "test:watch": "wtr --watch",
+    "test:watch": "wtr --watch --coverage",
     "test:unit": "wtr",
     "test:unit:coverage": "wtr --coverage",
     "test:performance": "rollup --config ./rollup.performance.js",

@@ -34,9 +34,9 @@ export class CdsGrid extends LitElement implements KeyGrid {
   
   protected gridColumnGroupSizeController = new GridColumnGroupSizeController(this);
 
-  protected draggableColumnController = new DraggableListController(this, { axis: 'main', itemScope: 'cds-grid-column', zoneScope: 'cds-grid-column' });
+  protected draggableColumnController = new DraggableListController(this, { axis: 'main', item: 'cds-grid-column', dropZone: 'cds-grid-column' });
 
-  protected draggableListController = new DraggableListController(this, { axis: 'cross', itemScope: 'cds-grid-row', zoneScope: 'cds-grid-placeholder' });
+  protected draggableListController = new DraggableListController(this, { axis: 'cross', item: 'cds-grid-row', dropZone: 'cds-grid-placeholder' });
 
   static styles = [baseStyles, styles];
 
@@ -53,7 +53,7 @@ export class CdsGrid extends LitElement implements KeyGrid {
         <div class="grid" @scroll=${this.setContentVisibitity}>
           <div role="rowgroup" class="column-row-group">
             <div role="row" @mousedown=${this.initializeColumnWidths} @keydown=${this.initializeColumnWidths}>
-              <slot name="columns" @slotchange=${this.calculateColWidths}></slot>
+              <slot name="columns" @slotchange=${this.createColumnGrids}></slot>
             </div>
           </div>
           <div class="grid-body" role="rowgroup">
@@ -84,9 +84,10 @@ export class CdsGrid extends LitElement implements KeyGrid {
   @eventOptions({ once: true })
   private initializeColumnWidths() {
     this.gridColumnGroupSizeController.initializeColumnWidths();
+    this.columns.forEach((c: any) => c.gridColumnSizeController.initializeResizer());
   }
 
-  private calculateColWidths() {
-    this.gridColumnGroupSizeController.calculateGridColumnWidths();
+  private createColumnGrids() {
+    this.gridColumnGroupSizeController.createColumnGrids();
   }
 }

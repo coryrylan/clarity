@@ -77,7 +77,7 @@ export class CdsActionResize extends CdsAction {
       requestAnimationFrame(() => {
         const dx = m_pos - e.x;
         m_pos = e.x;
-        host.resizeChange.emit(-dx);
+        host.resizeChange.emit(-dx, { bubbles: true });
       });
     }
   }
@@ -87,7 +87,7 @@ export class CdsActionResize extends CdsAction {
       if (e.code === 'ArrowLeft' || e.code === 'ArrowRight') {
         e.preventDefault();
         this.keyActive = true;
-        requestAnimationFrame(() => this.resizeChange.emit(e.code === 'ArrowLeft' ? -10 : 10));
+        requestAnimationFrame(() => this.resizeChange.emit(e.code === 'ArrowLeft' ? -10 : 10, { bubbles: true }));
       }
     });
   }

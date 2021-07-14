@@ -38,4 +38,10 @@ describe('grid-column-a11y.controller', () => {
     await componentIsStable(component);
     expect(component.getAttribute('aria-colindex')).toBe('2');
   });
+
+  it('should update the aria-sort when receiving a sortChange event', async () => {
+    component.dispatchEvent(new CustomEvent('sortChange', { detail: 'accending' }));
+    await componentIsStable(component);
+    expect(component.getAttribute('aria-sort')).toBe('accending');
+  });
 });

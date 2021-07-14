@@ -5,6 +5,7 @@
  */
 
 import { html, LitElement } from 'lit';
+import { query } from 'lit/decorators/query.js';
 import { registerElementSafely, state, property } from '@cds/core/internal';
 import { createTestElement, removeTestElement, componentIsStable, onceEvent } from '@cds/core/test';
 import { GridColumnSizeController } from './grid-column-size.controller.js';
@@ -12,7 +13,12 @@ import { GridColumnSizeController } from './grid-column-size.controller.js';
 class GridColumnSizeTestElement extends LitElement {
   @property() width?: string;
   @state() colIndex = 1;
+  @query('#handle') resizeHandle: any;
   gridColumnSizeController = new GridColumnSizeController(this);
+
+  render() {
+    return html`<div id="handle"></div>`;
+  }
 }
 
 registerElementSafely('grid-column-size-test-element', GridColumnSizeTestElement);
@@ -22,7 +28,7 @@ describe('grid-column-size.controller', () => {
   let element: HTMLElement;
 
   beforeEach(async () => {
-    element = await createTestElement(html`<grid-column-size-test-element style="width: 100px; display: block;"></grid-column-size-test-element>`);
+    element = await createTestElement(html`<grid-column-size-test-element style="height: 100px; width: 100px; display: block;"></grid-column-size-test-element>`);
     component = element.querySelector<GridColumnSizeTestElement>('grid-column-size-test-element');
     component.colIndex = 1;
   });
@@ -33,32 +39,25 @@ describe('grid-column-size.controller', () => {
 
   it('should set CSS Custom Property for column custom width values', async () => {
     component.width = '200';
-    component.gridColumnSizeController.setWidth();
     await componentIsStable(component);
-    expect(element.style.getPropertyValue('--col-1-width')).toBe('200px');
-
-    component.width = '20%';
-    component.gridColumnSizeController.setWidth();
-    await componentIsStable(component);
-    expect(element.style.getPropertyValue('--col-1-width')).toBe('20%');
+    expect(element.style.getPropertyValue('--ch1')).toBe('200px');
   });
 
-  it('should set CSS Custom Property using the computed column width if no width specified', async () => {
-    await componentIsStable(component);
-    component.gridColumnSizeController.setWidth();
-    expect(element.style.getPropertyValue('--col-1-width')).toBe('100px');
-  });
-
-  it('should resize a column when given a width offset', async () => {
+  it('should resize a column when resizeChange occurs', async () => {
     const event = onceEvent(component, 'widthChange');
-    component.gridColumnSizeController.resize(-10);
+    component.resizeHandle.dispatchEvent(new CustomEvent('resizeChange', { detail: -10 }));
     await componentIsStable(component);
-    expect(element.style.getPropertyValue('--col-1-width')).toBe('90px');
+    expect(element.style.getPropertyValue('--ch1')).toBe('90px');
     const e = await event;
     expect(e.detail).toBe(90);
-
-    component.gridColumnSizeController.resize(20);
-    await componentIsStable(component);
-    expect(element.style.getPropertyValue('--col-1-width')).toBe('120px');
   });
+
+  // it('should set the row column size when column header is resized', async () => {
+  //   component.gridColumnSizeController.initializeResizer();
+  //   await componentIsStable(component);
+  //   component.style.width = '100%';
+  //   element.style.width = '50px';
+  //   await componentIsStable(component);
+  //   expect(element.style.getPropertyValue('--c1')).toBe('200px');
+  // });
 });
